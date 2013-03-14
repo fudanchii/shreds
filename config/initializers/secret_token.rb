@@ -4,4 +4,6 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Shreds::Application.config.secret_token = '74879daaebf757dd7ec3452f76dde560f8eec4397992740e93b2823708c9c3041d0520e1f517ecaa1b23f1a2a8aab6bee572947b5bdc934719a41ea67e945289'
+
+raise "Please setup secret token to use with rails, you may want to use `rake secret`" if ENV['SECRET'].nil?
+Shreds::Application.config.secret_token = ENV['SECRET']
