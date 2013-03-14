@@ -1,0 +1,5 @@
+syntax: glob
+*.log
+*~
+*.swp
+config/*.yml
