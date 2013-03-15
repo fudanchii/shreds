@@ -48,7 +48,7 @@ gem "valid_email"
 # gem "paper_trail"
 
 # Profiling
-gem "rack-mini-profiler"
+# gem "rack-mini-profiler"
 
 # caching
 gem "dalli"
