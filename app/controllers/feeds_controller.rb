@@ -1,4 +1,9 @@
 class FeedsController < ApplicationController
+
+  before_filter {
+    @categories = Category.all
+  }
+
   # GET /feeds
   # GET /feeds.json
   def index

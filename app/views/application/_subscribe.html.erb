@@ -1,0 +1,5 @@
+<%= simple_form_for(:feed, :html => { :class => "form-inline" }) do |f| %>
+  <%= f.input :permalink, label: false, :input_html => { placeholder: "Paste RSS link here" } %>
+  <%= f.input :category, label: false, :input_html => { placeholder: "Category" } %>
+  <%= f.submit 'Subscribe', :class => "btn btn-info btn-small" %>
+<% end %>

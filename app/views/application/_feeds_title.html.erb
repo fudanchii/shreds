@@ -1,0 +1,5 @@
+<% feeds.each do |feed| %>
+  <li><a href="" id="<%= "feed-#{feed.id}" %>" class="feed-items">
+    <img class="feed-icon" src="<%= feed.favicon %>"></img><%= feed.title %>
+  </a></li>
+<% end %>

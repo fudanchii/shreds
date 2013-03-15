@@ -1,3 +1,17 @@
 // Place all the styles related to the feeds controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// http://stackoverflow.com/questions/9350818
+.sidebar-nav-fixed {
+    padding: 9px;
+    position:fixed;
+    width:250px;
+    height: 100%;
+    left: 0px;
+}
+
+.row > .span-fixed-sidebar {
+    margin-left: 300px;
+}
+
