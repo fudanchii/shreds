@@ -55,3 +55,9 @@ gem "dalli"
 gem "cache_digests"
 
 gem "oj"
+
+gem "sidekiq"
+gem "sinatra", :require => false
+gem "slim"
+
+gem "feedzirra"
