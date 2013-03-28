@@ -3,7 +3,7 @@
   <ul class="nav nav-list">
     <% @categories.each do |cat| %>
       <li class="nav-header"><%= cat.name.camelize %></li>
-      <%= render 'feed_titles', :locals => { feeds: cat.feeds } %>
+      <%= render 'feed_titles', feeds: cat.feeds %>
     <% end %>
   </ul>
 </div>
