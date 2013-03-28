@@ -61,3 +61,5 @@ gem "sinatra", :require => false
 gem "slim"
 
 gem "feedzirra"
+
+gem "thin", :group => :development
