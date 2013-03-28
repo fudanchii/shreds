@@ -1,8 +1,12 @@
 class FeedsController < ApplicationController
 
-  before_filter {
+  before_filter do
+    @category = Category.new
+    @feed = Feed.new
+    @feed.category = @category
+    # XXX: Remove this later
     @categories = Category.all
-  }
+  end
 
   # GET /feeds
   # GET /feeds.json
@@ -29,8 +33,6 @@ class FeedsController < ApplicationController
   # GET /feeds/new
   # GET /feeds/new.json
   def new
-    @feed = Feed.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @feed }
@@ -45,10 +47,14 @@ class FeedsController < ApplicationController
   # POST /feeds
   # POST /feeds.json
   def create
+    params[:feed][:category] = "default" if params[:feed][:category].blank?
+    @category = Category.find_or_create_by_name(params[:feed][:category])
+    params[:feed].delete(:category)
     @feed = Feed.new(params[:feed])
-
+    @feed.category = @category
     respond_to do |format|
       if @feed.save
+        FeedWorker.perform_async(@feed.id)
         format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
         format.json { render json: @feed, status: :created, location: @feed }
       else
