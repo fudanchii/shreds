@@ -28,12 +28,13 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # To use debugger
 # gem 'debugger'
 
-gem "database_cleaner", ">= 0.9.1", :group => :test
-gem "email_spec", ">= 1.4.0", :group => :test
 gem 'anjlab-bootstrap-rails', '>= 2.0', :require => 'bootstrap-rails'
 gem "simple_form", ">= 2.0.4"
 gem "quiet_assets", ">= 1.0.1", :group => :development
+
+# TODO: remove figaro, migrate config to plain ruby source 
 gem "figaro", ">= 0.5.0"
+
 gem "better_errors", ">= 0.3.2", :group => :development
 gem "binding_of_caller", ">= 0.6.8", :group => :development
 
@@ -42,7 +43,7 @@ gem "will_paginate"
 gem "bootstrap-will_paginate"
 
 # # email address validation
-gem "valid_email"
+#gem "valid_email"
 
 # # Data versioning
 # gem "paper_trail"
@@ -63,3 +64,5 @@ gem "slim"
 gem "feedzirra"
 
 gem "thin", :group => :development
+
+gem "clockwork", :require => false
