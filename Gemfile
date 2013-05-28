@@ -20,7 +20,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn', :group => :development
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -38,8 +38,8 @@ gem "better_errors", ">= 0.3.2", :group => :development
 gem "binding_of_caller", ">= 0.6.8", :group => :development
 
 # pagination handling
-gem "will_paginate"
-gem "bootstrap-will_paginate"
+gem "kaminari"
+gem "kaminari-bootstrap"
 
 # # email address validation
 gem "valid_email"
@@ -60,6 +60,6 @@ gem "sidekiq"
 gem "sinatra", :require => false
 gem "slim"
 
-gem "feedzirra"
+gem "feedzirra", git: "https://github.com/swanson/feedzirra"
+gem "feedbag", git: "https://github.com/dwillis/feedbag"
 
-gem "thin", :group => :development
