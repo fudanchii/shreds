@@ -18,7 +18,7 @@ class FeedsControllerTest < ActionController::TestCase
 
   test "should create feed" do
     assert_difference('Feed.count') do
-      post :create, feed: {  }
+      post :create, feed: { permalink: "http://google.com" }
     end
 
     assert_redirected_to feed_path(assigns(:feed))
@@ -29,15 +29,15 @@ class FeedsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get edit" do
-    get :edit, id: @feed
-    assert_response :success
-  end
+# test "should get edit" do
+#   get :edit, id: @feed
+#   assert_response :success
+# end
 
-  test "should update feed" do
-    put :update, id: @feed, feed: {  }
-    assert_redirected_to feed_path(assigns(:feed))
-  end
+# test "should update feed" do
+#   put :update, id: @feed, feed: { permalink: "http://yahoo.com" }
+#   assert_redirected_to feed_path(assigns(:feed))
+# end
 
   test "should destroy feed" do
     assert_difference('Feed.count', -1) do

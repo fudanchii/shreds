@@ -2,8 +2,8 @@ class FeedsController < ApplicationController
 
   before_filter do
     @category = Category.new
-    @feed = Feed.new
-    @feed.category = @category
+    @new_feed = Feed.new
+    @new_feed.category = @category
     # XXX: Remove this later
     @categories = Category.all
   end
@@ -35,7 +35,7 @@ class FeedsController < ApplicationController
   def new
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @feed }
+      format.json { render json: @new_feed }
     end
   end
 
@@ -48,7 +48,7 @@ class FeedsController < ApplicationController
   # POST /feeds.json
   def create
     params[:feed][:category] = "default" if params[:feed][:category].blank?
-    @category = Category.find_or_create_by_name(params[:feed][:category])
+    @category = Category.where(name: params[:feed][:category]).first_or_create
     params[:feed].delete(:category)
     @feed = Feed.new(params[:feed])
     @feed.category = @category
