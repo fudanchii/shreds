@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  permalink: MyString
+  unread: 1
+  feed_id: 1
+
+two:
+  permalink: MyString
+  unread: 1
+  feed_id: 1

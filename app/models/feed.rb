@@ -1,14 +1,13 @@
 require 'uri'
 
 class Feed < ActiveRecord::Base
-  store :meta, accessors: [:last_read_title, :last_read_date]
-  attr_accessible :title, :permalink, :meta, \
-                  :last_read_title, :last_read_date
-
-  validates :title, presence: true
-  validates :permalink, presence: true
+  store :meta, accessors: [:title]
+  attr_accessible :permalink, :meta, :title, \
 
   belongs_to :category
+  has_many :newsitems
+
+  validates :permalink, presence: true
 
   def favicon
     url = URI.parse(self.permalink)
@@ -16,22 +15,6 @@ class Feed < ActiveRecord::Base
   end
 
   def unread_count()
-    retries = 30
-    while true
-      if cache_state == "ready"
-        # return unread count from cache
-      end
-      # sleep 1.second
-      return 0 if retries == 0
-      retries -= 1
-    end
+    newsitems.where(unread: 1).count
   end
-
-  def update_cache(feed_data)
-    save!
-  end
-
-  def cache_state()
-  end
-
 end
