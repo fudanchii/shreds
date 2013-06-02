@@ -12,7 +12,7 @@ class Feed < ActiveRecord::Base
   before_create :check_category
 
   def favicon
-    url = URI.parse(self.permalink)
+    url = URI.parse(self.url)
     "#{url.scheme}://#{url.host}/favicon.ico"
   end
 
