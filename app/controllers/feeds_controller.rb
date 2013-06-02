@@ -39,11 +39,6 @@ class FeedsController < ApplicationController
     end
   end
 
-  # GET /feeds/1/edit
-  def edit
-    @feed = Feed.find(params[:id])
-  end
-
   # POST /feeds
   # POST /feeds.json
   def create
@@ -54,27 +49,13 @@ class FeedsController < ApplicationController
     @feed.category = @category
     respond_to do |format|
       if @feed.save
-        FeedWorker.perform_async(@feed.id)
+        # delay fetching feeds by 2 seconds
+        # make sure @feed is commited to database
+        FeedWorker.perform_in(2.seconds, @feed.id)
         format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
         format.json { render json: @feed, status: :created, location: @feed }
       else
         format.html { render action: "new" }
-        format.json { render json: @feed.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /feeds/1
-  # PUT /feeds/1.json
-  def update
-    @feed = Feed.find(params[:id])
-
-    respond_to do |format|
-      if @feed.update_attributes(params[:feed])
-        format.html { redirect_to @feed, notice: 'Feed was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
         format.json { render json: @feed.errors, status: :unprocessable_entity }
       end
     end
