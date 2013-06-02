@@ -2,12 +2,12 @@ require 'uri'
 
 class Feed < ActiveRecord::Base
   store :meta, accessors: [:title]
-  attr_accessible :permalink, :meta, :title
+  attr_accessible :url, :meta, :title
 
   belongs_to :category
   has_many :newsitems
 
-  validates :permalink, presence: true
+  validates :url, presence: true
 
   before_create :check_category
 
@@ -21,8 +21,9 @@ class Feed < ActiveRecord::Base
   end
 
   def check_category
-    if category.nil?
+    if category.nil? or category.blank?
       self.category_id = Category.where(name: "default").first_or_create.id
     end
   end
+
 end
