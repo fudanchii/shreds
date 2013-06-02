@@ -5,9 +5,9 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  permalink: "http://fudanchii.net/atom.xml"
+  url: "http://fudanchii.net/atom.xml"
 # column: value
 #
 two:
-  permalink: "google.com"
+  url: "google.com"
 #  column: value
