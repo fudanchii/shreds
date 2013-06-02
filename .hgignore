@@ -2,5 +2,6 @@ syntax: glob
 *.log
 *~
 *.swp
+*.orig
 config/*.yml
 tmp/*
