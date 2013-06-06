@@ -6,10 +6,14 @@
         throw "Need an HTML DOM node to attach widget.";
       }
       this.node = node;
-      this.content = null;
+      this.content = $("<div/>");
     },
     render: function () {
-      this.node.append(this.content);
+      this.node.empty();
+      this.node.append(this.content.children());
+    },
+    flush: function () {
+      this.content.empty();
     }
   });
-}).call(window, jQuery, Class);
+})(jQuery, Class);
