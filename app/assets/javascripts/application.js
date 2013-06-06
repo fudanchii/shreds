@@ -13,4 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require simple_inheritance
+//= require widget
 //= require_tree .

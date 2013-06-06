@@ -9,9 +9,13 @@
     width: 220px;
     height: 100%;
     left: 0px;
+  -webkit-border-radius: 0px;
+     -moz-border-radius: 0px;
+          border-radius: 0px;
 }
 
 .row > .span-fixed-sidebar {
+    margin-top: 16px;
     margin-left: 275px;
 }
 
