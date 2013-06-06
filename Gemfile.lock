@@ -76,7 +76,7 @@ GEM
     figaro (0.6.4)
       bundler (~> 1.0)
       rails (>= 3, < 5)
-    hike (1.2.2)
+    hike (1.2.3)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (3.0.0)
@@ -96,7 +96,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.23)
-    multi_json (1.7.4)
+    multi_json (1.7.6)
     nokogiri (1.5.9)
     oj (2.0.14)
     pg (0.15.1)
@@ -168,7 +168,7 @@ GEM
       atomic
     tilt (1.4.1)
     timers (1.1.0)
-    treetop (1.4.12)
+    treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.37)
