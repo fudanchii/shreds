@@ -13,7 +13,7 @@ class Feed < ActiveRecord::Base
 
   def favicon
     url = URI.parse(self.url)
-    "#{url.scheme}://#{url.host}/favicon.ico"
+    "#{url.scheme}://plus.google.com/_/favicon?domain=#{url.host}"
   end
 
   def unread_count()
@@ -22,7 +22,7 @@ class Feed < ActiveRecord::Base
 
   def check_category
     if category.nil? or category.blank?
-      self.category_id = Category.where(name: "default").first_or_create.id
+      self.category_id = Category.where(name: "uncategorized").first_or_create.id
     end
   end
 

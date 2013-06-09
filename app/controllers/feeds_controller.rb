@@ -33,7 +33,7 @@ class FeedsController < ApplicationController
   # POST /feeds
   # POST /feeds.json
   def create
-    params[:feed][:category] = "default" if params[:feed][:category].blank?
+    params[:feed][:category] = "uncategorized" if params[:feed][:category].blank?
     @category = Category.where(name: params[:feed][:category]).first_or_create
     params[:feed].delete(:category)
     @feed = Feed.new(params[:feed])
