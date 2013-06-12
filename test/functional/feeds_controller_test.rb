@@ -11,10 +11,10 @@ class FeedsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:feeds)
   end
 
-  test "should get new" do
-    get :new
-    assert_response :success
-  end
+# test "should get new" do
+#   get :new
+#   assert_response :success
+# end
 
   test "should create feed" do
     assert_difference('Feed.count') do
