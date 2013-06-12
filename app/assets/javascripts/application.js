@@ -15,4 +15,6 @@
 //= require twitter/bootstrap
 //= require simple_inheritance
 //= require widget
+//= require feeds
+//= require init
 //= require_tree .
