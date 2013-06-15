@@ -15,3 +15,12 @@ namespace :newsitem do
     end
   end
 end
+
+namespace :feed do
+  desc "Update all feeds"
+  task :update => :environment do
+    Feed.all.each do |feed|
+      FeedWorker.perform_in((1+rand(2)).seconds, feed.id)
+    end
+  end
+end
