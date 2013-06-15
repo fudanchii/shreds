@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130609103401) do
+ActiveRecord::Schema.define(:version => 20130615083726) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -28,14 +28,14 @@ ActiveRecord::Schema.define(:version => 20130609103401) do
   end
 
   create_table "newsitems", :force => true do |t|
-    t.string   "permalink"
+    t.text     "permalink"
     t.integer  "unread"
     t.integer  "feed_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.text     "content"
-    t.string   "author"
-    t.string   "title"
+    t.text     "author"
+    t.text     "title"
     t.datetime "published"
   end
 
