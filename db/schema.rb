@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130615083726) do
+ActiveRecord::Schema.define(:version => 20130615131116) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20130615083726) do
     t.text     "author"
     t.text     "title"
     t.datetime "published"
+    t.text     "summary"
   end
 
 end
