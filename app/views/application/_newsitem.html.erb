@@ -1,0 +1,7 @@
+<div class="well well-large widget widget-transparent feed">
+  <h3><%= link_to item.title, item.permalink, target: "_blank" %></h3>
+  <div class="feed-content">
+    <%= summary(item).html_safe %>
+  </div>
+</div>
+
