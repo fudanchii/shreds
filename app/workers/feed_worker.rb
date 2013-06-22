@@ -4,9 +4,9 @@ class FeedWorker
   include Sidekiq::Worker
 
   def up_to_date?(feed, feed_record)
-    (not feed_record.etag.nil?)
-    and (feed.etag == feed_record.etag)
-    and not feed_record.newsitems.empty?
+    (not feed_record.etag.nil?) and     \
+    (feed.etag == feed_record.etag) and \
+    not feed_record.newsitems.empty?
   end
 
   def perform(feed_id)
