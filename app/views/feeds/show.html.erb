@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<% @feed.newsitems.order("published desc").each do |news| %>
+  <%= render "newsitem", item: news %>
+<% end %>
 
-
-<%= link_to 'Back', feeds_path %>
