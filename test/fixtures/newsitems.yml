@@ -1,17 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+news_one:
   permalink: MyString
   unread: 1
   feed_id: 1
   author: Hello
   title: Hi
   published: <%= DateTime.now.to_s(:db) %>
+  feed: one
 
-two:
+news_two:
   permalink: MyString
   unread: 1
   feed_id: 1
   author: Hello
   title: Hi
   published: <%= DateTime.now.to_s(:db) %>
+  feed: two

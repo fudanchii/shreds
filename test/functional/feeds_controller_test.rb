@@ -5,6 +5,10 @@ class FeedsControllerTest < ActionController::TestCase
     @feed = feeds(:one)
   end
 
+  teardown do
+    `redis-cli flushall`
+  end
+
   test "should get index" do
     get :index
     assert_response :success
