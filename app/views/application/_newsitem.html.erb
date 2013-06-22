@@ -3,5 +3,8 @@
   <div class="feed-content">
     <%= summary(item).html_safe %>
   </div>
+  <div class="small text-right">
+    <%= item.published.to_date %>
+  </div>
 </div>
 
