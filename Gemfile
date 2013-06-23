@@ -56,6 +56,7 @@ gem "dalli"
 gem "cache_digests"
 
 gem "oj"
+gem "rabl"
 
 gem "sidekiq"
 gem "sinatra", :require => false
