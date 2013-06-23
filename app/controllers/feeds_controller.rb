@@ -1,25 +1,18 @@
 class FeedsController < ApplicationController
+  respond_to :html, :json
 
   # GET /feeds
   # GET /feeds.json
   def index
     @feeds = Feed.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @feeds }
-    end
+    respond_with(@feeds)
   end
 
   # GET /feeds/1
   # GET /feeds/1.json
   def show
     @feed = Feed.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @feed }
-    end
+    respond_with(@feed)
   end
 
   # POST /feeds
@@ -30,18 +23,13 @@ class FeedsController < ApplicationController
     params[:feed].delete(:category)
     @feed = Feed.new(params[:feed])
     @feed.category = @category
-    respond_to do |format|
-      if @feed.save
-        # delay fetching feeds by 2 seconds
-        # make sure @feed is commited to database
-        FeedWorker.perform_in(2.seconds, @feed.id)
-        format.html { redirect_to @feed, notice: 'Feed was successfully created.' }
-        format.json { render json: @feed, status: :created, location: @feed }
-      else
-        format.html { redirect_to action: "index" }
-        format.json { render json: @feed.errors, status: :unprocessable_entity }
-      end
+    if @feed.save
+      # delay fetching feeds by 2 seconds
+      # make sure @feed is commited to database
+      FeedWorker.perform_in(2.seconds, @feed.id)
+      flash[:notice] = 'Feed was successfully created.'
     end
+    respond_with(@feed)
   end
 
   # DELETE /feeds/1
@@ -49,10 +37,7 @@ class FeedsController < ApplicationController
   def destroy
     @feed = Feed.find(params[:id])
     @feed.destroy
-
-    respond_to do |format|
-      format.html { redirect_to feeds_url }
-      format.json { head :no_content }
-    end
+    flash[:notice] = 'Feed was successfully removed.'
+    respond_with(@feed)
   end
 end
