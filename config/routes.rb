@@ -1,4 +1,8 @@
 Shreds::Application.routes.draw do
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   resources :feeds, only: [:index, :create, :show, :destroy], path: '/', format: false do
     resources :newsitems, only: [:show], path: '/'
   end
