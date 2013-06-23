@@ -14,8 +14,13 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require twitter/bootstrap
+//= require jquery.timeago
 //= require simple_inheritance
 //= require widget
 //= require feeds
 //= require init
 //= require_tree .
+
+$(function () {
+  $("abbr.timeago").timeago();
+});
