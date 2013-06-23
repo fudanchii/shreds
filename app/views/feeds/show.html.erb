@@ -1,5 +1,5 @@
 <% @feed.newsitems.order("published desc").each do |news| %>
-  <%= render "newsitem", item: news %>
+  <%= render "summary", item: news %>
 <% end %>
 
 <% content_for :title do %>

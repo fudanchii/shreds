@@ -1,10 +1,8 @@
 <div class="well well-large widget widget-transparent feed">
   <h3><%= link_to item.title, feed_newsitem_path(item.feed, item) %></h3>
+  <%= render "news_meta", author: item.author, published: item.published %>
   <div class="feed-content">
-    <%= summary(item).html_safe %>
-  </div>
-  <div class="small text-right">
-    <%= item.published.to_date %>
+    <%= (item.summary || '').html_safe %>
   </div>
 </div>
 
