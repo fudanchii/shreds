@@ -66,5 +66,3 @@ gem "feedzirra", git: "https://github.com/swanson/feedzirra"
 gem "feedbag", git: "https://github.com/dwillis/feedbag"
 
 gem "clockwork", :require => false
-
-gem "turbolinks"
