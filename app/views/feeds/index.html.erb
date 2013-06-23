@@ -3,7 +3,7 @@
     <strong>No news</strong> at the moment
   </div>
 <% else %>
-  <% @feeds.each do |feed| %>
+  <% filter_read(@feeds).each do |feed| %>
     <h2><%= link_to feed.title, feed %></h2>
     <% feed.newsitems.where(unread: 1) \
       .order("published desc").limit(3).each do |news| %>
