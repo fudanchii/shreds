@@ -1,4 +1,4 @@
-<% if @feeds.empty? %>
+<% if nothing_to_read_from? @feeds %>
   <div class="alert">
     <strong>No news</strong> at the moment
   </div>

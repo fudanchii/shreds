@@ -9,7 +9,11 @@ class Feed < ActiveRecord::Base
 
   validates :url, presence: true
 
-  before_create :check_category
+  before_create do
+    if category.nil? or category.blank?
+      self.category_id = Category.where(name: "uncategorized").first_or_create.id
+    end
+  end
 
   def favicon
     url = URI.parse(self.url)
@@ -20,9 +24,9 @@ class Feed < ActiveRecord::Base
     newsitems.where(unread: 1).count
   end
 
-  def check_category
-    if category.nil? or category.blank?
-      self.category_id = Category.where(name: "uncategorized").first_or_create.id
+  def self.total_unread(feeds)
+    feeds.reduce(0) do |count, feed|
+      count + feed.unread_count
     end
   end
 
