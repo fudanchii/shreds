@@ -2,3 +2,6 @@
   <%= render "newsitem", item: news %>
 <% end %>
 
+<% content_for :title do %>
+  <%= title(@feed.title) %>
+<% end %>

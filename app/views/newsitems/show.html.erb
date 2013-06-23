@@ -4,3 +4,7 @@
   <%= (@newsitem.content || @newsitem.summary || '').html_safe %>
 </div>
 </div>
+
+<% content_for :title do %>
+  <%= title(@newsitem.title) %>
+<% end %>
