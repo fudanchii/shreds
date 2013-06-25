@@ -7,3 +7,4 @@
 
 raise "Please setup secret token to use with rails, you may want to use `rake secret`" if ENV['SECRET'].nil?
 Shreds::Application.config.secret_token = ENV['SECRET']
+Shreds::Application.config.secret_key_base = ENV['SECRET']

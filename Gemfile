@@ -1,15 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'rails', ' ~> 3.2.12'
+gem 'rails', ' ~> 4.0.0'
 
 gem 'pg'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'uglifier', '>= 1.0.3'
-end
+gem 'sass-rails'
+gem 'uglifier'
 
 gem 'jquery-rails'
 
@@ -17,7 +13,7 @@ gem 'jquery-rails'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
-# gem 'jbuilder'
+gem 'jbuilder'
 
 # Use unicorn as the app server
 gem 'unicorn', :group => :development
@@ -29,11 +25,7 @@ gem 'unicorn', :group => :development
 # gem 'debugger'
 
 gem 'anjlab-bootstrap-rails', '>= 2.0', :require => 'bootstrap-rails'
-gem "simple_form", ">= 2.0.4"
 gem "quiet_assets", ">= 1.0.1", :group => :development
-
-# TODO: remove figaro, migrate config to plain ruby source 
-gem "figaro", ">= 0.5.0"
 
 gem "better_errors", ">= 0.3.2", :group => :development
 gem "binding_of_caller", ">= 0.6.8", :group => :development
@@ -41,6 +33,8 @@ gem "binding_of_caller", ">= 0.6.8", :group => :development
 # pagination handling
 gem "kaminari"
 gem "kaminari-bootstrap"
+
+gem "figaro"
 
 # # email address validation
 #gem "valid_email"
@@ -56,13 +50,13 @@ gem "dalli"
 gem "cache_digests"
 
 gem "oj"
-gem "rabl"
 
 gem "sidekiq"
 gem "sinatra", :require => false
 gem "slim"
 
-gem "feedzirra", git: "https://github.com/swanson/feedzirra"
-gem "feedbag", git: "https://github.com/dwillis/feedbag"
+gem "feedzirra", github: "fudanchii/feedzirra", branch: 'dev'
+gem "feedbag", github: "dwillis/feedbag"
+gem "simple_form", github: "plataformatec/simple_form"
 
-gem "clockwork", :require => false
+gem "protected_attributes"
