@@ -9,6 +9,7 @@
         widget = new window[_class]($element);
         if (!widget.rendered) widget.render();
       }
-    })
+    });
   })
-}(jQuery, Widget));
+  $("abbr.timeago").timeago();
+})(jQuery, Widget);

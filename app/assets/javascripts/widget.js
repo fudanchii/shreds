@@ -7,6 +7,7 @@
       }
       this.node = node;
       this.content = $("<div/>");
+      this.rendered = false;
     },
     render: function () {
       this.node.empty();
