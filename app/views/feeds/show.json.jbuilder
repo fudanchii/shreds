@@ -1,4 +1,4 @@
-json.extract! @feed, \
+json.extract! @feed,
     :url,
     :title,
     :etag,
