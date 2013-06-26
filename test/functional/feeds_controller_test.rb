@@ -15,16 +15,10 @@ class FeedsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:feeds)
   end
 
-# test "should get new" do
-#   get :new
-#   assert_response :success
-# end
-
   test "should create feed" do
     assert_difference('Feed.count') do
       post :create, feed: { url: "http://fudanchii.net/atom.xml" }
     end
-
     assert_redirected_to feed_path(assigns(:feed))
   end
 
@@ -33,21 +27,10 @@ class FeedsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-# test "should get edit" do
-#   get :edit, id: @feed
-#   assert_response :success
-# end
-
-# test "should update feed" do
-#   put :update, id: @feed, feed: { permalink: "http://yahoo.com" }
-#   assert_redirected_to feed_path(assigns(:feed))
-# end
-
   test "should destroy feed" do
     assert_difference('Feed.count', -1) do
       delete :destroy, id: @feed
     end
-
     assert_redirected_to feeds_path
   end
 end
