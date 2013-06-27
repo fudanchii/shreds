@@ -18,9 +18,9 @@ class FeedsController < ApplicationController
   # POST /feeds
   # POST /feeds.json
   def create
-    params[:feed][:category] = "uncategorized" if params[:feed][:category].blank?
-    params[:feed][:category] = Category.where(name: params[:feed][:category]).first_or_create
+    category = Category.where(name: params[:category][:name] || "uncategorized").first_or_create
     @feed = Feed.new(feed_params)
+    @feed.category = category
     if @feed.save
       FeedWorker.perform_async(@feed.id)
       flash[:notice] = 'Feed was successfully created.'
@@ -39,6 +39,6 @@ class FeedsController < ApplicationController
 
   private
   def feed_params
-    params.require(:feed).permit(:url, :title, :meta, :tag, :category => [:name])
+    params.require(:feed).permit(:url, :title, :meta, :tag)
   end
 end

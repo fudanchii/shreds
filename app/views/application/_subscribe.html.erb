@@ -1,5 +1,7 @@
-<%= simple_form_for(@new_feed, :html => { :class => "form-inline" }) do |f| %>
-  <%= f.input :url, label: false, :input_html => { placeholder: "Paste RSS link here" } %>
-  <%= f.input :category, label: false, :input_html => { placeholder: "Category", value: f.object.category.name } %>
-  <%= f.submit 'Subscribe', :class => "btn btn-info btn-small" %>
+<%= simple_form_for(@new_feed, html: { :class => "form-inline" }) do |f| %>
+  <%= f.input :url, label: false, input_html: { placeholder: "Paste RSS link here" } %>
+  <%= simple_fields_for :category do |c| %>
+    <%= c.input :name, label: false, input_html: { placeholder: "Category", value: f.object.category.name } %>
+  <% end %>
+  <%= f.submit 'Subscribe', class: "btn btn-info btn-small" %>
 <% end %>
