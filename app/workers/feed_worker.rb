@@ -13,22 +13,31 @@ class FeedWorker
     feed_record = Feed.find(feed_id)
     feed = Feedzirra::Feed.fetch_and_parse(feed_record.url)
     return if up_to_date?(feed, feed_record)
-    # TODO: Use config to select 
-    # which field should be sanitized
+    # TODO: Use config to select which field should be sanitized
     #feed.sanitize_entries!
-    feed_record.title = feed.title
-    feed_record.etag = feed.etag
+    feed_record.update(title: feed.title, etag: feed.etag)
     feed.entries.each do | entry |
       item = Newsitem.where({
         title: entry.title,
         permalink: entry.url,
         published: entry.published
-      }).first_or_create
-      item.content = entry.content
-      item.author  = entry.author
-      item.summary = entry.summary
-      feed_record.newsitems << item
-      item.save && feed_record.save
+      }).first
+      if item.nil?
+        item = feed_record.newsitems.build(newsitem_params(entry))
+        item.save && feed_record.save
+      end
     end
+  end
+
+  private
+  def newsitem_params(entry)
+    ActionController::Parameters.new({
+      title: entry.title,
+      permalink: entry.url,
+      published: entry.published,
+      content: entry.content,
+      author: entry.author,
+      summary: entry.summary
+    }).permit!
   end
 end

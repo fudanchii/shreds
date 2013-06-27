@@ -1,8 +1,4 @@
 class Newsitem < ActiveRecord::Base
-  attr_accessible :permalink, :unread, \
-    :content, :title, :author, :published
-  attr_accessible :summary
-
   belongs_to :feed, touch: true
 
   before_create :set_unread

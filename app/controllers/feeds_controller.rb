@@ -19,14 +19,10 @@ class FeedsController < ApplicationController
   # POST /feeds.json
   def create
     params[:feed][:category] = "uncategorized" if params[:feed][:category].blank?
-    @category = Category.where(name: params[:feed][:category]).first_or_create
-    params[:feed].delete(:category)
-    @feed = Feed.new(params[:feed])
-    @feed.category = @category
+    params[:feed][:category] = Category.where(name: params[:feed][:category]).first_or_create
+    @feed = Feed.new(feed_params)
     if @feed.save
-      # delay fetching feeds by 2 seconds
-      # make sure @feed is commited to database
-      FeedWorker.perform_in(2.seconds, @feed.id)
+      FeedWorker.perform_async(@feed.id)
       flash[:notice] = 'Feed was successfully created.'
     end
     respond_with(@feed)
@@ -39,5 +35,10 @@ class FeedsController < ApplicationController
     @feed.destroy
     flash[:notice] = 'Feed was successfully removed.'
     respond_with(@feed)
+  end
+
+  private
+  def feed_params
+    params.require(:feed).permit(:url, :title, :meta, :tag, :category => [:name])
   end
 end

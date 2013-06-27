@@ -107,8 +107,6 @@ GEM
     oj (2.1.2)
     pg (0.15.1)
     polyglot (0.3.3)
-    protected_attributes (1.0.1)
-      activemodel (>= 4.0.0.beta, < 5.0)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
@@ -200,7 +198,6 @@ DEPENDENCIES
   kaminari-bootstrap
   oj
   pg
-  protected_attributes
   quiet_assets (>= 1.0.1)
   rails (~> 4.0.0)
   sass-rails
