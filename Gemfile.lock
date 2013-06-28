@@ -18,11 +18,11 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: a2286a6d6d9aa9c251a272fbe9dbcf77669ce51f
+  revision: 9b2018052e9a7706fd4b2e28cca0d04560c0f1ec
   specs:
     simple_form (3.0.0.rc)
-      actionpack (>= 4.0.0.rc1, < 4.1)
-      activemodel (>= 4.0.0.rc1, < 4.1)
+      actionpack (>= 4.0.0, < 4.1)
+      activemodel (>= 4.0.0, < 4.1)
 
 GEM
   remote: https://rubygems.org/
@@ -55,7 +55,7 @@ GEM
       railties (>= 3.0)
       sass (>= 3.2)
     arel (4.0.0)
-    atomic (1.1.9)
+    atomic (1.1.10)
     bcrypt-ruby (3.0.1)
     better_errors (0.9.0)
       coderay (>= 1.0.0)
@@ -76,7 +76,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    figaro (0.6.4)
+    figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
     hike (1.2.3)
