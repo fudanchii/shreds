@@ -23,9 +23,11 @@ class FeedsController < ApplicationController
     @feed.category = category
     if @feed.save
       FeedWorker.perform_async(@feed.id)
-      flash[:notice] = 'Feed was successfully created.'
+      flash[:success] = 'Feed was successfully created.'
+      respond_with(@feed) && return
     end
-    respond_with(@feed)
+    flash[:error] = 'Cannot create feed with these data.'
+    redirect_to feeds_path
   end
 
   # DELETE /feeds/1
