@@ -17,7 +17,7 @@ class FeedsControllerTest < ActionController::TestCase
 
   test "should create feed" do
     assert_difference('Feed.count') do
-      post :create, feed: { url: "http://fudanchii.net/atom.xml" }
+      post :create, feed: { url: "http://fudanchii.net/atom.xml" }, category: { feed: "uncategorized" }
     end
     assert_redirected_to feed_path(assigns(:feed))
   end
