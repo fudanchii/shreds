@@ -18,9 +18,8 @@ class FeedsController < ApplicationController
   # POST /feeds
   # POST /feeds.json
   def create
-    category = Category.where(name: params[:category][:name].presence || "uncategorized").first_or_create
-    @feed = Feed.new(feed_params)
-    @feed.category = category
+    @category = Category.where(name: params[:category][:name].presence || "uncategorized").first_or_create
+    @feed = @category.feeds.build(feed_params)
     if @feed.save
       FeedWorker.perform_async(@feed.id)
       flash[:success] = 'Feed was successfully created.'
