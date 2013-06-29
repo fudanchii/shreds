@@ -43,3 +43,11 @@ hr {
     width: 90%;
     text-align: center;
 }
+
+.nav-list > li:hover, li.nav-item > a:hover {
+    background-color: #eaeaea;
+}
+
+.nav-container {
+    overflow:auto;
+}

@@ -1,9 +1,11 @@
 <div class="sidebar-nav-fixed well">
   <%= render 'subscribe' %>
+<div class="nav-container">
   <ul class="nav nav-list">
     <% @categories.each do |cat| %>
       <li class="nav-header"><%= cat.name.camelize %></li>
       <%= render 'feeds_title', feeds: cat.feeds %>
     <% end %>
   </ul>
+</div>
 </div>
