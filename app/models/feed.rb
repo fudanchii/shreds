@@ -8,12 +8,6 @@ class Feed < ActiveRecord::Base
 
   validates :url, presence: true
 
-  before_create do
-    if category.nil? or category.blank?
-      self.category_id = Category.where(name: "uncategorized").first_or_create.id
-    end
-  end
-
   def favicon
     url = URI.parse(self.url)
     "#{url.scheme}://plus.google.com/_/favicon?domain=#{url.host}"
