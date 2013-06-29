@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130615131116) do
+ActiveRecord::Schema.define(version: 20130629061243) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 20130615131116) do
   end
 
   create_table "feeds", force: true do |t|
-    t.string   "url",         null: false
+    t.text     "url",         null: false
     t.text     "meta"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -31,8 +34,8 @@ ActiveRecord::Schema.define(version: 20130615131116) do
     t.text     "permalink"
     t.integer  "unread"
     t.integer  "feed_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.text     "content"
     t.text     "author"
     t.text     "title"
