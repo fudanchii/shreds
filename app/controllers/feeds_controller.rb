@@ -18,7 +18,7 @@ class FeedsController < ApplicationController
   # POST /feeds
   # POST /feeds.json
   def create
-    category = Category.where(name: params[:category][:name] || "uncategorized").first_or_create
+    category = Category.where(name: params[:category][:name].presence || "uncategorized").first_or_create
     @feed = Feed.new(feed_params)
     @feed.category = category
     if @feed.save
