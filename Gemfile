@@ -16,8 +16,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'jbuilder'
 
 # Use unicorn as the app server
-gem 'unicorn', :group => :development, :platform => [:mri]
-gem "puma", :platforms => [:jruby, :rbx]
+gem "puma", :platforms => [:mri, :jruby, :rbx]
 gem "thin", :platforms => [:mswin, :mingw]
 
 # Deploy with Capistrano
