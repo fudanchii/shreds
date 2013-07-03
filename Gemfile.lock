@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/dwillis/feedbag.git
-  revision: f7f2269ada54f9b5be7c1312949512bb8a557b10
+  revision: c018ce823dd3a8fc1e94fa5aac53aabc14cf8b49
   specs:
     feedbag (0.9.1)
       nokogiri
@@ -18,7 +18,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: 9b2018052e9a7706fd4b2e28cca0d04560c0f1ec
+  revision: dcf4862972792abafeefd73f6b1d385322a64115
   specs:
     simple_form (3.0.0.rc)
       actionpack (>= 4.0.0, < 4.1)
@@ -107,11 +107,11 @@ GEM
     multi_json (1.7.7)
     nokogiri (1.5.10)
     nokogiri (1.5.10-x86-mingw32)
-    oj (2.1.2)
+    oj (2.1.3)
     pg (0.15.1)
     pg (0.15.1-x86-mingw32)
     polyglot (0.3.3)
-    puma (2.1.1)
+    puma (2.2.2)
       rack (>= 1.1, < 2.0)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
