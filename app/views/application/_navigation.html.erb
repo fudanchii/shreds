@@ -4,7 +4,9 @@
   <ul class="nav nav-list">
     <% @categories.each do |cat| %>
       <li class="nav-header"><%= cat.name.camelize %></li>
-      <%= render 'feeds_title', feeds: cat.feeds %>
+      <ul class="nav nav-list">
+        <%= render 'feeds_title', feeds: cat.feeds %>
+      </ul>
     <% end %>
   </ul>
 </div>
