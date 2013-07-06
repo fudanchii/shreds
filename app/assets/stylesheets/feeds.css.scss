@@ -47,3 +47,11 @@ hr {
 .nav-container {
     overflow:auto;
 }
+
+.dropdown-menu {
+    background-color: rgba(25,25,25,.8);
+}
+
+.dropdown-menu > li > a {
+    color: white;
+}

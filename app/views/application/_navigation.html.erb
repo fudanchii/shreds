@@ -3,7 +3,21 @@
 <div class="nav-container">
   <ul class="nav nav-list">
     <% @categories.each do |cat| %>
-      <li class="nav-header"><%= cat.name.camelize %></li>
+      <li class="nav-header"><span><%= cat.name.camelize %>
+        <div class="dropdown pull-right">
+        <a class="dropdown-toggle" id="catDD<%= cat.id %>" href="#" role="button" data-toggle="dropdown">
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="catDD<%= cat.id %>">
+          <li><%= link_to "Mark as read", "#" %></li>
+          <li><%= link_to "Refresh feeds", "#" %></li>
+          <% unless cat.name == "uncategorized" %>
+            <li><%= link_to "Remove this category", "#", id: "rmCat#{cat.id}", class: "rm-cat" %></li>
+          <% end %>
+        </ul>
+      </div>
+      </span>
+      </li>
       <ul class="nav nav-list">
         <%= render 'feeds_title', feeds: cat.feeds %>
       </ul>
