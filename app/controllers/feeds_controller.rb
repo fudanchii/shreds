@@ -18,13 +18,17 @@ class FeedsController < ApplicationController
   # POST /feeds
   # POST /feeds.json
   def create
+    raise if params[:feed][:url].blank?
     @category = Category.where(name: params[:category][:name].presence || "uncategorized").first_or_create
     @feed = @category.feeds.build(feed_params)
     if @feed.save
       FeedWorker.perform_async(@feed.id)
       flash[:success] = 'Feed was successfully created.'
       respond_with(@feed) && return
+    else
+      raise
     end
+  rescue
     flash[:error] = 'Cannot create feed with these data.'
     redirect_to feeds_path
   end
