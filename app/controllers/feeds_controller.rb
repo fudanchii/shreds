@@ -18,7 +18,7 @@ class FeedsController < ApplicationController
   # POST /feeds
   # POST /feeds.json
   def create
-    raise if params[:feed][:url].blank?
+    raise "URL cannot be blank!" if params[:feed][:url].blank?
     @category = Category.where(name: params[:category][:name].presence || "uncategorized").first_or_create
     @feed = @category.feeds.build(feed_params)
     if @feed.save
@@ -26,11 +26,16 @@ class FeedsController < ApplicationController
       flash[:success] = 'Feed was successfully created.'
       respond_with(@feed) && return
     else
-      raise
+      @category.destroy if @category.name != "uncategorized"
+      raise "Cannot save #{@feed.inspect}"
     end
-  rescue
-    flash[:error] = 'Cannot create feed with these data.'
-    redirect_to feeds_path
+  rescue Exception => e
+    flash[:error] = "#{e}"
+    logger.fatal "[FeedsController#create] #{e}"
+    respond_to do |format|
+      format.html { redirect_to feeds_path }
+      format.json { render json: {error: flash[:error]} }
+    end
   end
 
   # DELETE /feeds/1
