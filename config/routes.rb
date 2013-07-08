@@ -15,5 +15,6 @@ Shreds::Application.routes.draw do
         patch 'mark_as_read', on: :member
       end
     end
+    resources :categories, only: [:destroy]
   end
 end
