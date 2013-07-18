@@ -18,15 +18,15 @@ ActiveRecord::Schema.define(version: 20130629061243) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "feeds", force: true do |t|
     t.text     "url",         null: false
     t.text     "meta"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "category_id"
   end
 
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(version: 20130629061243) do
     t.text     "permalink"
     t.integer  "unread"
     t.integer  "feed_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.text     "content"
     t.text     "author"
     t.text     "title"
