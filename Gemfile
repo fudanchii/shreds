@@ -59,3 +59,6 @@ gem "slim"
 gem "feedzirra", github: "fudanchii/feedzirra", branch: 'dev'
 gem "feedbag", github: "dwillis/feedbag"
 gem "simple_form", github: "plataformatec/simple_form"
+
+gem "minitest-spec-rails", :group => :test
+gem "turn", :group => :test
