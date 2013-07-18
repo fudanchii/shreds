@@ -4,6 +4,6 @@ json.extract! @feed,
     :etag,
     :favicon
 
-json.newsitems @feed.newsitems do |json, newsitem|
+json.newsitems @feed.newsitems do |newsitem|
   json.partial! newsitem
 end
