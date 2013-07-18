@@ -19,14 +19,14 @@ class FeedsController < ApplicationController
   # POST /feeds.json
   def create
     raise "URL cannot be blank!" if params[:feed][:url].blank?
-    @category = Category.where(name: params[:category][:name].presence || "uncategorized").first_or_create
+    @category = Category.where(name: params[:category][:name].presence || Category.default).first_or_create
     @feed = @category.feeds.build(feed_params)
     if @feed.save
       FeedWorker.perform_async(@feed.id)
       flash[:success] = 'Feed was successfully created.'
       respond_with(@feed) && return
     else
-      @category.destroy if @category.name != "uncategorized"
+      @category.destroy if @cateogory.is_custom_and_unused?
       raise "Cannot save #{@feed.inspect}"
     end
   rescue Exception => e
