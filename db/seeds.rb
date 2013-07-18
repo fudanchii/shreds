@@ -7,4 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
 
-category = Category.find_or_create_by_name('uncategorized')
+puts "Create default category.\n"
+category = Category.where(name: Category.default).first_or_create
