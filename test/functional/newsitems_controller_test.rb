@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class NewsitemsControllerTest < ActionController::TestCase
-  fixtures :newsitems
   setup do
     @newsitem = newsitems(:news_one)
   end

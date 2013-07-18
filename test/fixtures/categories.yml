@@ -1,7 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
+default:
+  name: uncategorized
+
 one:
-  name: MyString
+  name: catOne
 
 two:
-  name: MyString
+  name: catTwo

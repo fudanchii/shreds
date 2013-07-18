@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FeedsControllerTest < ActionController::TestCase
+describe FeedsController do
   setup do
     @feed = feeds(:one)
   end
@@ -9,25 +9,25 @@ class FeedsControllerTest < ActionController::TestCase
     `redis-cli flushall`
   end
 
-  test "should get index" do
+  it "should get index" do
     get :index
     assert_response :success
     assert_not_nil assigns(:feeds)
   end
 
-  test "should create feed" do
+  it "should create feed" do
     assert_difference('Feed.count') do
       post :create, feed: { url: "http://fudanchii.net/atom.xml" }, category: { feed: "uncategorized" }
     end
     assert_redirected_to feed_path(assigns(:feed))
   end
 
-  test "should show feed" do
+  it "should show feed" do
     get :show, id: @feed
     assert_response :success
   end
 
-  test "should destroy feed" do
+  it "should destroy feed" do
     assert_difference('Feed.count', -1) do
       delete :destroy, id: @feed
     end
