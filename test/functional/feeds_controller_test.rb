@@ -55,5 +55,12 @@ describe FeedsController do
       res['url'].must_equal @feed.url
       res['newsitems'].must_be_instance_of Array
     end
+
+    it "should destroy feed (DELETE /i/feeds/:id.json)" do
+      assert_difference('Feed.count', -1) do
+        delete :destroy, id: @feed, format: "json"
+      end
+      assert_response :success
+    end
   end
 end
