@@ -26,10 +26,10 @@ class FeedsController < ApplicationController
       flash[:success] = 'Feed was successfully created.'
       respond_with(@feed) && return
     else
-      @category.destroy if @cateogory.is_custom_and_unused?
       raise "Cannot save #{@feed.inspect}"
     end
   rescue Exception => e
+    @category.destroy if @category and @category.is_custom_and_unused?
     flash[:error] = "#{e}"
     logger.fatal "[FeedsController#create] #{e}"
     respond_to do |format|
