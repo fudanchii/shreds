@@ -1,12 +1,22 @@
 require 'test_helper'
 
-class NewsitemsControllerTest < ActionController::TestCase
-  setup do
-    @newsitem = newsitems(:news_one)
+describe NewsitemsController do
+  setup { @newsitem = newsitems(:news_one) }
+
+  it "should show newsitem" do
+    get :show, feed_id: @newsitem.feed, id: @newsitem
+    assert_response :success
   end
 
-  test "should show newsitem" do
-    get :show, feed_id: @newsitem.feed.id, id: @newsitem.id
-    assert_response :success
+  describe "Internal API" do
+    it "should show newsitem (GET /i/feeds/:feed_id/:id.json)" do
+      get :show, feed_id: @newsitem.feed, id: @newsitem, format: "json"
+      assert_response :success
+    end
+
+    it "should mark newsitem as read (PATCH /i/feeds/:feed_id/:id/mark_as_read.json)" do
+      get :mark_as_read, feed_id: @newsitem.feed, id: @newsitem, format: "json"
+      assert_response :success
+    end
   end
 end

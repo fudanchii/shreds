@@ -62,5 +62,15 @@ describe FeedsController do
       end
       assert_response :success
     end
+
+    it "should mark feed as read (PATCH /i/feeds/:id/mark_as_read.json)" do
+      patch :mark_as_read, id: @feed, format: "json"
+      assert_response :success
+    end
+
+    it "should mark all feeds as read (PATCH /i/feeds/mark_all_as_read.json)" do
+      patch :mark_all_as_read, format: "json"
+      assert_response :success
+    end
   end
 end
