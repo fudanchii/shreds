@@ -1,9 +1,9 @@
 require 'test_helper'
 
 describe FeedsController do
-  setup { @feed = feeds(:one) }
+  before { @feed = feeds(:one) }
 
-  teardown { `redis-cli flushall` }
+  after { `redis-cli flushall` }
 
   it "should get index" do
     get :index
@@ -16,6 +16,15 @@ describe FeedsController do
       post :create, feed: { url: "http://fudanchii.net/atom.xml" }, category: { feed: Category.default }
     end
     assert_redirected_to feed_path(assigns(:feed))
+  end
+
+  it "should not create duplicate feed" do
+    post :create, feed: { url: "http://fudanchii.net/atom.xml" }, category: { feed: Category.default }
+    assert_redirected_to feed_path(assigns(:feed))
+    assert_no_difference('Feed.count') do
+      post :create, feed: { url: "http://fudanchii.net/atom.xml" }, category: { feed: Category.default }
+    end
+    assert_match /already exists/, flash[:error]
   end
 
   it "should show feed" do

@@ -4,7 +4,7 @@ class Feed < ActiveRecord::Base
   store :meta, accessors: [:title, :etag]
 
   belongs_to :category
-  has_many :newsitems
+  has_many :newsitems, :dependent => :destroy
 
   validates :url, presence: true
 
@@ -28,5 +28,4 @@ class Feed < ActiveRecord::Base
     newsitems.each { |news| news.update(unread: 0) }
     counter
   end
-
 end

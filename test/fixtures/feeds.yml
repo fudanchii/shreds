@@ -5,7 +5,7 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  url: "http://fudanchii.net/atom.xml"
+  url: "http://altdevblogaday.com/feed"
 # column: value
 #
 two:
