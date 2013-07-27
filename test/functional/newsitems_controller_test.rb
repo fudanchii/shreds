@@ -17,6 +17,8 @@ describe NewsitemsController do
     it "should mark newsitem as read (PATCH /i/feeds/:feed_id/:id/mark_as_read.json)" do
       get :mark_as_read, feed_id: @newsitem.feed, id: @newsitem, format: "json"
       assert_response :success
+      result = JSON.parse(response.body)
+      result['unread'].must_equal 0
     end
   end
 end

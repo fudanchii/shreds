@@ -22,7 +22,7 @@ class FeedsController < ApplicationController
     @category = Category.where(name: params[:category][:name].presence || Category.default).first_or_create
     @feed = @category.feeds.build(feed_params)
     if @feed.save
-      FeedWorker.perform_async(@feed.id)
+      FeedWorker.perform_async(@feed.id, :fetch)
       flash[:success] = 'Feed was successfully created.'
       respond_with(@feed) && return
     else
@@ -45,6 +45,16 @@ class FeedsController < ApplicationController
     @feed.destroy
     flash[:notice] = 'Feed was successfully removed.'
     respond_with(@feed)
+  end
+
+  def mark_as_read
+    FeedWorker.perform_async(params[:id], :mark_as_read)
+    respond_with(go_watch: "mark_as_read")
+  end
+
+  def mark_all_as_read
+    FeedWorker.perform_async(params[:id], :mark_all_as_read)
+    respond_with(go_watch: "mark_all_as_read")
   end
 
   private

@@ -10,7 +10,7 @@ class Feed < ActiveRecord::Base
 
   def favicon
     url = URI.parse(self.url)
-    "#{url.scheme||"http"}://plus.google.com/_/favicon?domain=#{url.host||self.url}"
+    "https://plus.google.com/_/favicon?domain=#{url.host||self.url}"
   end
 
   def unread_count()
@@ -21,6 +21,12 @@ class Feed < ActiveRecord::Base
     feeds.reduce(0) do |count, feed|
       count + feed.unread_count
     end
+  end
+
+  def mark_all_as_read
+    counter = unread_count
+    newsitems.each { |news| news.update(unread: 0) }
+    counter
   end
 
 end

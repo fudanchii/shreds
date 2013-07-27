@@ -9,7 +9,19 @@ class FeedWorker
     not feed_record.newsitems.empty?
   end
 
-  def perform(feed_id)
+  def mark_as_read(feed_id)
+    feed_record = Feed.find(feed_id)
+    counter = feed_record.mark_all_as_read
+    EventPool.add(name: "mark_as_read", data: {feed_id: feed_record.id, unread: counter})
+  end
+
+  def mark_all_as_read(feed_id)
+    counter = 0
+    Feed.all { |f| counter += f.mark_all_as_read }
+    EventPool.add(name: "mark_all_as_read", data: {unread: counter})
+  end
+
+  def fetch(feed_id)
     feed_record = Feed.find(feed_id)
     feed = Feedzirra::Feed.fetch_and_parse(feed_record.url)
     return if up_to_date?(feed, feed_record)
@@ -27,6 +39,10 @@ class FeedWorker
         item.save && feed_record.save
       end
     end
+  end
+
+  def perform(feed_id, action)
+    send(action, feed_id)
   end
 
   private
