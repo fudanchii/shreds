@@ -2,7 +2,7 @@
 
 news_one:
   permalink: MyString
-  unread: 1
+  unread: true
   feed_id: 1
   author: Hello
   title: Hi
@@ -11,7 +11,7 @@ news_one:
 
 news_two:
   permalink: MyString
-  unread: 1
+  unread: true
   feed_id: 1
   author: Hello
   title: Hi

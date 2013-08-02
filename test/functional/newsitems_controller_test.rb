@@ -18,7 +18,7 @@ describe NewsitemsController do
       get :mark_as_read, feed_id: @newsitem.feed, id: @newsitem, format: "json"
       assert_response :success
       result = JSON.parse(response.body)
-      result['unread'].must_equal 0
+      result['unread'].must_equal false
     end
   end
 end
