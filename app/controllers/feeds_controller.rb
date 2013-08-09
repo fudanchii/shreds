@@ -31,7 +31,6 @@ class FeedsController < ApplicationController
   rescue Exception => e
     @category.destroy if @category and @category.is_custom_and_unused?
     flash[:error] = "#{e}"
-    logger.fatal "[FeedsController#create] #{e}"
     respond_to do |format|
       format.html { redirect_to feeds_path }
       format.json { render json: {error: flash[:error]} }
