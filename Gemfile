@@ -16,8 +16,8 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'jbuilder'
 
 # Use puma as the app server
-gem "puma", :platforms => [:mri, :jruby, :rbx]
-gem "thin", :platforms => [:mswin, :mingw]
+gem 'puma', :platforms => [:mri, :jruby, :rbx]
+gem 'thin', :platforms => [:mswin, :mingw]
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -26,39 +26,39 @@ gem "thin", :platforms => [:mswin, :mingw]
 # gem 'debugger'
 
 gem 'anjlab-bootstrap-rails', '>= 2.0', :require => 'bootstrap-rails'
-gem "quiet_assets", ">= 1.0.1", :group => :development
+gem 'quiet_assets', '>= 1.0.1', :group => :development
 
-gem "better_errors", ">= 0.3.2", :group => :development
-gem "binding_of_caller", ">= 0.6.8", :group => :development
+gem 'better_errors', '>= 0.3.2', :group => :development
+gem 'binding_of_caller', '>= 0.6.8', :group => :development
 
 # pagination handling
-gem "kaminari"
-gem "kaminari-bootstrap"
+gem 'kaminari'
+gem 'kaminari-bootstrap'
 
-gem "figaro"
+gem 'figaro'
 
 # # email address validation
-#gem "valid_email"
+#gem 'valid_email'
 
 # # Data versioning
-# gem "paper_trail"
+# gem 'paper_trail'
 
 # Profiling
-# gem "rack-mini-profiler"
+# gem 'rack-mini-profiler'
 
 # caching
-gem "dalli"
-gem "cache_digests"
+gem 'dalli'
+gem 'cache_digests'
 
-gem "oj"
+gem 'oj'
 
-gem "sidekiq"
-gem "sinatra", :require => false
-gem "slim"
+gem 'sidekiq'
+gem 'sinatra', :require => false
+gem 'slim'
 
-gem "feedzirra", github: "fudanchii/feedzirra", branch: 'dev'
-gem "feedbag", github: "dwillis/feedbag"
-gem "simple_form", github: "plataformatec/simple_form"
+gem 'feedzirra', github: 'fudanchii/feedzirra', branch: 'dev'
+gem 'feedbag', github: 'dwillis/feedbag'
+gem 'simple_form', github: 'plataformatec/simple_form'
 
-gem "minitest-spec-rails", :group => :test
-gem "turn", :group => :test
+gem 'minitest-spec-rails', :group => :test
+gem 'turn', :group => :test
