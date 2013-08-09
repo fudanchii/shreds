@@ -12,7 +12,7 @@
           <li><%= link_to "Mark as read", "#" %></li>
           <li><%= link_to "Refresh feeds", "#" %></li>
           <% unless cat.name == "uncategorized" %>
-            <li><%= link_to "Remove this category", "#", id: "rmCat#{cat.id}", class: "rm-cat" %></li>
+            <li><%= link_to "Remove this category", "#", :'data-id' => cat.id, :class => "rm-cat" %></li>
           <% end %>
         </ul>
       </div>
