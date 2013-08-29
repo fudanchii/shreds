@@ -15,6 +15,12 @@ class FeedsController < ApplicationController
     respond_with(@feed)
   end
 
+  def mark_as_read
+    @feed = Feed.find(params[:id])
+    @feed.set_read
+    respond_with({set_read: "ok", feed_id: @feed.id})
+  end
+
   # POST /feeds
   # POST /feeds.json
   def create
