@@ -14,6 +14,13 @@
           border-radius: 0px;
 }
 
+.nav-container {
+    position: absolute;
+    bottom: 68px;
+    top: 158px;
+    overflow: auto;
+}
+
 .row > .span-fixed-sidebar {
     margin-top: 16px;
     margin-left: 283px;
