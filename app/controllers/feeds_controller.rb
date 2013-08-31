@@ -1,10 +1,11 @@
 class FeedsController < ApplicationController
   respond_to :html, :json
 
+  rescue_from ActiveRecord::RecordNotUnique, with: :feed_already_exists
+
   # GET /feeds
   # GET /feeds.json
   def index
-    @feeds = Feed.all
     respond_with(@feeds)
   end
 
@@ -18,22 +19,18 @@ class FeedsController < ApplicationController
   # POST /feeds
   # POST /feeds.json
   def create
-    raise "URL cannot be blank!" if params[:feed][:url].blank?
     @category = Category.where(name: params[:category][:name].presence || Category.default).first_or_create
     @feed = @category.feeds.build(feed_params)
     if @feed.save
       FeedWorker.perform_async(@feed.id, :fetch)
       flash[:success] = 'Feed was successfully created.'
-      respond_with(@feed) && return
+      respond_with(@feed)
     else
-      raise "Cannot save #{@feed.inspect}"
-    end
-  rescue Exception => e
-    @category.destroy if @category and @category.is_custom_and_unused?
-    flash[:error] = "#{e}"
-    respond_to do |format|
-      format.html { redirect_to feeds_path }
-      format.json { render json: {error: flash[:error]} }
+      @category.destroy if @category and @category.is_custom_and_unused?
+      respond_to do |format|
+        format.html { render :index }
+        format.json { render json: {error: "Feed cannot be saved."} }
+      end
     end
   end
 
@@ -59,5 +56,10 @@ class FeedsController < ApplicationController
   private
   def feed_params
     params.require(:feed).permit(:url, :title, :meta, :tag)
+  end
+
+  def feed_already_exists(exceptions)
+    flash[:error] = "Feed already exists."
+    respond_with(@feed)
   end
 end
