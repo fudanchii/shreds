@@ -51,6 +51,10 @@ hr {
     background-color: #eaeaea;
 }
 
+.nav-item > span > a {
+    margin-right: 5px;
+}
+
 .dropdown-menu {
     background-color: rgba(25,25,25,.8);
 }
@@ -79,4 +83,10 @@ hr {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
+}
+
+.unread-num {
+    margin-right: -20px;
+    font-size: 70%;
+    background-color: rgba(120,120,120,.6);
 }
