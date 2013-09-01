@@ -107,6 +107,7 @@ GEM
     minitest-spec-rails (4.7.4)
       minitest (~> 4.7)
       rails (<= 4.0)
+    moji (1.6)
     multi_json (1.7.9)
     nokogiri (1.5.10)
     nokogiri (1.5.10-x86-mingw32)
@@ -208,6 +209,7 @@ DEPENDENCIES
   kaminari
   kaminari-bootstrap
   minitest-spec-rails
+  moji
   oj
   pg
   puma

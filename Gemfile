@@ -25,6 +25,8 @@ gem 'thin', :platforms => [:mswin, :mingw]
 # To use debugger
 # gem 'debugger'
 
+gem 'moji'
+
 gem 'anjlab-bootstrap-rails', '>= 2.0', :require => 'bootstrap-rails'
 gem 'quiet_assets', '>= 1.0.1', :group => :development
 
