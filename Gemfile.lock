@@ -70,7 +70,7 @@ GEM
       thread_safe
     celluloid (0.14.1)
       timers (>= 1.0.0)
-    coderay (1.0.9)
+    coderay (1.1.0)
     connection_pool (1.1.0)
     curb (0.8.4)
     daemons (1.1.9)
@@ -78,7 +78,7 @@ GEM
     debug_inspector (0.0.2)
     erubis (2.7.0)
     eventmachine (1.0.3-x86-mingw32)
-    execjs (2.0.0)
+    execjs (2.0.1)
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
@@ -102,7 +102,7 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.24)
+    mime-types (1.25)
     minitest (4.7.5)
     minitest-spec-rails (4.7.4)
       minitest (~> 4.7)
@@ -147,11 +147,11 @@ GEM
       sprockets-rails (~> 2.0.0)
     sax-machine (0.2.0.rc1)
       nokogiri (~> 1.5.2)
-    sidekiq (2.13.1)
+    sidekiq (2.14.0)
       celluloid (>= 0.14.1)
       connection_pool (>= 1.0.0)
       json
-      redis (>= 3.0)
+      redis (>= 3.0.4)
       redis-namespace
     sinatra (1.4.3)
       rack (~> 1.4)
@@ -185,7 +185,7 @@ GEM
     turn (0.9.6)
       ansi
     tzinfo (0.3.37)
-    uglifier (2.1.2)
+    uglifier (2.2.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
 
