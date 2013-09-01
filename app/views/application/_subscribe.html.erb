@@ -1,4 +1,4 @@
-<%= simple_form_for(@feed, html: { :class => "form-inline" }) do |f| %>
+<%= simple_form_for(@new_feed, html: { :class => "form-inline" }) do |f| %>
   <div id="subscribeInput">
   <%= f.input :url, label: false, input_html: { placeholder: "Paste RSS link here" } %>
   <%= simple_fields_for @category do |c| %>

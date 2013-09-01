@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action do
     @feeds = Feed.all
     @category = Category.new
-    @feed = @category.feeds.build
+    @new_feed = @category.feeds.build
     # XXX: Remove this later
     @categories = Category.all
   end
