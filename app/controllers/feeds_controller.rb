@@ -44,12 +44,14 @@ class FeedsController < ApplicationController
   end
 
   def mark_as_read
-    FeedWorker.perform_async(params[:id], :mark_as_read)
+    # FeedWorker.perform_async(params[:id], :mark_as_read)
+    @feed = Feed.find(params[:id])
+    @feed.mark_all_as_read
     respond_with(go_watch: "mark_as_read")
   end
 
   def mark_all_as_read
-    FeedWorker.perform_async(params[:id], :mark_all_as_read)
+    # FeedWorker.perform_async(params[:id], :mark_all_as_read)
     respond_with(go_watch: "mark_all_as_read")
   end
 
