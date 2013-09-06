@@ -2,8 +2,10 @@
   <li class="nav-item" style="list-style-image:url(<%= feed.favicon%>);">
   <span>
   <%= link_to truncate_moji(feed.title, length: 22), feed, alt: feed.title %>
-  <% if feed.unread_count %>
-    <span class="pull-right unread-num label" data-id="<%= feed.id %>"><%= feed.unread_count %></span>
+  <% if feed.unread_count > 0 %>
+    <a href="#" data-id="<%= feed.id %>" class="mark-as-read">
+      <span class="pull-right unread-num label"><%= feed.unread_count %></span>
+    </a>
   <% end %>
 </span>
   </li>
