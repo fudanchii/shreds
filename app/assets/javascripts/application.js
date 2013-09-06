@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require twitter/bootstrap
+//= require bootstrap
 //= require jquery.timeago
 //= require simple_inheritance
 //= require_tree .

@@ -13,14 +13,18 @@
 .nav-container {
     position: absolute;
     bottom: 68px;
-    top: 158px;
+    top: 164px;
+    left: 24px;
+    right: 16px;
     overflow: auto;
 }
 
 .row > .span-fixed-sidebar {
     margin-top: 16px;
-    margin-left: 283px;
+    margin-left: 260px;
     margin-right: 16px;
+    position: absolute;
+    overflow: auto;
 }
 
 .nav-list > li:hover, li.nav-item > a:hover {
@@ -44,7 +48,7 @@
 }
 
 .unread-num {
-    margin-right: -20px;
+    margin-right: 0px;
     font-size: 70%;
     background-color: rgba(120,120,120,.6);
 }

@@ -1,9 +1,9 @@
 <%= simple_form_for(@new_feed, html: { :class => "form-inline" }) do |f| %>
   <div id="subscribeInput">
-  <%= f.input :url, label: false, input_html: { placeholder: "Paste RSS link here" } %>
+  <%= f.input_field :url, label: false, class: "form-control", placeholder: "Paste RSS link here" %>
   <%= simple_fields_for @category do |c| %>
-    <%= c.input :name, label: false, input_html: { placeholder: "Category (optional)" } %>
+    <%= c.input_field :name, label: false, class: "form-control", placeholder: "Category (optional)" %>
   <% end %>
   </div>
-  <%= f.submit 'Subscribe', class: "btn btn-primary", id: "btnSubmitFeed" %> or <%= link_to 'Import', '#', class: "btn", id: "btnImportOPML" %>
+  <%= f.submit 'Subscribe', class: "btn btn-primary", id: "btnSubmitFeed" %> or <%= link_to 'Import', '#', class: "btn btn-default", id: "btnImportOPML" %>
 <% end %>
