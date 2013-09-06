@@ -3,6 +3,8 @@ require 'feedzirra'
 class FeedWorker
   include Sidekiq::Worker
 
+  sidekiq_options :retry => false
+
   def up_to_date?(feed, feed_record)
     (not feed_record.etag.nil?) and     \
     (feed.etag == feed_record.etag) and \
