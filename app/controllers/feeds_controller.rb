@@ -6,13 +6,14 @@ class FeedsController < ApplicationController
   # GET /feeds
   # GET /feeds.json
   def index
-    respond_with(@feeds)
+    respond_with(@feeds.page(params[:page]))
   end
 
   # GET /feeds/1
   # GET /feeds/1.json
   def show
     @feed = Feed.find(params[:id])
+    @newsitems = @feed.newsitems.page(params[:page])
     respond_with(@feed)
   end
 

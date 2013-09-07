@@ -8,7 +8,7 @@ class Feed < ActiveRecord::Base
 
   validates :url, presence: true
 
-  default_scope order('url ASC')
+  default_scope -> { order('url ASC') }
 
   before_save :sanitize_url
 
