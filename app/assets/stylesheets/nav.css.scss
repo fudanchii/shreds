@@ -14,8 +14,8 @@
     position: absolute;
     bottom: 68px;
     top: 164px;
-    left: 24px;
-    right: 16px;
+    left: 9px;
+    right: 9px;
     overflow: auto;
 }
 
@@ -39,6 +39,10 @@
     margin-right: 15px;
 }
 
+.nav-header {
+    margin-top: 8px;
+}
+
 .dropdown-menu {
     background-color: rgba(25,25,25,.8);
 }
@@ -51,4 +55,8 @@
     margin-right: 0px;
     font-size: 70%;
     background-color: rgba(120,120,120,.6);
+}
+
+.feed-items {
+    padding-left: 24px;
 }

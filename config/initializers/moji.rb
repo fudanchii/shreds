@@ -15,7 +15,7 @@ module ActionView
         # desired options[:length] halved, plus half of the number of its
         # halfwidth characters. Or return the full length if there's none.
         options[:length] = Moji.type?(str || '', Moji::ZEN) ?
-          length/2 + str[0,length/2].scan(Moji.regexp(Moji::HAN)).length/2 :
+          length/2 + str[0,length/2].scan(Moji.regexp(Moji::HAN)).length/2 + 2:
           length
         truncate(str, options, &block)
       end

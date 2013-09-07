@@ -12,13 +12,13 @@
           <li><%= link_to "Mark as read", "#" %></li>
           <li><%= link_to "Refresh feeds", "#" %></li>
           <% unless cat.name == "uncategorized" %>
-            <li><%= link_to "Remove this category", "#", :'data-id' => cat.id, :class => "rm-cat" %></li>
+            <li><%= link_to "Remove category", "#", :'data-id' => cat.id, :class => "rm-cat" %></li>
           <% end %>
         </ul>
       </div>
       </span>
       </li>
-      <ul class="nav nav-list">
+      <ul class="nav-list feed-items" style="list-style-type: disc;">
         <%= render 'feeds_title', feeds: cat.feeds %>
       </ul>
     <% end %>
