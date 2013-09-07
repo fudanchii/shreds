@@ -10,10 +10,8 @@ class FeedUpdateWorker
 
   def perform
     Category.all.each do |c|
-      puts "#{c.name}\n"
       c.feeds.each { |f|
         FeedWorker.perform_async(f.id, :fetch)
-        puts "#{f.url}\n"
       }
     end
   end
