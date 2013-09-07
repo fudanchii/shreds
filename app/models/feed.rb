@@ -8,6 +8,10 @@ class Feed < ActiveRecord::Base
 
   validates :url, presence: true
 
+  default_scope order('url ASC')
+
+  before_save :sanitize_url
+
   def favicon
     url = URI.parse(self.url)
     "https://plus.google.com/_/favicon?domain=#{url.host||self.url}"
@@ -27,5 +31,12 @@ class Feed < ActiveRecord::Base
     counter = unread_count
     newsitems.each { |news| news.update(unread: false) }
     counter
+  end
+
+  private
+  def sanitize_url
+    self.url.gsub!(/\s+/, '')
+    self.url.prepend('http://') unless \
+      self.url.start_with?('http://') or self.url.start_with?('https://')
   end
 end
