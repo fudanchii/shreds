@@ -5,7 +5,7 @@ gem 'rails', ' ~> 4.0.0'
 ### 1. Database and modelling related gems
 gem 'pg'
 gem 'jbuilder'
-gem 'paper_trail'
+# gem 'paper_trail'
 # end of 1.
 
 

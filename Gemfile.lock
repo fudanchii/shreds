@@ -113,9 +113,6 @@ GEM
     nokogiri (1.5.10)
     nokogiri (1.5.10-x86-mingw32)
     oj (2.1.4)
-    paper_trail (1.6.4)
-      actionpack (>= 2.3)
-      activerecord (>= 2.3)
     pg (0.16.0)
     pg (0.16.0-x86-mingw32)
     polyglot (0.3.3)
@@ -218,7 +215,6 @@ DEPENDENCIES
   minitest-spec-rails
   moji
   oj
-  paper_trail
   pg
   puma
   quiet_assets (>= 1.0.1)
