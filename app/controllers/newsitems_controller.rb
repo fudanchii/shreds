@@ -11,7 +11,7 @@ class NewsitemsController < ApplicationController
   end
 
   def mark_as_read
-    @newsitem.update(unread: 0)
+    @newsitem.update(unread: false)
     respond_with(@newsitem)
   end
 end
