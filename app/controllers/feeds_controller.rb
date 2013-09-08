@@ -63,7 +63,7 @@ class FeedsController < ApplicationController
 
   def feed_already_exists(exceptions)
     @category.destroy if @category and @category.is_custom_and_unused?
-    flash[:error] = 'Feed already exists.'
+    flash[:danger] = 'Feed already exists.'
     respond_with(@new_feed)
   end
 end
