@@ -32,9 +32,7 @@ class FeedWorker
     feed_record.update(title: feed.title, etag: feed.etag)
     feed.entries.each do | entry |
       item = Newsitem.where({
-        title: entry.title,
         permalink: entry.url,
-        published: entry.published
       }).first
       if item.nil?
         item = feed_record.newsitems.build(newsitem_params(entry))
