@@ -17,7 +17,11 @@ class Feed < ActiveRecord::Base
     "https://plus.google.com/_/favicon?domain=#{url.host||self.url}"
   end
 
-  def unread_count()
+  def unread_newsitems
+    newsitems.where(unread: true)
+  end
+
+  def unread_count
     newsitems.where(unread: true).count
   end
 

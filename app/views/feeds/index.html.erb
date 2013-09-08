@@ -5,8 +5,7 @@
 <% else %>
   <% filter_read(@feeds).each do |feed| %>
     <h2><%= link_to feed.title, feed %></h2>
-    <% feed.newsitems.where(unread: true) \
-      .order("published desc").limit(3).each do |news| %>
+    <% feed.unread_newsitems.limit(3).each do |news| %>
         <%= render "summary", item: news %>
     <% end %>
     <hr>
