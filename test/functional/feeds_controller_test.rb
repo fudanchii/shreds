@@ -15,12 +15,12 @@ describe FeedsController do
     assert_difference('Feed.count') do
       post :create, feed: { url: "http://fudanchii.net/atom.xml" }, category: { feed: Category.default }
     end
-    assert_redirected_to feed_path(assigns(:feed))
+    assert_redirected_to feed_path(assigns(:new_feed))
   end
 
   it "should not create duplicate feed" do
     post :create, feed: { url: "http://fudanchii.net/atom.xml" }, category: { feed: Category.default }
-    assert_redirected_to feed_path(assigns(:feed))
+    assert_redirected_to feed_path(assigns(:new_feed))
     assert_no_difference('Feed.count') do
       post :create, feed: { url: "http://fudanchii.net/atom.xml" }, category: { feed: Category.default }
     end
