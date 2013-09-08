@@ -13,17 +13,20 @@
 
 ActiveRecord::Schema.define(version: 20130802224642) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "categories", force: true do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "feeds", force: true do |t|
     t.text     "url",         null: false
     t.text     "meta"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "category_id"
   end
 
