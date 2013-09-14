@@ -49,6 +49,7 @@ gem 'cache_digests'
 
 # Feed fetching
 gem 'feedzirra', github: 'fudanchii/feedzirra', branch: 'dev'
+gem 'sax-machine', github: 'pauldix/sax-machine'
 gem 'feedbag', github: 'dwillis/feedbag'
 
 # Test related gems

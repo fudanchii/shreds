@@ -7,14 +7,20 @@ GIT
 
 GIT
   remote: git://github.com/fudanchii/feedzirra.git
-  revision: f79083f604482412de04f7956ff92e264ad33fed
+  revision: 7fdb52189a2c8d120da927f5cf50685078b683ec
   branch: dev
   specs:
     feedzirra (0.2.0.rc2)
       curb (~> 0.8.1)
       loofah (~> 1.2.1)
-      nokogiri (~> 1.5.3)
-      sax-machine (~> 0.2.0.rc1)
+      nokogiri (~> 1.6.0)
+
+GIT
+  remote: git://github.com/pauldix/sax-machine.git
+  revision: 4027000775ae17eb7ecb8b1a4660044d7041559c
+  specs:
+    sax-machine (0.2.0.rc1)
+      nokogiri (>= 1.5.6)
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
@@ -104,14 +110,17 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25)
+    mini_portile (0.5.1)
     minitest (4.7.5)
     minitest-spec-rails (4.7.4)
       minitest (~> 4.7)
       rails (<= 4.0)
     moji (1.6)
     multi_json (1.7.9)
-    nokogiri (1.5.10)
-    nokogiri (1.5.10-x86-mingw32)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
+    nokogiri (1.6.0-x86-mingw32)
+      mini_portile (~> 0.5.0)
     oj (2.1.4)
     pg (0.16.0)
     pg (0.16.0-x86-mingw32)
@@ -147,8 +156,6 @@ GEM
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
-    sax-machine (0.2.0.rc1)
-      nokogiri (~> 1.5.2)
     sidekiq (2.14.0)
       celluloid (>= 0.14.1)
       connection_pool (>= 1.0.0)
@@ -220,6 +227,7 @@ DEPENDENCIES
   quiet_assets (>= 1.0.1)
   rails (~> 4.0.0)
   sass-rails
+  sax-machine!
   sidekiq
   sidetiq
   simple_form!
