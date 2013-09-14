@@ -11,7 +11,7 @@
         <ul class="dropdown-menu" role="menu" aria-labelledby="catDD<%= cat.id %>">
           <li><%= link_to "Mark as read", "#" %></li>
           <li><%= link_to "Refresh feeds", "#" %></li>
-          <% unless cat.name == "uncategorized" %>
+          <% unless cat.name == Category.default %>
             <li><%= link_to "Remove category", "#", :'data-id' => cat.id, :class => "rm-cat" %></li>
           <% end %>
         </ul>
