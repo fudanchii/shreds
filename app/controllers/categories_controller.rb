@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category = Category.find(params[:id])
     @category.safe_destroy
-    flash[:notice] = "Category was succesfully removed."
+    flash[:info] = "Category was succesfully removed."
     respond_with(@category)
   end
 end
