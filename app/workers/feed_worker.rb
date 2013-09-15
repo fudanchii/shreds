@@ -26,8 +26,16 @@ class FeedWorker
 
   def fetch(feed_id)
     feed_record = Feed.find(feed_id)
-    feed_record.feed_url ||= Feedbag.find(feed_record.url).first
-    feed_record.destroy && return if feed_record.feed_url.nil?
+
+    # Set feed URL, search with feedbag if it's nil
+    feed_url = feed_record.feed_url || Feedbag.find(feed_record.url).first
+
+    # There's no point to keep feed_record if we can't find any feed.
+    feed_record.destroy && return if feed_url.nil?
+
+    # In case feed_url is not saved yet.
+    feed_record.update(feed_url: feed_url) if feed_record.feed_url.nil?
+
     feed = Feedzirra::Feed.fetch_and_parse(feed_record.feed_url)
     return if up_to_date?(feed, feed_record)
 
