@@ -4,7 +4,10 @@
   </div>
 <% else %>
   <% filter_read(@feeds).each do |feed| %>
-    <h2><%= link_to feed.title, feed %></h2>
+    <header>
+      <h2><%= link_to feed.title, feed %></h2>
+      <a href="<%= feed.url %>" target="_blank"><span class="glyphicon glyphicon-new-window"></span></a>
+    </header>
     <% feed.unread_newsitems.limit(3).each do |news| %>
         <%= render "summary", item: news %>
     <% end %>
