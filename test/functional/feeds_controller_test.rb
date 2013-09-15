@@ -24,7 +24,7 @@ describe FeedsController do
     assert_no_difference('Feed.count') do
       post :create, feed: { url: "http://fudanchii.net/atom.xml" }, category: { feed: Category.default }
     end
-    assert_match /already exists/, flash[:error]
+    assert_match /already exists/, flash[:danger]
   end
 
   it "should show feed" do
