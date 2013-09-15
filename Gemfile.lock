@@ -1,9 +1,11 @@
 GIT
-  remote: git://github.com/dwillis/feedbag.git
-  revision: c018ce823dd3a8fc1e94fa5aac53aabc14cf8b49
+  remote: git://github.com/fudanchii/feedbag.git
+  revision: c737c293cc2ff91566484a3bb3f72c9be653965e
+  branch: dev
   specs:
     feedbag (0.9.1)
       nokogiri
+      open_uri_redirections
 
 GIT
   remote: git://github.com/fudanchii/feedzirra.git
@@ -122,6 +124,7 @@ GEM
     nokogiri (1.6.0-x86-mingw32)
       mini_portile (~> 0.5.0)
     oj (2.1.4)
+    open_uri_redirections (0.1.1)
     pg (0.16.0)
     pg (0.16.0-x86-mingw32)
     polyglot (0.3.3)
