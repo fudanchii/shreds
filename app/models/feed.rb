@@ -25,16 +25,20 @@ class Feed < ActiveRecord::Base
     newsitems.where(unread: true).count
   end
 
-  def self.total_unread(feeds)
-    feeds.reduce(0) do |count, feed|
-      count + feed.unread_count
-    end
-  end
-
   def mark_all_as_read
     counter = unread_count
     newsitems.each { |news| news.update(unread: false) }
     counter
+  end
+
+  def clear_read_news(limitdate = DateTime.now)
+    newsitems.where(unread: false).where('created_at < ?', limitdate).destroy_all
+  end
+
+  def self.total_unread(feeds)
+    feeds.reduce(0) do |count, feed|
+      count + feed.unread_count
+    end
   end
 
   private

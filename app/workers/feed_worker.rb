@@ -47,7 +47,7 @@ class FeedWorker
       item = Newsitem.where({
         permalink: entry.url,
       }).first
-      if item.nil?
+      if item.nil? and not Itemhash.has? entry.url
         item = feed_record.newsitems.build(newsitem_params(entry))
         item.save
       end
