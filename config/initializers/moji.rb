@@ -7,7 +7,6 @@ OMMISION = '...'
 
 def deter_ommision(str, hanlength, olength)
   han_count = str[0, hanlength].scan(Moji.regexp(Moji::HAN)).length
-  Moji.type?(str[-olength, olength], Moji::ZEN)
   han_count/2
 end
 
