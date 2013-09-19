@@ -1,10 +1,11 @@
+<div id="subscribe_form">
 <%= simple_form_for(@new_feed, html: { :class => "form-inline" }) do |f| %>
   <% content_for :inline_notification do %>
     <% @new_feed.errors.full_messages.each do |msg| %>
       <p><%= msg %></p>
     <% end %>
   <% end %>
-  <div id="subscribeInput">
+  <div id="subscribeInput" style="display:none;">
   <%= f.input_field :url, label: false, class: "form-control", placeholder: "Paste RSS link here" %>
   <%= simple_fields_for @category do |c| %>
     <%= c.input_field :name, label: false, class: "form-control", placeholder: "Category (optional)" %>
@@ -12,3 +13,4 @@
   </div>
   <%= f.submit 'Subscribe', class: "btn btn-primary", id: "btnSubmitFeed" %> or <%= link_to 'Import', '#', class: "btn btn-default", id: "btnImportOPML" %>
 <% end %>
+</div>
