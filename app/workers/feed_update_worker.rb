@@ -1,5 +1,3 @@
-require 'feedzirra'
-
 class FeedUpdateWorker
   include Sidekiq::Worker
   include Sidetiq::Schedulable
