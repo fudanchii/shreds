@@ -1,3 +1,7 @@
+<header>
+   <h1><%= link_to @feed.title, @feed %></h1>
+   <a href="<%= @feed.url %>" target="_blank"><span class="glyphicon glyphicon-new-window"></span></a>
+</header>
 <% @newsitems.each do |news| %>
   <%= render "summary", item: news %>
 <% end %>

@@ -4,6 +4,7 @@
 <div class="feed-content">
   <%= (@newsitem.content || @newsitem.summary || '').html_safe %>
 </div>
+<%= render 'news_navigation' %>
 </div>
 
 <% content_for :title do %>
