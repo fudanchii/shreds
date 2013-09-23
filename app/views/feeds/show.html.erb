@@ -6,6 +6,8 @@
   <%= render "summary", item: news %>
 <% end %>
 
+<%= paginate @newsitems %>
+
 <% content_for :title do %>
   <%= title(@feed.title) %>
 <% end %>
