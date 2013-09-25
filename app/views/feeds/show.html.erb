@@ -6,8 +6,13 @@
   <%= render "summary", item: news %>
 <% end %>
 
-<%= paginate @newsitems %>
+<ul class="pager">
+  <li class="previous"><%= link_to_previous_page @newsitems, '< Prev' %></li>
+  <li class="next"><%= link_to_next_page @newsitems, 'Next >' %></li>
+</ul>
 
 <% content_for :title do %>
   <%= title(@feed.title) %>
 <% end %>
+
+<% content_for :head do %> <%= rel_next_prev_link_tags @newsitems %> <% end %>
