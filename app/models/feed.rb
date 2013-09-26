@@ -12,6 +12,10 @@ class Feed < ActiveRecord::Base
 
   before_save :sanitize_url
 
+  def to_param
+    "#{id}-#{title}".to_url
+  end
+
   def favicon
     url = URI.parse(self.url)
     "https://plus.google.com/_/favicon?domain=#{url.host||self.url}"

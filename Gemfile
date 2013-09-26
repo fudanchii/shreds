@@ -26,6 +26,7 @@ gem 'kaminari'
 gem 'kaminari-bootstrap', github: 'mcasimir/kaminari-bootstrap'
 gem 'figaro'
 gem 'simple_form', github: 'plataformatec/simple_form'
+gem 'stringex', require: 'stringex_lite'
 # end of 3.
 
 
