@@ -12,10 +12,10 @@
 
 .nav-container {
     position: absolute;
-    bottom: 68px;
+    bottom: 48px;
     top: 48px;
     left: 9px;
-    right: 9px;
+    right: 1px;
     overflow: auto;
 }
 
@@ -25,6 +25,10 @@
     margin-right: 16px;
     position: absolute;
     overflow: auto;
+}
+
+.nav {
+    width: 215px;
 }
 
 .nav-list > li:hover, li.nav-item > a:hover {
@@ -58,7 +62,7 @@
 }
 
 #subscribe_form {
-    margin-right: 9px;
+    margin-right: 18px;
     padding-bottom: 9px;
     position: absolute;
     background-color: rgba(255, 255, 255, 1);
