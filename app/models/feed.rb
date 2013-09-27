@@ -35,8 +35,10 @@ class Feed < ActiveRecord::Base
     counter
   end
 
-  def clear_read_news(limitdate = DateTime.now)
-    newsitems.where(unread: false).where('created_at < ?', limitdate).destroy_all
+  def clear_read_news(offset=nil)
+    offset ||= Kaminari.config().default_per_page
+    newsitems.where(unread: false) \
+      .order('created_at DESC').offset(offset).destroy_all
   end
 
   def self.total_unread(feeds)

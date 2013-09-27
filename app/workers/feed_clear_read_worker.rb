@@ -7,6 +7,6 @@ class FeedClearReadWorker
   recurrence { daily.hour_of_day(2) }
 
   def perform
-    Feed.all.each { |f| f.clear_read_news(1.day.ago) }
+    Feed.all.each { |f| f.clear_read_news() }
   end
 end
