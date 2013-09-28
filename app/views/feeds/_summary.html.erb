@@ -1,5 +1,7 @@
 <div class="well well-large widget widget-transparent feed">
-  <h3><%= link_to item.title, feed_newsitem_path(item.feed, item) %></h3>
+  <h3><%= link_to item.title, feed_newsitem_path(item.feed, item) %>
+  <a href="<%= item.permalink %>" target="_blank"><span class="glyphicon glyphicon-new-window glyph-sm"></span></a>
+</h3>
   <%= render "news_meta", author: item.author, published: item.published %>
   <div class="feed-content">
     <%= (item.summary || '').html_safe %>
