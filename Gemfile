@@ -53,7 +53,7 @@ gem 'feedzirra', github: 'fudanchii/feedzirra', branch: 'dev'
 gem 'sax-machine', github: 'pauldix/sax-machine'
 gem 'feedbag', github: 'fudanchii/feedbag', branch: 'dev'
 
-# Test related gems
+# Test-related gems
 gem 'minitest-spec-rails', :group => :test
 gem 'turn', :group => :test
 
