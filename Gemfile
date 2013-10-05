@@ -74,3 +74,4 @@ gem 'oj'
 # Profiling
 # gem 'rack-mini-profiler'
 
+gem 'foreman', :require => false
