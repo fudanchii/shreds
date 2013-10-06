@@ -7,7 +7,7 @@ $(function () {
     }).done(function (data) {
       for (key in data) {
         var action = key.split('-')[0];
-        $doc.trigger('shreds:'+action, data[key]);
+        $doc.trigger('shreds:' + action, data[key]);
       }
       watchList = watchList.filter(function (el) {
         return !data[el];

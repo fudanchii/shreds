@@ -25,10 +25,7 @@ $(function () {
     console.log(data);
     $doc.trigger('shreds:subscription:spinner:stop');
     if (data.error) {
-      $('.span-fixed-sidebar').prepend(
-        $('<div class="alert alert-danger alert-float">' +
-          '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
-          data.error + '</div>'));
+      $doc.trigger('shreds:notification:error', data.error);
     } else {
       location.reload();
     }
