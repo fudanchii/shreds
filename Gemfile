@@ -61,6 +61,8 @@ gem 'turn', :group => :test
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'oj'
+gem 'redis'
+gem 'hiredis'
 
 # Deploy with Capistrano
 # gem 'capistrano'
