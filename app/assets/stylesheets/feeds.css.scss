@@ -57,3 +57,11 @@ header span { margin-left: 4px; }
 .glyph-sm {
     font-size: 65%;
 }
+
+.alert-float {
+    position: fixed;
+    max-width: 640px;
+    right: 16px;
+    top: 16px;
+    z-index: 9990;
+}

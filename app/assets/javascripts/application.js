@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require jquery.timeago
+//= require spin.min
+//= require ladda.min
 //= require_tree .

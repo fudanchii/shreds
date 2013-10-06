@@ -7,6 +7,6 @@ class FeedUpdateWorker
   recurrence { hourly.minute_of_hour(5, 25, 45) }
 
   def perform
-    Feed.all.each { |f| FeedWorker.perform_async(f.id, :fetch) }
+    Feed.all.each { |f| FeedWorker.perform_async(:fetch, f.id) }
   end
 end

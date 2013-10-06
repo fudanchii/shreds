@@ -18,5 +18,6 @@ Shreds::Application.routes.draw do
       end
     end
     resources :categories, only: [:destroy]
+    get '/watch' => 'events#watch'
   end
 end

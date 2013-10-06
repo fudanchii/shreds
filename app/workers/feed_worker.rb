@@ -1,6 +1,3 @@
-require 'feedzirra'
-require 'feedbag'
-
 class FeedWorker
   include Sidekiq::Worker
 
@@ -12,29 +9,31 @@ class FeedWorker
     not feed_record.newsitems.empty?
   end
 
-  def mark_as_read(feed_id)
-    feed_record = Feed.find(feed_id)
-    counter = feed_record.mark_all_as_read
-    EventPool.add(name: "mark_as_read", data: {feed_id: feed_record.id, unread: counter})
-  end
-
-  def mark_all_as_read(feed_id)
-    counter = 0
-    Feed.all { |f| counter += f.mark_all_as_read }
-    EventPool.add(name: "mark_all_as_read", data: {unread: counter})
+  def create(url, category_name)
+    feed_url = Feedbag.find(url).first
+    unless feed_url.nil? then
+      objCategory = Category.where(name: category_name).first_or_create
+      objFeed = objCategory.feeds.build(feed_params(feed_url))
+      objFeed.save && fetch(objFeed.id) && objFeed.reload
+      $redis.set("create-#{jid}", {
+        id: objFeed.id,
+        title: objFeed.meta[:title],
+        path: "/#{objFeed.to_param}",
+        favicon: objFeed.favicon,
+        category: { id: objCategory.id, name: objCategory.name }
+      }.to_json, :ex => 60)
+    else
+      # Handle the case where url has no feeds
+      $redis.set("create-#{jid}", {
+        error: "No valid feed found."
+      }.to_json, :ex => 60)
+    end
+  rescue
+    $redis.set("create-#{jid}", { error: "Invalid url" }.to_json, :ex => 60)
   end
 
   def fetch(feed_id)
     feed_record = Feed.find(feed_id)
-
-    # Set feed URL, search with feedbag if it's nil
-    feed_url = feed_record.feed_url || Feedbag.find(feed_record.url).first
-
-    # There's no point to keep feed_record if we can't find any feed.
-    feed_record.destroy && return if feed_url.nil?
-
-    # In case feed_url is not saved yet.
-    feed_record.update(feed_url: feed_url) if feed_record.feed_url.nil?
 
     feed = Feedzirra::Feed.fetch_and_parse(feed_record.feed_url)
     return if up_to_date?(feed, feed_record)
@@ -54,8 +53,8 @@ class FeedWorker
     end
   end
 
-  def perform(feed_id, action)
-    send(action, feed_id)
+  def perform(action, *params)
+    send(action, *params)
   end
 
   private
@@ -68,5 +67,9 @@ class FeedWorker
       author: entry.author,
       summary: entry.summary
     }).permit!
+  end
+
+  def feed_params(feed_url)
+    ActionController::Parameters.new({ url: feed_url, feed_url: feed_url }).permit!
   end
 end

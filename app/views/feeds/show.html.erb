@@ -1,6 +1,4 @@
-<header>
-   <h1><%= link_to @feed.title, @feed.url %></h1>
-</header>
+<h1><%= link_to @feed.title, @feed.url %></h1>
 <% @newsitems.each do |news| %>
   <%= render "summary", item: news %>
 <% end %>

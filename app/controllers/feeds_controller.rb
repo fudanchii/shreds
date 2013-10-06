@@ -20,18 +20,14 @@ class FeedsController < ApplicationController
   # POST /feeds
   # POST /feeds.json
   def create
-    @category = Category.where(name: params[:category][:name].presence || Category.default).first_or_create
-    @new_feed = @category.feeds.build(feed_params)
-    if @new_feed.save
-      FeedWorker.perform_async(@new_feed.id, :fetch)
-      flash[:success] = 'Feed was successfully created.'
-      respond_with(@new_feed)
-    else
-      @category.destroy if @category and @category.is_custom_and_unused?
-      respond_to do |format|
-        format.html { render :index }
-        format.json { render json: {error: 'Feed cannot be saved.'} }
-      end
+    jid = FeedWorker.perform_async(:create, params[:feed][:url], \
+      params[:category][:name].presence || Category.default)
+    respond_to do |fmt|
+      fmt.html {
+        flash[:info] = 'A moment, your newsfeed is in the making.'
+        redirect_to '/'
+      }
+      fmt.json { render :json => { watch: "create-#{jid}" } }
     end
   end
 
@@ -40,7 +36,7 @@ class FeedsController < ApplicationController
   def destroy
     @feed = Feed.find(params[:id])
     @feed.destroy
-    flash[:notice] = 'Feed was successfully removed.'
+    flash[:success] = 'Feed was successfully removed.'
     respond_with(@feed)
   end
 

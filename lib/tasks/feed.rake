@@ -19,7 +19,7 @@ namespace :feed do
   desc "Update all feeds"
   task :update => :environment do
     Feed.all.each do |feed|
-      FeedWorker.perform_async(feed.id, :fetch)
+      FeedWorker.perform_async(:fetch, feed.id)
     end
   end
 end

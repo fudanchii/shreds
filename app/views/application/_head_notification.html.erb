@@ -1,11 +1,11 @@
 <% flash.each do |name, msg| -%>
-  <%= content_tag :div, class: "alert alert-#{name}" do %>
+  <%= content_tag :div, class: "alert alert-#{name} alert-float" do %>
      <button type="button" class="close" data-dismiss="alert">&times;</button>
      <%= msg %>
   <% end %>
 <% end -%>
 <% if content_for? :inline_notification %>
-  <%= content_tag :div, class: "alert alert-info" do %>
+  <%= content_tag :div, class: "alert alert-info alert-float" do %>
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <%= yield :inline_notification %>
   <% end %>
