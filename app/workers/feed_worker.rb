@@ -36,6 +36,7 @@ class FeedWorker
     feed_record = Feed.find(feed_id)
 
     feed = Feedzirra::Feed.fetch_and_parse(feed_record.feed_url)
+    return if feed.is_a? Fixnum # Got HTTP response code instead of Feed object ^^;
     return if up_to_date?(feed, feed_record)
 
     # TODO: Use config to select which field should be sanitized
