@@ -1,5 +1,4 @@
-$(function () {
-  var $doc = $(document);
+function Watch($doc) {
   var watchList = [];
   var theWatch = setInterval(function () {
     $.ajax('/i/watch.json', {
@@ -17,4 +16,4 @@ $(function () {
   $doc.on('shreds:addWatch', function (ev, data) {
     watchList.push(data);
   });
-});
+}

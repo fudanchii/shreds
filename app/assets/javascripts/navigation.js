@@ -1,6 +1,4 @@
-$(function () {
-  var $doc = $(document);
-
+function Navigation($doc) {
   $('.rm-cat').on('click', function (ev) {
     var id = $(this).data('id');
     Assert(id, "id not found");
@@ -29,4 +27,4 @@ $(function () {
     }
     $doc.trigger('shreds:subscription:spinner:stop');
   });
-});
+}

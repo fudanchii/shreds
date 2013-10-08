@@ -17,3 +17,12 @@
 //= require spin.min
 //= require ladda.min
 //= require_tree .
+//
+
+$(function () {
+  var $doc = $(document);
+  Navigation($doc);
+  Notification($doc);
+  Subscription($doc);
+  Watch($doc);
+});

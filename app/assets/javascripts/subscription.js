@@ -1,9 +1,8 @@
-$(function () {
+function Subscription($doc) {
   var $subscribeInput = $('#subscribeInput');
   var $subscribeForm = $('#subscribe_form');
   var $feedUrl = $('#feed_url');
   var $categoryName = $('#category_name');
-  var $doc = $(document);
   var spinner = null;
   var amOut = true;
 
@@ -27,7 +26,6 @@ $(function () {
       });
       $feedUrl.val('');
       $categoryName.val('');
-      $subscribeInput.slideUp();
     }
     e.stopPropagation();
     return false;
@@ -52,4 +50,4 @@ $(function () {
       spinner.stop();
     } catch(e) { }
   });
-});
+}
