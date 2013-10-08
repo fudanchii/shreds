@@ -1,7 +1,7 @@
 function Navigation($shreds) {
   $('.rm-cat').on('click', function (ev) {
     var id = $(this).data('id');
-    Assert(id, "id not found");
+    Assert(id, "id not found: " + id);
     $.ajax('/i/categories/' + id + '.json', {
       type: 'DELETE'
     }).done(function () {
