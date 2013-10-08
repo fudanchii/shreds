@@ -1,4 +1,5 @@
-function Subscription($doc) {
+function Subscription($shreds) {
+  var $doc = $(document);
   var $subscribeInput = $('#subscribeInput');
   var $subscribeForm = $('#subscribe_form');
   var $feedUrl = $('#feed_url');
@@ -21,7 +22,7 @@ function Subscription($doc) {
         }
       }).done(function (data) {
         if (data && data.watch) {
-          $doc.trigger('shreds:addWatch', data.watch);
+          $shreds.trigger('shreds:addWatch', data.watch);
         }
       });
       $feedUrl.val('');
@@ -45,7 +46,7 @@ function Subscription($doc) {
     amOut = false;
   });
 
-  $doc.on('shreds:subscription:spinner:stop', function () {
+  $shreds.on('shreds:subscription:spinner:stop', function () {
     try {
       spinner.stop();
     } catch(e) { }

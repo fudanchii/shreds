@@ -1,4 +1,4 @@
-function Navigation($doc) {
+function Navigation($shreds) {
   $('.rm-cat').on('click', function (ev) {
     var id = $(this).data('id');
     Assert(id, "id not found");
@@ -19,12 +19,12 @@ function Navigation($doc) {
     });
   });
 
-  $doc.on('shreds:create', function (ev, data) {
+  $shreds.on('shreds:create', function (ev, data) {
     if (data.error) {
-      $doc.trigger('shreds:notification:error', data.error);
+      $shreds.trigger('shreds:notification:error', data.error);
     } else {
       location.reload();
     }
-    $doc.trigger('shreds:subscription:spinner:stop');
+    $shreds.trigger('shreds:subscription:spinner:stop');
   });
 }

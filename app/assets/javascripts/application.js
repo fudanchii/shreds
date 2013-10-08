@@ -20,9 +20,9 @@
 //
 
 $(function () {
-  var $doc = $(document);
-  Navigation($doc);
-  Notification($doc);
-  Subscription($doc);
-  Watch($doc);
+  var $shreds = $({});
+  Navigation($shreds);
+  Notification($shreds);
+  Subscription($shreds);
+  Watch($shreds);
 });
