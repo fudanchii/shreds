@@ -27,6 +27,7 @@ function Subscription($shreds) {
       });
       $feedUrl.val('');
       $categoryName.val('');
+      $subscribeInput.slideUp();
     }
     e.stopPropagation();
     return false;

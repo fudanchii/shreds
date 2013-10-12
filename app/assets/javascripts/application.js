@@ -25,4 +25,5 @@ $(function () {
   Notification($shreds);
   Subscription($shreds);
   Watch($shreds);
+  crumbsInit($);
 });

@@ -6,7 +6,7 @@ function Notification($shreds) {
   function notify($notif, message) {
     $notif.html(close + message);
     $container.append($notif);
-    setTimeout(function () { $notif.addClass('in'); }, 100);
+    setTimeout(function () { $notif.addClass('in'); }, 200);
   }
 
   $shreds.on('shreds:notification:error', function (ev, message) {
