@@ -199,7 +199,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    stringex (2.1.0)
     temple (0.6.7)
     thin (1.6.0)
       daemons (>= 1.0.9)
@@ -256,7 +255,6 @@ DEPENDENCIES
   simple_form!
   sinatra
   slim
-  stringex
   thin
   turn
   uglifier
