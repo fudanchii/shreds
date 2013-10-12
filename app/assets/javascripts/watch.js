@@ -19,9 +19,9 @@ function Watch($shreds) {
   $shreds.on('shreds:addWatch', function (ev, data) {
     $shreds.watchList.push(data);
     doWatch.call($shreds).fail(function () {
-      // For longer background process at server, the first 
-      // doWatch.call might get failed. Schedule the next
-      // doWatch to run in every 3 seconds.
+      // For longer background process at server,
+      // the first doWatch.call might get failed,
+      // schedule the next doWatch to run every 3 seconds.
       var eventWatch = setInterval(function () {
         doWatch.call($shreds).done(function () { clearInterval(eventWatch); });
       }, 3000);
