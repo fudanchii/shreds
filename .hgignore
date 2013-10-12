@@ -5,3 +5,4 @@ syntax: glob
 *.orig
 config/*.yml
 tmp/*
+public/assets/*
