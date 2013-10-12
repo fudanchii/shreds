@@ -25,11 +25,9 @@ class FeedWorker
     else
       # Handle the case where url has no feeds
       $redis.set("create-#{jid}", {
-        error: "No valid feed found."
+        error: "Can't find any feed, are you sure the url is valid?"
       }.to_json, :ex => 60)
     end
-  rescue
-    $redis.set("create-#{jid}", { error: "Invalid url" }.to_json, :ex => 60)
   end
 
   def fetch(feed_id)
