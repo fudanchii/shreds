@@ -27,10 +27,10 @@ GIT
 
 GIT
   remote: git://github.com/pauldix/sax-machine.git
-  revision: 4027000775ae17eb7ecb8b1a4660044d7041559c
+  revision: f87fa6d06b104bb521807d22eaf57536c94dae4c
   specs:
     sax-machine (0.2.0.rc1)
-      nokogiri (>= 1.5.6)
+      nokogiri (~> 1.6.0)
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
@@ -84,7 +84,7 @@ GEM
     cache_digests (0.3.1)
       actionpack (>= 3.2)
       thread_safe
-    celluloid (0.15.1)
+    celluloid (0.15.2)
       timers (~> 1.1.0)
     coderay (1.1.0)
     connection_pool (1.1.0)
@@ -110,7 +110,7 @@ GEM
     hiredis (0.4.5)
     i18n (0.6.5)
     ice_cube (0.11.0)
-    jbuilder (1.5.1)
+    jbuilder (1.5.2)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
     jquery-rails (3.0.4)
@@ -137,7 +137,7 @@ GEM
       mini_portile (~> 0.5.0)
     nokogiri (1.6.0-x86-mingw32)
       mini_portile (~> 0.5.0)
-    oj (2.1.4)
+    oj (2.1.6)
     open_uri_redirections (0.1.1)
     pg (0.17.0)
     pg (0.17.0-x86-mingw32)
@@ -179,7 +179,7 @@ GEM
       json
       redis (>= 3.0.4)
       redis-namespace (>= 1.3.1)
-    sidetiq (0.4.1)
+    sidetiq (0.4.3)
       celluloid (>= 0.14.1)
       ice_cube (~> 0.11.0)
       sidekiq (~> 2.15.0)
@@ -215,7 +215,7 @@ GEM
       polyglot (>= 0.3.1)
     turn (0.9.6)
       ansi
-    tzinfo (0.3.37)
+    tzinfo (0.3.38)
     uglifier (2.2.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
