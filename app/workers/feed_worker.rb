@@ -16,11 +16,8 @@ class FeedWorker
       objFeed = objCategory.feeds.build(feed_params(feed_url))
       objFeed.save && fetch(objFeed.id) && objFeed.reload
       $redis.set("create-#{jid}", {
-        id: objFeed.id,
-        title: objFeed.meta[:title],
-        path: "/#{objFeed.to_param}",
-        favicon: objFeed.favicon,
-        category: { id: objCategory.id, name: objCategory.name }
+        view: "create",
+        id: objFeed.id
       }.to_json, :ex => 60)
     else
       # Handle the case where url has no feeds
@@ -50,6 +47,19 @@ class FeedWorker
         item.save
       end
     end
+  end
+
+  def mark_as_read(feed_id)
+    feed_record = Feed.find(feed_id)
+    feed_record.mark_all_as_read
+    $redis.set("markAsRead-#{jid}", {
+      view: "mark_feed_as_read",
+      id: feed_id
+    }.to_json, :ex => 60)
+  rescue
+    $redis.set("markAsRead-#{jid}", {
+      error: "Feed can not marked as read."
+    }.to_json, :ex => 60)
   end
 
   def perform(action, *params)
