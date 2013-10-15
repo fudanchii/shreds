@@ -1,5 +1,3 @@
-require 'moji'
-
 # http://api.rubyonrails.org/classes/ActionView/Helpers/TextHelper.html#method-i-truncate
 # :length defaults to 30
 LEN = 30
@@ -26,7 +24,8 @@ module ActionView
         options[:length] = Moji.type?(str || '', Moji::ZEN) ?
           length/2 + deter_ommision(str, length/2, olength) :
           length
-        truncate(str, options, &block)
+        str = truncate(str, options, &block)
+        return CGI.unescapeHTML(String.new(str)) if options[:unescape]
       end
     end
   end
