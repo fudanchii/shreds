@@ -1,30 +1,38 @@
+(function (Shreds) { 'use strict';
+  var name = 'watch';
+  Shreds.components.push(name);
+  Shreds[name] = {
+    list: [],
+    add: function (data) {
+      this.list.push(data);
+      doWatch.call(this).fail(function () {
+        var eventWatch = setInterval(function () {
+          doWatch.call(this);
+          if (this.list.length === 0) {
+            clearInterval(eventWatch);
+          }
+        }.bind(this), 2000);
+      }.bind(this));
+    },
+    init: function (ctx) {
+      setInterval(doWatch.bind(this), 600000);
+    }
+  };
+
 function doWatch() {
   return $.ajax('/i/watch.json', {
-    data: { 'watchList': this.watchList.join() }
+    data: { 'watchList': this.list.join() }
   }).done(function (data) {
-    for (key in data) {
+    for (var key in data) {
       var action = key.split('-')[0];
-      this.trigger('shreds:' + action, data[key]);
+      Shreds.$.trigger('shreds:' + action, data[key]);
     }
-    this.watchList = this.watchList.filter(function (el) {
+    this.list = this.list.filter(function (el) {
       return !data[el];
     });
   }.bind(this));
 }
 
-function Watch($shreds) {
-  $shreds.watchList = [];
-  var theWatch = setInterval(doWatch.bind($shreds), 600000);
+})(window.Shreds);
 
-  $shreds.on('shreds:addWatch', function (ev, data) {
-    $shreds.watchList.push(data);
-    doWatch.call($shreds).fail(function () {
-      // For longer background process at server,
-      // the first doWatch.call might get failed,
-      // schedule the next doWatch to run every 3 seconds.
-      var eventWatch = setInterval(function () {
-        doWatch.call($shreds).done(function () { clearInterval(eventWatch); });
-      }, 3000);
-    });
-  });
-}
+

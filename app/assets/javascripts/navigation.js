@@ -1,30 +1,33 @@
-function Navigation($shreds) {
-  $('.rm-cat').on('click', function (ev) {
-    var id = $(this).data('id');
-    Assert(id, "id not found: " + id);
-    $.ajax('/i/categories/' + id + '.json', {
-      type: 'DELETE'
-    }).done(function () {
-      location.reload();
-    });
-  });
-
-  $('.mark-as-read').on('click', function (ev) {
-    var id = $(this).data('id');
-    Assert(id, 'id not found: ' + id);
-    $.ajax('/i/feeds/' + id + '/mark_as_read.json', {
-      type: 'PATCH'
-    }).done(function () {
-      location.reload();
-    });
-  });
-
-  $shreds.on('shreds:create', function (ev, data) {
-    if (data.error) {
-      $shreds.trigger('shreds:notification:error', data.error);
-    } else {
-      location.reload();
+(function (Shreds) { 'use strict';
+  var name = 'navigation';
+  Shreds.components.push(name);
+  Shreds[name] = {
+    events: {
+      'shreds:markAsRead': function (ev, data) {
+        if (data.error) {
+          Shreds.notification.error(data.error);
+        } else {
+          var feed = Shreds.find('feeds', data.feed.id);
+          feed.unreadCount = data.feed.unreadCount;
+          Shreds.notification.info(data.info);
+        }
+        Shreds.syncView(name);
+      },
+      'shreds:create': function (ev, data) {
+        if (data.error) {
+          Shreds.notification.error(data.error);
+        } else {
+          var category = Shreds.find('categories', data.category.id);
+          category.feeds = data.category.feeds;
+          Shreds.notification.info(data.info);
+          Shreds.syncView(name);
+        }
+        Shreds.subscription.stopSpinner();
+      }
+    },
+    init: function () {
+      Shreds.syncView(name);
     }
-    $shreds.trigger('shreds:subscription:spinner:stop');
-  });
-}
+  };
+})(window.Shreds);
+

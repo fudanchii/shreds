@@ -1,21 +1,24 @@
-function Notification($shreds) {
-  var $container = $('.alert-container');
-  var notif = '<div class="alert fade alert-float"/>';
-  var close = '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>';
+(function (Shreds) { 'use strict';
+  var name = 'notification';
+  Shreds.components.push(name);
+  Shreds[name] = {
+    init: function () {
+    },
+    error: function (msg) {
+      notify('danger', msg);
+    },
+    info: function (msg) {
+      notify('info', msg);
+    }
+  };
 
-  function notify($notif, message) {
-    $notif.html(close + message);
-    $container.append($notif);
-    setTimeout(function () { $notif.addClass('in'); }, 200);
+  function notify(type, message) {
+    Shreds.syncView(name,
+      { text: message, type: type },
+      { append: true });
+    setTimeout(function () {
+      $('.alert-float').addClass('in');
+    }, 200);
   }
+})(window.Shreds);
 
-  $shreds.on('shreds:notification:error', function (ev, message) {
-    var $notif = $(notif).addClass('alert-danger');
-    notify($notif, message);
-  });
-
-  $shreds.on('shreds:notification:info', function (ev, message) {
-    var $notif = $(notif).addClass('alert-info');
-    notify($notif, message);
-  });
-}

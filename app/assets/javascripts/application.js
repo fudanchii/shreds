@@ -16,14 +16,12 @@
 //= require jquery.timeago
 //= require spin.min
 //= require ladda.min
+//= require handlebars.runtime
+//= require_tree ./templates
+//= require shreds
 //= require_tree .
 //
 
 $(function () {
-  var $shreds = $({});
-  Navigation($shreds);
-  Notification($shreds);
-  Subscription($shreds);
-  Watch($shreds);
-  crumbsInit($);
+ window.Shreds.init();
 });

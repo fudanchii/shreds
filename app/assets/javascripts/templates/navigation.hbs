@@ -1,0 +1,40 @@
+<ul class="nav nav-list">
+    <li class="nav-header">
+        <span>
+            <span class="glyphicon glyphicon-th-list"></span>
+            <a href="/"><strong>Latest Entries</strong></a>
+        </span>
+    </li>
+{{#each categories}}
+    <li class="nav-header">
+        <span><strong>{{./name}}</strong>
+        <div class="dropdown pull-right">
+        <a class="dropdown-toggle" href="javascript:void(0)" role="button" data-toggle="dropdown">
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="javascript:void(0)" data-id="{{./id}}" data-action="markCategoryAsRead">Mark as read</a></li>
+            <li><a href="javascript:void(0)" data-id="{{./id}}" data-action="refreshCategory">Refresh feeds</a></li>
+            {{#if ./not_default}}
+            <li><a class="rm-cat" data-id="{{./id}}" href="javascript:void(0)" data-action="removeCategory">Remove category</a></li>
+            {{/if}}
+        </ul>
+        </div>
+        </span>
+    </li>
+    <ul class="nav-list feed-items" style="list-style-type:disc;">
+        {{#each ./feeds}}
+            <li class="nav-item" style="list-style-image:url({{./favicon}})">
+            <span>
+                <a alt="{{./title}}" href="{{./path}}">{{./titleEllipsized}}</a>
+                {{#if ./unreadCount }}
+                <a href="javascript:void(0)" data-id="{{./id}}" data-action="markAsRead">
+                <span class="pull-right unread-num label">{{./unreadCount}}</span>
+                </a>
+                {{/if}}
+            </span>
+            </li>
+        {{/each}}
+    </ul>
+{{/each}}
+</ul>
