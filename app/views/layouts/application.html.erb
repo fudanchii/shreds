@@ -8,7 +8,11 @@
 </head>
 <body>
   <div class="row">
-    <%= render 'navigation' %>
+    <% if ENV['USE_HANDLEBARS'] %>
+      <%= render 'navigation_hbs' %>
+    <% else %>
+      <%= render 'navigation' %>
+    <% end %>
     <div class="span-fixed-sidebar">
       <%= render 'head_notification' %>
       <%= yield %>
@@ -16,5 +20,6 @@
   </div>
 
   <%= javascript_include_tag "application" %>
+  <%= yield :embedded_javascript %>
 </body>
 </html>

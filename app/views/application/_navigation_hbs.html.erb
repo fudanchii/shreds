@@ -1,0 +1,12 @@
+<div class="sidebar-nav-fixed well widget-transparent">
+  <%= render 'subscribe' %>
+<div class="nav-container" data-template="navigation">
+</div>
+  <%= render 'nav_buttons' %>
+</div>
+
+<% content_for :embedded_javascript do %>
+<script type="text/javascript">
+  window.Shreds.loadModel('navigation', <%= raw render('navigation_data') %>);
+</script>
+<% end %>

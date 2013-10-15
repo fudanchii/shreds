@@ -24,7 +24,7 @@ class FeedsController < ApplicationController
       params[:category][:name].presence || Category.default)
     respond_to do |fmt|
       fmt.html {
-        flash[:info] = 'A moment, your newsfeed is in the making.'
+        flash[:info] = 'Hold on, your newsfeed is in the making.'
         redirect_to '/'
       }
       fmt.json { render :json => { watch: "create-#{jid}" } }
@@ -34,22 +34,24 @@ class FeedsController < ApplicationController
   # DELETE /feeds/1
   # DELETE /feeds/1.json
   def destroy
-    @feed = Feed.find(params[:id])
-    @feed.destroy
-    flash[:success] = 'Feed was successfully removed.'
-    respond_with(@feed)
+    jid = FeedWorker.perform_async(:destroy, params[:id])
+    respond_to do |fmt|
+      fmt.json { render :json => { watch: "destroy-#{jid}" } }
+    end
   end
 
   def mark_as_read
-    # FeedWorker.perform_async(params[:id], :mark_as_read)
-    @feed = Feed.find(params[:id])
-    @feed.mark_all_as_read
-    respond_with(go_watch: "mark_as_read")
+    jid = FeedWorker.perform_async(:mark_as_read, params[:id])
+    respond_to do |fmt|
+      fmt.json { render :json => { watch: "markAsRead-#{jid}" } }
+    end
   end
 
   def mark_all_as_read
-    # FeedWorker.perform_async(params[:id], :mark_all_as_read)
-    respond_with(go_watch: "mark_all_as_read")
+    jid = FeedWorker.perform_async(:mark_all_as_read)
+    respond_to do |fmt|
+      fmt.json { render :json => { watch: "markAllAsRead-#{jid}" } }
+    end
   end
 
   private

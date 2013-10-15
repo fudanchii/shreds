@@ -11,7 +11,7 @@
     <%= c.input_field :name, label: false, class: "form-control", placeholder: "Category (optional)" %>
   <% end %>
   </div>
-  <%= button_tag(type: 'submit', class: "btn btn-primary ladda-button", id: "btnSubmitFeed", 'data-style' => "zoom-out") do %>
+  <%= button_tag(type: 'submit', class: "btn btn-primary ladda-button", id: "btnSubmitFeed", 'data-style' => "zoom-out", 'data-action' => "subscribeTo") do %>
      <span class="ladda-label">Subscribe</span>
   <% end %> or <%= link_to 'Import', '#', class: "btn btn-default", id: "btnImportOPML" %>
 <% end %>

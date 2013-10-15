@@ -22,6 +22,4 @@
 //= require_tree .
 //
 
-$(function () {
- window.Shreds.init();
-});
+$(window.Shreds.init.bind(window.Shreds));

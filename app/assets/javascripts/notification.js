@@ -18,7 +18,7 @@
       { append: true });
     setTimeout(function () {
       $('.alert-float').addClass('in');
-    }, 200);
+    }, 150);
   }
 })(window.Shreds);
 

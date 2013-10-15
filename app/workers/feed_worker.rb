@@ -17,7 +17,7 @@ class FeedWorker
       objFeed.save && fetch(objFeed.id) && objFeed.reload
       $redis.set("create-#{jid}", {
         view: "create",
-        id: objFeed.id
+        category_id: objCategory.id
       }.to_json, :ex => 60)
     else
       # Handle the case where url has no feeds
@@ -25,6 +25,23 @@ class FeedWorker
         error: "Can't find any feed, are you sure the url is valid?"
       }.to_json, :ex => 60)
     end
+  rescue ActiveRecord::RecordNotUnique
+    $redis.set("create-#{jid}", {
+      error: "Already subscribed to the feed."
+    }.to_json, :ex => 60)
+  end
+
+  def destroy(feed_id)
+    feed_record = Feed.find(feed_id)
+    feed_record.destroy
+    $redis.set("destroy-#{jid}", {
+      view: "destroy",
+      category_id: feed_record.category.id
+    }.to_json, :ex => 60)
+  rescue
+    $redis.set("destroy-#{jid}", {
+      error: "Can't unsubscribe from this feed."
+    }.to_json, :ex => 60)
   end
 
   def fetch(feed_id)

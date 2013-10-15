@@ -33,7 +33,9 @@
       }
     },
     stopSpinner: function () {
-      spinner.stop();
+      try {
+        spinner.stop();
+      } catch (e) { }
     },
     init: function () {
       setupDOMEvents();

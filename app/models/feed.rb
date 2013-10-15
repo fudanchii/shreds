@@ -31,7 +31,7 @@ class Feed < ActiveRecord::Base
 
   def mark_all_as_read
     counter = unread_count
-    newsitems.each { |news| news.update(unread: false) }
+    newsitems.each { |news| news.update(unread: false) if news.unread }
     counter
   end
 

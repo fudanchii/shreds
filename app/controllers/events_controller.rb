@@ -1,18 +1,24 @@
 class EventsController < ApplicationController
+
+  before_action { @payload = {} }
+
   def watch
-    watchList = params[:watchList].split if params[:watchList]
+    watchList = params[:watchList].split(',') if params[:watchList]
     unless watchList.empty? then
       result = $redis.mget(*watchList)
       unless result.empty? then
-        idx = 0
-        # XXX: Need proper atomic redis get-then-delete, i.e.
-        # Avoid racing condition where key was just created when delete being called.
-        watchList.each {|w| $redis.del(w) unless result[idx].nil?; idx += 1 }
-        idx, rmap = 0, {}
-        result.each {|r| rmap[watchList[idx]] = JSON.parse(r) unless r.nil?; idx += 1 }
-        return render(:json => rmap) unless rmap.empty?
+        watchList.zip(result).each do |w, r|
+          next if r.nil?
+          data = JSON.parse r
+          data['feed'] = Feed.find data['id'] if data['id']
+          data['category'] = Category.find data['category_id'] if data['category_id']
+          @payload[w] = data
+          $redis.del w
+        end
+        return render 'watch' unless @payload.empty?
       end
     end
     render :text => ''
   end
+
 end

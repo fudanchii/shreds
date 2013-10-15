@@ -1,4 +1,4 @@
-<div class="alert-container">
+<div class="alert-container" data-template="notification">
 <% flash.each do |name, msg| -%>
   <%= content_tag :div, class: "alert alert-#{name} alert-float" do %>
      <button type="button" class="close" data-dismiss="alert">&times;</button>

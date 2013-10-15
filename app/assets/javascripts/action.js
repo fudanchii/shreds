@@ -29,6 +29,16 @@
       Shreds.subscription.activate.call(this[0]);
       ev.stopPropagation();
       return false;
+    },
+    unsubscribe: function (ev) {
+      var id = this.data('id');
+      $.ajax('/i/feeds/' + id + '.json', {
+        type: 'DELETE'
+      }).done(function (data) {
+        if (data && data.watch) {
+          Shreds.watch.add(data.watch);
+        }
+      });
     }
   };
 })(window.Shreds);

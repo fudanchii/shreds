@@ -1,10 +1,16 @@
 class CategoriesController < ApplicationController
-  respond_to :html, :json
 
   def destroy
     @category = Category.find(params[:id])
     @category.safe_destroy
-    flash[:info] = "Category was succesfully removed."
-    respond_with(@category)
+    respond_to do |fmt|
+      fmt.html {
+        flash[:info] = "Category was succesfully removed."
+        redirect_to '/'
+      }
+      fmt.json {
+        render 'navigation_data'
+      }
+    end
   end
 end

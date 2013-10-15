@@ -13,3 +13,4 @@
 <% end %>
 
 <% content_for :head do %> <%= rel_next_prev_link_tags @newsitems %> <% end %>
+<% content_for :nav_btn_data_id do %> data-id="<%= @feed.id %>"<% end %>

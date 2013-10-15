@@ -18,11 +18,15 @@
           Shreds.notification.error(data.error);
         } else {
           var category = Shreds.find('categories', data.category.id);
+          if (!category) { window.location.replace('/'); }
           category.feeds = data.category.feeds;
           Shreds.notification.info(data.info);
           Shreds.syncView(name);
         }
         Shreds.subscription.stopSpinner();
+      },
+      'shreds:destroy': function (ev, data) {
+        Shreds.$.trigger('shreds:create', data);
       }
     },
     init: function () {
