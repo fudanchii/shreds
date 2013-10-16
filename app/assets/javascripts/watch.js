@@ -26,6 +26,7 @@ function doWatch(key) {
       return !data[el];
     });
   }.bind(this)).fail(function () {
+    if (key) { return this.list.shift(); }
     setTimeout(doWatch.bind(this), 2000);
   }.bind(this));
 }
