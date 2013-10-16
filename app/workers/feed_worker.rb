@@ -19,15 +19,15 @@ class FeedWorker
         view: "create",
         category_id: objCategory.id
       }.to_json, :ex => 60)
-    else
-      # Handle the case where url has no feeds
-      $redis.set("create-#{jid}", {
-        error: "Can't find any feed, are you sure the url is valid?"
-      }.to_json, :ex => 60)
+    else raise
     end
   rescue ActiveRecord::RecordNotUnique
     $redis.set("create-#{jid}", {
-      error: "Already subscribed to the feed."
+      error: "<strong>Already subscribed</strong> to the feed."
+    }.to_json, :ex => 60)
+  rescue
+    $redis.set("create-#{jid}", {
+      error: "<strong>Can't find any feed,</strong> are you sure the url is valid?"
     }.to_json, :ex => 60)
   end
 
@@ -40,7 +40,7 @@ class FeedWorker
     }.to_json, :ex => 60)
   rescue
     $redis.set("destroy-#{jid}", {
-      error: "Can't unsubscribe from this feed."
+      error: "<strong>Can't unsubscribe</strong> from this feed."
     }.to_json, :ex => 60)
   end
 
@@ -74,7 +74,7 @@ class FeedWorker
     }.to_json, :ex => 60)
   rescue
     $redis.set("markAsRead-#{jid}", {
-      error: "Feed can not marked as read."
+      error: "<strong>Feed</strong> can not marked as read."
     }.to_json, :ex => 60)
   end
 
