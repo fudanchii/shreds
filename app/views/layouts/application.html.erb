@@ -8,11 +8,7 @@
 </head>
 <body>
   <div class="row">
-    <% if ENV['USE_HANDLEBARS'] %>
-      <%= render 'navigation_hbs' %>
-    <% else %>
-      <%= render 'navigation' %>
-    <% end %>
+    <%= render 'navigation_hbs' %>
     <div class="span-fixed-sidebar">
       <%= render 'head_notification' %>
       <%= yield %>
