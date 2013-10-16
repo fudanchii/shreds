@@ -1,4 +1,4 @@
-json.info 'Successfully unsubscribed the feed.'
+json.info '<strong>Successfully</strong> unsubscribed the feed.'
 
 json.category do
   json.id data['category'].id

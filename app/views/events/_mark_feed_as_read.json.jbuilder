@@ -1,5 +1,5 @@
 
-json.info 'Feed marked as read.'
+json.info '<strong>Feed</strong> marked as read.'
 
 json.feed do
   json.id data['feed'].id
