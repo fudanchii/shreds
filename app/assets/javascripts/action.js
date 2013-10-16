@@ -16,12 +16,8 @@
       $.ajax('/i/categories/' + id + '.json', {
         type: 'DELETE'
       }).done(function (data) {
-        if (data.error) {
-          Shreds.notification.error(data.error);
-        } else {
-          Shreds.loadModel('navigation', data.navigation);
-          Shreds.syncView('navigation');
-          Shreds.notification.info(data.info);
+        if (data && data.watch) {
+          Shreds.watch.add(data.watch);
         }
       });
     },

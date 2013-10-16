@@ -27,6 +27,15 @@
       },
       'shreds:destroy': function (ev, data) {
         Shreds.$.trigger('shreds:create', data);
+      },
+      'shreds:rmCategory': function (ev, data) {
+        if (data.error) {
+          Shreds.notification.error(data.error);
+        } else {
+          Shreds.loadModel('navigation', data.data);
+          Shreds.syncView('navigation');
+          Shreds.notification.info(data.info);
+        }
       }
     },
     init: function () {
