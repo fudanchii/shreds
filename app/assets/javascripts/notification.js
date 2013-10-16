@@ -13,12 +13,20 @@
   };
 
   function notify(type, message) {
+    var ident = Shreds.utils.generateId(name);
+    var notification = null;
     Shreds.syncView(name,
-      { text: message, type: type },
+      { text: message, type: type, id: ident },
       { append: true });
     setTimeout(function () {
-      $('.alert-float').addClass('in');
+      notification = $('#' + ident).addClass('in');
     }, 150);
+    setTimeout(function () {
+      notification.removeClass('in');
+    }, 5150);
+    setTimeout(function () {
+      notification.remove();
+    }, 5500);
   }
 })(window.Shreds);
 
