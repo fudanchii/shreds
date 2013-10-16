@@ -53,11 +53,10 @@ class FeedWorker
 
     # TODO: Use config to select which field should be sanitized
     #feed.sanitize_entries!
-
-    feed_record.update(title: feed.title, etag: feed.etag, url: feed.url)
+    feed_record.update!(title: feed.title, etag: feed.etag, url: feed.url)
     feed.entries.each do | entry |
       item = Newsitem.where({
-        permalink: entry.url,
+        permalink: entry.url
       }).first
       if item.nil? and not Itemhash.has? entry.url
         item = feed_record.newsitems.build(newsitem_params(entry))
