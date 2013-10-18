@@ -15,33 +15,29 @@ class FeedWorker
       objCategory = Category.where(name: category_name).first_or_create
       objFeed = objCategory.feeds.build(feed_params(feed_url))
       objFeed.save && fetch(objFeed.id) && objFeed.reload
-      $redis.set("create-#{jid}", {
+      EventPool.add("create-#{jid}", {
         view: "create",
-        category_id: objCategory.id
-      }.to_json, :ex => 60)
+        category_id: objCategory.id })
     else raise
     end
   rescue ActiveRecord::RecordNotUnique
-    $redis.set("create-#{jid}", {
-      error: "<strong>Already subscribed</strong> to the feed."
-    }.to_json, :ex => 60)
+    EventPool.add("create-#{jid}", {
+      error: "<strong>Already subscribed</strong> to the feed." })
   rescue
-    $redis.set("create-#{jid}", {
-      error: "<strong>Can't find any feed,</strong> are you sure the url is valid?"
-    }.to_json, :ex => 60)
+    EventPool.add("create-#{jid}", {
+      error: "<strong>Can't find any feed,</strong>
+              are you sure the url is valid?" })
   end
 
   def destroy(feed_id)
     feed_record = Feed.find(feed_id)
     feed_record.destroy
-    $redis.set("destroy-#{jid}", {
+    EventPool.add("destroy-#{jid}", {
       view: "destroy",
-      category_id: feed_record.category.id
-    }.to_json, :ex => 60)
+      category_id: feed_record.category.id })
   rescue
-    $redis.set("destroy-#{jid}", {
-      error: "<strong>Can't unsubscribe</strong> from this feed."
-    }.to_json, :ex => 60)
+    EventPool.add("destroy-#{jid}", {
+      error: "<strong>Can't unsubscribe</strong> from this feed." })
   end
 
   def fetch(feed_id)
@@ -68,14 +64,12 @@ class FeedWorker
   def mark_as_read(feed_id)
     feed_record = Feed.find(feed_id)
     feed_record.mark_all_as_read
-    $redis.set("markAsRead-#{jid}", {
+    EventPool.add("markAsRead-#{jid}", {
       view: "mark_feed_as_read",
-      id: feed_id
-    }.to_json, :ex => 60)
+      id: feed_id })
   rescue
-    $redis.set("markAsRead-#{jid}", {
-      error: "<strong>Feed</strong> can not marked as read."
-    }.to_json, :ex => 60)
+    EventPool.add("markAsRead-#{jid}", {
+      error: "<strong>Feed</strong> can not marked as read." })
   end
 
   def perform(action, *params)

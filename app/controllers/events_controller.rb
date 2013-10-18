@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   def watch
     watchList = params[:watchList].split(',') if params[:watchList]
     unless watchList.empty? then
-      result = $redis.mget(*watchList)
+      result = EventPool.find *watchList
       unless result.empty? then
         watchList.zip(result).each do |w, r|
           next if r.nil?
@@ -13,7 +13,7 @@ class EventsController < ApplicationController
           data['feed'] = Feed.find data['id'] if data['id']
           data['category'] = Category.find data['category_id'] if data['category_id']
           @payload[w] = data
-          $redis.del w
+          EventPool.remove w
         end
         return render 'watch' unless @payload.empty?
       end
