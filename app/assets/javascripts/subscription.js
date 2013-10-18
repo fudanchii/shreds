@@ -18,14 +18,14 @@
         spinner.start();
         $.ajax('/i/feeds.json', {
           method: 'POST',
-          data: {
-            'feed[url]': $feedUrl.val(),
-            'category[name]': $categoryName.val()
-          }
+          data: $subscribeForm.find('form').serialize()
         }).done(function (data) {
           if (data && data.watch) {
             Shreds.watch.add(data.watch);
           }
+        }).fail(function () {
+          spinner.stop();
+          Shreds.notification.error('<strong>Can not</strong> add feed at the moment.');
         });
         $feedUrl.val('');
         $categoryName.val('');
