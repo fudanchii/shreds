@@ -76,3 +76,5 @@ gem 'hiredis'
 # gem 'rack-mini-profiler'
 
 gem 'foreman', :require => false
+
+gem 'rubysl', '~> 2.0', :platforms => [:rbx]
