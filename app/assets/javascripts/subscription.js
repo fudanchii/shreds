@@ -16,17 +16,11 @@
       } else {
         spinner = Ladda.create(this);
         spinner.start();
-        $.ajax('/i/feeds.json', {
-          method: 'POST',
-          data: $subscribeForm.find('form').serialize()
-        }).done(function (data) {
-          if (data && data.watch) {
-            Shreds.watch.add(data.watch);
-          }
-        }).fail(function () {
-          spinner.stop();
-          Shreds.notification.error('<strong>Can not</strong> add feed at the moment.');
-        });
+        Shreds.ajax.post('/i/feeds.json', {
+          doWatch: true,
+          opts: { data: $subscribeForm.find('form').serialize() },
+          failMsg: '<strong>Can not</strong> add feed at the moment.'
+        }).fail(function () { spinner.stop(); });
         $feedUrl.val('');
         $categoryName.val('');
         $subscribeInput.slideUp();
@@ -53,8 +47,7 @@
     });
     $doc.on('mouseover', function (e) {
       if ($subscribeForm.has(e.target).length === 0) {
-        amOut = true;
-        return;
+        return amOut = true;
       }
       amOut = false;
     });
