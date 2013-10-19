@@ -13,7 +13,7 @@ class FeedWorker
     feed_url = Feedbag.find(url).first
     unless feed_url.nil? then
       objCategory = Category.where(name: category_name).first_or_create
-      objFeed = objCategory.feeds.build(feed_params(feed_url))
+      objFeed = objCategory.feeds.build(feed_params(url, feed_url))
       objFeed.save && fetch(objFeed.id) && objFeed.reload
       EventPool.add("create-#{jid}", {
         view: "create",
@@ -88,7 +88,7 @@ class FeedWorker
     }).permit!
   end
 
-  def feed_params(feed_url)
-    ActionController::Parameters.new({ url: feed_url, feed_url: feed_url }).permit!
+  def feed_params(url, feed_url)
+    ActionController::Parameters.new({ url: url, feed_url: feed_url }).permit!
   end
 end
