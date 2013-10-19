@@ -24,7 +24,7 @@ class FeedsController < ApplicationController
       params[:category][:name].presence || Category.default)
     respond_to do |fmt|
       fmt.html {
-        flash[:info] = 'Hold on, your newsfeed is in the making.'
+        flash[:info] = 'Hold on, now printing your newsfeed.'
         redirect_to '/'
       }
       fmt.json { render :json => { watch: "create-#{jid}" } }
