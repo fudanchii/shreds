@@ -1,7 +1,7 @@
 class FeedsController < ApplicationController
   respond_to :html, :json
 
-  rescue_from ActiveRecord::RecordNotUnique, with: :feed_already_exists
+  rescue_from ActiveRecord::RecordNotFound, :with => :feed_not_found
 
   # GET /feeds
   # GET /feeds.json
@@ -59,9 +59,10 @@ class FeedsController < ApplicationController
     params.require(:feed).permit(:url, :title, :meta, :tag)
   end
 
-  def feed_already_exists(exceptions)
-    @category.destroy if @category and @category.is_custom_and_unused?
-    flash[:danger] = 'Feed already exists.'
-    respond_with(@new_feed)
+  def feed_not_found(exceptions)
+    flash[:danger] = '<strong>Feed</strong> not found.'.html_safe
+    respond_to do |fmt|
+      fmt.html { redirect_to '/' }
+    end
   end
 end
