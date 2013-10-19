@@ -5,7 +5,7 @@
       this.parents('li').css('list-style-image', 'url(/assets/spinner.16x16.gif)');
       Shreds.ajax.patch('/i/feeds/' + id + '/mark_as_read.json', {
         doWatch: true,
-        failMsg: '<strong>Can not</strong> mark this feed as read.'
+        failMsg: '<strong>Can\'t</strong> mark this feed as read.'
       }).fail(function () {
         Shreds.syncView('navigation');
       });
@@ -14,7 +14,7 @@
       var id = this.data('id');
       Shreds.ajax.delete('/i/categories/' + id + '.json', {
         doWatch: true,
-        failMsg: '<strong>Can not</strong> remove this category.'
+        failMsg: '<strong>Can\'t</strong> remove this category.'
       });
     },
     subscribeTo: function (ev) {
@@ -26,7 +26,7 @@
       var id = this.data('id');
       Shreds.ajax.delete('/i/feeds/' + id + '.json', {
         doWatch: true,
-        failMsg: '<strong>Can not</strong> unsubscribe to this feed.'
+        failMsg: '<strong>Can\'t</strong> unsubscribe to this feed.'
       });
     }
   };

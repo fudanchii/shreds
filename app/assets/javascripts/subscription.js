@@ -19,7 +19,7 @@
         Shreds.ajax.post('/i/feeds.json', {
           doWatch: true,
           opts: { data: $subscribeForm.find('form').serialize() },
-          failMsg: '<strong>Can not</strong> add feed at the moment.'
+          failMsg: '<strong>Can\'t</strong> add feed at the moment.'
         }).fail(function () { spinner.stop(); });
         $feedUrl.val('');
         $categoryName.val('');
