@@ -1,8 +1,6 @@
 class FeedsController < ApplicationController
   respond_to :html, :json
 
-  rescue_from ActiveRecord::RecordNotFound, :with => :feed_not_found
-
   # GET /feeds
   # GET /feeds.json
   def index
@@ -67,10 +65,4 @@ class FeedsController < ApplicationController
     params.require(:feed).permit(:url, :title, :meta, :tag)
   end
 
-  def feed_not_found(exceptions)
-    flash[:danger] = '<strong>Feed</strong> not found.'.html_safe
-    respond_to do |fmt|
-      fmt.html { redirect_to '/' }
-    end
-  end
 end
