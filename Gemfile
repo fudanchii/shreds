@@ -73,7 +73,7 @@ gem 'hiredis'
 #gem 'valid_email'
 
 # Profiling
-# gem 'rack-mini-profiler'
+gem 'rack-mini-profiler'
 
 gem 'foreman', :require => false
 
