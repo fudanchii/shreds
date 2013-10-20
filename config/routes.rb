@@ -1,7 +1,7 @@
 Shreds::Application.routes.draw do
 
   require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+  mount Sidekiq::Web => '/backyard/sidekiq'
 
   resources :feeds, only: [:index, :create, :show, :destroy], path: '/', format: false do
     get 'page/:page', action: :show, on: :member
@@ -19,5 +19,6 @@ Shreds::Application.routes.draw do
     end
     resources :categories, only: [:destroy]
     get '/watch' => 'events#watch'
+    post '/upload_opml' => 'feeds#create_from_opml'
   end
 end

@@ -31,6 +31,13 @@ class FeedsController < ApplicationController
     end
   end
 
+  def create_from_opml
+    jid = OPMLWorker.save_file(params[:OPMLfile])
+    render :json => { watch: "opml-#{jid}" }
+  rescue OPMLWorkerError => ex
+    render :json => { error: ex.message.html_safe }
+  end
+
   # DELETE /feeds/1
   # DELETE /feeds/1.json
   def destroy

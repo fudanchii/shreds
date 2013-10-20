@@ -51,9 +51,7 @@ class FeedWorker
     #feed.sanitize_entries!
     feed_record.update!(title: feed.title, etag: feed.etag, url: feed.url)
     feed.entries.each do | entry |
-      item = Newsitem.where({
-        permalink: entry.url
-      }).first
+      item = Newsitem.where({ permalink: entry.url }).first
       if item.nil? and not Itemhash.has? entry.url
         item = feed_record.newsitems.build(newsitem_params(entry))
         item.save
@@ -89,6 +87,6 @@ class FeedWorker
   end
 
   def feed_params(url, feed_url)
-    ActionController::Parameters.new({ url: url, feed_url: feed_url }).permit!
+    ActionController::Parameters.new({ url: url, feed_url: feed_url, title: url }).permit!
   end
 end

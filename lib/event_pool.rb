@@ -16,4 +16,12 @@ class EventPool
   def self.remove(key)
     @@redis.del(key)
   end
+
+  def self.method_missing(cmd, *args, &block)
+    if @@redis.respond_to? cmd then
+      @@redis.send(cmd, *args, &block)
+    else
+      super
+    end
+  end
 end
