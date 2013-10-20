@@ -36,6 +36,10 @@
           Shreds.syncView('navigation');
           Shreds.notification.info(data.info);
         }
+      },
+      'shreds:opml': function (ev, data) {
+        Shreds.$.trigger('shreds:rmCategory', data);
+        $('#fileupload').trigger('spinnerstop');
       }
     },
     init: function () {

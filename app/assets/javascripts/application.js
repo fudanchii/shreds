@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require twitter/bootstrap
+//= require jquery.ui.widget
+//= require jquery.iframe-transport
+//= require jquery.fileupload
 //= require jquery.timeago
 //= require spin.min
 //= require ladda.min

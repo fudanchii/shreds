@@ -39,9 +39,10 @@
   function setupDOMEvents() {
     var $doc = $(document);
     var amOut = true;
+    var spinner = Ladda.create($('.fileinput-button')[0]);
 
     $doc.on('mousedown', function (e) {
-      if (!$subscribeInput.is(':hidden') && amOut) {
+      if ($subscribeInput.is(':visible') && amOut) {
         $subscribeInput.slideUp();
       }
     });
@@ -51,6 +52,20 @@
       }
       amOut = false;
     });
+    $('#fileupload').fileupload({
+      dataType: 'json'
+    }).on('fileuploadstart', function () {
+      spinner.start();
+    }).on('fileuploaddone', function (e, data) {
+      var result = data.result;
+      if (result && result.error) {
+        Shreds.notification.error(result.error);
+        spinner.stop();
+      } else if (result && result.watch) { Shreds.watch.add(result.watch); }
+    }).on('fileuploadfail', function () {
+      Shreds.notification.error('<strong>Can\'t</strong> upload file.');
+      spinner.stop();
+    }).on('spinnerstop', function () { spinner.stop(); });
   }
 })(window.Shreds);
 

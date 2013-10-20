@@ -84,3 +84,22 @@
     background-color: #f8f8f8;
     z-index: 1000;
 }
+
+.fileupload-area {
+    position: relative;
+    overflow: hidden;
+    height: 64px;
+    width: 64px;
+}
+
+#fileupload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    font-size: 1px;
+    direction: ltr;
+    cursor: pointer;
+}

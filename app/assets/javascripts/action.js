@@ -28,6 +28,9 @@
         doWatch: true,
         failMsg: '<strong>Can\'t</strong> unsubscribe to this feed.'
       });
+    },
+    uploadOPML: function (ev) {
+      $('#fileupload').trigger('click');
     }
   };
 })(window.Shreds);
