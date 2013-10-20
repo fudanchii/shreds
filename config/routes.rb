@@ -5,6 +5,7 @@ Shreds::Application.routes.draw do
 
   resources :feeds, only: [:index, :create, :show, :destroy], path: '/', format: false do
     get 'page/:page', action: :show, on: :member
+    get 'page/:page', action: :index, on: :collection
     resources :newsitems, only: [:show], path: '/'
   end
 

@@ -12,6 +12,10 @@
     <% end %>
     <hr>
   <% end %>
+<ul class="pager">
+  <li class="previous"><%= link_to_previous_page @feeds, '< Prev' %></li>
+  <li class="next"><%= link_to_next_page @feeds, 'Next >' %></li>
+</ul>
 <% end %>
 
 <% content_for :title do %>

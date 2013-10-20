@@ -6,7 +6,8 @@ class FeedsController < ApplicationController
   # GET /feeds
   # GET /feeds.json
   def index
-    respond_with(@feeds.page(params[:page]))
+    @feeds = @feeds.page(params[:page]).per(5)
+    respond_with(@feeds)
   end
 
   # GET /feeds/1
