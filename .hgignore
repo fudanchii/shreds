@@ -1,8 +1,5 @@
-syntax: glob
-*.log
-*~
-*.swp
-*.orig
-config/*.yml
-tmp/*
-public/assets/*
+syntax: regexp
+^config/database.yml
+^config/application.yml
+^tmp/
+^public/assets/
