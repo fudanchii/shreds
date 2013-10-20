@@ -5,8 +5,6 @@ module FeedsHelper
   end
 
   def filter_read(feeds)
-    feeds.select do |feed|
-      feed.unread_count > 0
-    end
+    feeds.select { |feed| feed.unread_count > 0 }
   end
 end
