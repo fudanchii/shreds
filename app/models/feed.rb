@@ -42,9 +42,7 @@ class Feed < ActiveRecord::Base
   end
 
   def self.total_unread(feeds)
-    feeds.reduce(0) do |count, feed|
-      count + feed.unread_count
-    end
+    feeds.reduce(0) {|count, feed| count + feed.unread_count }
   end
 
   private
