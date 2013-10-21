@@ -43,28 +43,17 @@ class FeedsController < ApplicationController
   # DELETE /feeds/1.json
   def destroy
     jid = FeedWorker.perform_async(:destroy, params[:id])
-    respond_to do |fmt|
-      fmt.json { render :json => { watch: "destroy-#{jid}" } }
-    end
+    render :json => { watch: "destroy-#{jid}" }
   end
 
   def mark_as_read
     jid = FeedWorker.perform_async(:mark_as_read, params[:id])
-    respond_to do |fmt|
-      fmt.json { render :json => { watch: "markAsRead-#{jid}" } }
-    end
+    render :json => { watch: "markAsRead-#{jid}" }
   end
 
   def mark_all_as_read
     jid = FeedWorker.perform_async(:mark_all_as_read)
-    respond_to do |fmt|
-      fmt.json { render :json => { watch: "markAllAsRead-#{jid}" } }
-    end
-  end
-
-  private
-  def feed_params
-    params.require(:feed).permit(:url, :title, :meta, :tag)
+    render :json => { watch: "markAllAsRead-#{jid}" }
   end
 
 end
