@@ -7,11 +7,9 @@ class CategoryWorker
     category = Category.find(id)
     raise ArgumentError if category.name == Category.default
     category.safe_destroy
-    EventPool.add("rmCategory-#{jid}", {
-      view: 'destroy_category' })
+    EventPool.add("rmCategory-#{jid}", { view: 'destroy_category' })
   rescue
-    EventPool.add("rmCategory-#{jid}", {
-      error: "Can't remove this category" })
+    EventPool.add("rmCategory-#{jid}", { error: "Can't remove this category" })
   end
 
   def perform(action, *params)

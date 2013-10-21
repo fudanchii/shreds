@@ -47,7 +47,6 @@ class OPMLWorker
   end
 
   def self.save_file(upfile)
-    error = nil
     name = upfile.original_filename.gsub(/[^\w\.\-]/,'_')
     input_file = "tmp/#{name}"
     unless ['.xml','.opml','.txt'].include?(File.extname(name).downcase) then
