@@ -11,13 +11,11 @@ class FeedWorker
 
   def create(url, category_name)
     feed_url = Feedbag.find(url).first
-    unless feed_url.nil? then
-      objCategory = Category.where(name: category_name).first_or_create
-      objFeed = objCategory.feeds.build(feed_params(url, feed_url))
-      objFeed.save && fetch(objFeed.id) && objFeed.reload
-      EventPool.add("create-#{jid}", { view: "create", category_id: objCategory.id })
-    else raise
-    end
+    raise if feed_url.nil?
+    objCategory = Category.where(name: category_name).first_or_create
+    objFeed = objCategory.feeds.build(feed_params(url, feed_url))
+    objFeed.save && fetch(objFeed.id) && objFeed.reload
+    EventPool.add("create-#{jid}", { view: "create", category_id: objCategory.id })
   rescue ActiveRecord::RecordNotUnique
     EventPool.add("create-#{jid}", { error: "<strong>Already subscribed</strong> to the feed." })
   rescue
@@ -27,9 +25,7 @@ class FeedWorker
   def destroy(feed_id)
     feed_record = Feed.find(feed_id)
     feed_record.destroy
-    EventPool.add("destroy-#{jid}", {
-      view: "destroy",
-      category_id: feed_record.category.id })
+    EventPool.add("destroy-#{jid}", { view: "destroy", category_id: feed_record.category.id })
   rescue
     EventPool.add("destroy-#{jid}", { error: "<strong>Can't unsubscribe</strong> from this feed." })
   end
@@ -46,10 +42,9 @@ class FeedWorker
     feed_record.update!(title: feed.title, etag: feed.etag, url: feed.url)
     feed.entries.each do | entry |
       item = Newsitem.where({ permalink: entry.url }).first
-      if item.nil? and not Itemhash.has? entry.url
-        item = feed_record.newsitems.build(newsitem_params(entry))
-        item.save
-      end
+      next unless item.nil? and not Itemhash.has? entry.url
+      item = feed_record.newsitems.build(newsitem_params(entry))
+      item.save
     end
   end
 
