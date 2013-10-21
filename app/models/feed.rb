@@ -26,7 +26,7 @@ class Feed < ActiveRecord::Base
   end
 
   def unread_count
-    newsitems.where(unread: true).count
+    unread_newsitems.count
   end
 
   def mark_all_as_read
