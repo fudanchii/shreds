@@ -8,8 +8,8 @@ class OPMLWorker
   def fetch_feed_from(bundle, category = Category.default)
     jids = []
     bundle.each do |outline|
-      unless outline.type == 'rss' then
-        category = outline.title
+      if outline.feed_url.nil? then
+        category = outline.title || outline.text
         jids += fetch_feed_from(outline.outlines, category) unless outline.outlines.empty?
       else
         jid = FeedWorker.perform_async(:create, outline.feed_url, category)
@@ -20,7 +20,7 @@ class OPMLWorker
   end
 
   def watch_feed_fetcher(jids)
-    results = $redis.pipelined do
+    results = EventPool.pipelined do
       jids.each {|j| EventPool.get(j) }
     end
     jids = jids.zip(results).map do|j, r|
