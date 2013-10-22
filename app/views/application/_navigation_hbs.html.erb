@@ -8,5 +8,6 @@
 <% content_for :embedded_javascript do %>
 <script type="text/javascript">
   window.Shreds.loadModel('navigation', <%= raw render('navigation_data') %>);
+  window.Shreds.assets.add('spinner16x16', '<%= image_path("spinner.16x16.gif") %>');
 </script>
 <% end %>
