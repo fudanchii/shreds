@@ -15,7 +15,7 @@ Shreds::Application.routes.draw do
       patch 'mark_as_read', on: :member
       patch 'mark_all_as_read', on: :collection
       resources :newsitems, only: [:show], path: '/' do
-        patch 'mark_as_read', on: :member
+        patch 'toggle_read', on: :member
       end
     end
     resources :categories, only: [:destroy]

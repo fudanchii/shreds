@@ -1,7 +1,7 @@
 class NewsitemsController < ApplicationController
   respond_to :html, :json
 
-  before_filter do
+  before_action do
     @feed = Feed.find(params[:feed_id])
     @newsitem = @feed.newsitems.find(params[:id])
   end
@@ -10,8 +10,7 @@ class NewsitemsController < ApplicationController
     respond_with(@newsitem)
   end
 
-  def mark_as_read
-    @newsitem.update(unread: false)
-    respond_with(@newsitem)
+  def toggle_read
+    @newsitem.update(unread: !@newsitem.unread )
   end
 end

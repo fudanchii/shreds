@@ -1,5 +1,7 @@
 <div class="well well widget widget-transparent feed">
-  <h2><%= link_to @newsitem.title, @newsitem.permalink, target: '_blank' %></h2>
+  <h2><%= link_to @newsitem.title, @newsitem.permalink, target: '_blank' %>
+  <a href="javascript:void(0)" data-action="toggleRead" data-id="<%= @newsitem.id %>" data-feed-id="<%= @newsitem.feed.id %>"><span class="glyphicon glyphicon-ok-<%= circle_or_sign(@newsitem) %> glyph-sm"></span></a>
+  </h2>
   <%= render "news_meta", author: @newsitem.author, published: @newsitem.published %>
 <div class="feed-content">
   <%= (@newsitem.content || @newsitem.summary || '').html_safe %>

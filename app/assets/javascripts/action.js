@@ -22,6 +22,19 @@
       ev.stopPropagation();
       return false;
     },
+    toggleRead: function (ev) {
+      var id = this.data('id');
+      var feedId = this.data('feedId');
+      Shreds.ajax.patch('/i/feeds/' + feedId + '/' + id + '/toggle_read.json', {
+        failMsg: '<strong>Can\'t mark</strong> this item as read.'
+      }).done(function (data) {
+        var feed = Shreds.find('feeds', feedId);
+        feed.unreadCount = data.feed.unreadCount;
+        Shreds.syncView('navigation');
+        this.find('.glyphicon').toggleClass('glyphicon-ok-circle').toggleClass('glyphicon-ok-sign');
+        Shreds.notification.info(data.info);
+      }.bind(this));
+    },
     unsubscribe: function (ev) {
       var id = this.data('id');
       Shreds.ajax.delete('/i/feeds/' + id + '.json', {
