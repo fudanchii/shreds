@@ -2,7 +2,7 @@
   shreds.components.push('crumbs');
   shreds.crumbs = {
     init: function (ctx) {
-      $('.nav-buttons > button').tooltip();
+      $('[data-toggle=tooltip]').tooltip();
       $('abbr.timeago').timeago();
     }
   };
