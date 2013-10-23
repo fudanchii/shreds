@@ -16,13 +16,14 @@
     z-index: 9990;
     pointer-events: none;
     background-color: rgba(255,255,255, 0);
+    opacity: 0.95;
 }
 
 .fade {
     opacity: 0;
-    -webkit-transition: opacity 0.4s;
-    -moz-transition: opacity 0.4s;
-    -o-transition: opacity 0.4s;
-    transition: opacity 0.4s;
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    -o-transition: opacity 1s;
+    transition: opacity 1s;
 }
 

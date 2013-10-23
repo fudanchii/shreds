@@ -26,7 +26,7 @@
     }, 5150);
     setTimeout(function () {
       notification.remove();
-    }, 5500);
+    }, 6300);
   }
 })(window.Shreds);
 
