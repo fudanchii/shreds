@@ -6,7 +6,4 @@ module ApplicationHelper
     date.strftime("%B %d, %Y %H:%M")
   end
 
-  def circle_or_sign(news)
-    news.unread ? 'circle' : 'sign'
-  end
 end
