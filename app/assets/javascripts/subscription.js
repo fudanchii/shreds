@@ -26,14 +26,8 @@
         $subscribeInput.slideUp();
       }
     },
-    stopSpinner: function () {
-      try {
-        spinner.stop();
-      } catch (e) { }
-    },
-    init: function () {
-      setupDOMEvents();
-    }
+    stopSpinner: function () { spinner.stop(); },
+    init: function () { setupDOMEvents(); }
   };
 
   function setupDOMEvents() {

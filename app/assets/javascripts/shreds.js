@@ -32,8 +32,7 @@ window.Shreds = {
     }
   },
   find: function (model, id) {
-    var row = this.models['_idx_' + model][id];
-    return row;
+    return this.models['_idx_' + model][id];
   },
   setupDOMEvents: function () {
     $(document).on('click', '[data-action]', function (ev) {
