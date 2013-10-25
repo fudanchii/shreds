@@ -3,6 +3,8 @@ class Category < ActiveRecord::Base
 
   default_scope -> { order('name ASC') }
 
+  before_create { self.name = name.downcase }
+
   def self.default
     "uncategorized"
   end
