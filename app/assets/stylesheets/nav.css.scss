@@ -15,7 +15,7 @@
 .nav-container {
     position: absolute;
     bottom: 48px;
-    top: 48px;
+    top: 84px;
     left: 9px;
     right: 1px;
     overflow: auto;
@@ -115,3 +115,10 @@
     margin-bottom: 0px;
 }
 
+#latest_entries {
+    margin-top: 48px;
+}
+
+.nav-header:first-child {
+    margin-top: 0px;
+}
