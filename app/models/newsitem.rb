@@ -4,12 +4,16 @@ class Newsitem < ActiveRecord::Base
   before_destroy { Itemhash.insert(self.permalink) unless self.unread }
 
   def next
-    Newsitem.where(feed_id: self.feed_id) \
-      .where('published <= ?', self.published).where.not(id: self.id).first
+    adj('published <= ?').first
   end
 
   def prev
+    adj('published >= ?').last
+  end
+
+  private
+  def adj(comp)
     Newsitem.where(feed_id: self.feed_id) \
-      .where('published >= ?', self.published).where.not(id: self.id).last
+      .where(comp, self.published).where.not(id: self.id)
   end
 end
