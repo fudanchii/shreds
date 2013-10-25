@@ -25,14 +25,12 @@
     <ul class="nav-list feed-items" style="list-style-type:disc;">
         {{#each ./feeds}}
             <li class="nav-item" style="list-style-image:url({{./favicon}})">
-            <span>
-                <a alt="{{./title}}" href="{{./path}}">{{./titleEllipsized}}</a>
+                <p class="title-ellipsis"><a alt="{{./title}}" href="{{./path}}">{{./title}}</a></p>
                 {{#if ./unreadCount }}
                 <a href="javascript:void(0)" data-id="{{./id}}" data-action="markAsRead">
                 <span class="pull-right unread-num label">{{./unreadCount}}</span>
                 </a>
                 {{/if}}
-            </span>
             </li>
         {{/each}}
     </ul>
