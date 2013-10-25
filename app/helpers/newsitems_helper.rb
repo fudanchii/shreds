@@ -7,4 +7,8 @@ module NewsitemsHelper
     "Set #{news.unread? ? 'read' : 'unread'}"
   end
 
+  def disabled?(news)
+    news.nil? ? 'disabled' : ''
+  end
+
 end
