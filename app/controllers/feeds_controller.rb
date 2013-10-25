@@ -23,13 +23,10 @@ class FeedsController < ApplicationController
   def create
     jid = FeedWorker.perform_async(:create, params[:feed][:url], \
       params[:category][:name].presence || Category.default)
-    respond_to do |fmt|
-      fmt.html {
-        flash[:info] = 'Hold on, now printing your newsfeed.'
-        redirect_to '/'
-      }
-      fmt.json { render :json => { watch: "create-#{jid}" } }
-    end
+    may_respond_with({
+      :html => { :info => 'Hold on, now printing your newsfeed.', :redirect_to => '/' },
+      :json => { :watch => "create-#{jid}" }
+    })
   end
 
   def create_from_opml
