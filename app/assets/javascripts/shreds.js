@@ -2,15 +2,17 @@ window.Shreds = {
   '$': $({}),
   components: [],
   models: {},
+
   init: function () {
     this.components.forEach(function (el, idx, arr) {
       this[el].init.call(this[el]);
       for (var ev in this[el].events) {
-          this.$.on(ev, this[el].events[ev].bind(this[el]));
+        this.$.on(ev, this[el].events[ev].bind(this[el]));
       }
     }.bind(this));
     this.setupDOMEvents();
   },
+
   loadModel: function (name, data) {
     var indexed = '_idx_' + name;
     if (data instanceof Array) {
@@ -31,16 +33,20 @@ window.Shreds = {
       }
     }
   },
+
   find: function (model, id) {
     return this.models['_idx_' + model][id];
   },
+
   setupDOMEvents: function () {
-    $(document).on('click', '[data-action]', function (ev) {
+    var $doc = $(document);
+    $doc.on('click', '[data-on-click]', function (ev) {
       var $this = $(this);
-      var name = $this.data('action');
+      var name = $this.data('onClick');
       return window.Shreds.action[name].call($this, ev);
     });
   },
+
   syncView: function (template/*, data*/) {
     var data = arguments[1] || this.models[template];
     var options = arguments[2] || {};

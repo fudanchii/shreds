@@ -7,10 +7,10 @@
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu" role="menu">
-            <li><a href="javascript:void(0)" data-id="{{./id}}" data-action="markCategoryAsRead">Mark as read</a></li>
-            <li><a href="javascript:void(0)" data-id="{{./id}}" data-action="refreshCategory">Refresh feeds</a></li>
+            <li><a href="javascript:void(0)" data-id="{{./id}}" data-on-click="markCategoryAsRead">Mark as read</a></li>
+            <li><a href="javascript:void(0)" data-id="{{./id}}" data-on-click="refreshCategory">Refresh feeds</a></li>
             {{#if ./not_default}}
-            <li><a class="rm-cat" data-id="{{./id}}" href="javascript:void(0)" data-action="removeCategory">Remove category</a></li>
+            <li><a class="rm-cat" data-id="{{./id}}" href="javascript:void(0)" data-on-click="removeCategory">Remove category</a></li>
             {{/if}}
         </ul>
         </div>
@@ -21,7 +21,7 @@
             <li class="nav-item" style="list-style-image:url({{./favicon}})">
                 <p class="title-ellipsis"><a alt="{{./title}}" href="{{./path}}">{{./title}}</a></p>
                 {{#if ./unreadCount }}
-                <a href="javascript:void(0)" data-id="{{./id}}" data-action="markAsRead">
+                <a href="javascript:void(0)" data-id="{{./id}}" data-on-click="markAsRead">
                 <span class="pull-right unread-num label">{{./unreadCount}}</span>
                 </a>
                 {{/if}}

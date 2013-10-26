@@ -2,5 +2,5 @@
   <button type="button" class="btn btn-default navbar-btn" data-toggle="tooltip" title="Logout"><span class="glyphicon glyphicon-log-out"></span></button>
   <button type="button" class="btn btn-default navbar-btn" data-toggle="tooltip" title="Settings (Coming soon!)"><span class="glyphicon glyphicon-cog"></span></button>
   <button type="button" class="btn btn-default navbar-btn<%= yield :nav_btn_disabled %>" data-toggle="tooltip" title="Refresh"><span class="glyphicon glyphicon-refresh"></span></button>
-  <button type="button" class="btn btn-default navbar-btn<%= yield :nav_btn_disabled %>" data-toggle="tooltip" title="Unsubscribe" data-action="unsubscribe" data-id="<%= @feed.id %>"><span class="glyphicon glyphicon-remove"></span></button>
+  <button type="button" class="btn btn-default navbar-btn<%= yield :nav_btn_disabled %>" data-toggle="tooltip" title="Unsubscribe" data-on-click="unsubscribe" data-id="<%= @feed.id %>"><span class="glyphicon glyphicon-remove"></span></button>
 </div>
