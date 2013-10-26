@@ -18,7 +18,7 @@ class Feed < ActiveRecord::Base
 
   def favicon
     url = URI.parse(self.url)
-    "https://plus.google.com/_/favicon?domain=#{url.host||self.url}"
+    "https://plus.google.com/_/favicon?domain=#{url.host || self.url}"
   end
 
   def unread_newsitems
@@ -35,8 +35,8 @@ class Feed < ActiveRecord::Base
     counter
   end
 
-  def clear_read_news(offset=nil)
-    offset ||= Kaminari.config().default_per_page
+  def clear_read_news(offset = nil)
+    offset ||= Kaminari.config.default_per_page
     newsitems.where(unread: false) \
       .order('published DESC').offset(offset).destroy_all
   end
@@ -46,9 +46,10 @@ class Feed < ActiveRecord::Base
   end
 
   private
+
   def sanitize_url
     self.url.gsub!(/\s+/, '')
     self.url.prepend('http://') unless \
-      self.url.start_with?('http://') or self.url.start_with?('https://')
+      url.start_with?('http://') || url.start_with?('https://')
   end
 end

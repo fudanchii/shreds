@@ -14,7 +14,7 @@ describe Category do
 
   it "can destroyed safely" do
     @cat.must_respond_to :safe_destroy
-    (lambda { @cat.safe_destroy }).must_be_silent
+    (-> { @cat.safe_destroy }).must_be_silent
     @feed.category.name.must_equal described_class.default
   end
 end

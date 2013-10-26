@@ -8,7 +8,7 @@ class OPMLWorker
   def fetch_feed_from(bundle, category = Category.default)
     jids = []
     bundle.each do |outline|
-      if outline.feed_url.nil? then
+      if outline.feed_url.nil?
         category = outline.title || outline.text
         jids += fetch_feed_from(outline.outlines, category) unless outline.outlines.empty?
       else
@@ -20,13 +20,11 @@ class OPMLWorker
   end
 
   def watch_feed_fetcher(jids)
-    results = EventPool.pipelined do
-      jids.each {|j| EventPool.get(j) }
-    end
-    jids = jids.zip(results).map do|j, r|
+    results = EventPool.pipelined { jids.each {|j| EventPool.get(j) } }
+    jids = jids.zip(results).map {|j, r|
       EventPool.remove(j) unless r.nil?
       j if r.nil?
-    end.compact
+    }.compact
     if jids.empty?
       EventPool.add("opml-#{jid}", { view: 'via_opml' })
     else
@@ -47,27 +45,26 @@ class OPMLWorker
   end
 
   def self.save_file(upfile)
-    name = upfile.original_filename.gsub(/[^\w\.\-]/,'_')
+    name = upfile.original_filename.gsub(/[^\w\.\-]/, '_')
     input_file = "tmp/#{name}"
-    unless ['.xml','.opml','.txt'].include?(File.extname(name).downcase) then
-      raise OPMLWorkerError.new('<strong>Can only</strong> accept xml file.')
-    else
+    if ['.xml', '.opml', '.txt'].include?(File.extname(name).downcase)
       wrote, buff = 0, ''
       File.open(input_file, 'wb') do |f|
-        while upfile.read(32768, buff) do
+        while upfile.read(32768, buff)
           f.write(buff)
           wrote += buff.length
         end
       end
-      if wrote == 0 then
+      if wrote == 0
         File.unlink(input_fie)
-        raise OPMLWorkerError.new('<strong>Empty file</strong> uploaded.')
+        fail OPMLWorkerError, '<strong>Empty file</strong> uploaded.'
       end
+    else
+      fail OPMLWorkerError, '<strong>Can only</strong> accept xml file.'
     end
-    self.perform_async(input_file)
+    perform_async(input_file)
   end
 end
 
 class OPMLWorkerError < IOError
 end
-

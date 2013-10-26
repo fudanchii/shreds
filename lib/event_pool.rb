@@ -5,7 +5,7 @@ class EventPool
     @@redis = Redis::Namespace.new(ns, :redis => redis)
   end
 
-  def self.add(key, value, ex=60)
+  def self.add(key, value, ex = 60)
     @@redis.set(key, value.to_json, :ex => ex)
   end
 
@@ -18,7 +18,7 @@ class EventPool
   end
 
   def self.method_missing(cmd, *args, &block)
-    if @@redis.respond_to? cmd then
+    if @@redis.respond_to? cmd
       @@redis.send(cmd, *args, &block)
     else
       super

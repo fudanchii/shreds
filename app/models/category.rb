@@ -10,7 +10,7 @@ class Category < ActiveRecord::Base
   end
 
   def is_custom_and_unused?
-    feeds.count == 0 and name != self.class.default
+    feeds.count == 0 && name != self.class.default
   end
 
   def unread_count

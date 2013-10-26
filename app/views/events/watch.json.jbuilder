@@ -1,9 +1,7 @@
 @payload.each do |k,v|
-  if v['error'] then
+  if v['error']
     json.set! k, v
-  elsif v['view'] then
-    json.set! k do
-      json.partial! v['view'], data: v
-    end
+  elsif v['view']
+    json.set!(k) { json.partial! v['view'], data: v }
   end
 end

@@ -14,4 +14,3 @@ class OPMLDoc
   include SAXMachine
   elements :outline, :as => :outlines, :class => OPMLOutline
 end
-

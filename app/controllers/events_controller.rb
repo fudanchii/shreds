@@ -3,11 +3,11 @@ class EventsController < ApplicationController
   before_action { @payload = {} }
 
   def watch
-    watchList = params[:watchList].split(',') if params[:watchList]
-    unless watchList.empty? then
-      result = EventPool.find *watchList
-      unless result.empty? then
-        watchList.zip(result).each do |w, r|
+    watch_list = params[:watchList].split(',') if params[:watchList]
+    unless watch_list.empty?
+      result = EventPool.find(*watch_list)
+      unless result.empty?
+        watch_list.zip(result).each do |w, r|
           next if r.nil?
           data = JSON.parse r
           data['feed'] = Feed.find data['id'] if data['id']

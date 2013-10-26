@@ -1,15 +1,15 @@
 require 'test_helper'
 
 describe NewsitemsController do
-  setup {
+  setup do
     @feed = Feed.create(url: "test.com", feed_url: "test.com")
-    @newsitem = @feed.newsitems.build({
+    @newsitem = @feed.newsitems.build(
       title: 'yay',
       permalink: 'test.com',
       published: DateTime.now
-    })
+    )
     @newsitem.save
-  }
+  end
 
   it "should show newsitem" do
     get :show, feed_id: @newsitem.feed, id: @newsitem

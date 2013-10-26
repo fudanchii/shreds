@@ -8,4 +8,4 @@
 #
 
 puts "Create default category.\n"
-category = Category.where(name: Category.default).first_or_create
+Category.where(name: Category.default).first_or_create

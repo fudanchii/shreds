@@ -4,18 +4,18 @@ class FeedWorker
   sidekiq_options :retry => false
 
   def up_to_date?(feed, feed_record)
-    (not feed_record.etag.nil?) and     \
-    (feed.etag == feed_record.etag) and \
-    not feed_record.newsitems.empty?
+    (not feed_record.etag.nil?) && \
+    (feed.etag == feed_record.etag) && \
+    (not feed_record.newsitems.empty?)
   end
 
   def create(url, category_name)
     feed_url = Feedbag.find(url).first
-    raise if feed_url.nil?
-    objCategory = Category.where(name: category_name).first_or_create
-    objFeed = objCategory.feeds.build(feed_params(url, feed_url))
-    objFeed.save && fetch(objFeed.id) && objFeed.reload
-    EventPool.add("create-#{jid}", { view: "create", category_id: objCategory.id })
+    fail if feed_url.nil?
+    obj_category = Category.where(name: category_name).first_or_create
+    obj_feed = obj_category.feeds.build(feed_params(url, feed_url))
+    obj_feed.save && fetch(obj_feed.id) && obj_feed.reload
+    EventPool.add("create-#{jid}", { view: "create", category_id: obj_category.id })
   rescue ActiveRecord::RecordNotUnique
     EventPool.add("create-#{jid}", { error: "<strong>Already subscribed</strong> to the feed." })
   rescue
@@ -41,8 +41,8 @@ class FeedWorker
     #feed.sanitize_entries!
     feed_record.update!(title: feed.title, etag: feed.etag, url: feed.url)
     feed.entries.each do | entry |
-      item = Newsitem.where({ permalink: entry.url }).first
-      next unless item.nil? and not Itemhash.has? entry.url
+      item = Newsitem.where(permalink: entry.url).first
+      next unless item.nil? && (not Itemhash.has? entry.url)
       item = feed_record.newsitems.build(newsitem_params(entry))
       item.save
     end
@@ -61,18 +61,19 @@ class FeedWorker
   end
 
   private
+
   def newsitem_params(entry)
-    ActionController::Parameters.new({
+    ActionController::Parameters.new(
       title: entry.title,
       permalink: entry.url,
       published: entry.published,
       content: entry.content,
       author: entry.author,
       summary: entry.summary
-    }).permit!
+    ).permit!
   end
 
   def feed_params(url, feed_url)
-    ActionController::Parameters.new({ url: url, feed_url: feed_url, title: url }).permit!
+    ActionController::Parameters.new(url: url, feed_url: feed_url, title: url).permit!
   end
 end

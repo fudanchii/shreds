@@ -1,7 +1,7 @@
 class Newsitem < ActiveRecord::Base
   belongs_to :feed, touch: true
   default_scope -> { order('published DESC') }
-  before_destroy { Itemhash.insert(self.permalink) unless self.unread }
+  before_destroy { Itemhash.insert(permalink) unless unread }
 
   def next
     adj('published <= ?').first
@@ -12,8 +12,9 @@ class Newsitem < ActiveRecord::Base
   end
 
   private
+
   def adj(comp)
-    Newsitem.where(feed_id: self.feed_id) \
-      .where(comp, self.published).where.not(id: self.id)
+    Newsitem.where(feed_id: feed_id) \
+      .where(comp, published).where.not(id: id)
   end
 end

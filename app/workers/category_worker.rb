@@ -5,7 +5,7 @@ class CategoryWorker
 
   def destroy(id)
     category = Category.find(id)
-    raise ArgumentError if category.name == Category.default
+    fail ArgumentError if category.name == Category.default
     category.safe_destroy
     EventPool.add("rmCategory-#{jid}", { view: 'destroy_category' })
   rescue

@@ -1,4 +1,4 @@
-if (@newsitem.unread) then
+if (@newsitem.unread)
   json.info '<strong>Item marked</strong> as unread.'
 else
   json.info '<strong>Item marked</strong> as read.'

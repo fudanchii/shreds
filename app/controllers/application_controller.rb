@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
   def feed_not_found(exceptions)
     flash[:danger] = '<strong>Feed</strong> not found.'.html_safe
     redirect_to '/'
@@ -19,10 +20,10 @@ class ApplicationController < ActionController::Base
 
   def may_respond_with(opts)
     respond_to do |fmt|
-      fmt.html {
+      fmt.html do
         flash[:info] = opts[:html][:info]
         redirect_to opts[:html][:redirect_to]
-      }
+      end
       fmt.json { render :json => opts[:json] }
     end
   end

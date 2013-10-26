@@ -4,10 +4,10 @@ describe FeedsController do
 
   before { @feed = Feed.create(url: "test.com", feed_url: "test.com") }
 
-  after {
+  after do
     @feed.destroy
     `redis-cli flushall`
-  }
+  end
 
   it "should get index" do
     get :index
@@ -16,10 +16,12 @@ describe FeedsController do
   end
 
   it "should create feed" do
-    post :create, feed: {
-      url: "http://fudanchii.net/atom.xml",
-      title: "fudanchii.net",
-      feed_url: "http://fudanchii.net/atom.xml" },
+    post :create,
+      feed: {
+        url: "http://fudanchii.net/atom.xml",
+        title: "fudanchii.net",
+        feed_url: "http://fudanchii.net/atom.xml"
+      },
       category: { feed: Category.default }
     assert_redirected_to feeds_path
   end
