@@ -3,11 +3,11 @@
 <head>
   <%= yield :head %>
   <title><%= yield :title %></title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="row" data-on-mouseover="amOut" data-on-mousedown="needSlideUp">
+  <div id="container" class="row" data-on-mouseover="amOut" data-on-mousedown="needSlideUp">
     <%= render 'navigation_hbs' %>
     <div class="span-fixed-sidebar">
       <%= render 'head_notification' %>
