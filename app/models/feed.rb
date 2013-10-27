@@ -22,7 +22,7 @@ class Feed < ActiveRecord::Base
   end
 
   def unread_newsitems
-    newsitems.where(unread: true)
+    newsitems.where(:unread => true)
   end
 
   def unread_count
@@ -31,13 +31,13 @@ class Feed < ActiveRecord::Base
 
   def mark_all_as_read
     counter = unread_count
-    newsitems.each { |news| news.update(unread: false) if news.unread }
+    newsitems.each { |news| news.update(:unread => false) if news.unread }
     counter
   end
 
   def clear_read_news(offset = nil)
     offset ||= Kaminari.config.default_per_page
-    newsitems.where(unread: false) \
+    newsitems.where(:unread => false) \
       .order('published DESC').offset(offset).destroy_all
   end
 

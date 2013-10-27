@@ -34,7 +34,7 @@ class OPMLWorker
   end
 
   def perform(input_file)
-    File.open(input_file, "r") do |f|
+    File.open(input_file, 'r') do |f|
       # slurrrp
       bundle = OPMLDoc.parse(f.read)
       create_jids = fetch_feed_from(bundle.outlines)

@@ -6,7 +6,7 @@ class Category < ActiveRecord::Base
   before_create { self.name = name.downcase }
 
   def self.default
-    "uncategorized"
+    'uncategorized'
   end
 
   def is_custom_and_unused?
@@ -18,9 +18,9 @@ class Category < ActiveRecord::Base
   end
 
   def safe_destroy
-    defcat = Category.where(name: self.class.default).first
+    defcat = Category.where(:name => self.class.default).first
     Feed.transaction do
-      feeds.each { |feed| feed.update(category: defcat) }
+      feeds.each { |feed| feed.update(:category => defcat) }
       destroy
     end
   end

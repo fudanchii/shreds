@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def strdate(date)
-    date.strftime("%B %d, %Y %H:%M")
+    date.strftime('%B %d, %Y %H:%M')
   end
 
 end

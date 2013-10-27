@@ -11,6 +11,6 @@ class NewsitemsController < ApplicationController
   end
 
   def toggle_read
-    @newsitem.update(unread: !@newsitem.unread)
+    @newsitem.update(:unread => !@newsitem.unread)
   end
 end

@@ -14,7 +14,6 @@ class Newsitem < ActiveRecord::Base
   private
 
   def adj(comp)
-    Newsitem.where(feed_id: feed_id) \
-      .where(comp, published).where.not(id: id)
+    Newsitem.where(:feed_id => feed_id).where(comp, published).where.not(:id => id)
   end
 end

@@ -9,7 +9,7 @@ class CategoryWorker
     category.safe_destroy
     EventPool.add("rmCategory-#{jid}", { view: 'destroy_category' })
   rescue
-    EventPool.add("rmCategory-#{jid}", { error: "Can't remove this category" })
+    EventPool.add("rmCategory-#{jid}", { error: 'Can\'t remove this category' })
   end
 
   def perform(action, *params)

@@ -25,7 +25,7 @@ class FeedsController < ApplicationController
       params[:category][:name].presence || Category.default)
     may_respond_with(
       :html => { :info => 'Hold on, now printing your newsfeed.', :redirect_to => '/' },
-      :json => { :watch => "create-#{jid}" }
+      :json => { watch: "create-#{jid}" }
     )
   end
 

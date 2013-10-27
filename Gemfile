@@ -23,9 +23,9 @@ gem 'quiet_assets', '>= 1.0.1', :group => :development
 gem 'better_errors', '>= 0.3.2', :group => :development
 gem 'binding_of_caller', '>= 0.6.8', :group => :development
 gem 'kaminari'
-gem 'kaminari-bootstrap', github: 'mcasimir/kaminari-bootstrap'
+gem 'kaminari-bootstrap', :github => 'mcasimir/kaminari-bootstrap'
 gem 'figaro'
-gem 'simple_form', github: 'plataformatec/simple_form'
+gem 'simple_form', :github => 'plataformatec/simple_form'
 gem 'handlebars_assets'
 # end of 3.
 
@@ -49,8 +49,8 @@ gem 'dalli'
 gem 'cache_digests'
 
 # Feed fetching
-gem 'feedzirra', github: 'fudanchii/feedzirra', branch: 'dev'
-gem 'feedbag', github: 'fudanchii/feedbag', branch: 'dev'
+gem 'feedzirra', :github => 'fudanchii/feedzirra', :branch => 'dev'
+gem 'feedbag', :github => 'fudanchii/feedbag', :branch => 'dev'
 
 # Test-related gems
 gem 'minitest-spec-rails', :group => :test

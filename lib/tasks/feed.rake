@@ -3,14 +3,14 @@ namespace :newsitem do
   task :clear => :environment do
     Newsitem
       .where("created_at < ?", 1.days.ago)
-      .where(unread: false)
+      .where(:unread => false)
       .destroy_all
   end
 
   desc "Mark all news as read"
   task :mark_as_read => :environment do
     Newsitem.all.each do |item|
-      item.update(unread: false)
+      item.update(:unread => false)
     end
   end
 end
