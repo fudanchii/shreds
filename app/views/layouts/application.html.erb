@@ -9,8 +9,8 @@
 <body>
   <div id="container" class="row" data-on-mouseover="amOut" data-on-mousedown="needSlideUp">
     <%= render 'navigation_hbs' %>
+    <%= render 'head_notification' %>
     <div class="span-fixed-sidebar">
-      <%= render 'head_notification' %>
       <%= yield %>
     </div>
   </div>

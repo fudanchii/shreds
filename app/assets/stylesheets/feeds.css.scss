@@ -17,6 +17,14 @@
     background-color: white;
 }
 
+.span-fixed-sidebar {
+    margin-top: 16px;
+    margin-left: 276px;
+    margin-right: 16px;
+    position: absolute;
+    overflow: hidden;
+}
+
 hr {
     width: 90%;
     text-align: center;
@@ -45,6 +53,10 @@ hr {
     height: 54px;
 }
 
+#news_nav {
+    padding: 16px;
+}
+
 .feed {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -67,3 +79,4 @@ header span { margin-left: 4px; }
     overflow-y: scroll;
     overflow-x: auto;
 }
+
