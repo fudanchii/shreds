@@ -18,7 +18,7 @@
           Shreds.notification.error(data.error);
         } else {
           var category = Shreds.find('categories', data.category.id);
-          if (!category) { window.location.replace('/'); }
+          if (!category) { return window.location.replace('/'); }
           category.feeds = data.category.feeds;
           Shreds.notification.info(data.info);
           Shreds.syncView(name);

@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="row">
+  <div class="row" data-on-mouseover="amOut" data-on-mousedown="needSlideUp">
     <%= render 'navigation_hbs' %>
     <div class="span-fixed-sidebar">
       <%= render 'head_notification' %>

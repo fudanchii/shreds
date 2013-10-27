@@ -1,51 +1,20 @@
-(function (Shreds) {
+(function (Shreds) { 'use strict';
   var name = 'subscription';
-
-  var $subscribeInput = $('#subscribeInput');
-  var $subscribeForm = $('#subscribe_form');
-  var $feedUrl = $('#feed_url');
-  var $categoryName = $('#category_name');
   var spinner = null;
 
   Shreds.components.push(name);
   Shreds[name] = {
-    activate: function () {
-      if ($subscribeInput.is(':hidden')) {
-        $subscribeInput.slideDown();
-        $feedUrl.focus();
-      } else {
-        spinner = Ladda.create(this);
-        spinner.start();
-        Shreds.ajax.post('/i/feeds.json', {
-          doWatch: true,
-          opts: { data: $subscribeForm.find('form').serialize() },
-          failMsg: '<strong>Can\'t</strong> add feed at the moment.'
-        }).fail(function () { spinner.stop(); });
-        $feedUrl.val('');
-        $categoryName.val('');
-        $subscribeInput.slideUp();
-      }
+    startSpinner: function (el) {
+      spinner = Ladda.create(el);
+      spinner.start();
     },
     stopSpinner: function () { spinner.stop(); },
-    init: function () { setupDOMEvents(); }
+    init: function () { setupFileUpload(); }
   };
 
-  function setupDOMEvents() {
-    var $doc = $(document);
-    var amOut = true;
+  function setupFileUpload() {
     var spinner = Ladda.create($('.fileinput-button')[0]);
 
-    $doc.on('mousedown', function (e) {
-      if ($subscribeInput.is(':visible') && amOut) {
-        $subscribeInput.slideUp();
-      }
-    });
-    $doc.on('mouseover', function (e) {
-      if ($subscribeForm.has(e.target).length === 0) {
-        return amOut = true;
-      }
-      amOut = false;
-    });
     $('#fileupload').fileupload({
       dataType: 'json'
     }).on('fileuploadstart', function () {

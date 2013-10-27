@@ -10,7 +10,6 @@ window.Shreds = {
         this.$.on(ev, this[el].events[ev].bind(this[el]));
       }
     }.bind(this));
-    this.setupDOMEvents();
   },
 
   loadModel: function (name, data) {
@@ -36,15 +35,6 @@ window.Shreds = {
 
   find: function (model, id) {
     return this.models['_idx_' + model][id];
-  },
-
-  setupDOMEvents: function () {
-    var $doc = $(document);
-    $doc.on('click', '[data-on-click]', function (ev) {
-      var $this = $(this);
-      var name = $this.data('onClick');
-      return window.Shreds.action[name].call($this, ev);
-    });
   },
 
   syncView: function (template/*, data*/) {
