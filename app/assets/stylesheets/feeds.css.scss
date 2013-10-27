@@ -62,7 +62,8 @@ header span { margin-left: 4px; }
     position: fixed;
     top: 0px;
     left: 0px;
-    right: 16px;
+    right: 14px;
     bottom: 0px;
-    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: auto;
 }
