@@ -37,14 +37,19 @@ window.Shreds = {
     return this.models['_idx_' + model][id];
   },
 
+  render: function (dom, template, data) {
+    var options = arguments[3] || {};
+    if (options.append) {
+      dom.append(window.HandlebarsTemplates[template](data));
+    } else {
+      dom.html(window.HandlebarsTemplates[template](data));
+    }
+  },
+
   syncView: function (template/*, data*/) {
     var data = arguments[1] || this.models[template];
     var options = arguments[2] || {};
     var container = $('[data-template=' + template + ']');
-    if (options.append) {
-      container.append(window.HandlebarsTemplates[template](data));
-    } else {
-      container.html(window.HandlebarsTemplates[template](data));
-    }
+    this.render(container, template, data, options);
   }
 };

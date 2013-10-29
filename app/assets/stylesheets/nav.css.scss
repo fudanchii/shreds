@@ -25,6 +25,15 @@
     width: 215px;
 }
 
+.favicon {
+    margin-top: 2px;
+    margin-right: 4px;
+}
+
+.nav-list {
+    padding-left: 0px;
+}
+
 .nav-list > li:hover, li.nav-item > a:hover {
     background-color: #eaeaea;
 }
@@ -60,14 +69,6 @@
     margin-top: 5px;
     font-size: 70%;
     background-color: rgba(120,120,120,.6);
-}
-
-.feed-items {
-    padding-left: 24px;
-}
-
-.spinner-list {
-    list-style-image: url(/assets/spinner.16x16.gif);
 }
 
 #subscribe_form {

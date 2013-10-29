@@ -2,23 +2,14 @@
 {{#each categories}}
     <li class="nav-header">
         <span><strong>{{./name}}</strong>
-        <div class="dropdown pull-right">
-        <a class="dropdown-toggle" href="javascript:void(0)" role="button" data-toggle="dropdown">
-          <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="javascript:void(0)" data-id="{{./id}}" data-on-click="markCategoryAsRead">Mark as read</a></li>
-            <li><a href="javascript:void(0)" data-id="{{./id}}" data-on-click="refreshCategory">Refresh feeds</a></li>
-            {{#if ./not_default}}
-            <li><a class="rm-cat" data-id="{{./id}}" href="javascript:void(0)" data-on-click="removeCategory">Remove category</a></li>
-            {{/if}}
-        </ul>
-        </div>
         </span>
     </li>
-    <ul class="nav-list feed-items" style="list-style-type:disc;">
+    <ul class="nav-list feed-items" style="list-style-type:none;">
         {{#each ./feeds}}
-            <li class="nav-item" style="list-style-image:url({{./favicon}})">
+            <li class="nav-item">
+                <div class="favicon pull-left">
+                    <img src="{{./favicon}}" width="16" height="16"/>
+                </div>
                 <p class="title-ellipsis"><a alt="{{./title}}" href="{{./path}}">{{./title}}</a></p>
                 {{#if ./unreadCount }}
                 <a href="javascript:void(0)" data-id="{{./id}}" data-on-click="markAsRead">

@@ -40,7 +40,11 @@
 
     markAsRead: function (ev) {
       var id = this.data('id');
-      this.parents('li').css('list-style-image', Shreds.assets.url('spinner16x16'));
+      Shreds.render(
+        this.siblings('.favicon'),
+        'spinner',
+        { spinner: Shreds.assets.path('spinner16x16') }
+      );
       Shreds.ajax.patch('/i/feeds/' + id + '/mark_as_read.json', {
         doWatch: true,
         failMsg: '<strong>Can\'t</strong> mark this feed as read.'
