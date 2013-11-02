@@ -17,7 +17,6 @@ gem 'jquery-rails'
 
 
 ### 3. Cosmetics
-gem 'moji'
 gem 'anjlab-bootstrap-rails', '>= 2.0', :require => 'bootstrap-rails'
 gem 'quiet_assets', '>= 1.0.1', :group => :development
 gem 'better_errors', '>= 0.3.2', :group => :development
@@ -73,7 +72,7 @@ gem 'hiredis'
 #gem 'valid_email'
 
 # Profiling
-gem 'rack-mini-profiler'
+gem 'rack-mini-profiler', :group => :development
 
 gem 'foreman', :require => false
 
