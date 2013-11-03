@@ -10,6 +10,7 @@
       Shreds.ajax.get(url).done(function (data) {
         Shreds.loadModel(context, data);
         Shreds.syncView(context);
+        document.title = '[shreds] - ' + (data.title || 'Feeds');
       });
     },
     events: {
