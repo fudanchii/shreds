@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/fudanchii/feedzirra.git
-  revision: e946f719495cf82bb43721b4cd83d170842f5d80
+  revision: 21fd7d8747c31df0f99b8e635d51096f261333fa
   branch: dev
   specs:
     feedzirra (0.2.0.rc2)
