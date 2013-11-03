@@ -7,7 +7,7 @@ json.read       @newsitem.unread ? 'read' : 'unread'
 json.author     @newsitem.author
 json.published_iso8601 @newsitem.published.iso8601
 json.published_str strdate(@newsitem.published)
-json.content    @newsitem.content
+json.content    @newsitem.content || @newsitem.summary
 json.prevPath   url_for [@feed, @newsitem.prev]
 json.nextPath   url_for [@feed, @newsitem.next]
 json.noPrev     disabled? @newsitem.prev
