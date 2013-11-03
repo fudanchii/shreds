@@ -19,6 +19,9 @@
       },
       'shreds:feed:render:show': function (ev, data) {
         Shreds.feeds.render('feeds/show', '/i/feeds/' + data.id + '.json');
+      },
+      'shreds:newsitem:render:show': function (ev, data) {
+        Shreds.feeds.render('newsitem', '/i/feeds/' + data.feed_id + '/' + data.id + '.json');
       }
     }
   };
