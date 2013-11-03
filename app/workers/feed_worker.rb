@@ -37,7 +37,6 @@ class FeedWorker
     return if feed.is_a? Fixnum # Got HTTP response code instead of Feed object ^^;
     return if up_to_date?(feed, feed_record)
 
-    # TODO: Use config to select which field should be sanitized
     feed.sanitize_entries!
     feed_record.update!(:title => feed.title, :etag => feed.etag, :url => feed.url)
     feed.entries.each do | entry |

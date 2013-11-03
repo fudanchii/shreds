@@ -4,3 +4,6 @@
 #MEMCACHE_SERVERS: "127.0.0.1:11211 127.0.0.1:6379"
 #SECRET: SECRET_STRING_HERE
 #
+# whitelist these tags
+#WLTAGS: "figure style iframe"
+#
