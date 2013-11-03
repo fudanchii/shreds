@@ -10,12 +10,15 @@
   <div id="container" class="row" data-on-mouseover="amOut" data-on-mousedown="needSlideUp">
     <%= render 'navigation_hbs' %>
     <%= render 'head_notification' %>
-    <div class="span-fixed-sidebar">
+    <div class="span-fixed-sidebar" data-template="feeds/index">
       <%= yield %>
     </div>
   </div>
 
   <%= javascript_include_tag "application" %>
+
+<script type="text/javascript">
   <%= yield :embedded_javascript %>
+</script>
 </body>
 </html>

@@ -5,7 +5,7 @@
     <li class="nav-header">
         <span>
             <span class="glyphicon glyphicon-th-list"></span>
-            <a href="/"><strong>Latest Entries</strong></a>
+            <a href="/" data-async="<%= url_for(:controller => 'feeds', :action => 'index', :format => :json)%>"><strong>Latest Entries</strong></a>
         </span>
     </li>
   </ul>
@@ -15,8 +15,6 @@
 </div>
 
 <% content_for :embedded_javascript do %>
-<script type="text/javascript">
   window.Shreds.loadModel('navigation', <%= raw render('navigation_data') %>);
   window.Shreds.assets.add('spinner16x16', '<%= image_path("spinner.16x16.gif") %>');
-</script>
 <% end %>

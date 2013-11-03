@@ -1,22 +1,3 @@
-<% if nothing_to_read_from? @feeds %>
-  <div class="alert alert-info">
-    <strong>No news</strong> at the moment
-  </div>
-<% else %>
-  <% filter_read(@feeds).each do |feed| %>
-    <h2><%= link_to feed.title, feed %>
-        <a href="<%= feed.url %>" target="_blank"><span class="glyphicon glyphicon-new-window glyph-sm"></span></a>
-    </h2>
-    <% feed.unread_newsitems.limit(3).each do |news| %>
-        <%= render "summary", item: news %>
-    <% end %>
-    <hr>
-  <% end %>
-<ul class="pager">
-  <li class="previous"><%= link_to_previous_page @feeds, '< Prev' %></li>
-  <li class="next"><%= link_to_next_page @feeds, 'Next >' %></li>
-</ul>
-<% end %>
 
 <% content_for :title do %>
   <%= title("Feeds") %>
