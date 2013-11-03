@@ -85,7 +85,7 @@
       Shreds.ajax.patch('/i/feeds/' + feedId + '/' + id + '/toggle_read.json', {
         failMsg: '<strong>Can\'t mark</strong> this item as read.'
       }).done(function (data) {
-        var feed = Shreds.find('feeds', feedId);
+        var feed = Shreds.find('navigation/categories/feeds', feedId);
         feed.unreadCount = data.feed.unreadCount;
         Shreds.syncView('navigation');
         this.find('.glyphicon').toggleClass('glyphicon-ok-circle').toggleClass('glyphicon-ok-sign');

@@ -13,7 +13,7 @@ window.Shreds = {
   },
 
   loadModel: function (name, data) {
-    var indexed = '_idx_' + name;
+    var indexed = '$idx:-' + name;
     if (data instanceof Array) {
       this.models[indexed] || (this.models[indexed] = {});
       this.models[indexed] = data.reduce(function (prev, cur, idx, arr) {
@@ -22,19 +22,19 @@ window.Shreds = {
       }, this.models[indexed]);
       data.forEach(function (val, idx, arr) {
         for (var child in val.has) {
-          this.loadModel.call(this, val.has[child], val[val.has[child]]);
+          this.loadModel.call(this, name + '/' + val.has[child], val[val.has[child]]);
         }
       }.bind(this));
     } else if (typeof data === 'object') {
       this.models[name] = data;
       for (var model in data) {
-        this.loadModel.call(this, model, data[model]);
+        this.loadModel.call(this, name + '/' + model, data[model]);
       }
     }
   },
 
   find: function (model, id) {
-    return this.models['_idx_' + model][id];
+    return this.models['$idx:-' + model][id];
   },
 
   render: function (dom, template, data) {
@@ -49,7 +49,7 @@ window.Shreds = {
   syncView: function (template/*, data*/) {
     var data = arguments[1] || this.models[template];
     var options = arguments[2] || {};
-    var container = $('[data-template=' + template + ']');
+    var container = $('[data-template="' + template + '"]');
     this.render(container, template, data, options);
   }
 };

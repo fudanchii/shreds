@@ -1,23 +1,24 @@
 <ul class="nav nav-list">
 {{#each categories}}
-    <li class="nav-header">
-        <span><strong>{{./name}}</strong>
-        </span>
-    </li>
-    <ul class="nav-list feed-items" style="list-style-type:none;">
-        {{#each ./feeds}}
-            <li class="nav-item">
-                <div class="favicon pull-left">
-                    <img src="{{./favicon}}" width="16" height="16"/>
-                </div>
-                <p class="title-ellipsis"><a alt="{{./title}}" href="{{./path}}">{{./title}}</a></p>
-                {{#if ./unreadCount }}
-                <a href="javascript:void(0)" data-id="{{./id}}" data-on-click="markAsRead">
-                <span class="pull-right unread-num label">{{./unreadCount}}</span>
-                </a>
-                {{/if}}
-            </li>
-        {{/each}}
-    </ul>
+  <li class="nav-header">
+    <span><strong>{{./name}}</strong></span>
+  </li>
+  <ul class="nav-list feed-items" style="list-style-type:none;">
+    {{#each ./feeds}}
+      <li class="nav-item">
+        <div class="favicon pull-left">
+          <img src="{{./favicon}}" width="16" height="16"/>
+        </div>
+        <p class="title-ellipsis">
+          <a alt="{{./title}}" href="{{./path}}" data-async="{{./pathJson}}">{{./title}}</a>
+        </p>
+        {{#if ./unreadCount }}
+          <a href="javascript:void(0)" data-id="{{./id}}" data-on-click="markAsRead">
+            <span class="pull-right unread-num label">{{./unreadCount}}</span>
+          </a>
+        {{/if}}
+      </li>
+    {{/each}}
+  </ul>
 {{/each}}
 </ul>

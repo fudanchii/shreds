@@ -7,7 +7,7 @@
         if (data.error) {
           Shreds.notification.error(data.error);
         } else {
-          var feed = Shreds.find('feeds', data.feed.id);
+          var feed = Shreds.find('navigation/categories/feeds', data.feed.id);
           feed.unreadCount = data.feed.unreadCount;
           Shreds.notification.info(data.info);
         }
@@ -17,7 +17,7 @@
         if (data.error) {
           Shreds.notification.error(data.error);
         } else {
-          var category = Shreds.find('categories', data.category.id);
+          var category = Shreds.find('navigation/categories', data.category.id);
           if (!category) { return window.location.replace('/'); }
           category.feeds = data.category.feeds;
           Shreds.notification.info(data.info);

@@ -1,0 +1,38 @@
+{{#each feeds}}
+  <h2><a href="{{./path}}">{{./title}}</a>
+      <a href="{{./url}}" target="_blank"><span class="glyphicon glyphicon-new-window glyph-sm"></span></a>
+  </h2>
+  {{#each ./newsitems}}
+    <div class="panel panel-default widget widget-transparent feed">
+      <div class="panel-heading">
+        <h3>
+        <a href="{{./path}}">{{./title}}</a>
+        <a href="{{./url}}" target="_blank"><span class="glyphicon glyphicon-new-window glyph-sm"></span></a>
+        <a href="javascript:void(0)" data-on-click="toggleRead" data-id="{{./id}}" data-feed-id="{{../id}}">
+        <span class="glyphicon glyphicon-ok-circle glyph-sm" data-toggle="tooltip" data-title="set read"></span>
+        </a>
+        </h3>
+      </div>
+      <div class="feed-content panel-body">
+        <div class="muted">
+          <em>by {{./author}}</em>
+          <div class="pull-right">
+            <abbr class="timeago" title="{{./published_iso8601}}">{{./published_str}}</abbr>
+          </div>
+        </div>
+        {{{./summary}}}
+      </div>
+    </div>
+  {{/each}}
+  <hr>
+{{else}}
+<div class="alert alert-info">
+  <strong>No news</strong> at the moment
+</div>
+{{/each}}
+{{#if feeds.length}}
+<ul class="pager">
+  <li class="previous">{{prevPage}}</li>
+  <li class="next">{{nextPage}}</li>
+</ul>
+{{/if}}

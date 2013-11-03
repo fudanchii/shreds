@@ -18,10 +18,12 @@
 //= require jquery.timeago
 //= require spin.min
 //= require ladda.min
+//= require lennon
 //= require handlebars.runtime
 //= require_tree ./templates
 //= require shreds
 //= require_tree .
+//= require routes
 //
 
 $(window.Shreds.init.bind(window.Shreds));
