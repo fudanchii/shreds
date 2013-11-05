@@ -3,10 +3,24 @@
 --
 
 SET statement_timeout = 0;
+SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 SET search_path = public, pg_catalog;
@@ -219,10 +233,10 @@ ALTER TABLE ONLY newsitems
 
 
 --
--- Name: index_feeds_on_category_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_feeds_on_category_id_and_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_feeds_on_category_id ON feeds USING btree (category_id);
+CREATE UNIQUE INDEX index_feeds_on_category_id_and_id ON feeds USING btree (category_id, id);
 
 
 --
@@ -240,10 +254,10 @@ CREATE INDEX index_itemhashes_on_urlhash ON itemhashes USING btree (urlhash);
 
 
 --
--- Name: index_newsitems_on_feed_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_newsitems_on_feed_id_and_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_newsitems_on_feed_id ON newsitems USING btree (feed_id);
+CREATE UNIQUE INDEX index_newsitems_on_feed_id_and_id ON newsitems USING btree (feed_id, id);
 
 
 --
@@ -298,3 +312,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130915203217');
 INSERT INTO schema_migrations (version) VALUES ('20131019025806');
 
 INSERT INTO schema_migrations (version) VALUES ('20131023135940');
+
+INSERT INTO schema_migrations (version) VALUES ('20131105101218');
