@@ -14,7 +14,7 @@ class Category < ActiveRecord::Base
   end
 
   def unread_count
-
+    feeds.with_unread_count.reduce(0) {|count, feed| count + feed.unreads }
   end
 
   def safe_destroy
