@@ -5,7 +5,7 @@ class FeedsController < ApplicationController
   # GET /feeds.json
   def index
     @feed = Feed.new
-    @feeds = Feed.with_unread_newsitems.page(params[:page]).per(5)
+    @feeds = Feed.has_unread_newsitems.page(params[:page]).per(5)
     respond_with(@feeds)
   end
 
@@ -13,7 +13,7 @@ class FeedsController < ApplicationController
   # GET /feeds/1.json
   def show
     @feed = Feed.find(params[:id])
-    @newsitems = @feed.newsitems.page(params[:page])
+    @newsitems = @feed.newsitems.for_view.page(params[:page])
     respond_with(@feed)
   end
 

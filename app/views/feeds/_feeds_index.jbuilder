@@ -4,7 +4,7 @@ json.feeds feeds do |feed|
   json.path     url_for feed
   json.url      feed.url
   json.has      ['newsitems']
-  json.newsitems feed.unread_newsitems.limit(3) do |newsitem|
+  json.newsitems feed.unread_newsitems.for_view.limit(3) do |newsitem|
     json.id                 newsitem.id
     json.title              newsitem.title
     json.path               url_for [feed, newsitem]

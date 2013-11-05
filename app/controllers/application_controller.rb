@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     @category = Category.new
     @new_feed = @category.feeds.build
     # XXX: Remove this later
-    @categories = Category.all
+    @categories = Category.for_nav
   end
 
   private

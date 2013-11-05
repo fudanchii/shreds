@@ -1,6 +1,6 @@
 class Newsitem < ActiveRecord::Base
   belongs_to :feed, touch: true
-  default_scope -> { order('published DESC') }
+  scope :for_view, -> { order('published DESC') }
   before_destroy { Itemhash.insert(permalink) unless unread }
 
   def next

@@ -8,7 +8,17 @@ class Feed < ActiveRecord::Base
 
   validates :url, presence: true
 
-  default_scope -> { order('url ASC') }
+  scope :for_nav, -> { order('url ASC') }
+
+  scope :with_unread_count, -> {
+    joins(:newsitems)
+      .select('feeds.*, sum(case when newsitems.unread then 1 else 0 end) as unreads')
+      .group('feeds.id')
+  }
+
+  scope :has_unread_newsitems, -> {
+    joins(:newsitems).where('newsitems.unread = ?', true).group('feeds.id')
+  }
 
   before_save :sanitize_url
 
@@ -31,22 +41,13 @@ class Feed < ActiveRecord::Base
 
   def mark_all_as_read
     counter = unread_count
-    newsitems.each { |news| news.update(:unread => false) if news.unread }
+    unread_newsitems.update_all(:unread => false)
     counter
   end
 
   def clear_read_news(offset = nil)
     offset ||= Kaminari.config.default_per_page
-    newsitems.where(:unread => false) \
-      .order('published DESC').offset(offset).destroy_all
-  end
-
-  def self.total_unread(feeds)
-    feeds.reduce(0) {|count, feed| count + feed.unread_count }
-  end
-
-  def self.with_unread_newsitems
-    joins(:newsitems).where('newsitems.unread = ?', true).group('feeds.id')
+    newsitems.where(:unread => false).for_view.offset(offset).destroy_all
   end
 
   private
