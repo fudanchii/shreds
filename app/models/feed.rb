@@ -47,7 +47,7 @@ class Feed < ActiveRecord::Base
 
   def clear_read_news(offset = nil)
     offset ||= Kaminari.config.default_per_page
-    newsitems.where(:unread => false).for_view.offset(offset).destroy_all
+    newsitems.for_view.where(:unread => false).offset(offset).destroy_all
   end
 
   private
