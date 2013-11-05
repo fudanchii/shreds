@@ -10,6 +10,14 @@
 
     'use strict';
 
+    function noop() {}
+
+    var DebugEnabledLogger = {
+      error: noop,
+      info: noop,
+      warn: noop
+    };
+
     return window.Lennon = function(opts) {
 
         var current_route,
@@ -20,6 +28,9 @@
 
             options = $.extend({
 
+                //-- Enable debug mode (turn on logging)
+                debug: false,
+
                 //-- determines whether or not the history api is enabled
                 historyEnabled: !!(window.history && window.history.pushState),
 
@@ -27,6 +38,7 @@
                 linkSelector: 'a[target!=_blank]:not([href^=http]):not([href^=javascript])',
 
                 //-- the logger requires error, info and warn methods
+                //-- Regardless its value, if debug is false, logger will be overridden with noop
                 logger: window.console,
 
                 //-- the publish event that will dispatch the registered event name
@@ -67,6 +79,9 @@
                 }
 
             };
+
+        // set logger to noop if debug is false;
+        if (!options.debug) options.logger = DebugEnabledLogger;
 
         return (function() {
 
