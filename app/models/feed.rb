@@ -45,6 +45,10 @@ class Feed < ActiveRecord::Base
     feeds.reduce(0) {|count, feed| count + feed.unread_count }
   end
 
+  def self.with_unread_newsitems
+    joins(:newsitems).where('newsitems.unread = ?', true).group('feeds.id')
+  end
+
   private
 
   def sanitize_url

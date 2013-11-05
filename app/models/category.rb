@@ -9,6 +9,12 @@ class Category < ActiveRecord::Base
     'uncategorized'
   end
 
+  def feeds_with_unread_count
+    feeds.joins(:newsitems)
+      .select('feeds.*, sum(case when newsitems.unread then 1 else 0 end) as unreads')
+      .group('feeds.id')
+  end
+
   def is_custom_and_unused?
     feeds.count == 0 && name != self.class.default
   end

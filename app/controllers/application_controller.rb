@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, :with => :feed_not_found
 
   before_action do
-    @feeds = Feed.all
     @category = Category.new
     @new_feed = @category.feeds.build
     # XXX: Remove this later
