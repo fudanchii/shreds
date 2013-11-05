@@ -2,8 +2,9 @@ class NewsitemsController < ApplicationController
   respond_to :html, :json
 
   before_action do
-    @feed = Feed.find(params[:feed_id])
-    @newsitem = @feed.newsitems.find(params[:id])
+    @feed = Feed.includes(:newsitems)
+      .where('feeds.id = ? and newsitems.id = ?', params[:feed_id].to_i, params[:id]).to_ary.first
+    @newsitem = @feed.newsitems.first
   end
 
   def show
