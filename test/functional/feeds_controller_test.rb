@@ -37,7 +37,7 @@ describe FeedsController do
       get :index, :format => 'json'
       assert_response :success
       res = JSON.parse(response.body)
-      res.must_be_instance_of Array
+      res.must_be_instance_of Hash
     end
 
     it 'should create feed (POST /i/feeds.json)' do
