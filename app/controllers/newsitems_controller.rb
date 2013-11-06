@@ -3,7 +3,8 @@ class NewsitemsController < ApplicationController
 
   before_action do
     @feed = Feed.includes(:newsitems)
-      .where('feeds.id = ? and newsitems.id = ?', params[:feed_id].to_i, params[:id]).to_ary.first
+      .where('feeds.id = ? and newsitems.id = ?', params[:feed_id].to_i, params[:id])
+      .references(:newsitems).to_ary.first
     @newsitem = @feed.newsitems.first
   end
 
