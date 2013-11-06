@@ -22,7 +22,7 @@
       },
       'shreds:newsitem:render:show': function (ev, data) {
         Shreds.feeds.render('newsitem', '/i/feeds/' + data.feed_id + '/' + data.id + '.json');
-      },
+      }
     }
   };
 })(window.Shreds);
