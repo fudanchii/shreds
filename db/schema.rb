@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131023135940) do
+ActiveRecord::Schema.define(version: 20131105101218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20131023135940) do
     t.text     "feed_url"
   end
 
-  add_index "feeds", ["category_id"], name: "index_feeds_on_category_id", using: :btree
+  add_index "feeds", ["category_id", "id"], name: "index_feeds_on_category_id_and_id", unique: true, using: :btree
   add_index "feeds", ["feed_url"], name: "index_feeds_on_feed_url", unique: true, using: :btree
 
   create_table "itemhashes", force: true do |t|
@@ -55,6 +55,6 @@ ActiveRecord::Schema.define(version: 20131023135940) do
     t.text     "summary"
   end
 
-  add_index "newsitems", ["feed_id"], name: "index_newsitems_on_feed_id", using: :btree
+  add_index "newsitems", ["feed_id", "id"], name: "index_newsitems_on_feed_id_and_id", unique: true, using: :btree
 
 end
