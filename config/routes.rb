@@ -12,6 +12,7 @@ Shreds::Application.routes.draw do
   scope '/i', format: true, constraints: { format: 'json' } do
     resources :feeds, only: [:index, :create, :show, :destroy] do
       get 'page/:page', action: :show, on: :member
+      get 'page/:page', action: :index, on: :collection
       patch 'mark_as_read', on: :member
       patch 'mark_all_as_read', on: :collection
       resources :newsitems, only: [:show], path: '/' do

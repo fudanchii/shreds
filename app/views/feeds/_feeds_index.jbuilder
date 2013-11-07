@@ -15,5 +15,5 @@ json.feeds feeds do |feed|
     json.summary            newsitem.summary
   end
 end
-json.prevPage   link_to_previous_page feeds, '< Prev', :params => { :format => :html }
-json.nextPage   link_to_next_page feeds, 'Next >', :params => { :format => :html }
+json.prevPage   link_to_previous_page feeds, '< Prev', :params => { :format => nil }
+json.nextPage   link_to_next_page feeds, 'Next >', :params => { :format => nil }
