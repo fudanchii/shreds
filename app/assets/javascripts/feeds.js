@@ -7,7 +7,9 @@
     init: function () { },
     render: function (context, url) {
       container.attr('data-template', context);
-      Shreds.ajax.get(url).done(function (data) {
+      Shreds.ajax.get(url, {
+        failMsg: '<strong>Can\'t connect</strong> to server'
+      }).done(function (data) {
         Shreds.loadModel(context, data);
         Shreds.syncView(context);
         document.title = '[shreds] - ' + (data.title || 'Feeds');
