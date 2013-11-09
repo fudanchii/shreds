@@ -1,10 +1,23 @@
 class BaseContext
-  class_attribute :result
-  self.result = self
+  class_attribute :exec
+  self.exec = nil
+
+  def self.at_execution(&block)
+    self.exec = block
+  end
+
+  def execute
+    instance_eval(&exec) if exec
+    result
+  end
+
+  def result
+    @result || self
+  end
 
   def method_missing(name, *args, &block)
-    if /^have_(.+)/ =~ name.to_s
-      self.result = instance_variable_get("@#{$1}")
+    if name.to_s =~ /^have_(.+)$/
+      @result = instance_variable_get("@#{$1}")
       self
     else
       super

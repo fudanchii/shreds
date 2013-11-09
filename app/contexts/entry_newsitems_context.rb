@@ -1,20 +1,19 @@
 class EntryNewsitemsContext < BaseContext
-  self.result = self
+  class_attribute :feed, :feed_record
 
   def initialize(feed, feed_record)
     fail if feed.is_a? Fixnum # Got HTTP response code instead of Feed object ^^;
     fail if up_to_date?(feed, feed_record)
-    @feed, @feed_record = [feed, feed_record]
+    self.feed, self.feed_record = [feed, feed_record]
   end
 
-  def execute
-    @feed.sanitize_entries!
-    @feed_record.update!(:title => @feed.title, :etag => @feed.etag, :url => @feed.url)
-    @feed.entries.each do | entry |
+  at_execution do
+    feed.sanitize_entries!
+    feed_record.update!(:title => feed.title, :etag => feed.etag, :url => feed.url)
+    feed.entries.each do | entry |
       next unless Newsitem.where(permalink: entry.url).first.nil? && (not Itemhash.has? entry.url)
-      @feed_record.newsitems.build(newsitem_params(entry)).save!
+      feed_record.newsitems.build(newsitem_params(entry)).save!
     end
-    self.result
   end
 
   def up_to_date?(feed, feed_record)
