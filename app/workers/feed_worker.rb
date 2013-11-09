@@ -11,7 +11,8 @@ class FeedWorker
     EventPool.add("create-#{jid}", { view: 'create', category_id: category.id })
   rescue ActiveRecord::RecordNotUnique
     EventPool.add("create-#{jid}", { error: '<strong>Already subscribed</strong> to the feed.' })
-  rescue
+  rescue => ex
+    Rails.logger.warn ex.message
     EventPool.add("create-#{jid}", { error: '<strong>Can\'t find any feed,</strong> are you sure the url is valid?' })
   end
 
@@ -19,7 +20,8 @@ class FeedWorker
     feed_record = Feed.find(feed_id)
     feed_record.destroy
     EventPool.add("destroy-#{jid}", { view: 'destroy', category_id: feed_record.category.id })
-  rescue
+  rescue => ex
+    Rails.logger.warn ex.message
     EventPool.add("destroy-#{jid}", { error: '<strong>Can\'t unsubscribe</strong> from this feed.' })
   end
 
