@@ -1,9 +1,7 @@
 class EntryNewsitemsContext < BaseContext
   class_attribute :feed, :feed_record
 
-  at_execution do
-    process_entries
-  end
+  at_execution :process_entries
 
   def initialize(feed, feed_record)
     fail if feed.is_a? Fixnum # Got HTTP response code instead of Feed object ^^;

@@ -1,9 +1,7 @@
 class EventsWatchContext < BaseContext
   class_attribute :payload, :watch_list
 
-  at_execution do
-    fetch_events
-  end
+  at_execution :fetch_events
 
   def initialize(watch_str)
     self.watch_list = watch_str.split(',') if watch_str
