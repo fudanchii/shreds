@@ -1,9 +1,7 @@
 class FeedCreationContext < BaseContext
   class_attribute :url, :feed_url, :category, :feed
 
-  at_execution do
-    create_feed
-  end
+  at_execution :create_feed
 
   def initialize(category, url, feed_url)
     self.url, self.feed_url = [url, feed_url]
