@@ -9,4 +9,5 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Shreds::Application.config.secret_key_base = 'fc18f5027cd52f8c25bc1843b21cb49099be7214d0fdaf305f36e159ce0f329ba360611a5cc25bc839eec8f1cf7003d5afdb54b73f2d14fe530d6a97ca4a87f9'
+fail 'No Secret key Defined.' unless ENV['SECRET']
+Shreds::Application.config.secret_key_base = ENV['SECRET']
