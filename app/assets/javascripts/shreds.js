@@ -13,8 +13,8 @@ window.Shreds = {
   },
 
   loadModel: function (name, data) {
-    var indexed = '$idx:-' + name;
     if (data instanceof Array) {
+      var indexed = '$idx:-' + name;
       this.models[indexed] || (this.models[indexed] = {});
       this.models[indexed] = data.reduce(function (prev, cur, idx, arr) {
         prev[cur.id] = cur;

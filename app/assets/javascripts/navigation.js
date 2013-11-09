@@ -10,35 +10,21 @@
           var feed = Shreds.find('navigation/categories/feeds', data.feed.id);
           feed.unreadCount = data.feed.unreadCount;
           Shreds.notification.info(data.info);
-        }
-        Shreds.syncView(name);
-      },
-      'shreds:create': function (ev, data) {
-        if (data.error) {
-          Shreds.notification.error(data.error);
-        } else {
-          var category = Shreds.find('navigation/categories', data.category.id);
-          if (!category) { return window.location.replace('/'); }
-          category.feeds = data.category.feeds;
-          Shreds.notification.info(data.info);
           Shreds.syncView(name);
         }
+      },
+      'shreds:create': function (ev, data) {
+        reloadNavigation(data);
         Shreds.subscription.stopSpinner();
       },
       'shreds:destroy': function (ev, data) {
-        Shreds.$.trigger('shreds:create', data);
+        reloadNavigation(data);
       },
       'shreds:rmCategory': function (ev, data) {
-        if (data.error) {
-          Shreds.notification.error(data.error);
-        } else {
-          Shreds.loadModel('navigation', data.data);
-          Shreds.syncView('navigation');
-          Shreds.notification.info(data.info);
-        }
+        reloadNavigation(data);
       },
       'shreds:opml': function (ev, data) {
-        Shreds.$.trigger('shreds:rmCategory', data);
+        reloadNavigation(data);
         $('#fileupload').trigger('spinnerstop');
       }
     },
@@ -46,5 +32,15 @@
       Shreds.syncView(name);
     }
   };
+
+  function reloadNavigation(data) {
+    if (data.error) {
+      Shreds.notification.error(data.error);
+    } else {
+      Shreds.loadModel('navigation', data.data);
+      Shreds.syncView('navigation');
+      Shreds.notification.info(data.info);
+    }
+  }
 })(window.Shreds);
 
