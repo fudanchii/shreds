@@ -32,6 +32,9 @@
       Shreds.loadModel(context, data);
       Shreds.syncView(context);
       document.title = '[shreds] - ' + (data.title || 'Feeds');
+      if (container.offset().top < 0) {
+        $('#container').animate({scrollTop: 0}, 850);
+      }
     });
   }
 })(window.Shreds);
