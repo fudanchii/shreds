@@ -26,6 +26,9 @@
       'shreds:opml': function (ev, data) {
         reloadNavigation(data);
         $('#fileupload').trigger('spinnerstop');
+      },
+      'shreds:updateFeed': function (ev, data) {
+        reloadNavigation(data);
       }
     },
     init: function () {
