@@ -4,16 +4,14 @@ class EventsWatchContext < BaseContext
   at_execution :fetch_events
 
   def initialize(watch_str)
-    self.watch_list = watch_str.split(',') if watch_str
+    self.watch_list = watch_str.split(',')
     self.payload = {}
   end
 
   private
 
   def fetch_events
-    return if watch_list.empty?
     result = EventPool.find(*watch_list)
-    return if result.empty?
     watch_list.zip(result).each do |w, r|
       next if r.nil?
       data = JSON.parse r
