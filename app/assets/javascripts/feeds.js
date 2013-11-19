@@ -1,6 +1,7 @@
 (function (Shreds) { 'use strict';
   var name = 'feeds';
-  var container = $('.span-fixed-sidebar');
+  var feedView = $('.span-fixed-sidebar');
+  var container = $('#container');
 
   Shreds.components.push(name);
   Shreds[name] = {
@@ -25,15 +26,15 @@
   };
 
   function render(context, url) {
-    container.attr('data-template', context);
+    feedView.attr('data-template', context);
     Shreds.ajax.get(url, {
       failMsg: '<strong>Can\'t connect</strong> to server'
     }).done(function (data) {
       Shreds.loadModel(context, data);
       Shreds.syncView(context);
       document.title = '[shreds] - ' + (data.title || 'Feeds');
-      if (container.offset().top < 0) {
-        $('#container').animate({scrollTop: 0}, 850);
+      if (feedView.offset().top < 0) {
+        container.animate({scrollTop: 0}, 850);
       }
     });
   }

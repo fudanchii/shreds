@@ -40,8 +40,8 @@
     if (data.error) {
       Shreds.notification.error(data.error);
     } else {
-      Shreds.loadModel('navigation', data.data);
-      Shreds.syncView('navigation');
+      Shreds.loadModel(name, data.data);
+      Shreds.syncView(name);
       Shreds.notification.info(data.info);
     }
   }
