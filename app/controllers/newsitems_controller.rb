@@ -5,6 +5,7 @@ class NewsitemsController < ApplicationController
     @feed = Feed.includes(:newsitems)
       .where('feeds.id = ? and newsitems.id = ?', params[:feed_id].to_i, params[:id])
       .references(:newsitems).to_ary.first
+    fail ActiveRecord::RecordNotFound if (@feed.nil? || @feed.newsitems.empty?)
     @newsitem = @feed.newsitems.first
   end
 
