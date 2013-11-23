@@ -8,17 +8,6 @@ GIT
       open_uri_redirections
 
 GIT
-  remote: git://github.com/fudanchii/feedzirra.git
-  revision: 21fd7d8747c31df0f99b8e635d51096f261333fa
-  branch: dev
-  specs:
-    feedzirra (0.2.0.rc2)
-      curb (~> 0.8.1)
-      loofah (~> 1.2.1)
-      nokogiri (~> 1.6.0)
-      sax-machine (~> 0.2.1)
-
-GIT
   remote: git://github.com/mcasimir/kaminari-bootstrap.git
   revision: 1271c3a612f446ad015a32557cc59e61a58cdebe
   specs:
@@ -90,6 +79,11 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3-x86-mingw32)
     execjs (2.0.2)
+    feedzirra (0.4.0)
+      curb (~> 0.8.1)
+      loofah (~> 1.2.1)
+      nokogiri (~> 1.6.0)
+      sax-machine (~> 0.2.1)
     ffi2-generators (0.1.1)
     figaro (0.7.0)
       bundler (~> 1.0)
@@ -446,7 +440,7 @@ DEPENDENCIES
   cache_digests
   dalli
   feedbag!
-  feedzirra!
+  feedzirra
   figaro
   foreman
   handlebars_assets
