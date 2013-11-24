@@ -10,8 +10,12 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
-//= require twitter/bootstrap
+//= require twitter/bootstrap/transition
+//= require twitter/bootstrap/alert
+//= require twitter/bootstrap/modal
+//= require twitter/bootstrap/dropdown
+//= require twitter/bootstrap/tooltip
+//= require twitter/bootstrap/button
 //= require jquery.ui.widget
 //= require jquery.iframe-transport
 //= require jquery.fileupload
