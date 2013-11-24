@@ -3,3 +3,4 @@ syntax: regexp
 ^config/application.yml
 ^tmp/
 ^public/assets/
+^.rvmrc
