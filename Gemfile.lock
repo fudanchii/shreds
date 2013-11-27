@@ -164,6 +164,7 @@ GEM
     redis (3.0.5)
     redis-namespace (1.3.1)
       redis (~> 3.0.0)
+    ruby-prof (0.13.0)
     rubysl (2.0.11)
       rubysl-abbrev (~> 2.0)
       rubysl-base64 (~> 2.0)
@@ -459,6 +460,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (~> 4.0.0)
   redis
+  ruby-prof
   rubysl (~> 2.0)
   sass-rails
   sidekiq

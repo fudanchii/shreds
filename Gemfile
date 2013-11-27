@@ -79,3 +79,5 @@ gem 'foreman', :require => false
 gem 'rubysl', '~> 2.0', :platforms => [:rbx]
 gem 'psych',  :platforms => [:rbx]
 gem 'racc', :platforms => [:rbx]
+
+gem 'ruby-prof'
