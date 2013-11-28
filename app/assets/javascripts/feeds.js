@@ -1,7 +1,7 @@
 (function (Shreds) { 'use strict';
   var name = 'feeds';
   var feedView = $('.span-fixed-sidebar');
-  var container = $('#container');
+  var container = $('body');
 
   Shreds.components.push(name);
   Shreds[name] = {
@@ -33,7 +33,7 @@
       Shreds.loadModel(context, data);
       Shreds.syncView(context);
       document.title = '[shreds] - ' + (data.title || 'Feeds');
-      if (feedView.offset().top < 0) {
+      if (container.scrollTop() > 0) {
         container.animate({scrollTop: 0}, 850);
       }
     });
