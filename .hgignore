@@ -4,3 +4,5 @@ syntax: regexp
 ^tmp/
 ^public/assets/
 ^.rvmrc
+^.ruby-version
+^.ruby-gemset
