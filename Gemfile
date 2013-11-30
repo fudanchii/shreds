@@ -72,8 +72,7 @@ gem 'hiredis'
 #gem 'valid_email'
 
 # Profiling
-gem 'rack-mini-profiler', :group => :development
-gem 'ruby-prof', :group => :development
+gem 'newrelic_rpm'
 
 gem 'foreman', :require => false
 
