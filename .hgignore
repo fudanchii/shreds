@@ -1,6 +1,7 @@
 syntax: regexp
 ^config/database.yml
 ^config/application.yml
+^config/newrelic.yml
 ^tmp/
 ^public/assets/
 ^.rvmrc
