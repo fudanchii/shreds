@@ -11,8 +11,11 @@
     <%= c.input_field :name, label: false, class: "form-control", placeholder: "Category (optional)" %>
   <% end %>
   </div>
+  <div class="btn-group">
   <%= button_tag(type: 'submit', class: "btn btn-primary ladda-button", id: "btnSubmitFeed", 'data-style' => "zoom-out", 'data-on-click' => "subscribeTo") do %>
      <span class="ladda-label">Subscribe</span>
-   <% end %> or <span class="fileupload-area"><button class="btn btn-default fileinput-button ladda-button" type="button" data-on-click="uploadOPML" data-style="zoom-out" data-spinner-color="black"><span class="ladda-label">Import</span></button><input id="fileupload" type="file" name="OPMLfile" data-url="/i/upload_opml.json"></span>
-<% end %>
+   <% end %><button class="btn btn-info fileinput-button ladda-button" type="button" data-on-click="uploadOPML" data-style="zoom-out" data-spinner-color="black"><span class="ladda-label">Import</span></button>
+   </div>
+<input id="fileupload" type="file" name="OPMLfile" data-url="/i/upload_opml.json">
+ <% end %>
 </div>
