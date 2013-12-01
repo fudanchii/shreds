@@ -44,6 +44,8 @@ window.Shreds = {
     } else {
       dom.html(window.HandlebarsTemplates[template](data));
     }
+    Shreds.utils.tooltip();
+    Shreds.utils.timeago();
   },
 
   syncView: function (template/*, data*/) {

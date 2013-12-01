@@ -19,7 +19,7 @@
 
 .span-fixed-sidebar {
     margin-top: 16px;
-    margin-left: 276px;
+    margin-left: 418px;
     margin-right: 16px;
     position: absolute;
     overflow: hidden;
@@ -67,6 +67,9 @@ header > h2, header > h1 { display: inline-block; }
 header span { margin-left: 4px; }
 
 .glyph-sm {
-    font-size: 60%;
+    font-size: 65%;
 }
 
+a:hover {
+    text-decoration: none;
+}
