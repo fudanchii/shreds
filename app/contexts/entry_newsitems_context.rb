@@ -19,21 +19,19 @@ class EntryNewsitemsContext < BaseContext
 
   def process_entries
     feed.sanitize_entries!
-    feed_record.update!(:title => feed.title, :etag => feed.etag, :url => feed.url)
     feed.entries.each do | entry |
       next unless Newsitem.where(permalink: entry.url).first.nil? && (not Itemhash.has? entry.url)
       feed_record.newsitems.build(newsitem_params(entry)).save!
     end
+    feed_record.update!(:title => feed.title, :etag => feed.etag, :url => feed.url)
   end
 
   def newsitem_params(entry)
-    ActionController::Parameters.new(
-      :title     => entry.title,
-      :permalink => entry.url,
-      :published => entry.published,
-      :content   => entry.content,
-      :author    => entry.author,
-      :summary   => entry.summary
-    ).permit!
+    params = {}
+    %w(title permalink published content author summary).each do |field|
+      field = field.to_sym
+      params[field] = entry.send(field) if entry.respond_to?(field)
+    end
+    ActionController::Parameters.new(params).permit!
   end
 end
