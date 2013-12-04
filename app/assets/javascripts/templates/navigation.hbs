@@ -12,7 +12,7 @@
         <p class="feed-title ellipsis">
           <a alt="{{./title}}" href="{{./path}}" data-async="{{./pathJson}}">{{./title}}</a>
         </p>
-        <p class="latest-news text-muted ellipsis"><abbr class="timeago" title="{{./latestEntryPubDate}}">{{./latestEntryPubDate}}</abbr> - {{./latestEntryTitle}}</p>
+        <p class="latest-news text-muted ellipsis"><abbr class="timeago" title="{{./latestEntryPubDate}}">{{./latestEntryPubDate}}</abbr> - {{{./latestEntryTitle}}}</p>
         {{#if ./unreadCount }}
           <a href="javascript:void(0)" data-id="{{./id}}" data-on-click="markAsRead">
             <span class="pull-right unread-num label">{{./unreadCount}}</span>
