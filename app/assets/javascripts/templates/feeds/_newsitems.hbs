@@ -5,7 +5,11 @@
       <a href="{{./path}}">{{{./title}}}</a>
       <a href="{{./url}}" target="_blank"><span class="glyphicon glyphicon-new-window glyph-sm" data-toggle="tooltip" data-title="Go to {{./url}}"></span></a>
       <a href="javascript:void(0)" data-on-click="toggleRead" data-id="{{./id}}" data-feed-id="{{../id}}">
+      {{#if ./readIcon}}
         <span class="glyphicon glyphicon-{{./readIcon}} glyph-sm" data-toggle="tooltip" data-title="Set {{./read}}"></span>
+      {{else}}
+        <span class="glyphicon glyphicon-ok-circle glyph-sm" data-toggle="tooltip" data-title="Set read"></span>
+      {{/if}}
       </a>
       </h3>
     </div>
