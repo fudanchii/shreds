@@ -11,7 +11,7 @@
     <%= c.input_field :name, label: false, class: "form-control", placeholder: "Category (optional)" %>
   <% end %>
 </div>
-<img class="main-logo" src="<%= image_path("shreds.png")%>" height="38"></img>
+<img class="pull-left main-logo" src="<%= image_path("shreds.png")%>" height="38"></img>
   <div class="btn-group pull-right">
   <%= button_tag(type: 'submit', class: "btn btn-primary ladda-button", id: "btnSubmitFeed", 'data-style' => "zoom-out", 'data-on-click' => "subscribeTo") do %>
      <span class="ladda-label">Subscribe</span>
