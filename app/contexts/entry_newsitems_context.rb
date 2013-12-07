@@ -28,8 +28,7 @@ class EntryNewsitemsContext < BaseContext
 
   def newsitem_params(entry)
     params = {}
-    %w(title published content author summary).each do |field|
-      field = field.to_sym
+    [:title, :published, :content, :author, :summary].each do |field|
       params[field] = entry.send(field) if entry.respond_to?(field)
     end
     params[:permalink] = entry.url if entry.respond_to?(:url)
