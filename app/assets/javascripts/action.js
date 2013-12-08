@@ -11,11 +11,13 @@
   };
 
   var amOut = true;
-  var $doc = $(document);
-  var $subscribeInput = null;
-  var $subscribeForm = null;
-  var $feedUrl = null;
-  var $categoryName = null;
+
+  var $doc = $(document),
+      $subscribeInput = $('#subscribeInput'),
+      $subscribeForm =  $('#subscribe_form'),
+      $feedUrl =        $('#feed_url'),
+      $categoryName =   $('#category_name');
+
   var spinner = null;
 
   function act(attr) {
@@ -32,19 +34,12 @@
   Shreds[name] = {
     init: function () {
       for (var k in actOn) { $doc.on(k, '[data-on-' + k + ']', actOn[k]); };
-      $subscribeInput = $('#subscribeInput');
-      $subscribeForm =  $('#subscribe_form');
-      $feedUrl =        $('#feed_url');
-      $categoryName =   $('#category_name');
     },
 
     markAsRead: function (ev) {
       var id = this.data('id');
-      Shreds.render(
-        this.siblings('.favicon'),
-        'spinner',
-        { spinner: Shreds.assets.path('spinner16x16') }
-      );
+      Shreds.render(this.siblings('.favicon'), 'spinner',
+                    { spinner: Shreds.assets.path('spinner16x16') });
       Shreds.ajax.patch('/i/feeds/' + id + '/mark_as_read.json', {
         doWatch: true,
         failMsg: '<strong>Can\'t</strong> mark this feed as read.'
