@@ -8,14 +8,6 @@ GIT
       open_uri_redirections
 
 GIT
-  remote: git://github.com/mcasimir/kaminari-bootstrap.git
-  revision: 0dc098f544734afb73a254d56061ffb375a81431
-  specs:
-    kaminari-bootstrap (3.0.1)
-      kaminari (>= 0.13.0)
-      rails
-
-GIT
   remote: git://github.com/plataformatec/simple_form.git
   revision: 0a87f3d842b8901ebaf7474951c18c39570a426f
   specs:
@@ -112,6 +104,9 @@ GEM
     kaminari (0.15.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    kaminari-bootstrap (3.0.1)
+      kaminari (>= 0.13.0)
+      rails
     loofah (1.2.1)
       nokogiri (>= 1.4.4)
     mail (2.5.4)
@@ -438,7 +433,7 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   kaminari
-  kaminari-bootstrap!
+  kaminari-bootstrap (~> 3.0.1)
   minitest-spec-rails
   newrelic_rpm
   oj

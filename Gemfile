@@ -22,7 +22,7 @@ gem 'quiet_assets', '>= 1.0.1', :group => :development
 gem 'better_errors', '>= 0.3.2', :group => :development
 gem 'binding_of_caller', '>= 0.6.8', :group => :development
 gem 'kaminari'
-gem 'kaminari-bootstrap', :github => 'mcasimir/kaminari-bootstrap'
+gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'figaro'
 gem 'simple_form', :github => 'plataformatec/simple_form'
 gem 'handlebars_assets'
