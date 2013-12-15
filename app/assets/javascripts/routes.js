@@ -9,7 +9,6 @@
       r.define('/:id',            'shreds:feed:render:show');
       r.define('/:id/page/:page', 'shreds:feed:render:page');
       r.define('/:feed_id/:id',   'shreds:newsitem:render:show');
-      r.process();
     }
   };
 })(window.Shreds, window.Lennon);
