@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131105101218) do
+ActiveRecord::Schema.define(version: 20131221195859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,12 +23,13 @@ ActiveRecord::Schema.define(version: 20131105101218) do
   end
 
   create_table "feeds", force: true do |t|
-    t.text     "url",         null: false
-    t.text     "meta"
+    t.text     "url",                                  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "category_id"
     t.text     "feed_url"
+    t.text     "title",       default: "( Untitled )", null: false
+    t.string   "etag"
   end
 
   add_index "feeds", ["category_id", "id"], name: "index_feeds_on_category_id_and_id", unique: true, using: :btree
@@ -51,7 +52,7 @@ ActiveRecord::Schema.define(version: 20131105101218) do
     t.text     "content"
     t.text     "author"
     t.text     "title"
-    t.datetime "published",                 null: false
+    t.datetime "published",  default: "now()", null: false
     t.text     "summary"
   end
 

@@ -1,8 +1,6 @@
 require 'uri'
 
 class Feed < ActiveRecord::Base
-  store :meta, accessors: [:title, :etag]
-
   belongs_to :category
   has_many :newsitems, :dependent => :destroy
 
