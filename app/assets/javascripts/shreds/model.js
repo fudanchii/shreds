@@ -10,7 +10,7 @@
 
     import: function (modelName, data) {
       if (data instanceof Array) {
-        var indexed = index_prefix + name;
+        var indexed = index_prefix + modelName;
         Models[indexed] || (Models[indexed] = {});
         Models[indexed] = data.reduce(function (prev, curr, idx, arr) {
           prev[curr.id] = curr;

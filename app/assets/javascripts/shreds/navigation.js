@@ -7,7 +7,7 @@
         if (data.error) {
           Shreds.notification.error(data.error);
         } else {
-          var feed = Shreds.find('navigation/categories/feeds', data.feed.id);
+          var feed = Shreds.model.find('navigation/categories/feeds', data.feed.id);
           feed.unreadCount = data.feed.unreadCount;
           Shreds.notification.info(data.info);
           Shreds.syncView(name);
