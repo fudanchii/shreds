@@ -12,12 +12,12 @@ gem 'jbuilder'
 ### 2. Assets related gems
 gem 'sass-rails'
 gem 'uglifier'
-gem 'jquery-rails'
+gem 'bower'
 # end of 2.
 
 
 ### 3. Cosmetics
-gem 'anjlab-bootstrap-rails', '>= 2.0', :require => 'bootstrap-rails'
+gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails'
 gem 'quiet_assets', '>= 1.0.1', :group => :development
 gem 'better_errors', '>= 0.3.2', :group => :development
 gem 'binding_of_caller', '>= 0.6.8', :group => :development
