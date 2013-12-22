@@ -32,7 +32,7 @@
       failMsg: '<strong>Can\'t connect</strong> to server'
     }).done(function (data) {
       feedView.removeClass('in').addClass('fade');
-      Shreds.loadModel(context, data);
+      Shreds.model.import(context, data);
       setTimeout(function () { Shreds.syncView(context); }, 450);
       document.title = '[shreds] - ' + (data.title || 'Feeds');
       if ($window.scrollTop() > 0) {

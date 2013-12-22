@@ -40,7 +40,7 @@
     if (data.error) {
       Shreds.notification.error(data.error);
     } else {
-      Shreds.loadModel(name, data.data);
+      Shreds.model.import(name, data.data);
       Shreds.syncView(name);
       Shreds.notification.info(data.info);
     }
