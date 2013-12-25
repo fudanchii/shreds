@@ -4,6 +4,7 @@ syntax: regexp
 ^config/newrelic.yml
 ^tmp/
 ^public/assets/
+^vendor/assets/bower_components/.+
 ^.rvmrc
 ^.ruby-version
 ^.ruby-gemset
