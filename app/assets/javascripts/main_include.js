@@ -15,7 +15,8 @@
 //= require spin.js/spin
 //= require ladda/js/ladda
 
-//= require lennon
+//= require history.js/scripts/bundled-uncompressed/html4+html5/jquery.history
+//= require router
 
 //= require handlebars.runtime
 //= require_tree ./templates
