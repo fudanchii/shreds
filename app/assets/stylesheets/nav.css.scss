@@ -1,6 +1,6 @@
 // http://stackoverflow.com/questions/9350818
 .sidebar-nav-fixed {
-    padding: 9px;
+    padding: 9px 9px 9px 0px;
     position:fixed;
     z-index: 9000;
     width: 386px;
@@ -16,18 +16,18 @@
     position: absolute;
     bottom: 48px;
     top: 84px;
-    left: 9px;
-    right: 1px;
+    left: 0px;
+    right: 0px;
     overflow: auto;
 }
 
 .nav {
-    width: 357px;
+    width: 367px;
 }
 
 .favicon {
     margin-top: 0px;
-    margin-right: 4px;
+    margin-right: 8px;
     height: 16px;
     width: 16px;
 }
@@ -36,10 +36,14 @@
     height: 64px;
     padding-top: 8px;
     padding-bottom: 8px;
+    padding-left: 9px;
 }
 
 .nav-list {
+    margin-left: 0px;
     padding-left: 0px;
+    margin-right: 0px;
+    padding-right: 0px;
 }
 
 .nav-list > li:hover, li.nav-item > a:hover {
@@ -53,6 +57,7 @@
 .nav-header {
     margin-top: 8px;
     font-size: 16px;
+    padding-left: 9px;
 }
 
 .nav-buttons {
@@ -81,6 +86,7 @@
 
 #subscribe_form {
     margin-right: 18px;
+    margin-left: 9px;
     padding-bottom: 9px;
     position: absolute;
     background-color: #f8f8f8;
