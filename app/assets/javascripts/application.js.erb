@@ -8,11 +8,18 @@
 // the compiled file.
 
 <%
+
+# Use local copy of jquery for development.
+# see also: /app/views/layouts/application.html.erb
 if Rails.env.development?
   require_asset("jquery/jquery")
 end
 
+# Our dependencies and load priority sorted in this file.
 require_asset("main_include")
+
 %>
 
+/* Initialize application after all components loaded. *
+ * see also: /app/assets/javascripts/shreds.js         */
 $(window.Shreds.init.bind(window.Shreds));

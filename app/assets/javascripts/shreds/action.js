@@ -1,3 +1,10 @@
+/*
+ * Action component.
+ * At init, this component bind all event declared at data-on-* attribute
+ * at html nodes.
+ *
+ */
+
 (function (Shreds) { 'use strict';
   var name = 'action';
 
