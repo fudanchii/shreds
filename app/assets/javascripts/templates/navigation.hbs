@@ -5,16 +5,16 @@
   </li>
   <ul class="nav-list feed-items" style="list-style-type:none;">
     {{#each ./feeds}}
-      <li class="nav-item">
+    <li class="nav-item{{./active}}" data-on-mousedown="navigated" data-feed-id="{{./id}}">
         <div class="favicon pull-left">
           <img src="{{./favicon}}" width="16" height="16"/>
         </div>
         <p class="feed-title ellipsis">
-          <a alt="{{./title}}" href="{{./path}}" data-async="{{./pathJson}}">{{./title}}</a>
+          <a alt="{{./title}}" href="{{./path}}">{{./title}}</a>
         </p>
         <p class="latest-news text-muted ellipsis"><abbr class="timeago" title="{{./latestEntryPubDate}}">{{./latestEntryPubDate}}</abbr> - {{{./latestEntryTitle}}}</p>
         {{#if ./unreadCount }}
-          <a href="javascript:void(0)" data-id="{{./id}}" data-on-click="markAsRead">
+          <a href="javascript:void(0)" data-id="{{./id}}" data-on-click="markAsRead" data-on-mousedown="doNotPropagate">
             <span class="pull-right unread-num label">{{./unreadCount}}</span>
           </a>
         {{/if}}

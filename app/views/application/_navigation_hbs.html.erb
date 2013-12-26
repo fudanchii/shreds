@@ -2,10 +2,10 @@
   <%= render 'subscribe' %>
 
 <ul class="nav nav-list" id="latest_entries">
-    <li class="nav-header">
+    <li class="nav-header" data-on-mousedown="toTheFront">
         <span>
             <span class="glyphicon glyphicon-th-list"></span>
-            <a href="/" data-async="<%= url_for(:controller => 'feeds', :action => 'index', :format => :json)%>"><strong>Latest Entries</strong></a>
+            <a href="/"><strong>Latest Entries</strong></a>
         </span>
     </li>
   </ul>

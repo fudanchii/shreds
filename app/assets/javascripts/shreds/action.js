@@ -2,12 +2,14 @@
   var name = 'action';
 
   var actOn= {
-    click: act('onClick'),
-    mouseover: act('onMouseover'),
-    mousedown: act('onMousedown'),
-    mouseup: act('onMouseup'),
-    keyup: act('onKeyup'),
-    keydown: act('onKeydown')
+    click:      act('onClick'),
+    mouseenter: act('onMouseenter'),
+    mouseleave: act('onMouseleave'),
+    mouseover:  act('onMouseover'),
+    mousedown:  act('onMousedown'),
+    mouseup:    act('onMouseup'),
+    keyup:      act('onKeyup'),
+    keydown:    act('onKeydown')
   };
 
   var amOut = true;
@@ -17,6 +19,8 @@
       $subscribeForm =  $('#subscribe_form'),
       $feedUrl =        $('#feed_url'),
       $categoryName =   $('#category_name');
+
+  var prevId  = null;
 
   var spinner = null;
 
@@ -34,6 +38,23 @@
   Shreds[name] = {
     init: function () {
       for (var k in actOn) { $doc.on(k, '[data-on-' + k + ']', actOn[k]); };
+    },
+
+    doNotPropagate: function (ev) {
+      ev.stopPropagation();
+    },
+
+    navigated: function (ev) {
+      var model = null;
+      Shreds.navigation.deactivate(prevId);
+      prevId = this.data('feedId');
+      Shreds.navigation.activate(prevId);
+      this.find('.feed-title > a').trigger('click');
+    },
+
+    toTheFront: function (ev) {
+      Shreds.navigation.deactivate(prevId);
+      this.find('a').trigger('click');
     },
 
     markAsRead: function (ev) {

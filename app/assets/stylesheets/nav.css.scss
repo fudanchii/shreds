@@ -19,6 +19,9 @@
     left: 0px;
     right: 0px;
     overflow: auto;
+    border-width: 1px 0 1px 0;
+    border-color: #e5e5e5;
+    border-style: solid;
 }
 
 .nav {
@@ -48,6 +51,13 @@
 
 .nav-list > li:hover, li.nav-item > a:hover {
     background-color: #eaeaea;
+}
+
+.nav-item.active {
+    background-color: #eaeaea;
+    -webkit-box-shadow: inset 0px 0px 7px rgba(50, 50, 50, 0.20);
+    -moz-box-shadow:    inset 0px 0px 7px rgba(50, 50, 50, 0.20);
+    box-shadow:         inset 0px 0px 7px rgba(50, 50, 50, 0.20);
 }
 
 .nav-item > span {
