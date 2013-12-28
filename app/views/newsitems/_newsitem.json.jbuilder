@@ -1,6 +1,5 @@
 json.id         newsitem.id
 json.title      newsitem.title
-json.content    newsitem.content || newsitem.summary
 json.summary    newsitem.summary
 json.author     newsitem.author
 json.url        newsitem.permalink
