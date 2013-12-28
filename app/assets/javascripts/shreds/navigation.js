@@ -49,6 +49,7 @@
           var model = Shreds.model.find('navigation/categories/feeds', $(this).data('feedId'));
           model.active = false;
         }).removeClass('active');
+        $('.nav-header.active').removeClass('active');
       }
     }
   };

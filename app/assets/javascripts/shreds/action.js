@@ -6,8 +6,16 @@
  */
 
 (function (Shreds) { 'use strict';
+
+  /** @const */
   var name = 'action';
 
+  /**
+   * List of our acknowledged events.
+   * Since we have to create handler for each events,
+   * here we call `act` function to create a closure just for that.
+   * @const
+   */
   var actOn= {
     click:      act('onClick'),
     mouseenter: act('onMouseenter'),
@@ -19,18 +27,37 @@
     keydown:    act('onKeydown')
   };
 
+  /**
+   * Check if we're out from subscription form region
+   * @type {boolean}
+   */
   var amOut = true;
 
+  /**
+   * jQuery objects used throughout actions
+   */
   var $doc = $(document),
       $subscribeInput = $('#subscribeInput'),
       $subscribeForm =  $('#subscribe_form'),
       $feedUrl =        $('#feed_url'),
       $categoryName =   $('#category_name');
 
+  /**
+   * Previously selected feed
+   */
   var prevId  = null;
 
-  var spinner = null;
-
+  /**
+   * Since we want to handling events from all nodes in
+   * a single call, we need some kind of generic function
+   * which depends on its event type.
+   * Here is how we create that function.
+   *
+   * Note that unlike native event handler, we bind the actual
+   * handler to jQueryfied DOM-node instead of native DOM.
+   *
+   * @return {Function}
+   */
   function act(attr) {
     return function (ev) {
       var $this = $(this);
@@ -42,11 +69,21 @@
   }
 
   Shreds.components.push(name);
+
   Shreds[name] = {
+
+    /**
+     * We want to start handling events just when our main app initializing,
+     * here we bind those events delegated via $(document)
+     */
     init: function () {
       for (var k in actOn) { $doc.on(k, '[data-on-' + k + ']', actOn[k]); };
     },
 
+    /**
+     * Sometimes, rather than do something,
+     * we just want to not propagating some event
+     */
     doNotPropagate: function (ev) {
       ev.stopPropagation();
     },
@@ -61,6 +98,8 @@
 
     toTheFront: function (ev) {
       Shreds.navigation.deactivate(prevId);
+      prevId = null;
+      this.addClass('active');
       this.find('a').trigger('click');
     },
 

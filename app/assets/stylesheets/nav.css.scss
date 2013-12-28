@@ -60,6 +60,10 @@
     box-shadow:         inset 0px 0px 7px rgba(50, 50, 50, 0.20);
 }
 
+.nav-header.active {
+    background-color: #eaeaea;
+}
+
 .nav-item > span {
     margin-right: 15px;
 }
