@@ -1,6 +1,6 @@
 (function (Shreds, Lennon) {
   var name = 'routes';
-  Shreds.components.push(name)
+  Shreds.components.push(name);
   Shreds[name] = {
     init: function () {
       var r = new Router({ debug: false, anchor: Shreds.$ });
