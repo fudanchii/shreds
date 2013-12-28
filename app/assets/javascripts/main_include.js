@@ -19,6 +19,7 @@
 //= require router
 
 //= require handlebars.runtime
+//= require handlebars_helpers/shreds
 //= require_tree ./templates
 
 //= require shreds

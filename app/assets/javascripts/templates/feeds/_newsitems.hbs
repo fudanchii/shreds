@@ -5,11 +5,7 @@
       <a href="{{./path}}">{{{./title}}}</a>
       <a href="{{./url}}" target="_blank"><span class="glyphicon glyphicon-new-window glyph-sm" data-toggle="tooltip" data-title="Go to {{./url}}"></span></a>
       <a href="javascript:void(0)" data-on-click="toggleRead" data-id="{{./id}}" data-feed-id="{{../id}}">
-      {{#if ./readIcon}}
-        <span class="glyphicon glyphicon-{{./readIcon}} glyph-sm" data-toggle="tooltip" data-title="Set {{./read}}"></span>
-      {{else}}
-        <span class="glyphicon glyphicon-ok-circle glyph-sm" data-toggle="tooltip" data-title="Set read"></span>
-      {{/if}}
+      <span class="glyphicon {{unreadIcon ./unread}} glyph-sm" data-toggle="tooltip" data-title="Set {{unreadLabel ./unread}}"></span>
       </a>
       </h3>
     </div>
@@ -17,7 +13,7 @@
       <div class="text-muted">
         <em>by {{./author}}</em>
         <div class="pull-right">
-          <abbr class="timeago" title="{{./published_iso8601}}">{{./published_str}}</abbr>
+          <abbr class="timeago" title="{{./published}}">{{readableDate ./published}}</abbr>
         </div>
       </div>
       {{{./summary}}}

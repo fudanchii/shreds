@@ -1,15 +1,15 @@
 <div class="panel panel-default widget widget-transparent feed">
   <div class="panel-heading">
     <h2>
-      <a href="{{url}}" target="_blank">{{title}}</a>
-      <a href="javascript:void(0)" data-on-click="toggleRead" data-id="{{id}}" data-feed-id="{{feed_id}}"><span class="glyphicon glyphicon-{{readIcon}} glyph-sm" data-toggle="tooltip" data-title="Set {{read}}"></span></a>
+      <a href="{{url}}" target="_blank">{{{title}}}</a>
+      <a href="javascript:void(0)" data-on-click="toggleRead" data-id="{{id}}" data-feed-id="{{feed_id}}"><span class="glyphicon {{unreadIcon unread}} glyph-sm" data-toggle="tooltip" data-title="Set {{unreadLabel unread}}"></span></a>
     </h2>
   </div>
   <div class="feed-content panel-body">
     <div class="text-muted"><em>by {{author}}</em>
       <div class="pull-right">
-        <abbr class="timeago" title="{{published_iso8601}}">
-          <em>{{published_str}}</em>
+        <abbr class="timeago" title="{{published}}">
+          <em>{{readableDate published}}</em>
         </abbr>
       </div>
     </div>
