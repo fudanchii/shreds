@@ -23,5 +23,5 @@
 //= require_tree ./templates
 
 //= require shreds
-//= require_tree ./shreds
+//= require_tree ./shreds_components
 //
