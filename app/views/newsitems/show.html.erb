@@ -14,3 +14,7 @@
 <% content_for :title do %>
   <%= title(@newsitem.title) %>
 <% end %>
+
+<% content_for :meta do %>
+<meta name="pre-rendered" value="true" />
+<% end %>
