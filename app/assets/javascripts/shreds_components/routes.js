@@ -1,4 +1,4 @@
-(function (Shreds, Lennon) {
+(function (Shreds, Router) {
   var name = 'routes';
   Shreds.components.push(name);
   Shreds[name] = {
@@ -14,4 +14,4 @@
       }
     }
   };
-})(window.Shreds, window.Lennon);
+})(window.Shreds, window.Router);
