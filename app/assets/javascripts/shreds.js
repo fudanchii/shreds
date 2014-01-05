@@ -7,7 +7,7 @@
  * Components registered by pushing its name to `Shreds.components' list.
  * As an example shreds component may be written roughly like this:
  *
- * var name = test;
+ * var name = 'test';
  * Shreds.components.push(name);
  * Shreds[name] = {
  *   init: function () {
@@ -49,10 +49,11 @@ window.Shreds = {
   // replacing the whole dom's content.
   render: function (dom, template, data/*, options*/) {
     var options = arguments[3] || {};
+    var content = window.HandlebarsTemplates[template](data);
     if (options.append) {
-      dom.append(window.HandlebarsTemplates[template](data));
+      dom.append(content);
     } else {
-      dom.html(window.HandlebarsTemplates[template](data));
+      dom.html(content);
     }
     // FIXME: These 2 lines don't fit here.
     Shreds.utils.tooltip();
