@@ -43,28 +43,4 @@ class OPMLWorker
   ensure
     File.unlink(input_file)
   end
-
-  def self.save_file(upfile)
-    name = upfile.original_filename.gsub(/[^\w\.\-]/, '_')
-    input_file = "tmp/#{name}"
-    if ['.xml', '.opml', '.txt'].include?(File.extname(name).downcase)
-      wrote, buff = 0, ''
-      File.open(input_file, 'wb') do |f|
-        while upfile.read(32768, buff)
-          f.write(buff)
-          wrote += buff.length
-        end
-      end
-      if wrote == 0
-        File.unlink(input_fie)
-        fail OPMLWorkerError, '<strong>Empty file</strong> uploaded.'
-      end
-    else
-      fail OPMLWorkerError, '<strong>Can only</strong> accept xml file.'
-    end
-    perform_async(input_file)
-  end
-end
-
-class OPMLWorkerError < IOError
 end

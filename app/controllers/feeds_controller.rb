@@ -29,9 +29,9 @@ class FeedsController < ApplicationController
   end
 
   def create_from_opml
-    jid = OPMLWorker.save_file(params[:OPMLfile])
+    jid = OpmlUploadContext.new(params[:OPMLfile]).execute
     render :json => { watch: "opml-#{jid}" }
-  rescue OPMLWorkerError => ex
+  rescue UploadError => ex
     render :json => { error: ex.message.html_safe }
   end
 
