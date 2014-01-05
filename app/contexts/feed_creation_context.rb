@@ -4,7 +4,7 @@ class FeedCreationContext < BaseContext
   at_execution :create_feed
 
   def initialize(category, url, feed_url)
-    self.url, self.feed_url = [url, feed_url]
+    self.url, self.feed_url = url, feed_url
     self.category = Category.where(:name => category).first_or_create
   end
 
