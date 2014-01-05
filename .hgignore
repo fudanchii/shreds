@@ -3,7 +3,7 @@ syntax: regexp
 ^config/application.yml
 ^config/newrelic.yml
 ^tmp/
-^public/assets/
+^public/assets/manifest-[\w]+\.json$
 ^vendor/assets/bower_components/(?!\.gitkeep)
 ^.rvmrc
 ^.ruby-version
