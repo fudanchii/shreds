@@ -67,11 +67,12 @@ ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
 CREATE TABLE feeds (
     id integer NOT NULL,
     url text NOT NULL,
-    meta text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
     category_id integer,
-    feed_url text
+    feed_url text,
+    title text DEFAULT '( Untitled )'::text NOT NULL,
+    etag character varying(255)
 );
 
 
@@ -314,3 +315,9 @@ INSERT INTO schema_migrations (version) VALUES ('20131019025806');
 INSERT INTO schema_migrations (version) VALUES ('20131023135940');
 
 INSERT INTO schema_migrations (version) VALUES ('20131105101218');
+
+INSERT INTO schema_migrations (version) VALUES ('20131221193702');
+
+INSERT INTO schema_migrations (version) VALUES ('20131221194141');
+
+INSERT INTO schema_migrations (version) VALUES ('20131221195859');
