@@ -26,6 +26,12 @@
       },
       'shreds:newsitem:render:show': function (ev, data) {
         fetch('newsitem', '/i/feeds/' + data.feed_id + '/' + data.id + '.json');
+      },
+      'shreds:markAsRead': function (ev, data) {
+        $('a[data-feed-id='+ data.feed.id +'] > span.glyphicon-ok-circle')
+          .removeClass('glyphicon-ok-circle')
+          .addClass('glyphicon-ok-sign')
+          .data('title', 'Set unread');
       }
     }
   };
