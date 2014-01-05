@@ -23,4 +23,6 @@ Shreds::Application.routes.draw do
     get '/watch' => 'events#watch'
     post '/upload_opml' => 'feeds#create_from_opml'
   end
+
+  get 'feed_subscriptions' => 'categories#feed_subscriptions', constraints: { format: 'xml' }
 end
