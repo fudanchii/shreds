@@ -36,11 +36,8 @@
   /**
    * jQuery objects used throughout actions
    */
-  var $doc = $(document),
-      $subscribeInput = $('#subscribeInput'),
-      $subscribeForm =  $('#subscribe_form'),
-      $feedUrl =        $('#feed_url'),
-      $categoryName =   $('#category_name');
+  var $subscribeInput = $('#subscribeInput'),
+      $subscribeForm =  $('#subscribe_form');
 
   /**
    * Previously selected feed
@@ -64,7 +61,7 @@
       var name = $this.data(attr);
       if (!name) { return; }
       if (name === 'init') { throw 'Can\'t call init from events.' }
-      return Shreds.action[name].call($this, ev);
+      Shreds.action[name].call($this, ev);
     };
   }
 
@@ -77,6 +74,7 @@
      * here we bind those events delegated via $(document)
      */
     init: function () {
+      var $doc = $(document);
       for (var k in actOn) { $doc.on(k, '[data-on-' + k + ']', actOn[k]); };
     },
 
@@ -124,6 +122,10 @@
     },
 
     subscribeTo: function (ev) {
+      var
+        $feedUrl =        $('#feed_url'),
+        $categoryName =   $('#category_name');
+
       if ($subscribeInput.is(':hidden')) {
         $subscribeInput.slideDown();
         $feedUrl.focus();
@@ -175,7 +177,7 @@
     },
 
     amOut: function (ev) {
-      if ($subscribeForm.has(ev.target).length === 0) { return amOut = true; }
+      if ($subscribeForm.has(ev.target).length === 0) { amOut = true; return; }
       amOut = false;
     }
   };
