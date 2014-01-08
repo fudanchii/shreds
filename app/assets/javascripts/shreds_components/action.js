@@ -152,7 +152,7 @@
         Shreds.syncView('navigation');
         this.find('.glyphicon').toggleClass('glyphicon-ok-circle').toggleClass('glyphicon-ok-sign');
         Shreds.notification.info(data.info);
-        Shreds.$.trigger('shreds:feeds:_storage:clear');
+        Shreds.$.trigger('feeds:_storage:clear');
       }.bind(this));
     },
 

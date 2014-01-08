@@ -15,19 +15,19 @@
 function doWatch(key) {
   if (key) { this.list.push(key); }
   if (this.list.length === 0) { return; }
-  return $.ajax('/i/watch.json', {
+  $.ajax('/i/watch.json', {
     data: { 'watchList': this.list.join() }
   }).done(function (data) {
-    Shreds.$.trigger('shreds:feeds:_storage:clear');
+    Shreds.$.trigger('feeds:_storage:clear');
     for (var key in data) {
       var action = key.split('-')[0];
-      Shreds.$.trigger('shreds:' + action, data[key]);
+      Shreds.$.trigger(name + ':' + action, data[key]);
     }
     this.list = this.list.filter(function (el) {
       return !data[el];
     });
   }.bind(this)).fail(function () {
-    if (key) { return this.list.shift(); }
+    if (key) { this.list.shift(); return; }
     setTimeout(doWatch.bind(this), 2000);
   }.bind(this));
 }

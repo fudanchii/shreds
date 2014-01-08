@@ -9,25 +9,25 @@
   Shreds[name] = {
     init: function () { },
     events: {
-      'shreds:feeds:_storage:clear': function (ev, data) {
+      'feeds:_storage:clear': function (ev, data) {
         for (var key in _storage) { delete _storage[key]; }
       },
-      'shreds:feeds:render:index': function (ev, data) {
+      'feeds:render:index': function (ev, data) {
         fetch('feeds/index', '/i/feeds.json');
       },
-      'shreds:feeds:render:page': function (ev, data) {
+      'feeds:render:page': function (ev, data) {
         fetch('feeds/index', '/i/feeds/page/' + data.page + '.json');
       },
-      'shreds:feed:render:show': function (ev, data) {
+      'feed:render:show': function (ev, data) {
         fetch('feeds/show', '/i/feeds/' + data.id + '.json');
       },
-      'shreds:feed:render:page': function (ev, data) {
+      'feed:render:page': function (ev, data) {
         fetch('feeds/show', '/i/feeds/' + data.id + '/page/' + data.page + '.json');
       },
-      'shreds:newsitem:render:show': function (ev, data) {
+      'newsitem:render:show': function (ev, data) {
         fetch('newsitem', '/i/feeds/' + data.feed_id + '/' + data.id + '.json');
       },
-      'shreds:markAsRead': function (ev, data) {
+      'watch:markAsRead': function (ev, data) {
         $('a[data-feed-id='+ data.feed.id +'] > span.glyphicon-ok-circle')
           .removeClass('glyphicon-ok-circle')
           .addClass('glyphicon-ok-sign')
@@ -39,12 +39,12 @@
   function fetch(context, url) {
     feedView.attr('data-template', context);
     if (!_storage[url]) {
-      return Shreds.ajax.get(url, {
+      Shreds.ajax.get(url, {
         failMsg: '<strong>Can\'t connect</strong> to server'
       }).done(function (data) {
         _storage[url] = data;
         render(context, data);
-      });
+      }); return;
     }
     render(context, _storage[url]);
   }

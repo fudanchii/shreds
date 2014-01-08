@@ -4,11 +4,11 @@
   Shreds[name] = {
     init: function () {
       var r = new Router({ debug: false, anchor: Shreds.$ });
-      r.define('/',               'shreds:feeds:render:index');
-      r.define('/page/:page',     'shreds:feeds:render:page');
-      r.define('/:id',            'shreds:feed:render:show');
-      r.define('/:id/page/:page', 'shreds:feed:render:page');
-      r.define('/:feed_id/:id',   'shreds:newsitem:render:show');
+      r.define('/',               'feeds:render:index');
+      r.define('/page/:page',     'feeds:render:page');
+      r.define('/:id',            'feed:render:show');
+      r.define('/:id/page/:page', 'feed:render:page');
+      r.define('/:feed_id/:id',   'newsitem:render:show');
       if (!$('meta[name=pre-rendered]').attr('value')) {
         r.dispatch();
       }

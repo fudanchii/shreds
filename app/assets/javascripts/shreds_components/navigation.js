@@ -3,7 +3,7 @@
   Shreds.components.push(name);
   Shreds[name] = {
     events: {
-      'shreds:markAsRead': function (ev, data) {
+      'watch:markAsRead': function (ev, data) {
         if (data.error) {
           Shreds.notification.error(data.error);
         } else {
@@ -13,21 +13,21 @@
           Shreds.syncView(name);
         }
       },
-      'shreds:create': function (ev, data) {
+      'watch:create': function (ev, data) {
         reloadNavigation(data);
         Shreds.subscription.stopSpinner();
       },
-      'shreds:destroy': function (ev, data) {
+      'watch:destroy': function (ev, data) {
         reloadNavigation(data);
       },
-      'shreds:rmCategory': function (ev, data) {
+      'watch:rmCategory': function (ev, data) {
         reloadNavigation(data);
       },
-      'shreds:opml': function (ev, data) {
+      'watch:opml': function (ev, data) {
         reloadNavigation(data);
         $('#fileupload').trigger('spinnerstop');
       },
-      'shreds:updateFeed': function (ev, data) {
+      'watch:updateFeed': function (ev, data) {
         reloadNavigation(data);
       }
     },
