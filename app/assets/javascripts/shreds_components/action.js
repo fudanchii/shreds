@@ -40,14 +40,14 @@
       $subscribeForm =  $('#subscribe_form');
 
   /**
-   * Previously selected feed
+   * Previously selected feed (navigation sidebar)
    */
   var prevId  = null;
 
   /**
    * Since we want to handling events from all nodes in
    * a single call, we need some kind of generic function
-   * which depends on its event type.
+   * which may route the function called depends on its event type.
    * Here is how we create that function.
    *
    * Note that unlike native event handler, we bind the actual
@@ -87,7 +87,6 @@
     },
 
     navigated: function (ev) {
-      var model = null;
       Shreds.navigation.deactivate(prevId);
       prevId = this.data('feedId');
       Shreds.navigation.activate(prevId);
@@ -103,8 +102,9 @@
 
     markAsRead: function (ev) {
       var id = this.data('id');
-      Shreds.render(this.siblings('.favicon'), 'spinner',
-                    { spinner: Shreds.assets.path('spinner16x16') });
+      Shreds.render(this.siblings('.favicon'), 'spinner', {
+        spinner: Shreds.assets.path('spinner16x16')
+      });
       Shreds.ajax.patch('/i/feeds/' + id + '/mark_as_read.json', {
         doWatch: true,
         failMsg: '<strong>Can\'t</strong> mark this feed as read.'
@@ -126,6 +126,7 @@
         $feedUrl =        $('#feed_url'),
         $categoryName =   $('#category_name');
 
+      ev.preventDefault();
       if ($subscribeInput.is(':hidden')) {
         $subscribeInput.slideDown();
         $feedUrl.focus();
@@ -135,12 +136,13 @@
           doWatch: true,
           opts: { data: $subscribeForm.find('form').serialize() },
           failMsg: '<strong>Can\'t</strong> add feed at the moment.'
-        }).fail(function () { Shreds.subscription.stopSpinner(); });
+        }).fail(function () {
+          Shreds.subscription.stopSpinner();
+        });
         $feedUrl.val('');
         $categoryName.val('');
         $subscribeInput.slideUp();
       }
-      ev.preventDefault();
     },
 
     toggleRead: function (ev) {

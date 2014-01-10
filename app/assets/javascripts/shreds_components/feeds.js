@@ -51,7 +51,7 @@
 
   function render(context, data) {
     feedView.removeClass('in').addClass('fade');
-    Shreds.model.import(context, data);
+    Shreds.model.import(context, data, { context: 'feeds' });
     setTimeout(function () { Shreds.syncView(context); }, 450);
     document.title = '[shreds] - ' + (data.title || 'Feeds');
     if ($window.scrollTop() > 0) {

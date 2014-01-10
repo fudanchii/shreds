@@ -1,14 +1,16 @@
-(function (Shreds) {
+(function (Shreds) { 'mode strict';
   var name = 'model';
   var index_prefix = '$idx:-';
   var Models = {};
+  var Context = {};
 
   Shreds.components.push(name);
 
   Shreds[name] = {
     init: function () { },
 
-    import: function (modelName, data) {
+    import: function (modelName, data, options) {
+      cleanUpContext(modelName, options);
       if (data instanceof Array) {
         var indexed = index_prefix + modelName;
         Models[indexed] || (Models[indexed] = {});
@@ -37,4 +39,21 @@
       return Models[name];
     }
   };
+
+  function cleanUpContext(modelName, options) {
+    if (!options || !options.context) { return; }
+    var ctx = Context[options.context];
+    if (ctx) {
+      for (var key in Models) {
+        if ((new RegExp('^' + ctx + '/')).test(key)) {
+          delete(Models[key]);
+        } else if ((new RegExp('^\\$idx:\\-' + ctx + '/')).test(key)) {
+          delete(Models[key]);
+        }
+      }
+      delete(Models[ctx]);
+      delete(Models[index_prefix + ctx]);
+    }
+    Context[options.context] = modelName;
+  }
 })(window.Shreds);
