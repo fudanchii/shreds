@@ -45,9 +45,9 @@
     var ctx = Context[options.context];
     if (ctx) {
       for (var key in Models) {
-        if ((new RegExp('^' + ctx + '/')).test(key)) {
+        if (key.slice(0, ctx.length + 1) == (ctx + '/')) {
           delete(Models[key]);
-        } else if ((new RegExp('^\\$idx:\\-' + ctx + '/')).test(key)) {
+        } else if (key.slice(0, ctx.length + index_prefix.length + 1) == (index_prefix + ctx + '/')) {
           delete(Models[key]);
         }
       }
