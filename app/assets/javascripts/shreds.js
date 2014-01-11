@@ -50,14 +50,13 @@ window.Shreds = {
   render: function (dom, template, data/*, options*/) {
     var options = arguments[3] || {};
     var content = window.HandlebarsTemplates[template](data);
+    this.$.trigger('shreds:prerender');
     if (options.append) {
       dom.append(content);
     } else {
       dom.html(content);
     }
-    // FIXME: These 2 lines don't fit here.
-    Shreds.utils.tooltip();
-    Shreds.utils.timeago();
+    this.$.trigger('shreds:postrender');
   },
 
   // Synchronize template and its data,
