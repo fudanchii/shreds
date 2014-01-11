@@ -12,7 +12,7 @@
         Shreds.utils.timeago('dispose');
       },
       'shreds:postrender': function (ev, data) {
-        Shreds.utils.tooltip();
+        Shreds.utils.tooltip({ container: 'body' });
         Shreds.utils.timeago();
       }
     },
