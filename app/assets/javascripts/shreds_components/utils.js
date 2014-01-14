@@ -10,6 +10,11 @@
       'shreds:prerender': function (ev, data) {
         Shreds.utils.tooltip('destroy');
         Shreds.utils.timeago('dispose');
+        /**
+         * In some rare cases, when `Shreds.render' kicks-in
+         * while tooltip is still active, bootstrap wont managed
+         * to remove that tooltip. Do it manually here. */
+        $('body > .tooltip').remove();
       },
       'shreds:postrender': function (ev, data) {
         Shreds.utils.tooltip({ container: 'body' });

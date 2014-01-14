@@ -1,8 +1,7 @@
 (function (Shreds) { 'use strict';
   var name = 'feeds';
-  var feedView = $('.span-fixed-sidebar');
-  var container = $('body,html');
-  var $window = $(window);
+  var $feedView = $('.span-fixed-sidebar');
+  var $container = $('body,html');
   var _storage = {};
 
   Shreds.components.push(name);
@@ -37,7 +36,7 @@
   };
 
   function fetch(context, url) {
-    feedView.attr('data-template', context);
+    $feedView.attr('data-template', context);
     if (!_storage[url]) {
       Shreds.ajax.get(url, {
         failMsg: '<strong>Can\'t connect</strong> to server'
@@ -50,13 +49,14 @@
   }
 
   function render(context, data) {
-    feedView.removeClass('in').addClass('fade');
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    $feedView.removeClass('in').addClass('fade');
     Shreds.model.import(context, data, { context: 'feeds' });
     setTimeout(function () { Shreds.syncView(context); }, 450);
     document.title = '[shreds] - ' + (data.title || 'Feeds');
-    if ($window.scrollTop() > 0) {
-      container.stop(true, true).animate({scrollTop: 0}, 850);
+    if (scrollTop > 0) {
+      $container.stop(true, true).animate({scrollTop: 0}, 850);
     }
-    setTimeout(function () { feedView.addClass('in'); }, 450);
+    setTimeout(function () { $feedView.addClass('in'); }, 450);
   }
 })(window.Shreds);
