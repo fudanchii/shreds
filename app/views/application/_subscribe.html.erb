@@ -6,12 +6,12 @@
     <% end %>
   <% end %>
   <div id="subscribeInput" style="display:none;">
-  <%= f.input_field :url, label: false, class: "form-control", placeholder: "Paste RSS link here" %>
+  <%= f.input_field :url, class: "form-control", placeholder: "Paste RSS link here" %>
   <%= simple_fields_for @category do |c| %>
-    <%= c.input_field :name, label: false, class: "form-control", placeholder: "Category (optional)" %>
+    <%= c.input_field :name, class: "form-control", placeholder: "Category (optional)" %>
   <% end %>
 </div>
-<img class="pull-left main-logo" src="<%= image_path("shreds.png")%>" height="38"></img>
+<img class="pull-left main-logo" src="<%= image_path("shreds.png")%>" height="38" alt="our logo." />
   <div class="btn-group pull-right">
   <%= button_tag(type: 'submit', class: "btn btn-primary ladda-button", id: "btnSubmitFeed", 'data-style' => "zoom-out", 'data-on-click' => "subscribeTo") do %>
      <span class="ladda-label">Subscribe</span>
