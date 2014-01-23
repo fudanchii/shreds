@@ -36,10 +36,19 @@ window.Shreds = {
   // This function will iterate the components list and call init function
   // from each component. `init' will also bind component's event to `Shreds.$'
   init: function () {
-    this.components.forEach(function (el, idx, arr) {
-      this[el].init.call(this[el]);
-      for (var ev in this[el].events) {
-        this.$.on(ev, this[el].events[ev].bind(this[el]));
+    // Since components may trigger shreds events at init,
+    // we should setup them first.
+    this.initEvents();
+
+    this.components.forEach(function (comp, idx, arr) {
+      this[comp].init.call(this[comp]);
+    }.bind(this));
+  },
+
+  initEvents: function () {
+    this.components.forEach(function (comp, idx, arr) {
+      for (var ev in this[comp].events) {
+        this.$.on(ev, this[comp].events[ev].bind(this[comp]));
       }
     }.bind(this));
   },
