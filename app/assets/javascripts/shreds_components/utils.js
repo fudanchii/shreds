@@ -1,4 +1,4 @@
-(function (Shreds) { 'mode strict';
+(function (Shreds) { 'use strict';
   var name = 'utils';
   var stateId = 0;
   var nameSpace = "shreds-";

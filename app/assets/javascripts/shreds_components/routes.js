@@ -1,4 +1,4 @@
-(function (Shreds, Router) {
+(function (Shreds, Router) { 'use strict';
   var name = 'routes';
   Shreds.components.push(name);
   Shreds[name] = {

@@ -1,4 +1,4 @@
-(function (Shreds) { 'mode strict';
+(function (Shreds) { 'use strict';
   var name = 'model';
   var index_prefix = '$idx:-';
   var Models = {};

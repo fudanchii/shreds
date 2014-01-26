@@ -1,4 +1,4 @@
-(function (Shreds) {
+(function (Shreds) { 'use strict';
   var name = 'ajax';
   Shreds.components.push(name);
   Shreds[name] = {
