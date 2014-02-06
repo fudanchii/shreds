@@ -6,8 +6,11 @@ describe('router.js', function () {
 
   before(function () {
     router = new Router({ debug: false, anchor: Shreds.$ });
-    Shreds.$.on('action:foo1', function () {
-      msg = 'foo1';
+    Shreds.$.on('action:foo', function () {
+      msg = 'foo';
+    });
+    Shreds.$.on('action:hello', function (ev, data) {
+      msg = 'Hello, ' + data.name + '!';
     });
   });
 
@@ -29,13 +32,23 @@ describe('router.js', function () {
 
   it('can define routes', function () {
     (typeof router.define).should.equal('function');
-    router.define('/foo1', 'action:foo1');
+    router.define('/foo', 'action:foo');
     router.routes.length.should.equal(1);
   });
 
   it('can navigate to routes', function () {
-    router.navigate('/foo1');
-    msg.should.equal('foo1');
+    router.navigate('/foo');
+    msg.should.equal('foo');
+  });
+
+  it('can define parameterized routes', function () {
+    router.define('/hello/:name', 'action:hello');
+    router.routes.length.should.equal(2);
+  });
+
+  it('can navigate through parameterized routes', function () {
+    router.navigate('/hello/world');
+    msg.should.equal('Hello, world!');
   });
 
 });
