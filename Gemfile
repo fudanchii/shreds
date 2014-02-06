@@ -54,6 +54,8 @@ gem 'feedbag', :github => 'fudanchii/feedbag', :branch => 'dev'
 # Test-related gems
 gem 'minitest-spec-rails', :group => :test
 gem 'turn', :group => :test
+gem 'konacha', :group => :test
+gem 'poltergeist', :group => :test
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
@@ -62,20 +64,12 @@ gem 'oj'
 gem 'redis'
 gem 'hiredis'
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
-
-# # email address validation
-#gem 'valid_email'
-
 # Profiling
 gem 'newrelic_rpm'
 
 gem 'foreman', :require => false
 
+# rubinius related gems
 gem 'rubysl', '~> 2.0', :platforms => [:rbx]
 gem 'psych',  :platforms => [:rbx]
 gem 'racc', :platforms => [:rbx]
