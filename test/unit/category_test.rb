@@ -17,4 +17,9 @@ describe Category do
     (-> { @cat.safe_destroy }).must_be_silent
     @feed.category.name.must_equal described_class.default
   end
+
+  it 'should sanitize category name before create' do
+    @mycategory = Category.create(:name => ' mycategory   ')
+    @mycategory.name.must_equal 'mycategory'
+  end
 end

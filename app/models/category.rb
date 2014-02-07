@@ -5,6 +5,8 @@ class Category < ActiveRecord::Base
 
   before_create { self.name = name.downcase }
 
+  normalize_attributes :name
+
   def self.default
     'uncategorized'
   end

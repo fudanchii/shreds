@@ -8,6 +8,12 @@ GIT
       open_uri_redirections
 
 GIT
+  remote: git://github.com/mdeering/attribute_normalizer.git
+  revision: cf8af2476a065ccb9fdae76f34c08ca43cbf2c24
+  specs:
+    attribute_normalizer (1.2.0.b)
+
+GIT
   remote: git://github.com/plataformatec/simple_form.git
   revision: ea5ceb7dfa613f432efbfa04195c86599a16d973
   specs:
@@ -440,6 +446,7 @@ PLATFORMS
 
 DEPENDENCIES
   anjlab-bootstrap-rails
+  attribute_normalizer!
   bcrypt-ruby (~> 3.0.0)
   better_errors (>= 0.3.2)
   binding_of_caller (>= 0.6.8)
