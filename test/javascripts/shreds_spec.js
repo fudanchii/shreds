@@ -2,26 +2,26 @@
 
 describe('Shreds app', function () {
   it('is global object', function () {
-    (typeof Shreds).should.equal('object');
+    expect(Shreds).to.be.an('object');
   });
 
   it('has sandbox object', function () {
-    (Shreds.$ instanceof jQuery).should.equal(true);
+    expect(Shreds.$).to.be.an.instanceof(jQuery);
   });
 
   it('has components property', function () {
-    (Shreds.components instanceof Array).should.equal(true);
+    expect(Shreds.components).to.be.an.instanceof(Array);
   });
 
   it('has init function', function () {
-    (typeof Shreds.init).should.equal('function');
+    expect(Shreds).itself.to.respondTo('init');
   });
 
   it('can render', function () {
-    (typeof Shreds.render).should.equal('function');
+    expect(Shreds).itself.to.respondTo('render');
   });
 
   it('has syncView function', function () {
-    (typeof Shreds.syncView).should.equal('function');
+    expect(Shreds).itself.to.respondTo('syncView');
   });
 });

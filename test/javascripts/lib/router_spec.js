@@ -19,36 +19,36 @@ describe('router.js', function () {
   });
 
   it('is global object', function () {
-    (typeof Router).should.equal('function');
+    expect(Router).to.be.a('function');
   });
 
   it('may be instantiated', function () {
-    (typeof router).should.equal('object');
+    expect(router).to.be.an('object');
   });
 
   it('initially has no route', function () {
-    router.routes.length.should.equal(0);
+    expect(router.routes).to.have.length(0);
   });
 
   it('can define routes', function () {
-    (typeof router.define).should.equal('function');
+    expect(router.define).to.be.a('function');
     router.define('/foo', 'action:foo');
-    router.routes.length.should.equal(1);
+    expect(router.routes).to.have.length(1);
   });
 
   it('can navigate to routes', function () {
     router.navigate('/foo');
-    msg.should.equal('foo');
+    expect(msg).to.equal('foo');
   });
 
   it('can define parameterized routes', function () {
     router.define('/hello/:name', 'action:hello');
-    router.routes.length.should.equal(2);
+    expect(router.routes).to.have.length(2);
   });
 
   it('can navigate through parameterized routes', function () {
     router.navigate('/hello/world');
-    msg.should.equal('Hello, world!');
+    expect(msg).to.equal('Hello, world!');
   });
 
 });
