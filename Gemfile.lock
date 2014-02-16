@@ -15,7 +15,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: ea5ceb7dfa613f432efbfa04195c86599a16d973
+  revision: 32019827798eddbecc19676d69eb406a4f3902cc
   specs:
     simple_form (3.0.1)
       actionpack (>= 4.0.0, < 4.1)
@@ -52,7 +52,7 @@ GEM
       railties (>= 3.0)
       sass (>= 3.2)
     ansi (1.4.3)
-    arel (4.0.1)
+    arel (4.0.2)
     atomic (1.1.14)
     bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
@@ -86,7 +86,7 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3-x86-mingw32)
     execjs (2.0.2)
-    feedzirra (0.7.0)
+    feedzirra (0.7.1)
       curb (~> 0.8.1)
       loofah (~> 1.2.1)
       sax-machine (~> 0.2.1)
@@ -109,7 +109,7 @@ GEM
     hike (1.2.3)
     hiredis (0.4.5)
     i18n (0.6.9)
-    ice_cube (0.11.1)
+    ice_cube (0.11.3)
     jbuilder (2.0.2)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -138,7 +138,7 @@ GEM
       minitest (~> 4.7)
       rails (>= 3.0, < 4.1)
     multi_json (1.8.4)
-    newrelic_rpm (3.7.1.188)
+    newrelic_rpm (3.7.2.192)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     nokogiri (1.6.1-x86-mingw32)
@@ -153,7 +153,7 @@ GEM
       multi_json (~> 1.0)
       websocket-driver (>= 0.2.0)
     polyglot (0.3.3)
-    psych (2.0.2)
+    psych (2.0.4)
     puma (2.7.1)
       rack (>= 1.1, < 2.0)
     quiet_assets (1.0.2)
@@ -383,14 +383,14 @@ GEM
     rubysl-xmlrpc (2.0.0)
     rubysl-yaml (2.0.4)
     rubysl-zlib (2.0.1)
-    sass (3.2.13)
+    sass (3.2.14)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
     sax-machine (0.2.1)
       nokogiri (~> 1.6.0)
-    sidekiq (2.17.3)
+    sidekiq (2.17.5)
       celluloid (>= 0.15.2)
       connection_pool (>= 1.0.0)
       json
