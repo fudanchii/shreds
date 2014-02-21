@@ -4,6 +4,9 @@ gem 'rails', ' ~> 4.0.0'
 
 ### 1. Database and modelling related gems
 gem 'pg'
+
+gem 'sqlite3', :group => :test
+
 gem 'jbuilder'
 gem 'attribute_normalizer', :github => 'mdeering/attribute_normalizer'
 # gem 'paper_trail'
