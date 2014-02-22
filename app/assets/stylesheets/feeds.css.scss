@@ -2,27 +2,50 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+header > h2, header > h1 { display: inline-block; }
+header span { margin-left: 4px; }
+
 .feed-content {
     font-family: "ff-tisa-web-pro",Georgia,Cambria,"Times New Roman",Times,serif;
     font-weight: 400;
     font-size: 18px;
     line-height: 1.4;
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
 }
 
 .feed {
     width: auto;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
 }
 
 .widget-transparent {
     background-color: white;
 }
 
+@media screen and (min-width:1152px) {
 .span-fixed-sidebar {
     margin-top: 16px;
     margin-left: 418px;
     margin-right: 16px;
     position: absolute;
     overflow: hidden;
+}
+}
+
+@media screen and (max-width:1152px) {
+.span-fixed-sidebar {
+    margin-top: 112px;
+    margin-left: 32px;
+    margin-right: 16px;
+    position: absolute;
+    overflow: hidden;
+}
 }
 
 hr {
@@ -33,38 +56,29 @@ hr {
 #new_feed {
     margin-left: 0px;
     margin-right: 0px;
-}
 
-#new_feed input[type="text"], #new_feed textarea, #new_feed textarea:focus {
-    border: none;
-    border-bottom: 2px solid #9c9c9c;
-    background: none;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    margin-bottom: 10px;
-}
+    input[type="text"], textarea, textarea:focus {
+        border: none;
+        border-bottom: 2px solid #9c9c9c;
+        background: none;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+        margin-bottom: 10px;
+    }
 
-#new_feed textarea {
-    resize: none;
-    height: 54px;
+    textarea {
+        resize: none;
+        height: 54px;
+    }
 }
 
 #news_nav {
     padding: 16px;
 }
-
-.feed {
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-}
-
-header > h2, header > h1 { display: inline-block; }
-header span { margin-left: 4px; }
 
 .glyph-sm {
     font-size: 65%;
@@ -72,10 +86,5 @@ header span { margin-left: 4px; }
 
 a:hover {
     text-decoration: none;
-}
-
-.feed-content img {
-    max-width: 100%;
-    height: auto;
 }
 
