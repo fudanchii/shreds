@@ -7,6 +7,7 @@ script:
   - curl -o config/database.yml https://gist.githubusercontent.com/danopia/940155/raw/025d62a8d8102735fade34d52f66f95c3d46e0a6/database.yml
   - bower install --allow-root
   - bundle install
+  - bundle exec rake tmp:clear
   - bundle exec rake test
 
 env:
