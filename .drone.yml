@@ -1,6 +1,8 @@
 image: fudanchii/rails:0.9
+
 services:
   - redis
+
 script:
   - curl -o config/database.yml https://gist.githubusercontent.com/danopia/940155/raw/025d62a8d8102735fade34d52f66f95c3d46e0a6/database.yml
   - bower install --allow-root
@@ -9,3 +11,8 @@ script:
 
 env:
   - SECRET=thisisasecret
+
+deploy:
+  ssh:
+    target: {{deploy_host}} {{deploy_port}}
+    cmd: {{deploy_cmd}}
