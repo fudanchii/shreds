@@ -89,6 +89,8 @@
 
 .nav-container {
     display: none;
+    max-width: 512px;
+    min-width: 368px;
 }
 
 .breadcrumbs {

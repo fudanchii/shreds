@@ -1,0 +1,12 @@
+<span>
+    <a href="/"><span class="glyphicon glyphicon-th-list"></span></a>
+    {{#if category}}
+        <a href="/categories">{{category.name}}</a>
+    {{else}}
+        <a href="/categories">All Categories</a>
+    {{/if}}
+    {{#if feed}}
+        <i class="glyphicon glyphicon-chevron-right"></i>
+        <a href="{{feed.path}}">{{feed.title}}</a>
+    {{/if}}
+</span>

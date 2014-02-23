@@ -2,16 +2,18 @@
   <%= render 'subscribe' %>
 
 <ul class="nav nav-list" id="latest_entries">
-    <li class="nav-header" data-on-mousedown="toTheFront">
+    <li id="to_the_front" class="nav-header" data-on-mousedown="toTheFront">
         <span>
             <span class="glyphicon glyphicon-th-list"></span>
             <a href="/"><strong>Latest Entries</strong></a>
         </span>
     </li>
-  </ul>
+    <li class="nav-header breadcrumbs" data-template="breadcrumbs">
+    </li>
+</ul>
 <div class="nav-container" data-template="navigation">
 </div>
-  <%= render 'nav_buttons' %>
+<%= render 'nav_buttons' %>
 </div>
 
 <% content_for :embedded_javascript do %>

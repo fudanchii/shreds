@@ -8,11 +8,12 @@
         anchor: Shreds.$,
         on_dispatch: 'route:dispatched'
       });
-      r.define('/',               'feeds:render:index');
-      r.define('/page/:page',     'feeds:render:page');
-      r.define('/:id',            'feed:render:show');
-      r.define('/:id/page/:page', 'feed:render:page');
-      r.define('/:feed_id/:id',   'newsitem:render:show');
+      r.define('/',                    'feeds:render:index');
+      r.define('/categories',          'categories:render:index');
+      r.define('/page/:page',          'feeds:render:page');
+      r.define('/:feed_id',            'feed:render:show');
+      r.define('/:feed_id/page/:page', 'feed:render:page');
+      r.define('/:feed_id/:id',        'newsitem:render:show');
       if (!$('meta[name=pre-rendered]').attr('value')) {
         r.dispatch();
       }

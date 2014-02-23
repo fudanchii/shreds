@@ -18,13 +18,20 @@
         fetch('feeds/index', '/i/feeds/page/' + data.page + '.json');
       },
       'feed:render:show': function (ev, data) {
-        fetch('feeds/show', '/i/feeds/' + data.id + '.json');
+        fetch('feeds/show', '/i/feeds/' + data.feed_id + '.json');
       },
       'feed:render:page': function (ev, data) {
-        fetch('feeds/show', '/i/feeds/' + data.id + '/page/' + data.page + '.json');
+        fetch('feeds/show', '/i/feeds/' + data.feed_id + '/page/' + data.page + '.json');
       },
       'newsitem:render:show': function (ev, data) {
         fetch('newsitem', '/i/feeds/' + data.feed_id + '/' + data.id + '.json');
+      },
+      'categories:render:index': function (ev,data) {
+        var context = 'navigation';
+        var $container = $('<div></div>').addClass('nav-container')
+            .css('display', 'block');
+        Shreds.render($container, context, Shreds.model.get(context));
+        $feedView.html($container);
       },
       'watch:markAsRead': function (ev, data) {
         $('a[data-feed-id='+ data.feed.id +'] > span.glyphicon-ok-circle')
