@@ -82,7 +82,7 @@ GEM
     daemons (1.1.9)
     dalli (2.7.0)
     debug_inspector (0.0.2)
-    dotenv (0.9.0)
+    dotenv (0.10.0)
     erubis (2.7.0)
     eventmachine (1.0.3-x86-mingw32)
     execjs (2.0.2)
