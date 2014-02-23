@@ -1,4 +1,4 @@
-image: fudanchii/rails:0.9
+image: {{build_image}}
 
 services:
   - redis
@@ -10,9 +10,14 @@ script:
   - bundle exec rake test
 
 env:
-  - SECRET=thisisasecret
+  - {{secret_token}}
 
 deploy:
   ssh:
     target: {{deploy_host}} {{deploy_port}}
     cmd: {{deploy_cmd}}
+
+notify:
+  email:
+    recipients:
+      - {{notify_email}}
