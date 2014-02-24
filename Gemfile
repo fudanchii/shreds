@@ -58,8 +58,7 @@ gem 'feedbag', :github => 'fudanchii/feedbag', :branch => 'dev'
 # Test-related gems
 gem 'minitest-spec-rails', :group => :test
 gem 'turn', :group => :test
-gem 'konacha', :group => :test
-gem 'poltergeist', :group => :test
+gem 'teaspoon', :group => [:test, :development]
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
