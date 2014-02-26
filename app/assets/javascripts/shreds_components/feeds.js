@@ -28,10 +28,10 @@
       },
       'categories:render:index': function (ev,data) {
         var context = 'navigation';
-        var $container = $('<div></div>').addClass('nav-container')
+        var $navContainer = $('<div data-template="navigation"></div>').addClass('nav-container')
             .css('display', 'block');
-        Shreds.render($container, context, Shreds.model.get(context));
-        $feedView.html($container);
+        render(context);
+        $feedView.html($navContainer);
       },
       'watch:markAsRead': function (ev, data) {
         $('a[data-feed-id='+ data.feed.id +'] > span.glyphicon-ok-circle')
@@ -58,9 +58,11 @@
   function render(context, data) {
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     $feedView.removeClass('in').addClass('fade');
-    Shreds.model.import(context, data, { context: 'feeds' });
+    if (context !== 'navigation') {
+      Shreds.model.import(context, data, { context: 'feeds' });
+      document.title = '[shreds] - ' + (data.title || 'Feeds');
+    }
     setTimeout(function () { Shreds.syncView(context); }, 450);
-    document.title = '[shreds] - ' + (data.title || 'Feeds');
     if (scrollTop > 0) {
       $container.stop(true, true).animate({scrollTop: 0}, 850);
     }
