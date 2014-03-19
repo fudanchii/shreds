@@ -53,7 +53,7 @@ gem 'dalli'
 gem 'cache_digests'
 
 # Feed fetching
-gem 'feedzirra' # #161 has been merged into 0.4.0 // :github => 'fudanchii/feedzirra', :branch => 'dev'
+gem 'feedjira' # #161 has been merged into 0.4.0 // :github => 'fudanchii/feedzirra', :branch => 'dev'
 gem 'feedbag', :github => 'fudanchii/feedbag', :branch => 'dev'
 
 # Test-related gems

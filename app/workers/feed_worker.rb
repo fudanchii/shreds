@@ -27,7 +27,7 @@ class FeedWorker
 
   def fetch(feed_id)
     feed_record = Feed.find(feed_id)
-    feed = Feedzirra::Feed.fetch_and_parse(feed_record.feed_url)
+    feed = Feedjira::Feed.fetch_and_parse(feed_record.feed_url)
     EntryNewsitemsContext.new(feed, feed_record).execute
   rescue => ex
     Rails.logger.warn ex.message
