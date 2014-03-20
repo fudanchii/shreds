@@ -20,4 +20,12 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  category:
+    removed: 'Category was succesfully removed.'
+  feed:
+    created: 'Hold on, now printing your newsfeed.'
+    not_found: '<strong>Feed</strong> not found.'
+  opml:
+    error:
+      empty_file: '<strong>Empty file</strong> uploaded.'
+      wrong_file: '<strong>Can only</strong> accept xml file.'

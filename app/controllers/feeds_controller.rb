@@ -5,7 +5,7 @@ class FeedsController < ApplicationController
   # GET /feeds.json
   def index
     @feed = Feed.new
-    @feeds = Feed.has_unread_newsitems.page(params[:page]).per(5)
+    @feeds = Feed.has_unread_newsitems.most_recent.page(params[:page]).per(5)
     respond_with(@feeds)
   end
 
@@ -23,7 +23,7 @@ class FeedsController < ApplicationController
     jid = FeedWorker.perform_async(:create, params[:feed][:url], \
       params[:category][:name].presence || Category.default)
     may_respond_with(
-      :html => { :info => 'Hold on, now printing your newsfeed.', :redirect_to => '/' },
+      :html => { :info => I18n.t('feed.created'), :redirect_to => '/' },
       :json => { watch: "create-#{jid}" }
     )
   end

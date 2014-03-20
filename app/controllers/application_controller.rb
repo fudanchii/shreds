@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   private
 
   def feed_not_found(exceptions)
-    flash[:danger] = '<strong>Feed</strong> not found.'.html_safe
+    flash[:danger] = I18n.t('feed.not_found').html_safe
     redirect_to '/'
   end
 

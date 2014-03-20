@@ -22,10 +22,10 @@ class OpmlUploadContext < BaseContext
       end
       if written == 0
         File.unlink(input_fie)
-        fail UploadError, '<strong>Empty file</strong> uploaded.'
+        fail UploadError, I18n.t('opml.error.empty_file')
       end
     else
-      fail UploadError, '<strong>Can only</strong> accept xml file.'
+      fail UploadError, I18n.t('opml.error.wrong_file')
     end
     @result = OPMLWorker.perform_async(input_file)
   end
