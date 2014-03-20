@@ -18,6 +18,10 @@ class Feed < ActiveRecord::Base
     joins(:newsitems).where('newsitems.unread = ?', true).group('feeds.id')
   }
 
+  scope :most_recent, -> {
+    order('updated_at DESC').for_nav
+  }
+
   before_save :sanitize_url
 
   def to_param
