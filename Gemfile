@@ -14,7 +14,7 @@ gem 'attribute_normalizer', :github => 'mdeering/attribute_normalizer'
 
 
 ### 2. Assets related gems
-gem 'sass-rails'
+gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier'
 gem 'bower'
 # end of 2.
