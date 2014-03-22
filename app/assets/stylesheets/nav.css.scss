@@ -16,6 +16,25 @@
 .nav-buttons {
     position: absolute;
     bottom: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 46px;
+    margin-bottom: 0px;
+    -webkit-padding-start: 0px;
+
+    li {
+        height: 46px;
+        span {
+            top: 13px;
+            left: 41px;
+            height: 100%;
+        }
+    }
+
+    li:hover {
+        background-color: #eaeaea;
+    }
 }
 
 #subscribe_form {
@@ -64,12 +83,6 @@
   -webkit-border-radius: 0px;
      -moz-border-radius: 0px;
           border-radius: 0px;
-}
-
-.nav-buttons {
-    display: none;
-    position: absolute;
-    bottom: 0px;
 }
 
 #subscribe_form {
@@ -150,11 +163,6 @@
     margin-top: 8px;
     font-size: 16px;
     padding-left: 9px;
-}
-
-.nav-buttons > button {
-    margin-right: 5px;
-    margin-left: 7px;
 }
 
 .dropdown-menu {
