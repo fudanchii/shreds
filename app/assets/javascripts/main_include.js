@@ -15,6 +15,9 @@
 //= require spin.js/spin
 //= require ladda/js/ladda
 
+//= require scrollup/js/lib/jquery.easing.min
+//= require scrollup/js/jquery.scrollUp.min
+
 //= require history.js/scripts/bundled-uncompressed/html4+html5/jquery.history
 //= require router
 

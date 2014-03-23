@@ -5,7 +5,14 @@
 
   Shreds.components.push(name);
   Shreds[name] = {
-    init: function () {},
+    init: function () {
+      $.scrollUp({
+        scrollSpeed: 850,
+        easingType: 'easeOutCubic',
+        scrollTitle: 'Back to top',
+        scrollText: '<i class="glyphicon glyphicon-chevron-up"></i>',
+      });
+    },
     events: {
       'shreds:prerender': function (ev, data) {
         Shreds.utils.tooltip('destroy');

@@ -64,7 +64,7 @@
     }
     setTimeout(function () { Shreds.syncView(context); }, 450);
     if (scrollTop > 0) {
-      $container.stop(true, true).animate({scrollTop: 0}, 850);
+      $container.stop(true, true).animate({scrollTop: 0}, 850, 'easeOutCubic');
     }
     setTimeout(function () { $feedView.addClass('in'); }, 450);
   }
