@@ -40,9 +40,9 @@ gem 'thin', :platforms => [:mswin, :mingw]
 
 
 ### 5. Job queueing related gems
-gem 'sidekiq'
-gem 'sidetiq'
+gem 'sidekiq', '< 3.0.0'
 gem 'sidekiq-failures'
+gem 'sidetiq'
 gem 'sinatra', :require => false
 gem 'slim'
 # end of 5.
