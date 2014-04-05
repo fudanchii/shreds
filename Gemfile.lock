@@ -14,12 +14,28 @@ GIT
     attribute_normalizer (1.2.0.b)
 
 GIT
+  remote: git://github.com/mhfs/sidekiq-failures.git
+  revision: 0d3192fa188647a1cf9de4762392016ff0dbf19c
+  specs:
+    sidekiq-failures (0.3.0)
+      sidekiq (>= 2.14.0)
+
+GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: 6c9e69b22f631d7417e543e1ce3a9ca239efb92c
+  revision: 9158043eabe5bb70fb055e9d9baef8ede0ba9115
   specs:
     simple_form (3.0.1)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+
+GIT
+  remote: git://github.com/tobiassvn/sidetiq.git
+  revision: 4f7d7daea3873443b17bf2f3da61619532bbeba2
+  specs:
+    sidetiq (0.5.0)
+      celluloid (>= 0.14.1)
+      ice_cube (~> 0.11.0)
+      sidekiq (>= 2.16.0)
 
 GEM
   remote: https://rubygems.org/
@@ -92,7 +108,7 @@ GEM
       sprockets (>= 2.0.3)
       tilt
     hike (1.2.3)
-    hiredis (0.5.0)
+    hiredis (0.5.1)
     i18n (0.6.9)
     ice_cube (0.11.3)
     jbuilder (2.0.5)
@@ -120,7 +136,7 @@ GEM
     newrelic_rpm (3.7.3.204)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
-    oj (2.7.0)
+    oj (2.7.1)
     open_uri_redirections (0.1.4)
     pg (0.17.1)
     polyglot (0.3.4)
@@ -355,25 +371,19 @@ GEM
     rubysl-yaml (2.0.4)
     rubysl-zlib (2.0.1)
     sass (3.2.18)
-    sass-rails (4.0.2)
+    sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
-      sprockets-rails (~> 2.0.0)
+      sprockets-rails (~> 2.0)
     sax-machine (0.2.1)
       nokogiri (~> 1.6.0)
-    sidekiq (2.17.7)
+    sidekiq (3.0.0)
       celluloid (>= 0.15.2)
-      connection_pool (>= 1.0.0)
+      connection_pool (>= 2.0.0)
       json
       redis (>= 3.0.6)
       redis-namespace (>= 1.3.1)
-    sidekiq-failures (0.3.0)
-      sidekiq (>= 2.14.0)
-    sidetiq (0.5.0)
-      celluloid (>= 0.14.1)
-      ice_cube (~> 0.11.0)
-      sidekiq (>= 2.16.0)
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -443,9 +453,9 @@ DEPENDENCIES
   redis
   rubysl (~> 2.0)
   sass-rails (~> 4.0.0)
-  sidekiq (< 3.0.0)
-  sidekiq-failures
-  sidetiq
+  sidekiq
+  sidekiq-failures!
+  sidetiq!
   simple_form!
   sinatra
   slim
