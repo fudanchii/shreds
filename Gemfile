@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', ' ~> 4.0.0'
+gem 'rails'
 
 ### 1. Database and modelling related gems
 gem 'pg'
@@ -14,7 +14,7 @@ gem 'attribute_normalizer', :github => 'mdeering/attribute_normalizer'
 
 
 ### 2. Assets related gems
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails'
 gem 'uglifier'
 gem 'bower'
 # end of 2.
@@ -58,11 +58,10 @@ gem 'feedbag', :github => 'fudanchii/feedbag', :branch => 'dev'
 
 # Test-related gems
 gem 'minitest-spec-rails', :group => :test
-gem 'turn', :group => :test
 gem 'teaspoon', :group => [:test, :development]
 
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby'
 
 gem 'oj'
 gem 'redis'
