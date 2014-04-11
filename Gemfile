@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '~> 4.1.0'
 
 ### 1. Database and modelling related gems
 gem 'pg'

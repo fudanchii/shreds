@@ -450,7 +450,7 @@ DEPENDENCIES
   puma
   quiet_assets (>= 1.0.1)
   racc
-  rails
+  rails (~> 4.1.0)
   redis
   rubysl (~> 2.0)
   sass-rails
