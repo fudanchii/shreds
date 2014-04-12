@@ -61,7 +61,7 @@ gem 'minitest-spec-rails', :group => :test
 gem 'teaspoon', :group => [:test, :development]
 
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 
 gem 'oj'
 gem 'redis'
