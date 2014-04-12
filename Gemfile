@@ -68,7 +68,7 @@ gem 'redis'
 gem 'hiredis'
 
 # Profiling
-gem 'newrelic_rpm'
+gem 'stathat'
 
 gem 'foreman', :require => false
 
