@@ -29,6 +29,7 @@
       },
       'shreds:progress:start': function (ev, data) {
         window.NProgress.start();
+        window.NProgress.set(0.6);
       },
       'shreds:progress:done': function (ev, data) {
         window.NProgress.done();
