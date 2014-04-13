@@ -27,3 +27,8 @@
 .tooltip {
     word-wrap: break-word;
 }
+
+#nprogress {
+    z-index: 9999;
+    position: fixed;
+}

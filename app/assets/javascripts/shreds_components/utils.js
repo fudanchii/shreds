@@ -26,6 +26,12 @@
       'shreds:postrender': function (ev, data) {
         Shreds.utils.tooltip({ container: 'body' });
         Shreds.utils.timeago();
+      },
+      'shreds:progress:start': function (ev, data) {
+        window.NProgress.start();
+      },
+      'shreds:progress:done': function (ev, data) {
+        window.NProgress.done();
       }
     },
     generateId: function (name) {

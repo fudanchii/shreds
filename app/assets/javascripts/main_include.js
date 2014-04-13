@@ -18,6 +18,8 @@
 //= require scrollup/js/lib/jquery.easing.min
 //= require scrollup/js/jquery.scrollUp.min
 
+//= require nprogress/nprogress
+
 //= require history.js/scripts/bundled-uncompressed/html4+html5/jquery.history
 //= require router
 

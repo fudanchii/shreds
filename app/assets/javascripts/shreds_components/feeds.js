@@ -43,6 +43,7 @@
   };
 
   function fetch(context, url) {
+    Shreds.$.trigger('shreds:progress:start');
     $feedView.attr('data-template', context);
     if (!_storage[url]) {
       Shreds.ajax.get(url, {
@@ -57,6 +58,7 @@
 
   function render(context, data) {
     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    Shreds.$.trigger('shreds:progress:done');
     $feedView.removeClass('in').addClass('fade');
     if (context !== 'navigation') {
       Shreds.model.import(context, data, { context: 'feeds' });
