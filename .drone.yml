@@ -1,4 +1,4 @@
-image: {{build_image}}
+image: fudanchii/rails:0.10
 
 services:
   - redis
