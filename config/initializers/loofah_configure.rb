@@ -1,5 +1,5 @@
 # XXX: Hack!
-# XXX: Monkey patch Loofah's whitelist tags
+# XXX: Freedom patch for Loofah's whitelist tags
 # XXX: This allows configurable tag whitelist
 # XXX: where user can specify which tags to keep.
 #

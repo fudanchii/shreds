@@ -20,7 +20,8 @@ class EntryNewsitemsContext < BaseContext
   def process_entries
     feed.sanitize_entries!
     feed.entries.each do | entry |
-      next unless Newsitem.where(permalink: entry.url).first.nil? && (not Itemhash.has? entry.url)
+      next unless Newsitem.where(permalink: entry.url).first.nil? && \
+        (not Itemhash.has? entry.url)
       feed_record.newsitems.build(newsitem_params(entry)).save!
     end
     feed_record.update!(:title => feed.title, :etag => feed.etag, :url => feed.url)
