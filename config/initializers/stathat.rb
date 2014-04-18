@@ -11,7 +11,7 @@ if Rails.env.production? && ENV["STAT_ACCOUNT"].present?
       StatHat::API.ez_post_count("Slow Requests", ENV["STAT_ACCOUNT"], 1)
     end
     if duration > 100
-      instLog.info("[action] #{payload[:method]} #{payload[:path]}.#{payload[:format].to_s} #{duration}ms")
+      instLog.debug("[action] #{payload[:method]} #{payload[:path]} #{duration}ms")
     end
   end
 
@@ -20,7 +20,7 @@ if Rails.env.production? && ENV["STAT_ACCOUNT"].present?
       duration = (finish - start) * 1000
       StatHat::API.ez_post_value("DB Query", ENV["STAT_ACCOUNT"], duration)
       if duration > 50
-        instLog.info("[sql] #{payload[:name]} '#{payload[:sql]}' #{duration}ms")
+        instLog.debug("[sql] #{payload[:name]} '#{payload[:sql]}' #{duration}ms")
       end
     end
   end
