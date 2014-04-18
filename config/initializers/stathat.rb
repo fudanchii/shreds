@@ -9,17 +9,15 @@ if Rails.env.production? && ENV["STAT_ACCOUNT"].present?
     StatHat::API.ez_post_value("Response Time", ENV["STAT_ACCOUNT"], duration)
     if duration > 500
       StatHat::API.ez_post_count("Slow Requests", ENV["STAT_ACCOUNT"], 1)
-    end
-    if duration > 100
       instLog.debug("[action] #{payload[:method]} #{payload[:path]} #{duration}ms")
     end
   end
 
   ActiveSupport::Notifications.subscribe "sql.active_record" do |name, start, finish, id, payload|
-    if payload[:sql]
+    if payload[:name] == 'SQL'
       duration = (finish - start) * 1000
       StatHat::API.ez_post_value("DB Query", ENV["STAT_ACCOUNT"], duration)
-      if duration > 50
+      if duration > 500
         instLog.debug("[sql] #{payload[:name]} '#{payload[:sql]}' #{duration}ms")
       end
     end
