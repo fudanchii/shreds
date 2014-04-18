@@ -80,4 +80,10 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  if ENV['MEMCACHE_SERVERS'].present?
+    config.cache_store = :dalli_store, ENV['MEMCACHE_SERVERS'].split, { :namespace => ENV['APP_NAME'] || 'shreds' }
+  else
+    config.cache_store = :null_store
+  end
 end
