@@ -7,9 +7,9 @@ if Rails.env.production? && ENV["STAT_ACCOUNT"].present?
       StatHat::API.ez_post_value("View Rendering", ENV["STAT_ACCOUNT"], view_time)
     end
     StatHat::API.ez_post_value("Response Time", ENV["STAT_ACCOUNT"], duration)
-    if duration > 500
+    if duration > 300
       StatHat::API.ez_post_count("Slow Requests", ENV["STAT_ACCOUNT"], 1)
-      instLog.debug("[action] #{payload[:method]} #{payload[:path]} #{duration}ms")
+      instLog.info("[action] #{payload[:method]} #{payload[:path]} #{duration}ms")
     end
   end
 
@@ -17,9 +17,9 @@ if Rails.env.production? && ENV["STAT_ACCOUNT"].present?
     if payload[:name] == 'SQL'
       duration = (finish - start) * 1000
       StatHat::API.ez_post_value("DB Query", ENV["STAT_ACCOUNT"], duration)
-      if duration > 500
-        instLog.debug("[sql] #{payload[:name]} '#{payload[:sql]}' #{duration}ms")
-      end
+    end
+    if duration > 300
+      instLog.info("[sql] #{payload[:name]} '#{payload[:sql]}' #{duration}ms")
     end
   end
 end
