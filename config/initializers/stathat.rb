@@ -14,8 +14,8 @@ if Rails.env.production? && ENV["STAT_ACCOUNT"].present?
   end
 
   ActiveSupport::Notifications.subscribe "sql.active_record" do |name, start, finish, id, payload|
+    duration = (finish - start) * 1000
     if payload[:name] == 'SQL'
-      duration = (finish - start) * 1000
       StatHat::API.ez_post_value("DB Query", ENV["STAT_ACCOUNT"], duration)
     end
     if duration > 300
