@@ -1,5 +1,9 @@
 class Category < ActiveRecord::Base
-  has_many :feeds
+  has_many :subscriptions
+  has_many :feeds, :through => :subscriptions
+  has_many :users, :through => :subscriptions
+
+  accepts_nested_attributes_for :subscriptions
 
   scope :for_nav, -> { order('name ASC') }
 
@@ -21,9 +25,19 @@ class Category < ActiveRecord::Base
 
   def safe_destroy
     defcat = Category.where(:name => self.class.default).first
-    Feed.transaction do
-      feeds.each { |feed| feed.update(:category => defcat) }
+    Subscription.transaction do
+      subscriptions.each {|s| s.update(:category => defcat) }
       destroy
     end
   end
 end
+
+# == Schema Information
+#
+# Table name: categories
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#

@@ -1,7 +1,14 @@
+require 'sidekiq/web'
+
 Shreds::Application.routes.draw do
 
-  require 'sidekiq/web'
+  get '/login' => 'static#login'
+  get '/logout' => 'session#destroy'
+  match '/auth/:provider/callback', :to => 'session#create', :via => [:get, :post]
+
   mount Sidekiq::Web => '/backyard/sidekiq'
+
+  resources :users
 
   resources :feeds, only: [:index, :create, :show, :destroy], path: '/', format: false do
     get 'page/:page', action: :show, on: :member

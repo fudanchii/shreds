@@ -6,6 +6,7 @@ gem 'rails', '~> 4.1.0'
 gem 'pg'
 
 gem 'sqlite3', :group => :test
+gem 'annotate', :group => :development
 
 gem 'jbuilder'
 gem 'attribute_normalizer', :github => 'mdeering/attribute_normalizer'
@@ -47,6 +48,10 @@ gem 'sinatra', :require => false
 gem 'slim'
 # end of 5.
 
+# 6. User authentication related gems
+gem 'omniauth'
+gem 'omniauth-twitter'
+# end of 6.
 
 # caching
 gem 'dalli'

@@ -3,8 +3,8 @@ require 'test_helper'
 describe Category do
   before do
     @cat = Category.create(:name => 'blogosphere')
-    @cat.feeds.build(:url => 'http://fudanchii.net/atom.xml')
-    @feed = @cat.feeds.first
+    @feed = Feed.create(:url => 'http://fudanchii.net/atom.xml')
+    @subs = Subscription.create(:category => @cat, :feed => @feed)
   end
 
   it 'has default category' do
@@ -15,11 +15,12 @@ describe Category do
   it 'can destroyed safely' do
     @cat.must_respond_to :safe_destroy
     (-> { @cat.safe_destroy }).must_be_silent
-    @feed.category.name.must_equal described_class.default
+    @subs.reload
+    @subs.category.name.must_equal described_class.default
   end
 
   it 'should sanitize category name before create' do
-    @mycategory = Category.create(:name => ' mycategory   ')
+    @mycategory = Category.create(:name => '  mycategory   ')
     @mycategory.name.must_equal 'mycategory'
   end
 end

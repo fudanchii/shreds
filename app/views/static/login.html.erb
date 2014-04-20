@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="login-container">
+    <div class="form-box">
+      <% if Rails.env.development? %>
+        <a href="/auth/developer" class="btn btn-default btn-block login">Developer Login</a>
+      <% end %>
+      <a href="/auth/twitter" class="twitter btn btn-info btn-block login">Login with Twitter</a>
+    </div>
+  </div>
+</div>
+
+<% content_for :title do %>Shreds - Login<% end %>
