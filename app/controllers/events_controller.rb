@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   def watch
-    @payload = EventsWatchContext.new(params[:watchList]).have_payload.execute
+    @ev = EventsWatch.new(params[:watchList])
+    @ev.execute && @payload = @ev.payload
     return render 'watch' unless @payload.empty?
     render :text => ''
   end

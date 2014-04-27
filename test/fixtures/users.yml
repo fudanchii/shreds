@@ -1,0 +1,6 @@
+test1:
+  username: testuser
+  email: test@example.com
+  uid: test@example.com
+  provider: testprovider
+  token: testtoken1

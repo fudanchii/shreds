@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :subscriptions
+  has_many :subscriptions, :dependent => :destroy
   has_many :categories, :through => :subscriptions
   has_many :feeds, :through => :subscriptions
 
@@ -9,10 +9,14 @@ class User < ActiveRecord::Base
   
   normalize_attributes :email
 
+  def recent_feeds
+    feeds.most_recent
+  end
+
   private
 
   def tokenize
-    self.token = (Digest::SHA2.new(256) << (provider + uid)).to_s
+    self.token = SecureRandom.urlsafe_base64
   end
 end
 

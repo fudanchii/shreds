@@ -24,7 +24,9 @@ en:
     removed: 'Category was succesfully removed.'
   feed:
     created: 'Hold on, now printing your newsfeed.'
+    invalid: "<strong>Can't find any feed,</strong> are you sure the url is valid?"
     not_found: '<strong>Feed</strong> not found.'
+    subscribed: '<strong>Already subscribed</strong> to the feed.'
   opml:
     error:
       empty_file: '<strong>Empty file</strong> uploaded.'

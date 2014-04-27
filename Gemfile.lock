@@ -72,6 +72,7 @@ GEM
     annotate (2.6.3)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
+    ansi (1.4.3)
     arel (5.0.0)
     bcrypt (3.1.7)
     better_errors (1.1.0)
@@ -133,6 +134,11 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.3)
     minitest (5.3.2)
+    minitest-reporters (1.0.2)
+      ansi
+      builder
+      minitest (>= 5.0)
+      powerbar
     minitest-spec-rails (5.0.3)
       minitest (~> 5.0)
       rails (~> 4.1.0.rc2)
@@ -153,6 +159,9 @@ GEM
     open_uri_redirections (0.1.4)
     pg (0.17.1)
     polyglot (0.3.4)
+    powerbar (1.0.11)
+      ansi (~> 1.4.0)
+      hashie (>= 1.1.0)
     psych (2.0.5)
     puma (2.8.1)
       rack (>= 1.1, < 2.0)
@@ -455,6 +464,8 @@ DEPENDENCIES
   jbuilder
   kaminari
   kaminari-bootstrap (~> 3.0.1)
+  minitest
+  minitest-reporters
   minitest-spec-rails
   oj
   omniauth

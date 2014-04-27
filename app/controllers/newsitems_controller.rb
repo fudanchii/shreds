@@ -1,19 +1,24 @@
 class NewsitemsController < ApplicationController
   respond_to :html, :json
 
-  before_action do
-    @feed = Feed.includes(:newsitems)
-      .where('feeds.id = ? and newsitems.id = ?', params[:feed_id].to_i, params[:id].to_i)
-      .references(:newsitems).to_ary.first
-    fail ActiveRecord::RecordNotFound if (@feed.nil? || @feed.newsitems.empty?)
-    @newsitem = @feed.newsitems.first
-  end
+  before_action :fetch_subscription
 
   def show
-    respond_with(@newsitem)
+    @feed = @subscription.feed
+    @newsitem = @subscription.newsitems.find params[:id]
+    respond_with @newsitem
   end
 
   def toggle_read
-    @newsitem.update(:unread => !@newsitem.unread)
+    @entry = @subscription.entries.find_by :newsitem_id => params[:id]
+    @entry.update :unread => !@entry.unread
+  end
+
+  private
+
+  def fetch_subscription
+    @subscription = current_user.subscriptions.find_by :feed_id => params[:feed_id]
+    fail ActiveRecord::RecordNotFound if @subscription.nil? || \
+      @subscription.newsitems.empty?
   end
 end

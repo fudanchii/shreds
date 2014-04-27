@@ -62,6 +62,8 @@ gem 'feedjira' # #161 has been merged into 0.4.0 // :github => 'fudanchii/feedzi
 gem 'feedbag', :github => 'fudanchii/feedbag', :branch => 'dev'
 
 # Test-related gems
+gem 'minitest'
+gem 'minitest-reporters'
 gem 'minitest-spec-rails', :group => :test
 gem 'teaspoon', :group => [:test, :development]
 

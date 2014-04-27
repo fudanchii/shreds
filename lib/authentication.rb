@@ -2,10 +2,11 @@ module Shreds
   module Auth
 
     USER_TOKEN = '_shreds_user_token'
-    TOKEN_COOKIE = '_t'
 
     def current_user
       @current_user ||= User.where(:token => session[USER_TOKEN]).first
+    rescue ActiveRecord::RecordNotFound
+      nil
     end
 
     def authenticated?
@@ -14,7 +15,7 @@ module Shreds
 
     def sign_out
       @current_user = nil
-      session_reset
+      reset_session
     end
 
   end
@@ -22,3 +23,4 @@ end
 
 require 'auth/provider'
 require 'auth/developer_provider'
+require 'auth/twitter_provider'

@@ -2,7 +2,7 @@ require 'test_helper'
 
 describe Category do
   before do
-    @cat = Category.create(:name => 'blogosphere')
+    @cat = categories(:blogosphere)
     @feed = Feed.create(:url => 'http://fudanchii.net/atom.xml')
     @subs = Subscription.create(:category => @cat, :feed => @feed)
   end

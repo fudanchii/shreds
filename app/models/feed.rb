@@ -1,7 +1,7 @@
 require 'uri'
 
 class Feed < ActiveRecord::Base
-  has_many :subscriptions
+  has_many :subscriptions, :dependent => :destroy
   has_many :categories, :through => :subscriptions
   has_many :users, :through => :subscriptions
   has_many :newsitems, :dependent => :destroy
@@ -16,7 +16,7 @@ class Feed < ActiveRecord::Base
       .group('feeds.id')
   }
 
-  scope :has_unread_newsitems, -> {
+  scope :with_unread_newsitems, -> {
     joins(:newsitems).where('newsitems.unread = ?', true).group('feeds.id')
   }
 

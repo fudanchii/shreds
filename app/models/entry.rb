@@ -1,6 +1,10 @@
 class Entry < ActiveRecord::Base
   belongs_to :subscription
   belongs_to :newsitem
+
+  def mark_as_read
+    self.unread = false
+  end
 end
 
 # == Schema Information

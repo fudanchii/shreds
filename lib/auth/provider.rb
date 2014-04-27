@@ -2,12 +2,12 @@ module Shreds
   class Auth::UserProvider
     def self.create(provider)
       "Shreds::Auth::#{provider.camelize}UserProvider".constantize.new
-    #rescue
-    #  Auth::TwitterUserProvider.new
+    rescue
+      Auth::TwitterUserProvider.new
     end
 
     def signup_allowed?
-      true
+      ENV['allow_signup']
     end
 
     def user_params(params)

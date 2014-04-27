@@ -1,6 +1,6 @@
 class Newsitem < ActiveRecord::Base
   belongs_to :feed
-  has_many :entries
+  has_many :entries, :dependent => :destroy
   has_many :subscriptions, :through => :entries
 
   scope :for_view, -> { order('published DESC').order('id DESC') }

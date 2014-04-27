@@ -2,7 +2,7 @@ class Subscription < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
   belongs_to :feed
-  has_many :entries
+  has_many :entries, :dependent => :destroy
   has_many :newsitems, :through => :entries
 end
 

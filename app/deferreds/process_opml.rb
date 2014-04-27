@@ -1,6 +1,6 @@
 require 'opml'
 
-class OPMLWorker
+class ProcessOPML
   include Sidekiq::Worker
 
   sidekiq_options :retry => false

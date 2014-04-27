@@ -10,18 +10,21 @@ class ApplicationController < ActionController::Base
   private
 
   def init_props
-    redirect_to('/login') && return unless authenticated?
-    Rails.logger.info(current_user.inspect)
+    return redirect_to('/login') unless authenticated?
     @categories = current_user.categories.for_nav
-    @subscriptions = current_user.subscriptions
-    @subscription = @subscriptions.build
+    @subscription = current_user.subscriptions.build
     @category = @subscription.category = Category.new
     @new_feed = @subscription.feed = Feed.new
   end
 
   def feed_not_found(exceptions)
-    flash[:danger] = I18n.t('feed.not_found').html_safe
-    redirect_to '/'
+    respond_to do |fmt|
+      fmt.html do
+        flash[:danger] = I18n.t('feed.not_found')
+        redirect_to '/'
+      end
+      fmt.json { render :json => {error: I18n.t('feed.not_found')} }
+    end
   end
 
   def may_respond_with(opts)
