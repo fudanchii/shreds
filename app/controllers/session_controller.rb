@@ -1,5 +1,6 @@
 class SessionController < ApplicationController
-  skip_before_action :init_props, :only => [:create]
+  skip_before_action :should_authenticated?, :only => [:create]
+  skip_before_action :fetch_subscriptions, :init_props
 
   if Rails.env.development?
     skip_before_action :verify_authenticity_token, :only => [:create]

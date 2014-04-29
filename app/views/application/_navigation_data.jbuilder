@@ -1,8 +1,7 @@
-json.categories @categories do |category|
-  json.id category.id
-  json.name category.name.titleize
+json.categories @subscriptions.each do |category, feeds|
+  json.name category.titleize
   json.has ['feeds']
-  json.feeds category.feeds.with_unread_count.for_nav do |feed|
-    json.partial! 'feed_for_navigation', feed: feed
+  json.feeds feeds.each do |e|
+    json.partial! 'feed_for_navigation', feed: e[0], unreads: e[1]
   end
 end

@@ -12,7 +12,7 @@ class ProcessOPML
         category = outline.title || outline.text
         jids += fetch_feed_from(outline.outlines, category) unless outline.outlines.empty?
       else
-        jid = FeedWorker.perform_async(:create, outline.feed_url, category)
+        jid = CreateSubscription.perform_async @user_id, outline.feed_url, category
         jids << "create-#{jid}"
       end
     end
@@ -33,7 +33,8 @@ class ProcessOPML
     end
   end
 
-  def perform(input_file)
+  def perform(uid, input_file)
+    @user_id = uid
     File.open(input_file, 'r') do |f|
       # slurrrp
       bundle = OPMLDoc.parse(f.read)

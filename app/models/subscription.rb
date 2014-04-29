@@ -4,6 +4,10 @@ class Subscription < ActiveRecord::Base
   belongs_to :feed
   has_many :entries, :dependent => :destroy
   has_many :newsitems, :through => :entries
+
+  def unreads
+    entries.where(:unread => true).count
+  end
 end
 
 # == Schema Information

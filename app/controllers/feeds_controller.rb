@@ -32,7 +32,7 @@ class FeedsController < ApplicationController
 
   def create_from_opml
     file = Uploadann.new(params[:OPMLfile])
-    jid = ProcessOPML.perform_async file.name
+    jid = ProcessOPML.perform_async current_user.id, file.fullpath
     render :json => { watch: "opml-#{jid}" }
   rescue UploadError => ex
     render :json => { error: ex.message.html_safe }

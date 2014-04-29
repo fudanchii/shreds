@@ -1,4 +1,4 @@
-class FeedUpdateWorker
+class FeedUpdater
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
@@ -7,6 +7,6 @@ class FeedUpdateWorker
   recurrence { hourly.minute_of_hour(5, 25, 45) }
 
   def perform
-    Feed.all.each { |f| FeedWorker.perform_async(:fetch, f.id) }
+    Feed.all.each { |f| FeedFetcher.perform_async(f.feed_url) }
   end
 end

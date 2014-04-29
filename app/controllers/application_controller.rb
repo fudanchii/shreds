@@ -1,17 +1,29 @@
 require 'authentication'
+
 class ApplicationController < ActionController::Base
   include Shreds::Auth
   protect_from_forgery
 
   rescue_from ActiveRecord::RecordNotFound, :with => :feed_not_found
 
-  before_action :init_props
+  before_action :should_authenticated?
+  before_action :fetch_subscriptions, :init_props
 
   private
 
+  def should_authenticated?
+    redirect_to('/login') unless authenticated?
+  end
+
+  def fetch_subscriptions
+    @subscriptions = current_user.subscriptions.reduce({}) do |prev, current|
+      prev[current.category.name] ||= []
+      prev[current.category.name] << [current.feed, current.unreads]
+      prev
+    end
+  end
+
   def init_props
-    return redirect_to('/login') unless authenticated?
-    @categories = current_user.categories.for_nav
     @subscription = current_user.subscriptions.build
     @category = @subscription.category = Category.new
     @new_feed = @subscription.feed = Feed.new

@@ -32,11 +32,19 @@
     },
 
     find: function (model, id) {
-      return Models[index_prefix + model][id];
+      try {
+        return Models[index_prefix + model][id];
+      } catch (e) {
+        return {};
+      }
     },
 
     get: function (name) {
-      return Models[name];
+      try {
+        return Models[name];
+      } catch (e) {
+        return {};
+      }
     }
   };
 

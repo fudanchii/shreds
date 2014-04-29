@@ -9,8 +9,8 @@ class CreateSubscription
       subscription = user.subscriptions.build( \
         :category => create_category(category), :feed => create_feed(url))
       subscription.save!
+      FeedFetcher.new.perform subscription.feed.feed_url
     end
-    FeedFetcher.new.perform uid, subscription.feed.feed_url
   rescue ActiveRecord::RecordNotUnique
     EventPool.add "create-#{jid}", :error => I18n.t('feed.subscribed')
   rescue InvalidFeed => err
@@ -26,8 +26,8 @@ class CreateSubscription
 
   def create_feed(url)
     feed_url = Feedbag.find(url).first
-    raise InvalidFeed if feed_url.nil?
-    Feed.create! user_param(url, feed_url)
+    fail InvalidFeed if feed_url.nil?
+    Feed.where(user_param url, feed_url).first_or_create!
   end
 
   def user_param(url, feed_url)
