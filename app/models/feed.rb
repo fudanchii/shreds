@@ -10,16 +10,6 @@ class Feed < ActiveRecord::Base
 
   scope :for_nav, -> { order('url ASC') }
 
-  scope :with_unread_count, -> {
-    joins(:newsitems)
-      .select('feeds.*, sum(case when newsitems.unread then 1 else 0 end) as unreads')
-      .group('feeds.id')
-  }
-
-  scope :with_unread_newsitems, -> {
-    joins(:newsitems).where('newsitems.unread = ?', true).group('feeds.id')
-  }
-
   scope :most_recent, -> {
     order('updated_at DESC').for_nav
   }
@@ -33,20 +23,6 @@ class Feed < ActiveRecord::Base
   def favicon
     url = URI.parse(self.url)
     "https://plus.google.com/_/favicon?domain=#{url.host || self.url}"
-  end
-
-  def unread_newsitems
-    newsitems.where(:unread => true)
-  end
-
-  def unread_count
-    unread_newsitems.count
-  end
-
-  def mark_all_as_read
-    counter = unread_count
-    unread_newsitems.update_all(:unread => false)
-    counter
   end
 
   def clear_read_news(offset = nil)

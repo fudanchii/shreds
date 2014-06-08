@@ -6,12 +6,16 @@ class CreateSubscription
   def perform(uid, url, category)
     user = User.find uid
     User.transaction do
-      subscription = user.subscriptions.build( \
+      subscription = user.subscriptions.build(
         :category => create_category(category), :feed => create_feed(url))
       subscription.save!
       FeedFetcher.new.perform subscription.feed.feed_url
+      EventPool.add "create-#{jid}", {
+        view: 'create', category_id: subscription.category.id }
     end
-  rescue ActiveRecord::RecordNotUnique
+  rescue ActiveRecord::RecordNotFound
+    EventPool.add "create-#{jid}", :error => I18n.t('user.not_found')
+  rescue ActiveRecord::RecordNotUnique => err
     EventPool.add "create-#{jid}", :error => I18n.t('feed.subscribed')
   rescue InvalidFeed => err
     EventPool.add "create-#{jid}", :error => err.message
@@ -27,7 +31,8 @@ class CreateSubscription
   def create_feed(url)
     feed_url = Feedbag.find(url).first
     fail InvalidFeed if feed_url.nil?
-    Feed.where(user_param url, feed_url).first_or_create!
+    feed = Feed.where(:feed_url => feed_url).first
+    feed || Feed.create!(user_param url, feed_url)
   end
 
   def user_param(url, feed_url)

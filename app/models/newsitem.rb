@@ -4,7 +4,9 @@ class Newsitem < ActiveRecord::Base
   has_many :subscriptions, :through => :entries
 
   scope :for_view, -> { order('published DESC').order('id DESC') }
-  before_destroy { Itemhash.insert(permalink) unless unread }
+  scope :with_unread, -> { joins(:entries).select('newsitems.*, entries.unread as unread') }
+
+  before_destroy { Itemhash.insert(permalink) }
 
   def next
     adj('(published < :pdate and id <> :id) or (published = :pdate and id < :id)').first
@@ -27,7 +29,6 @@ end
 #
 #  id         :integer          not null, primary key
 #  permalink  :text
-#  unread     :boolean          default(TRUE)
 #  feed_id    :integer
 #  created_at :datetime
 #  updated_at :datetime

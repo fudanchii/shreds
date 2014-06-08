@@ -5,4 +5,4 @@ json.author     newsitem.author
 json.url        newsitem.permalink
 json.path       url_for [@feed, newsitem]
 json.published  newsitem.published.iso8601
-json.unread     newsitem.unread
+json.unread     entry.unread

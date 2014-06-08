@@ -5,8 +5,16 @@ class Subscription < ActiveRecord::Base
   has_many :entries, :dependent => :destroy
   has_many :newsitems, :through => :entries
 
+  before_save :ensure_category
+
   def unreads
     entries.where(:unread => true).count
+  end
+
+  private
+
+  def ensure_category
+    self.category_id = Category.where(:name => Category.default).first.id unless self.category_id
   end
 end
 

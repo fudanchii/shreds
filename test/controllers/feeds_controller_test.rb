@@ -89,5 +89,11 @@ describe FeedsController do
       patch :mark_all_as_read, :format => 'json'
       assert_response :success
     end
+
+    it 'POST /i/upload_opml.json' do
+      login @user
+      post :create_from_opml, :format => 'json'
+      assert_response :success
+    end
   end
 end

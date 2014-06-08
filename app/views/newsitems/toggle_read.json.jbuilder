@@ -5,5 +5,5 @@ else
 end
 json.feed do
   json.id @entry.subscription.feed.id
-  json.unreadCount @entry.subscription.feed.unread_count
+  json.unreadCount @entry.subscription.unreads
 end

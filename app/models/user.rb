@@ -9,8 +9,12 @@ class User < ActiveRecord::Base
   
   normalize_attributes :email
 
-  def recent_feeds
-    feeds.most_recent
+  def unread_feeds
+    subs = subscriptions.select {|s| s.unreads > 0 }
+    subs.map {|s| {
+      :feed => s.feed,
+      :entries => s.entries.unread_entry.for_view
+    }}
   end
 
   private

@@ -106,8 +106,9 @@
         spinner: Shreds.assets.path('spinner16x16')
       });
       Shreds.ajax.patch('/i/feeds/' + id + '/mark_as_read.json', {
-        doWatch: true,
         failMsg: '<strong>Can\'t</strong> mark this feed as read.'
+      }).done(function (data) {
+        Shreds.$.trigger('watch:markAsRead', data);
       }).fail(function () {
         Shreds.syncView('navigation');
       });

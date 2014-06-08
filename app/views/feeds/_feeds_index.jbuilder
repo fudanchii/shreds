@@ -1,17 +1,17 @@
-json.feeds feeds do |feed|
-  json.id       feed.id
-  json.title    feed.title
-  json.path     url_for feed
-  json.url      feed.url
+json.feeds feeds do |v|
+  json.id       v[:feed].id
+  json.title    v[:feed].title
+  json.path     url_for v[:feed]
+  json.url      v[:feed].url
   json.has      ['newsitems']
-  json.newsitems feed.unread_newsitems.for_view.limit(3) do |newsitem|
-    json.id         newsitem.id
-    json.title      newsitem.title
-    json.path       url_for [feed, newsitem]
-    json.url        newsitem.permalink
-    json.author     newsitem.author
-    json.published  newsitem.published.iso8601
-    json.summary    newsitem.summary
+  json.newsitems  v[:entries].limit(3) do |entry|
+    json.id         entry.newsitem.id
+    json.title      entry.newsitem.title
+    json.path       url_for [v[:feed], entry.newsitem]
+    json.url        entry.newsitem.permalink
+    json.author     entry.newsitem.author
+    json.published  entry.newsitem.published.iso8601
+    json.summary    entry.newsitem.summary
   end
 end
 json.prevPage   link_to_previous_page feeds, '< Prev', :params => { :format => nil }

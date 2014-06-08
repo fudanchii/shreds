@@ -16,7 +16,10 @@
         ajax.done(function (data) { if (data && data.watch) { Shreds.watch.add(data.watch); } });
       }
       if (opts.failMsg) {
-        ajax.fail(function () { Shreds.notification.error(arguments[2] || opts.failMsg); });
+        ajax.fail(function () {
+          Shreds.notification.error(arguments[2] || opts.failMsg);
+          Shreds.$.trigger('shreds:progress:done');
+        });
       }
       return ajax;
     },

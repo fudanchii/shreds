@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   def fetch_subscriptions
     @subscriptions = current_user.subscriptions.reduce({}) do |prev, current|
       prev[current.category.name] ||= []
-      prev[current.category.name] << [current.feed, current.unreads]
+      prev[current.category.name] << { :feed => current.feed, :unreads => current.unreads }
       prev
     end
   end

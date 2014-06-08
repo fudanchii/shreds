@@ -1,14 +1,14 @@
 module NewsitemsHelper
-  def circle_or_sign(news)
-    news.unread ? 'circle' : 'sign'
+  def circle_or_sign(entry)
+    entry.unread ? 'circle' : 'sign'
   end
 
-  def set_read_unread(news)
-    "Set #{news.unread? ? 'read' : 'unread'}"
+  def set_read_unread(entry)
+    "Set #{entry.unread ? 'read' : 'unread'}"
   end
 
-  def disabled?(news)
-    news.nil? ? 'disabled' : ''
+  def disabled?(entry)
+    entry.nil? ? 'disabled' : ''
   end
 
 end

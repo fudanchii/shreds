@@ -4,18 +4,19 @@ class EntryNewsitems
   def initialize(feed, feed_url)
     @feed = feed
     @feed_record = Feed.find_by! :feed_url => feed_url
-    fail ArgumentError if @feed_record.nil? || up_to_date?(@feed, @feed_record)
+    fail InvalidFeed if @feed_record.nil?
+    return if up_to_date? feed, feed_record
   end
 
   def up_to_date?(feed, feed_record)
-    feed_record.etag.present? && feed.etag == feed_record.etag && \
+    feed_record.etag.present? && (feed.etag == feed_record.etag) &&
       (not feed_record.newsitems.empty?)
   end
 
   def execute
     @feed.entries.each do |entry|
       # Skip to the next entry if it's already exist
-      next unless Newsitem.find_by(:permalink => entry.url).nil? && \
+      next unless Newsitem.find_by(:permalink => entry.url).nil? &&
         (not Itemhash.has? entry.url)
 
       # Create newsitem for this feed

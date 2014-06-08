@@ -5,8 +5,8 @@ class NewsitemsController < ApplicationController
 
   def show
     @feed = @subscription.feed
-    @newsitem = @subscription.newsitems.find params[:id]
-    respond_with @newsitem
+    @entry = @subscription.entries.find_by :newsitem_id => params[:id]
+    respond_with @entry
   end
 
   def toggle_read
@@ -19,6 +19,6 @@ class NewsitemsController < ApplicationController
   def fetch_subscription
     @subscription = current_user.subscriptions.find_by :feed_id => params[:feed_id]
     fail ActiveRecord::RecordNotFound if @subscription.nil? || \
-      @subscription.newsitems.empty?
+      @subscription.entries.empty?
   end
 end

@@ -2,8 +2,11 @@ class Entry < ActiveRecord::Base
   belongs_to :subscription
   belongs_to :newsitem
 
+  scope :for_view, -> { joins(:newsitem).order('newsitems.published DESC, newsitems.id ASC') }
+  scope :unread_entry, -> { where(:unread => true) }
+
   def mark_as_read
-    self.unread = false
+    update_attribute :unread, false
   end
 end
 

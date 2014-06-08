@@ -1,3 +1,7 @@
 feed1:
   url: test.com
   feed_url: test.com
+
+feed2:
+  url: example.com
+  feed_url: example.com/feed
