@@ -109,6 +109,7 @@
         failMsg: '<strong>Can\'t</strong> mark this feed as read.'
       }).done(function (data) {
         Shreds.$.trigger('watch:markAsRead', data);
+        Shreds.$.trigger('feeds:_storage:clear');
       }).fail(function () {
         Shreds.syncView('navigation');
       });
