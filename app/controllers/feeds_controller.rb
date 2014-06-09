@@ -32,11 +32,11 @@ class FeedsController < ApplicationController
 
   def create_from_opml
     if request.headers['X-OPML-File'].present?
-      file = request.headers['X-OPML-File']
+      filename = request.headers['X-OPML-File']
     else
-      file = OPMLFile.new(params[:OPMLfile])
+      filename = OPMLFile.new(params[:OPMLfile]).fullpath
     end
-    jid = ProcessOPML.perform_async current_user.id, file.fullpath
+    jid = ProcessOPML.perform_async current_user.id, filename
     render :json => { watch: "opml-#{jid}" }
   rescue UploadError => ex
     render :json => { error: ex.message.html_safe }

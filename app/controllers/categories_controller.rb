@@ -5,10 +5,9 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    jid = CategoryWorker.perform_async(:destroy, params[:id])
     may_respond_with(
       :html => { :info => I18n.t('category.removed'), :redirect_to => '/' },
-      :json => { watch: "rmCategory-#{jid}" }
+      :json => { watch: "rmCategory-jid" }
     )
   end
 end
