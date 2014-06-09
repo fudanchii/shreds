@@ -9,6 +9,19 @@ class User < ActiveRecord::Base
   
   normalize_attributes :email
 
+  def self.from_omniauth(auth_hash)
+    where(:provider => auth_hash[:provider], :uid => auth_hash[:uid]).first
+  end
+
+  def self.create_from_omniauth(auth_hash)
+    create! do |user|
+      user.provider = auth_hash[:provider]
+      user.uid = auth_hash[:uid]
+      user.username = auth_hash[:info][:nickname] || auth_hash[:info][:name]
+      user.email = auth_hash[:info][:email]
+    end
+  end
+
   def unread_feeds
     subs = subscriptions.select {|s| s.unreads > 0 }
     subs.map {|s| {

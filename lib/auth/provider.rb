@@ -6,17 +6,16 @@ module Shreds
       Auth::TwitterUserProvider.new
     end
 
-    def signup_allowed?
-      ENV['allow_signup']
+    def sign(auth_hash)
+      user = User.from_omniauth auth_hash
+      if !user && signup_allowed?
+        user = User.create_from_omniauth auth_hash
+      end
+      user
     end
 
-    def user_params(params)
-      ActionController::Parameters.new(
-        :username => params[:info][:name],
-        :email => params[:info][:email],
-        :provider => params[:provider],
-        :uid => params[:uid]
-      ).permit!
+    def signup_allowed?
+      ENV['allow_signup']
     end
   end
 end
