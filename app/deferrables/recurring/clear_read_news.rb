@@ -1,4 +1,4 @@
-class FeedClearReadWorker
+class ClearReadNews
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 

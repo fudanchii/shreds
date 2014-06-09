@@ -1,4 +1,4 @@
-class FeedUpdater
+class UpdateFeed
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
