@@ -7,6 +7,6 @@ class FeedUpdater
   recurrence { hourly.minute_of_hour(5, 25, 45) }
 
   def perform
-    Feed.all.each { |f| FeedFetcher.perform_async(f.feed_url) }
+    Feed.find_each { |f| FeedFetcher.perform_async(f.feed_url) }
   end
 end

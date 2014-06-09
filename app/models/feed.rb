@@ -25,11 +25,6 @@ class Feed < ActiveRecord::Base
     "https://plus.google.com/_/favicon?domain=#{url.host || self.url}"
   end
 
-  def clear_read_news(offset = nil)
-    offset ||= Kaminari.config.default_per_page
-    newsitems.for_view.where(:unread => false).offset(offset).destroy_all
-  end
-
   private
 
   def sanitize_url

@@ -4,9 +4,8 @@ class Newsitem < ActiveRecord::Base
   has_many :subscriptions, :through => :entries
 
   scope :for_view, -> { order('published DESC').order('id DESC') }
-  scope :with_unread, -> { joins(:entries).select('newsitems.*, entries.unread as unread') }
 
-  before_destroy { Itemhash.insert(permalink) }
+  before_destroy { Itemhash.insert(permalink) if unreads == 0 }
 
   def next
     adj('(published < :pdate and id <> :id) or (published = :pdate and id < :id)').first
@@ -14,6 +13,10 @@ class Newsitem < ActiveRecord::Base
 
   def prev
     adj('(published > :pdate and id <> :id) or (published = :pdate and id > :id)').last
+  end
+
+  def unreads
+    entries.reduce(0) {|p,c| p+=1 if c.unread }
   end
 
   private

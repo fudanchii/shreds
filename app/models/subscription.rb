@@ -11,6 +11,13 @@ class Subscription < ActiveRecord::Base
     entries.where(:unread => true).count
   end
 
+  def clear_read_news(offset = nil)
+    offset ||= Kaminari.config.default_per_page
+    entries.for_view.where(:unread => false).offset(offset).each do |e|
+      e.newsitem.destroy if e.newsitem.unreads == 0
+    end
+  end
+
   private
 
   def ensure_category
