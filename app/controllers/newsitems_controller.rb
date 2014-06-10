@@ -6,7 +6,9 @@ class NewsitemsController < ApplicationController
   def show
     @feed = @subscription.feed
     @entry = @subscription.entries.find_by :newsitem_id => params[:id]
-    respond_with @entry
+    respond_with @entry do |fmt|
+      fmt.html { render :locals => { :newsitem => @entry.newsitem } }
+    end
   end
 
   def toggle_read

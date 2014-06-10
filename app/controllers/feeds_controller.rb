@@ -16,7 +16,7 @@ class FeedsController < ApplicationController
     @subscription = current_user.subscriptions.find_by :feed_id => params[:id]
     @feed = @subscription.feed
     @entries = @subscription.entries.for_view.page params[:page]
-    respond_with @feed 
+    respond_with @feed
   end
 
   # POST /feeds

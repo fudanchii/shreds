@@ -1,18 +1,18 @@
 <div class="panel panel-default widget widget-transparent feed">
   <div class="panel-heading">
-  <h2><%= link_to @entry.newsitem.title, @entry.newsitem.permalink, target: '_blank' %>
-  <a href="javascript:void(0)" data-on-click="toggleRead" data-id="<%= @entry.newsitem.id %>" data-feed-id="<%= @feed.id %>"><span class="glyphicon glyphicon-ok-<%= circle_or_sign(@entry) %> glyph-sm" data-toggle="tooltip" title="<%= set_read_unread(@entry)%>"></span></a>
+  <h2><%= link_to newsitem.title, newsitem.permalink, target: '_blank' %>
+  <a href="javascript:void(0)" data-on-click="toggleRead" data-id="<%= newsitem.id %>" data-feed-id="<%= @feed.id %>"><span class="glyphicon glyphicon-ok-<%= circle_or_sign(@entry) %> glyph-sm" data-toggle="tooltip" title="<%= set_read_unread(@entry)%>"></span></a>
 </h2>
 </div>
 <div class="feed-content panel-body">
-  <%= render "news_meta", author: @entry.newsitem.author, published: @entry.newsitem.published %>
-  <%= (@entry.newsitem.content || @entry.newsitem.summary || '').html_safe %>
+  <%= render "news_meta", author: newsitem.author, published: newsitem.published %>
+  <%= (newsitem.content || newsitem.summary || '').html_safe %>
 </div>
-<%= render 'news_navigation', feed: @feed, news: @entry.newsitem %>
+<%= render 'news_navigation', feed: @feed, news: newsitem %>
 </div>
 
 <% content_for :title do %>
-  <%= title(@entry.newsitem.title) %>
+  <%= title(newsitem.title) %>
 <% end %>
 
 <% content_for :meta do %>
