@@ -1,9 +1,23 @@
 # Add application configuration variables here, as shown below.
 #
-#APP_NAME: shreds
-#MEMCACHE_SERVERS: "127.0.0.1:11211 127.0.0.1:6379"
-#SECRET: SECRET_STRING_HERE
-#
-# whitelist these tags
-#WLTAGS: "figure style iframe"
-#
+
+APP_NAME: shreds
+APP_DOMAIN: "http://read.shreds.me"
+
+# Allow user to automatically signed up when login
+# via Oauth
+allow_signup: true
+
+# Application secret key used in production environment
+SECRET: ""
+
+# Cache servers, separated by space
+MEMCACHE_SERVERS: "127.0.0.1:11211 127.0.0.1:6379"
+
+# If you want to keep some html tags from being sanitized,
+# put those tags on this whitelist.
+WLTAGS: "figure style iframe"
+
+# Twitter key/secret for Oauth
+TWITTER_KEY: ""
+TWITTER_SECRET: ""
