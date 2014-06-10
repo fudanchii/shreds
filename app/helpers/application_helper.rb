@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def full_url(path)
-    request.protocol + request.host_with_port + path.to_s
+    "#{ENV['APP_DOMAIN']}#{path.to_s}"
   end
 
 end
