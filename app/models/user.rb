@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   before_save :tokenize
 
   validates :username, :uid, :provider, :presence => true
-  
+
   normalize_attributes :email
 
   def self.from_omniauth(auth_hash)
