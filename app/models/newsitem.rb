@@ -3,7 +3,7 @@ class Newsitem < ActiveRecord::Base
   has_many :entries, :dependent => :destroy
   has_many :subscriptions, :through => :entries
 
-  scope :for_view, -> { order('published DESC').order('id DESC') }
+  scope :for_view, -> { order('published DESC, id DESC') }
 
   before_destroy { Itemhash.insert(permalink) if unreads == 0 }
 

@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def unread_feeds
-    subs = subscriptions.select {|s| s.unreads > 0 }
+    subs = subscriptions.for_view.select {|s| s.unreads > 0 }
     subs.map {|s| {
       :feed => s.feed,
       :entries => s.entries.unread_entry.for_view
