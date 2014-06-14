@@ -1,8 +1,7 @@
 <ul class="nav nav-list">
 {{#each categories}}
   <li class="nav-header">
-    <span><strong>{{./name}}</strong></span>
-  </li>
+  <span><strong>{{./name}}</strong></span>
   <ul class="nav-list feed-items" style="list-style-type:none;">
     {{#each ./feeds}}
     <li class="nav-item{{./active}}" data-on-mousedown="navigated" data-feed-id="{{./id}}">
@@ -21,5 +20,6 @@
       </li>
     {{/each}}
   </ul>
+  </li>
 {{/each}}
 </ul>
