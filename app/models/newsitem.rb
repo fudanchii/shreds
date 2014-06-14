@@ -16,7 +16,7 @@ class Newsitem < ActiveRecord::Base
   end
 
   def unreads
-    entries.reduce(0) {|p,c| p+=1 if c.unread }
+    entries.where(:unread => true).count
   end
 
   private
