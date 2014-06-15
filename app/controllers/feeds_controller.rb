@@ -13,7 +13,7 @@ class FeedsController < ApplicationController
   # GET /feeds/1
   # GET /feeds/1.json
   def show
-    @subscription = current_user.subscriptions.find_by :feed_id => params[:id]
+    @subscription = current_user.subscriptions.find_by! :feed_id => params[:id]
     @feed = @subscription.feed
     @entries = @subscription.entries.for_view.page params[:page]
     respond_with @feed

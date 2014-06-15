@@ -6,12 +6,12 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound, :with => :feed_not_found
 
-  before_action :should_authenticated?
+  before_action :should_authenticate?
   before_action :fetch_subscriptions, :init_props
 
   private
 
-  def should_authenticated?
+  def should_authenticate?
     redirect_to('/login') unless authenticated?
   end
 
