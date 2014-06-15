@@ -28,8 +28,11 @@ class EntryNewsitems
         s.entries.build(:newsitem => news).save!
       end
     end
-    @feed_record.update! :title => @feed.title, :etag => @feed.etag, \
-      :url => @feed.url
+    @feed_record.update!(:etag => @feed.etag)
+    @feed_record.update!(:title => @feed.title) if @feed_record.title != @feed.title
+    @feed_record.update!(:url => @feed.url) unless @feed.url.nil? || @feed_record.url == @feed.url
+  rescue ActiveRecord::RecordInvalid => err
+    fail InvalidFeed.new(err.message)
   end
 
   private

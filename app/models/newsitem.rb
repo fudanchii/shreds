@@ -32,13 +32,14 @@ end
 #
 #  id         :integer          not null, primary key
 #  permalink  :text
+#  unread     :boolean          default(TRUE)
 #  feed_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
 #  content    :text
 #  author     :text
 #  title      :text
-#  published  :datetime         not null
+#  published  :datetime
 #  summary    :text
 #
 # Indexes
