@@ -6,7 +6,9 @@ Shreds::Application.routes.draw do
   get '/logout' => 'session#destroy'
   match '/auth/:provider/callback', :to => 'session#create', :via => [:get, :post]
 
-  mount Sidekiq::Web => '/backyard/sidekiq'
+  namespace 'backyard' do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   resources :users
 
