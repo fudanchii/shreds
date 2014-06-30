@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= render 'meta' %>
+  <%= yield :head %>
+  <title><%= yield :title %></title>
+  <%= stylesheet_link_tag "backyard", :media => "all" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div id="beyond-the-fence">
+    <%= render 'backyard/navigation' %>
+  
+    <div id="fence">
+      <%= yield %>
+    </div>
+  </div>
+
+  <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" %>
+  <%= javascript_include_tag "backyard" %>
+</body>
+</html>

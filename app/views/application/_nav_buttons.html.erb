@@ -1,9 +1,13 @@
 <ul class="nav-buttons nav-pills nav-justified">
   <li data-toggle="tooltip" title="Refresh"><span class="glyphicon glyphicon-refresh"></span></li>
   <li data-toggle="tooltip" title="Mark All as Read"><span class="glyphicon glyphicon-ok"></span></li>
-  <li data-toggle="tooltip" title="Settings (Coming soon!)"><span class="glyphicon glyphicon-cog"></span></li>
+  <li data-toggle="tooltip" title="Settings (Coming soon!)">
+    <%= link_to full_url('/backyard/subscriptions') do %>
+      <span class="glyphicon glyphicon-cog"></span>
+    <% end %>
+  </li>
   <li data-toggle="tooltip" title="Logout (<%= @current_user.username %>)">
-  <%= link_to full_url('/logout') do %>
+    <%= link_to full_url('/logout') do %>
       <span class="glyphicon glyphicon-log-out"></span>
     <% end %>
   </li>

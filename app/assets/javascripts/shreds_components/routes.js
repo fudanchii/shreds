@@ -9,6 +9,7 @@
         on_dispatch: 'route:dispatched'
       });
       r.define('/',                    'feeds:render:index');
+      r.define('/backyard/settings',   'backyard:settings');
       r.define('/categories',          'categories:render:index');
       r.define('/page/:page',          'feeds:render:page');
       r.define('/:feed_id',            'feed:render:show');

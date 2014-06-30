@@ -16,7 +16,7 @@
     </div>
   </div>
 
-  <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" unless Rails.env.development? %>
+  <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" if Rails.env.production? %>
   <%= javascript_include_tag "application" %>
 
 <script type="text/javascript">

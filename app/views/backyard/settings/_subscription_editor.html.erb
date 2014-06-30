@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-xs-6 form-left">
+    <form role="form">
+
+      <div class="form-group">
+        <label class="col-xs-3 control-label">Canonical</label>
+        <p class="form-control-static"><%= subscription.feed.url %></p>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-6">
+          <input class="form-control" placeholder="Feed URL" value="<%= subscription.feed.feed_url %>">
+        </div>
+        <div class="col-xs-6">
+          <input class="form-control" placeholder="Category" value="<%= subscription.category.name %>">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-xs-6 form-right">
+    <div class="row">
+      <div class="col-xs-4">
+        <div class="well not-that-well">
+          <p class="value"><%= subscription.entries.count %></p>
+          <label>Articles</label>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="well not-that-well">
+          <label>Last Update</label>
+          <p class="value"><abbr class="timeago" title="<%= subscription.feed.updated_at.iso8601 %>"></abbr></p>
+        </div>
+      </div>
+      <div class="col-xs-2">
+        <p>
+        <a href="javascript:void(0)" class="btn btn-primary"><span class="glyphicon glyphicon-refresh"></span></a>
+        </p><p>
+        <a href="javascript:void(o)" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

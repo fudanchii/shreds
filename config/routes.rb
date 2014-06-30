@@ -8,6 +8,8 @@ Shreds::Application.routes.draw do
 
   namespace 'backyard' do
     mount Sidekiq::Web => '/sidekiq'
+    get '/activities' => 'settings#activities'
+    get '/subscriptions' => 'settings#subscriptions'
   end
 
   resources :users

@@ -11,7 +11,11 @@
  *= require ladda/css/ladda
  *= require nprogress/nprogress
  *= require_self
- *= require_tree .
  */
 
 @import "twitter/bootstrap";
+
+@import "feeds";
+@import "nav";
+@import "notification";
+@import "statics";

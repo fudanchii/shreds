@@ -1,0 +1,38 @@
+
+#fence > div#accordion {
+    margin: 16px;
+}
+
+div#fence {
+    background: #fafafa;
+    border: 1px solid #dddddd;
+}
+
+div#beyond-the-fence {
+    padding-top: 16px;
+    width: 1024px;
+    margin: 0 auto;
+
+}
+
+div.form-right {
+    border-left: 3px dashed #dddddd;
+}
+
+.well.not-that-well {
+    padding: 10px;
+    margin-bottom: 0px;
+}
+
+.well.not-that-well > * {
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+}
+
+p.value {
+    font-size: x-large;
+    margin-bottom: 0px;
+}
+
+@import "twitter/bootstrap";
