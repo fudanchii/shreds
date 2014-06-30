@@ -13,9 +13,10 @@
  *= require_self
  */
 
+@import "twitter/bootstrap";
+
 @import "feeds";
 @import "nav";
 @import "notification";
 @import "statics";
 
-@import "twitter/bootstrap";
