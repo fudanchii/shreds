@@ -4,7 +4,7 @@ class EntryNewsitems
   def initialize(feed, feed_url)
     @feed = feed
     @feed_record = Feed.find_by! :feed_url => feed_url
-    fail InvalidFeed if @feed_record.nil?
+    fail InvalidFeed.new(I18n.t('feed.error.not_found')) if @feed_record.nil?
     return if up_to_date? feed, feed_record
   end
 
