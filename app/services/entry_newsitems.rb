@@ -15,9 +15,12 @@ class EntryNewsitems
 
   def execute
     @feed.entries.each do |entry|
+      entry_url = entry.url.presence ||
+        (entry.entry_id if entry.entry_id.start_with?('http://') or entry.entry_id.start_with?('https://'))
+
       # Skip to the next entry if it's already exist
-      next unless Newsitem.find_by(:permalink => entry.url).nil? &&
-        (not Itemhash.has? entry.url)
+      next unless entry_url.present? && Newsitem.find_by(:permalink => entry_url).nil? &&
+        (not Itemhash.has? entry_url)
 
       # Create newsitem for this feed
       news = @feed_record.newsitems.build newsitem_params(entry)
