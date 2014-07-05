@@ -6,6 +6,8 @@ class Feed < ActiveRecord::Base
   has_many :users, :through => :subscriptions
   has_many :newsitems, :dependent => :destroy
 
+  normalize_attributes :url
+
   validates :url, presence: true
 
   scope :for_nav, -> { order('url ASC') }
@@ -28,7 +30,6 @@ class Feed < ActiveRecord::Base
   private
 
   def sanitize_url
-    self.url.gsub!(/\s+/, '')
     self.url.prepend('http://') unless url.start_with?('http://') || url.start_with?('https://')
   end
 end
