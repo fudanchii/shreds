@@ -23,7 +23,7 @@ class EntryNewsitems
         (not Itemhash.has? entry_url)
 
       # Create newsitem for this feed
-      news = @feed_record.newsitems.build newsitem_params(entry)
+      news = @feed_record.newsitems.build newsitem_params(entry, entry_url)
       news.save!
 
       # Attach newsitem as entry for each feed's subscriptions
@@ -40,12 +40,12 @@ class EntryNewsitems
 
   private
 
-  def newsitem_params(entry)
+  def newsitem_params(entry, permalink)
     params = {}
-    [:title, :published, :content, :author, :summary].each do |field|
+    %i(title published content author summary).each do |field|
       params[field] = entry.send(field) if entry.respond_to? field
     end
-    params[:permalink] = entry.url if entry.respond_to? :url
+    params[:permalink] = permalink
     ActionController::Parameters.new(params).permit!
   end
 end
