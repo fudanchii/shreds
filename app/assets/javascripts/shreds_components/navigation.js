@@ -1,5 +1,6 @@
 (function (Shreds) { 'use strict';
-  Shreds.registerComponent('navigation', {
+  var name = 'navigation';
+  Shreds.registerComponent(name, {
     events: {
       'watch:markAsRead': function (ev, data) {
         if (data.error) {

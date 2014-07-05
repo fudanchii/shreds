@@ -1,5 +1,6 @@
 (function (Shreds) { 'use strict';
-  Shreds.registerComponent('notification', {
+  var name = 'notification';
+  Shreds.registerComponent(name, {
     init: function () { },
     error: function (msg) {
       notify('danger', msg);

@@ -1,5 +1,6 @@
 (function (Shreds) { 'use strict';
-  Shreds.registerComponent('breadcrumbs', {
+  var name = 'breadcrumbs';
+  Shreds.registerComponent(name, {
     init: function () {},
     events: {
       'route:dispatched': function (ev, data) {
