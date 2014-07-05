@@ -1,7 +1,5 @@
 (function (Shreds) { 'use strict';
-  var name = 'ajax';
-  Shreds.components.push(name);
-  Shreds[name] = {
+  Shreds.registerComponent('ajax', {
     init: function () {
       $.ajaxPrefilter(function (opts, oriOpts, xhr) {
         if (!opts.crossDomain) {
@@ -39,5 +37,5 @@
       var options = $.extend(true, {}, opts, { opts: { type: 'DELETE' } });
       return this.do(url, options);
     }
-  };
+  });
 })(window.Shreds);

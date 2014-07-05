@@ -9,8 +9,6 @@
 //= require jquery-timeago/jquery.timeago
 //= require jquery-timeago/locales/jquery.timeago.en
 
-console.log("yay");
-
 $(function (){
   $('abbr.timeago').timeago();
 });

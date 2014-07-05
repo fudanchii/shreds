@@ -1,7 +1,5 @@
 (function (Shreds) { 'use strict';
-  var name = 'watch';
-  Shreds.components.push(name);
-  Shreds[name] = {
+  Shreds.registerComponent('watch', {
     list: [],
     add: function (data) {
       this.list.push(data);
@@ -10,7 +8,7 @@
     init: function (ctx) {
       setInterval(doWatch.bind(this, 'updateFeed'), 600000);
     }
-  };
+  });
 
 function doWatch(key) {
   if (key) { this.list.push(key); }

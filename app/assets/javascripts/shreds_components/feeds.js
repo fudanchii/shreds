@@ -1,11 +1,9 @@
 (function (Shreds) { 'use strict';
-  var name = 'feeds';
   var $feedView = $('.span-fixed-sidebar');
   var $container = $('body,html');
   var _storage = {};
 
-  Shreds.components.push(name);
-  Shreds[name] = {
+  Shreds.registerComponent('feeds', {
     init: function () { },
     events: {
       'feeds:_storage:clear': function (ev, data) {
@@ -40,7 +38,7 @@
           .data('title', 'Set unread');
       }
     }
-  };
+  });
 
   function fetch(context, url) {
     Shreds.$.trigger('shreds:progress:start');

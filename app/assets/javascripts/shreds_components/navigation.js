@@ -1,7 +1,5 @@
 (function (Shreds) { 'use strict';
-  var name = 'navigation';
-  Shreds.components.push(name);
-  Shreds[name] = {
+  Shreds.registerComponent('navigation', {
     events: {
       'watch:markAsRead': function (ev, data) {
         if (data.error) {
@@ -52,7 +50,7 @@
         $('.nav-header.active').removeClass('active');
       }
     }
-  };
+  });
 
   function reloadNavigation(data) {
     if (data.error) {

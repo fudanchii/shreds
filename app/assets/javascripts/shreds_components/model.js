@@ -1,12 +1,9 @@
 (function (Shreds) { 'use strict';
-  var name = 'model';
   var index_prefix = '$idx:-';
   var Models = {};
   var Context = {};
 
-  Shreds.components.push(name);
-
-  Shreds[name] = {
+  Shreds.registerComponent('model', {
     init: function () { },
 
     import: function (modelName, data, options) {
@@ -46,7 +43,7 @@
         return {};
       }
     }
-  };
+  });
 
   function cleanUpContext(modelName, options) {
     if (!options || !options.context) { return; }

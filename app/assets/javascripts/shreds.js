@@ -53,6 +53,11 @@ window.Shreds = {
     }.bind(this));
   },
 
+  registerComponent: function (name, component) {
+    this.components.push(name);
+    this[name] = component;
+  },
+
   // Render handlebars template under the given dom object.
   // Optionally checking if we want to append the template instead of
   // replacing the whole dom's content.

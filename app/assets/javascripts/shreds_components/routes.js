@@ -1,7 +1,5 @@
 (function (Shreds, Router) { 'use strict';
-  var name = 'routes';
-  Shreds.components.push(name);
-  Shreds[name] = {
+  Shreds.registerComponent('routes', {
     init: function () {
       var r = new Router({
         debug: false,
@@ -19,5 +17,5 @@
         r.dispatch();
       }
     }
-  };
+  });
 })(window.Shreds, window.Router);

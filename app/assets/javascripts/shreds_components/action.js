@@ -7,9 +7,6 @@
 
 (function (Shreds) { 'use strict';
 
-  /** @const */
-  var name = 'action';
-
   /**
    * List of our acknowledged events.
    * Since we have to create handler for each events,
@@ -65,9 +62,7 @@
     };
   }
 
-  Shreds.components.push(name);
-
-  Shreds[name] = {
+  Shreds.registerComponent('action', {
 
     /**
      * We want to start handling events just when our main app initializing,
@@ -184,6 +179,6 @@
       if ($subscribeForm.has(ev.target).length === 0) { amOut = true; return; }
       amOut = false;
     }
-  };
+  });
 })(window.Shreds);
 

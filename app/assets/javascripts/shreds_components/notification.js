@@ -1,16 +1,13 @@
 (function (Shreds) { 'use strict';
-  var name = 'notification';
-  Shreds.components.push(name);
-  Shreds[name] = {
-    init: function () {
-    },
+  Shreds.registerComponent('notification', {
+    init: function () { },
     error: function (msg) {
       notify('danger', msg);
     },
     info: function (msg) {
       notify('info', msg);
     }
-  };
+  });
 
   function notify(type, message) {
     var ident = Shreds.utils.generateId(name);

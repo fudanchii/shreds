@@ -1,10 +1,8 @@
 (function (Shreds) { 'use strict';
-  var name = 'utils';
   var stateId = 0;
   var nameSpace = "shreds-";
 
-  Shreds.components.push(name);
-  Shreds[name] = {
+  Shreds.registerComponent('utils', {
     init: function () {
       $.scrollUp({
         scrollSpeed: 850,
@@ -44,6 +42,6 @@
     timeago: function (option) {
       $('abbr.timeago').timeago(option);
     }
-  };
+  });
 
 })(window.Shreds);

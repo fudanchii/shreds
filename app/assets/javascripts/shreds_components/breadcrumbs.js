@@ -1,7 +1,5 @@
 (function (Shreds) { 'use strict';
-  var name = 'breadcrumbs';
-  Shreds.components.push(name);
-  Shreds[name] = {
+  Shreds.registerComponent('breadcrumbs', {
     init: function () {},
     events: {
       'route:dispatched': function (ev, data) {
@@ -25,5 +23,5 @@
         Shreds.syncView(name, { category: category, feed: feed });
       }
     }
-  };
+  });
 })(window.Shreds);

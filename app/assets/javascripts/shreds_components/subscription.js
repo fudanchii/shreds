@@ -1,16 +1,14 @@
 (function (Shreds) { 'use strict';
-  var name = 'subscription';
   var spinner = null;
 
-  Shreds.components.push(name);
-  Shreds[name] = {
+  Shreds.registerComponent('subscription', {
     startSpinner: function (el) {
       spinner = Ladda.create(el);
       spinner.start();
     },
     stopSpinner: function () { spinner.stop(); },
     init: function () { setupFileUpload(); }
-  };
+  });
 
   function setupFileUpload() {
     var spinner = Ladda.create($('.fileinput-button')[0]);

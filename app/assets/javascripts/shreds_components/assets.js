@@ -1,8 +1,6 @@
 (function (Shreds) { 'use strict';
-  var name = 'assets';
   var assets = {};
-  Shreds.components.push(name);
-  Shreds[name] = {
+  Shreds.registerComponent('assets', {
     init: function () {},
     add: function (name, path) {
       assets[name] = path;
@@ -10,5 +8,5 @@
     },
     path: function (name) { return assets[name]; },
     url:  function (name) { return 'url(' + assets[name] + ')'; }
-  };
+  });
 })(window.Shreds);
