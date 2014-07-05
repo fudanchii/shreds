@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: git://github.com/mdeering/attribute_normalizer.git
-  revision: 0b3e8fcdb79eddaf6bece056097309a18b0ebaf5
+  revision: 832c1e083aa94a21b1ba59441448d52f9879b400
   specs:
     attribute_normalizer (1.2.0.b)
 
@@ -125,7 +125,7 @@ GEM
     hike (1.2.3)
     hiredis (0.5.2)
     i18n (0.6.9)
-    ice_cube (0.12.0)
+    ice_cube (0.12.1)
     jbuilder (2.1.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -417,7 +417,7 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
-    slim (2.0.2)
+    slim (2.0.3)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
     sprockets (2.11.0)
@@ -433,7 +433,7 @@ GEM
     stathat (0.1.7)
     teaspoon (0.8.0)
       railties (>= 3.2.5, < 5)
-    temple (0.6.7)
+    temple (0.6.8)
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
