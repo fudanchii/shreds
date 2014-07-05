@@ -17,7 +17,7 @@ class Feed < ActiveRecord::Base
   before_save :sanitize_url
 
   def to_param
-    "#{id}-#{(title || '').downcase.strip.gsub(/[\s\/#\?\.]/, '-')}"
+    "#{id}-#{(title || '(untitled)').downcase.strip.gsub(/[\s\/#\?\.]/, '-').gsub(/-{2,}/, '-')}"
   end
 
   def favicon
@@ -29,8 +29,7 @@ class Feed < ActiveRecord::Base
 
   def sanitize_url
     self.url.gsub!(/\s+/, '')
-    self.url.prepend('http://') unless \
-      url.start_with?('http://') || url.start_with?('https://')
+    self.url.prepend('http://') unless url.start_with?('http://') || url.start_with?('https://')
   end
 end
 
