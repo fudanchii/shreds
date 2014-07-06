@@ -1,5 +1,6 @@
 (function (Shreds) { 'use strict';
-  Shreds.registerComponent('watch', {
+  var name = 'watch';
+  Shreds.registerComponent(name, {
     list: [],
     add: function (data) {
       this.list.push(data);
