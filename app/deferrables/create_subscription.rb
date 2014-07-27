@@ -11,8 +11,7 @@ class CreateSubscription
       subscription.save!
       subscription.feed.newsitems.each {|n| subscription.entries.build(:newsitem => n).save! }
       FeedFetcher.new.perform subscription.feed.feed_url
-      EventPool.add "create-#{jid}", {
-        view: 'create', category_id: subscription.category.id }
+      EventPool.add "create-#{jid}", { view: 'create', category_id: subscription.category.id }
     end
   rescue ActiveRecord::RecordNotFound
     EventPool.add "create-#{jid}", :error => I18n.t('user.not_found')
