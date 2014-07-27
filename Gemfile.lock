@@ -17,9 +17,9 @@ GIT
 
 GIT
   remote: git://github.com/mdeering/attribute_normalizer.git
-  revision: 832c1e083aa94a21b1ba59441448d52f9879b400
+  revision: 49f1f4f3988dc8d1d65eb73f8359ca38fdd67a97
   specs:
-    attribute_normalizer (1.2.0.b)
+    attribute_normalizer (1.2.0)
 
 GIT
   remote: git://github.com/mhfs/sidekiq-failures.git
@@ -30,9 +30,9 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: 01ccfcebd45b8de0a6846d0f33b9daf74673dcc1
+  revision: ed3de1c2b566a962697529e824953f6b280e2867
   specs:
-    simple_form (3.1.0.rc1)
+    simple_form (3.1.0.rc2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
 
@@ -97,7 +97,7 @@ GEM
       timers (~> 1.1.0)
     coderay (1.1.0)
     connection_pool (2.0.0)
-    curb (0.8.5)
+    curb (0.8.6)
     dalli (2.7.2)
     debug_inspector (0.0.2)
     dotenv (0.11.1)
@@ -121,12 +121,12 @@ GEM
       multi_json
       sprockets (>= 2.0.3)
       tilt
-    hashie (2.1.2)
+    hashie (3.2.0)
     hike (1.2.3)
     hiredis (0.5.2)
-    i18n (0.6.9)
+    i18n (0.6.11)
     ice_cube (0.12.1)
-    jbuilder (2.1.1)
+    jbuilder (2.1.3)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     json (1.8.1)
@@ -140,8 +140,8 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     mini_portile (0.6.0)
-    minitest (5.3.5)
-    minitest-reporters (1.0.4)
+    minitest (5.4.0)
+    minitest-reporters (1.0.5)
       ansi
       builder
       minitest (>= 5.0)
@@ -150,12 +150,12 @@ GEM
       minitest (~> 5.0)
       rails (~> 4.1.0.rc2)
     multi_json (1.10.1)
-    nokogiri (1.6.2.1)
+    nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     oauth (0.4.7)
-    oj (2.9.8)
-    omniauth (1.2.1)
-      hashie (>= 1.2, < 3)
+    oj (2.9.9)
+    omniauth (1.2.2)
+      hashie (>= 1.2, < 4)
       rack (~> 1.0)
     omniauth-oauth (1.0.1)
       oauth
@@ -167,7 +167,7 @@ GEM
     pg (0.17.1)
     polyglot (0.3.5)
     psych (2.0.5)
-    puma (2.8.2)
+    puma (2.9.0)
       rack (>= 1.1, < 2.0)
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
@@ -407,7 +407,7 @@ GEM
       sprockets-rails (~> 2.0)
     sax-machine (0.2.1)
       nokogiri (~> 1.6.0)
-    sidekiq (3.2.0)
+    sidekiq (3.2.1)
       celluloid (>= 0.15.2)
       connection_pool (>= 2.0.0)
       json
@@ -443,7 +443,7 @@ GEM
       polyglot (>= 0.3.1)
     tzinfo (1.2.1)
       thread_safe (~> 0.1)
-    uglifier (2.5.1)
+    uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
 
