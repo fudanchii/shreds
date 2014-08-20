@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/amatsuda/kaminari.git
-  revision: 21ad994d42527fd97c8168b0d0ccdd88cec91251
+  revision: 0a6194ad00f6ec18e21fd757f66fe9946f7aba96
   specs:
-    kaminari (0.15.1)
+    kaminari (1.0.0.alpha)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
 
@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: git://github.com/mdeering/attribute_normalizer.git
-  revision: 49f1f4f3988dc8d1d65eb73f8359ca38fdd67a97
+  revision: 8bdafce8c2eb856c19b00bce747bf05918a199da
   specs:
     attribute_normalizer (1.2.0)
 
@@ -30,7 +30,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: ed3de1c2b566a962697529e824953f6b280e2867
+  revision: c3bc4af79df2f3f51500a38d8a84aa682f9ad009
   specs:
     simple_form (3.1.0.rc2)
       actionpack (~> 4.0)
@@ -48,27 +48,27 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (4.1.4)
-      actionpack (= 4.1.4)
-      actionview (= 4.1.4)
+    actionmailer (4.1.5)
+      actionpack (= 4.1.5)
+      actionview (= 4.1.5)
       mail (~> 2.5.4)
-    actionpack (4.1.4)
-      actionview (= 4.1.4)
-      activesupport (= 4.1.4)
+    actionpack (4.1.5)
+      actionview (= 4.1.5)
+      activesupport (= 4.1.5)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    actionview (4.1.4)
-      activesupport (= 4.1.4)
+    actionview (4.1.5)
+      activesupport (= 4.1.5)
       builder (~> 3.1)
       erubis (~> 2.7.0)
-    activemodel (4.1.4)
-      activesupport (= 4.1.4)
+    activemodel (4.1.5)
+      activesupport (= 4.1.5)
       builder (~> 3.1)
-    activerecord (4.1.4)
-      activemodel (= 4.1.4)
-      activesupport (= 4.1.4)
+    activerecord (4.1.5)
+      activemodel (= 4.1.5)
+      activesupport (= 4.1.5)
       arel (~> 5.0.0)
-    activesupport (4.1.4)
+    activesupport (4.1.5)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -83,9 +83,10 @@ GEM
     ansi (1.4.3)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
-    better_errors (1.1.0)
+    better_errors (2.0.0)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bower (0.0.2)
@@ -105,7 +106,7 @@ GEM
     dotenv-deployment (0.0.2)
     erubis (2.7.0)
     execjs (2.2.1)
-    feedjira (1.3.0)
+    feedjira (1.3.1)
       curb (~> 0.8.1)
       loofah (~> 2.0.0)
       sax-machine (~> 0.2.1)
@@ -153,7 +154,7 @@ GEM
     nokogiri (1.6.3.1)
       mini_portile (= 0.6.0)
     oauth (0.4.7)
-    oj (2.9.9)
+    oj (2.10.1)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
@@ -177,24 +178,24 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (4.1.4)
-      actionmailer (= 4.1.4)
-      actionpack (= 4.1.4)
-      actionview (= 4.1.4)
-      activemodel (= 4.1.4)
-      activerecord (= 4.1.4)
-      activesupport (= 4.1.4)
+    rails (4.1.5)
+      actionmailer (= 4.1.5)
+      actionpack (= 4.1.5)
+      actionview (= 4.1.5)
+      activemodel (= 4.1.5)
+      activerecord (= 4.1.5)
+      activesupport (= 4.1.5)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.1.4)
+      railties (= 4.1.5)
       sprockets-rails (~> 2.0)
-    railties (4.1.4)
-      actionpack (= 4.1.4)
-      activesupport (= 4.1.4)
+    railties (4.1.5)
+      actionpack (= 4.1.5)
+      activesupport (= 4.1.5)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.3.2)
     redis (3.1.0)
-    redis-namespace (1.5.0)
+    redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
     ruby-progressbar (1.5.1)
     rubysl (2.0.15)
@@ -302,7 +303,7 @@ GEM
     rubysl-csv (2.0.2)
       rubysl-english (~> 2.0)
     rubysl-curses (2.0.1)
-    rubysl-date (2.0.6)
+    rubysl-date (2.0.8)
     rubysl-delegate (2.0.1)
     rubysl-digest (2.0.3)
     rubysl-drb (2.0.1)
@@ -407,7 +408,7 @@ GEM
       sprockets-rails (~> 2.0)
     sax-machine (0.2.1)
       nokogiri (~> 1.6.0)
-    sidekiq (3.2.1)
+    sidekiq (3.2.2)
       celluloid (>= 0.15.2)
       connection_pool (>= 2.0.0)
       json
@@ -441,7 +442,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (1.2.1)
+    tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
       execjs (>= 0.3.0)
