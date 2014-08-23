@@ -17,7 +17,8 @@ class ApplicationController < ActionController::Base
 
   def fetch_subscriptions
     newsitems = Newsitem.select('distinct on (feed_id) *')
-      .where(:feed_id => current_user.subscriptions.pluck(:feed_id)).to_ary
+      .where(:feed_id => current_user.subscriptions.pluck(:feed_id))
+      .order(:feed_id).for_view.to_ary
     @subscriptions = current_user.subscriptions.with_unread_count
       .includes(:feed, :category).order(:feed_id).reduce({}) do |prev, current|
       prev[current.category.name] ||= []
