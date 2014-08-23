@@ -79,3 +79,5 @@ gem 'stathat'
 
 gem 'foreman', :require => false
 
+gem 'rack-mini-profiler', :group => :development
+gem 'flamegraph', :group => :development
