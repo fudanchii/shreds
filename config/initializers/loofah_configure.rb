@@ -5,6 +5,8 @@
 #
 # see https://github.com/flavorjones/loofah/blob/master/lib/loofah/html5/whitelist.rb
 # for current default whitelist.
+require 'loofah'
+
 if ENV["WLTAGS"]
   tag_list = Loofah::HTML5::WhiteList::ALLOWED_ELEMENTS_WITH_LIBXML2
   tag_list += ENV["WLTAGS"].split

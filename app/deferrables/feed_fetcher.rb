@@ -1,3 +1,5 @@
+require 'feedjira'
+
 class FeedFetcher
   include Sidekiq::Worker
 

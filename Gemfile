@@ -17,7 +17,7 @@ gem 'attribute_normalizer', :github => 'mdeering/attribute_normalizer'
 ### 2. Assets related gems
 gem 'sass-rails'
 gem 'uglifier'
-gem 'bower'
+gem 'bower', :require => false
 # end of 2.
 
 
@@ -45,7 +45,7 @@ gem 'sidekiq'
 gem 'sidekiq-failures', :github => 'mhfs/sidekiq-failures'
 gem 'sidetiq', :github => 'tobiassvn/sidetiq'
 gem 'sinatra', :require => false
-gem 'slim'
+gem 'slim', :require => false
 # end of 5.
 
 # 6. User authentication related gems
@@ -58,17 +58,17 @@ gem 'dalli'
 gem 'cache_digests'
 
 # Feed fetching
-gem 'feedjira' # #161 has been merged into 0.4.0 // :github => 'fudanchii/feedzirra', :branch => 'dev'
-gem 'feedbag', :github => 'fudanchii/feedbag', :branch => 'dev'
+gem 'feedjira', :require => false
+gem 'feedbag', :github => 'fudanchii/feedbag', :branch => 'dev', :require => false
 
 # Test-related gems
-gem 'minitest'
-gem 'minitest-reporters'
+gem 'minitest', :group => :test
+gem 'minitest-reporters', :group => :test
 gem 'minitest-spec-rails', :group => :test
 gem 'teaspoon', :group => [:test, :development]
 
 # To use ActiveModel has_secure_password
-gem 'bcrypt'
+gem 'bcrypt', :require => false
 
 gem 'oj'
 gem 'redis'
@@ -79,7 +79,3 @@ gem 'stathat'
 
 gem 'foreman', :require => false
 
-# rubinius related gems
-gem 'rubysl', '~> 2.0', :platforms => [:rbx]
-gem 'psych',  :platforms => [:rbx]
-gem 'racc', :platforms => [:rbx]
