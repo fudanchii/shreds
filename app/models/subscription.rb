@@ -8,8 +8,13 @@ class Subscription < ActiveRecord::Base
   before_save :ensure_category
 
   scope :for_view, -> { includes(:newsitems).order('newsitems.published desc') }
+  scope :with_unread_count, -> {
+    joins(:entries)
+      .select('subscriptions.*, sum(case when entries.unread then 1 else 0 end) as unreads')
+      .group('subscriptions.id')
+  }
 
-  def unreads
+  def unread_count
     entries.where(:unread => true).count
   end
 
