@@ -12,8 +12,6 @@ Shreds::Application.routes.draw do
     get '/subscriptions' => 'settings#subscriptions'
   end
 
-  resources :users
-
   resources :feeds, only: [:index, :create, :show, :destroy], path: '/', format: false do
     get 'page/:page', action: :show, on: :member
     get 'page/:page', action: :index, on: :collection
@@ -35,5 +33,5 @@ Shreds::Application.routes.draw do
     post '/upload_opml' => 'feeds#create_from_opml'
   end
 
-  get 'feed_subscriptions' => 'categories#feed_subscriptions', constraints: { format: 'xml' }
+  get 'subscriptions' => 'categories#feed_subscriptions', constraints: { format: 'xml' }
 end
