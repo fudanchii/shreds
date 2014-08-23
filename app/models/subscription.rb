@@ -7,7 +7,7 @@ class Subscription < ActiveRecord::Base
 
   before_save :ensure_category
 
-  scope :for_view, -> { order('updated_at DESC, id DESC') }
+  scope :for_view, -> { includes(:newsitems).order('newsitems.published desc') }
 
   def unreads
     entries.where(:unread => true).count

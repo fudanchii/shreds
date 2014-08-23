@@ -12,10 +12,6 @@ class Feed < ActiveRecord::Base
 
   scope :for_nav, -> { order('url ASC') }
 
-  scope :most_recent, -> {
-    order('updated_at DESC')
-  }
-
   before_save :sanitize_url
 
   def to_param
