@@ -19,7 +19,7 @@ class Feed < ActiveRecord::Base
   before_save :sanitize_url
 
   def to_param
-    "#{id}-#{(title || '(untitled)').downcase.strip.gsub(/[\s\/#\?\.]/, '-').gsub(/-{2,}/, '-')}"
+    "#{id}-#{(title.presence || '(untitled)').downcase.strip.gsub(/[\s\/#\?\.\-]+/, '-')}"
   end
 
   def favicon
