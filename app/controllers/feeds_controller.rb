@@ -50,7 +50,7 @@ class FeedsController < ApplicationController
 
   def mark_as_read
     @subscription = current_user.subscriptions.find_by! :feed_id => params[:id]
-    @subscription.entries.each &:mark_as_read
+    @subscription.entries.unread_entry.update_all(:unread => false)
   end
 
   def mark_all_as_read
