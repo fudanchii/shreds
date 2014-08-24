@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
   before_action :should_authenticate?
   before_action :fetch_subscriptions, :init_props
 
+  skip_before_action :fetch_subscriptions, :if => -> {
+    request.format == :json and 'events#watch' != "#{params[:controller]}##{params[:action]}"
+  }
+
   private
 
   def should_authenticate?
