@@ -5,22 +5,20 @@ class NewsitemsController < ApplicationController
 
   def show
     @feed = @subscription.feed
-    @entry = @subscription.entries.find_by :newsitem_id => params[:id]
     respond_with @entry do |fmt|
       fmt.html { render :locals => { :newsitem => @entry.newsitem } }
     end
   end
 
   def toggle_read
-    @entry = @subscription.entries.find_by :newsitem_id => params[:id]
     @entry.update :unread => !@entry.unread
   end
 
   private
 
   def fetch_subscription
-    @subscription = current_user.subscriptions.find_by :feed_id => params[:feed_id]
-    fail ActiveRecord::RecordNotFound if @subscription.nil? || \
-      @subscription.entries.empty?
+    @subscription = current_user.subscriptions.includes(:entries).find_by! :feed_id => params[:feed_id]
+    @entry = @subscription.entries.select {|e| e.newsitem_id == params[:id].to_i }.first
+    fail ActiveRecord::RecordNotFound if @entry.nil?
   end
 end
