@@ -23,11 +23,9 @@ class User < ActiveRecord::Base
   end
 
   def unread_feeds
-    subs = subscriptions.for_view.select {|s| s.unread_count > 0 }
-    subs.map {|s| {
-      :feed => s.feed,
-      :entries => s.entries.unread_entry.for_view
-    }}
+    subscriptions.includes({:entries => :newsitem}, :feed)
+      .where('entries.unread' => true)
+      .order('newsitems.published desc, newsitems.id desc')
   end
 
   private
