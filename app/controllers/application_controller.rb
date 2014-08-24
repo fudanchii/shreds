@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
         flash[:danger] = I18n.t('feed.not_found')
         redirect_to '/'
       end
-      fmt.json { render :json => {error: I18n.t('feed.not_found')} }
+      fmt.json { render :json => {error: I18n.t('feed.not_found')}, :status => 404 }
     end
   end
 
