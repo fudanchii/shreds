@@ -6,7 +6,7 @@ class FeedsController < ApplicationController
   # GET /feeds
   # GET /feeds.json
   def index
-    @feeds = current_user.unread_feeds.page(params[:page]).per 5
+    @feeds = Kaminari::paginate_array(current_user.unread_feeds.to_ary).page(params[:page]).per 5
     respond_with @feeds
   end
 
