@@ -4,7 +4,6 @@ class NewsitemsController < ApplicationController
   before_action :fetch_subscription
 
   def show
-    @feed = @subscription.feed
     respond_with @entry do |fmt|
       fmt.html { render :locals => { :newsitem => @entry.newsitem } }
     end
@@ -17,8 +16,9 @@ class NewsitemsController < ApplicationController
   private
 
   def fetch_subscription
-    @subscription = current_user.subscriptions.includes(:entries).find_by! :feed_id => params[:feed_id]
+    @subscription = current_user.subscriptions.includes(:entries, :feed).find_by! :feed_id => params[:feed_id]
     @entry = @subscription.entries.select {|e| e.newsitem_id == params[:id].to_i }.first
+    @feed = @subscription.feed
     fail ActiveRecord::RecordNotFound if @entry.nil?
   end
 end
