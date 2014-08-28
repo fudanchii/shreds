@@ -13,9 +13,11 @@ class FeedsController < ApplicationController
   # GET /feeds/1
   # GET /feeds/1.json
   def show
-    @subscription = current_user.subscriptions.find_by! :feed_id => params[:id]
+    @subscription = current_user.subscriptions
+      .joins(:feed)
+      .find_by! :feed_id => params[:id]
     @feed = @subscription.feed
-    @entries = @subscription.entries.for_view.page params[:page]
+    @entries = @subscription.entries.includes(:newsitem).for_view.page params[:page]
     respond_with @feed
   end
 
@@ -46,11 +48,14 @@ class FeedsController < ApplicationController
 
   def mark_as_read
     @subscription = current_user.subscriptions.find_by! :feed_id => params[:id]
-    @subscription.entries.unread_entry.update_all(:unread => false)
+    @subscription.entries.unread_entry.update_all :unread => false
   end
 
   def mark_all_as_read
-    current_user.subscriptions.each {|subs| subs.entries.each &:mark_as_read }
+    Entry.joins(:subscription)
+      .where('subscriptions.user_id' => current_user.id)
+      .unread_entry
+      .update_all :unread => false
   end
 
 end
