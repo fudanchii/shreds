@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/amatsuda/kaminari.git
-  revision: 0a6194ad00f6ec18e21fd757f66fe9946f7aba96
+  revision: f5030681d7a0a40c1d449b5fbad59f3298de2cbb
   specs:
     kaminari (1.0.0.alpha)
       actionpack (>= 3.0.0)
@@ -30,7 +30,7 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: 6f2a61015098d43baac67a5f64c5fb4ba9031426
+  revision: 29f8f768f1702c6d032854b870d14eadb81cea88
   specs:
     simple_form (3.1.0.rc2)
       actionpack (~> 4.0)
@@ -94,8 +94,8 @@ GEM
     cache_digests (0.3.1)
       actionpack (>= 3.2)
       thread_safe
-    celluloid (0.15.2)
-      timers (~> 1.1.0)
+    celluloid (0.16.0)
+      timers (~> 4.0.0)
     coderay (1.1.0)
     connection_pool (2.0.0)
     curb (0.8.6)
@@ -109,26 +109,27 @@ GEM
     fast_stack (0.1.0)
       rake
       rake-compiler
-    feedjira (1.3.1)
-      curb (~> 0.8.1)
-      loofah (~> 2.0.0)
-      sax-machine (~> 0.2.1)
+    feedjira (1.4.0)
+      curb (~> 0.8)
+      loofah (~> 2.0)
+      sax-machine (~> 1.0)
     figaro (0.7.0)
       bundler (~> 1.0)
       rails (>= 3, < 5)
     flamegraph (0.0.5)
       fast_stack
-    foreman (0.74.0)
+    foreman (0.75.0)
       dotenv (~> 0.11.1)
       thor (~> 0.19.1)
-    handlebars_assets (0.17.1)
+    handlebars_assets (0.18)
       execjs (>= 1.2.9)
       multi_json
       sprockets (>= 2.0.3)
       tilt
-    hashie (3.2.0)
+    hashie (3.3.1)
     hike (1.2.3)
     hiredis (0.5.2)
+    hitimes (1.2.2)
     i18n (0.6.11)
     ice_cube (0.12.1)
     jbuilder (2.1.3)
@@ -145,7 +146,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25.1)
     mini_portile (0.6.0)
-    minitest (5.4.0)
+    minitest (5.4.1)
     minitest-reporters (1.0.5)
       ansi
       builder
@@ -171,7 +172,7 @@ GEM
     open_uri_redirections (0.1.4)
     pg (0.17.1)
     polyglot (0.3.5)
-    puma (2.9.0)
+    puma (2.9.1)
       rack (>= 1.1, < 2.0)
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
@@ -210,9 +211,8 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
-    sax-machine (0.2.1)
-      nokogiri (~> 1.6.0)
-    sidekiq (3.2.2)
+    sax-machine (1.0.0)
+    sidekiq (3.2.4)
       celluloid (>= 0.15.2)
       connection_pool (>= 2.0.0)
       json
@@ -230,7 +230,7 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sprockets-rails (2.1.3)
+    sprockets-rails (2.1.4)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
@@ -242,7 +242,8 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
-    timers (1.1.0)
+    timers (4.0.1)
+      hitimes
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -285,7 +286,7 @@ DEPENDENCIES
   puma
   quiet_assets (>= 1.0.1)
   rack-mini-profiler
-  rails (~> 4.1.0)
+  rails (~> 4.1.5)
   redis
   sass-rails
   sidekiq
