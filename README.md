@@ -22,14 +22,14 @@ As for the ruby version, shreds known to work with MRI (>= 1.9.3) and Rubinius (
 
 For development, I would recommend using `rvm` to manage your ruby installation, install rvm in your local home directory. As per the documentation:  
 
-`~$ \curl -L https://get.rvm.io | bash -s stable --ruby=2.0`
+`~$ \curl -L https://get.rvm.io | bash -s stable --ruby=2.1.2`
 
 Now you can `cd` to the repository and start with `bundle install`.
 
 For production environment, just make sure you have sane and recent version of ruby available for your OS distribution, and then continue with the steps above.
 
 Before starting the app, there are these few things which should get set up:  
-First is, configuration:
+First is configuration:
 
 - Under config directory, copy `application.yml.sample` to `application.yml`, then edit according to your need.
 
