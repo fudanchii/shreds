@@ -1,9 +1,4 @@
-//= require twitter/bootstrap/transition
-//= require twitter/bootstrap/alert
-//= require twitter/bootstrap/modal
-//= require twitter/bootstrap/dropdown
-//= require twitter/bootstrap/tooltip
-//= require twitter/bootstrap/button
+//= require bootstrap-sprockets
 
 //= require jquery-file-upload/js/vendor/jquery.ui.widget
 //= require jquery-file-upload/js/jquery.iframe-transport

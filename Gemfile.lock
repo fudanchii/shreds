@@ -74,14 +74,13 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
-    anjlab-bootstrap-rails (3.0.3.0)
-      railties (>= 3.0)
-      sass (>= 3.2)
     annotate (2.6.5)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
     ansi (1.4.3)
     arel (5.0.1.20140414130214)
+    autoprefixer-rails (3.1.0.20140911)
+      execjs
     bcrypt (3.1.7)
     better_errors (2.0.0)
       coderay (>= 1.0.0)
@@ -89,6 +88,8 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.2.0.2)
+      sass (~> 3.2)
     bower (0.0.2)
     builder (3.2.2)
     cache_digests (0.3.1)
@@ -251,12 +252,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  anjlab-bootstrap-rails
   annotate
   attribute_normalizer!
+  autoprefixer-rails
   bcrypt
   better_errors (>= 0.3.2)
   binding_of_caller (>= 0.6.8)
+  bootstrap-sass (~> 3.2.0)
   bower
   cache_digests
   dalli
@@ -280,9 +282,9 @@ DEPENDENCIES
   puma
   quiet_assets (>= 1.0.1)
   rack-mini-profiler
-  rails (~> 4.1.6)
+  rails (~> 4.1.5)
   redis
-  sass-rails
+  sass-rails (~> 4.0.3)
   sidekiq
   sidekiq-failures!
   sidetiq!

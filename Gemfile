@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.1.6'
+gem 'rails', '~> 4.1.5'
 
 ### 1. Database and modelling related gems
 gem 'pg'
@@ -15,14 +15,15 @@ gem 'attribute_normalizer', :github => 'mdeering/attribute_normalizer'
 
 
 ### 2. Assets related gems
-gem 'sass-rails'
 gem 'uglifier'
 gem 'bower', :require => false
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'sass-rails', '~> 4.0.3'
+gem 'autoprefixer-rails'
 # end of 2.
 
 
 ### 3. Cosmetics
-gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails'
 gem 'quiet_assets', '>= 1.0.1', :group => :development
 gem 'better_errors', '>= 0.3.2', :group => :development
 gem 'binding_of_caller', '>= 0.6.8', :group => :development

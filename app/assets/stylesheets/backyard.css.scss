@@ -35,4 +35,5 @@ p.value {
     margin-bottom: 0px;
 }
 
-@import "twitter/bootstrap";
+@import "bootstrap-sprockets";
+@import "bootstrap";

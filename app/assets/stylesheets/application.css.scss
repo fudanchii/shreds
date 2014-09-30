@@ -13,7 +13,8 @@
  *= require_self
  */
 
-@import "twitter/bootstrap";
+@import "bootstrap-sprockets";
+@import "bootstrap";
 
 @import "feeds";
 @import "nav";
