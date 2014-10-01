@@ -41,12 +41,12 @@
     deactivate: function (feedId) {
       if (feedId) {
         var model = Shreds.model.find('navigation/categories/feeds', feedId);
-        model.active = false;
+        delete(model.active);
         $('.nav-item[data-feed-id='+ feedId +']').removeClass('active');
       } else {
         $('.nav-item').each(function (idx) {
           var model = Shreds.model.find('navigation/categories/feeds', $(this).data('feedId'));
-          model.active = false;
+          delete(model.active);
         }).removeClass('active');
         $('.nav-header.active').removeClass('active');
       }
