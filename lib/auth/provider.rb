@@ -15,7 +15,7 @@ module Shreds
     end
 
     def signup_allowed?
-      !!ENV['allow_signup']
+      ENV.key? 'allow_signup'
     end
   end
 end

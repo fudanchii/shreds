@@ -4,12 +4,13 @@
 APP_NAME: shreds
 APP_DOMAIN: "http://read.shreds.me"
 
-# Allow user to automatically signed up when login
-# via Oauth
-allow_signup: true
+# Allow user to automatically signed up when login via Oauth
+# comment to disable
+allow_signup: yes
 
-# Should verify ssl cert when fetching feeds
-ssl_verify: false
+# Should verify ssl cert when fetching feeds?
+# comment to disable
+ssl_verify: yes
 
 # Application secret key used in production environment
 SECRET: ""
