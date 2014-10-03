@@ -16,7 +16,7 @@ class EntryNewsitems
   def execute
     @feed.entries.each do |entry|
       entry_url = entry.url.presence ||
-        (entry.entry_id if entry.entry_id.start_with?('http://') || entry.entry_id.start_with?('https://'))
+        (entry.entry_id if entry.entry_id.URLish?)
 
       # Skip to the next entry if it's already exist
       next unless entry_url.present? && Newsitem.find_by(:permalink => entry_url).nil? &&
