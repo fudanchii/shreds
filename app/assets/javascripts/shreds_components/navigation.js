@@ -12,6 +12,20 @@
           Shreds.syncView(name);
         }
       },
+      'watch:markAllAsRead': function (ev, data) {
+        if (data.error) {
+          Shreds.notification.error(data.error);
+        } else {
+          var nav = Shreds.model.get('navigation');
+          for (var c in nav.categories) {
+            nav.categories[c].feeds.forEach(function (e, i, a) {
+              e.unreadCount = 0;
+            });
+          }
+          Shreds.notification.info(data.info);
+          Shreds.syncView(name);
+        }
+      },
       'watch:create': function (ev, data) {
         reloadNavigation(data);
         Shreds.subscription.stopSpinner();
@@ -58,8 +72,8 @@
       Shreds.notification.error(data.error);
     } else {
       Shreds.model.import(name, data.data);
-      Shreds.syncView(name);
       Shreds.notification.info(data.info);
+      Shreds.syncView(name);
     }
   }
 })(window.Shreds);

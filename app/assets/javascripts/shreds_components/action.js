@@ -95,6 +95,15 @@
       this.find('a').trigger('click');
     },
 
+    markAllAsRead: function (ev) {
+      Shreds.ajax.patch('/i/feeds/mark_all_as_read.json', {
+        failMsg: '<strong>Can\'t</strong> mark all feed as read.'
+      }).done(function (data) {
+        Shreds.$.trigger('watch:markAllAsRead', data);
+        Shreds.$.trigger('feeds:_storage:clear');
+      });
+    },
+
     markAsRead: function (ev) {
       var id = this.data('id');
       Shreds.render(this.siblings('.favicon'), 'spinner', {
