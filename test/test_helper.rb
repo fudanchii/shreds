@@ -26,4 +26,3 @@ end
 def login(user)
   session[Shreds::Auth::USER_TOKEN] = user.token
 end
-
