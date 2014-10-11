@@ -1,4 +1,4 @@
-if (@entry.unread)
+if @entry.unread
   json.info '<strong>Item marked</strong> as unread.'
 else
   json.info '<strong>Item marked</strong> as read.'

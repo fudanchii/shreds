@@ -15,12 +15,12 @@ class Category < ActiveRecord::Base
     'uncategorized'
   end
 
-  def is_custom_and_unused?
+  def custom_and_unused?
     feeds.count == 0 && name != self.class.default
   end
 
   def unread_count
-    feeds.with_unread_count.reduce(0) { |count, feed| count + feed.unreads }
+    feeds.with_unread_count.reduce(0) { |a, e| a + e.unreads }
   end
 
   def safe_destroy

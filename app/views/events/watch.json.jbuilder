@@ -1,4 +1,4 @@
-@payload.each do |k,v|
+@payload.each do |k, v|
   if v['error']
     json.set! k, v
   elsif v['view']

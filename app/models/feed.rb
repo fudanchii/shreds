@@ -26,7 +26,7 @@ class Feed < ActiveRecord::Base
   private
 
   def sanitize_url
-    self.url.prepend('http://') unless url.URLish?
+    url.prepend('http://') unless url.urlish?
   end
 end
 

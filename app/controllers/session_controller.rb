@@ -9,9 +9,7 @@ class SessionController < ApplicationController
   def create
     auth_hash = request.env['omniauth.auth']
     user = UserProvider.create(params[:provider]).sign auth_hash
-    if user
-      session[USER_TOKEN] = user.token
-    end
+    user.nil? || session[USER_TOKEN] = user.token
     redirect_to '/'
   end
 

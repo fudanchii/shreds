@@ -44,7 +44,7 @@ class CreateSubscription
 end
 
 class InvalidFeed < ArgumentError
-  def initialize(msg=nil)
+  def initialize(msg = nil)
     msg ||= I18n.t 'feed.invalid'
     super
   end

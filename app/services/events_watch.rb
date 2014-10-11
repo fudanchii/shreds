@@ -3,14 +3,14 @@ class EventsWatch
 
   def initialize(watch_str)
     @payload = {}
-    @watch_list = has_update_feed(watch_str.split(','))
+    @watch_list = update_feed?(watch_str.split(','))
   end
 
-  def has_update_feed(list)
+  def update_feed?(list)
     f_idx = list.find_index { |w| w == 'updateFeed' }
     return list if f_idx.nil?
     list.delete_at f_idx
-    @payload['updateFeed'] = {'view' => 'feed_update'}
+    @payload['updateFeed'] = { 'view' => 'feed_update' }
     list
   end
 

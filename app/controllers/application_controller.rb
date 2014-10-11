@@ -9,10 +9,6 @@ class ApplicationController < ActionController::Base
   before_action :should_authenticate?
   before_action :fetch_subscriptions, :init_props
 
-  skip_before_action :fetch_subscriptions, if: -> do
-    request.format == :json && 'events#watch' != "#{params[:controller]}##{params[:action]}"
-  end
-
   private
 
   def should_authenticate?
@@ -20,6 +16,8 @@ class ApplicationController < ActionController::Base
   end
 
   def fetch_subscriptions
+    return if request.format == :json &&
+              'events#watch' != "#{params[:controller]}##{params[:action]}"
     newsitems = Newsitem.select('distinct on (feed_id) *')
       .where(feed_id: current_user.subscriptions.pluck(:feed_id))
       .order(:feed_id).for_view.to_ary
@@ -47,7 +45,7 @@ class ApplicationController < ActionController::Base
         flash[:danger] = I18n.t('feed.not_found')
         redirect_to '/'
       end
-      fmt.json { render json: {error: I18n.t('feed.not_found')}, status: 404 }
+      fmt.json { render json: { error: I18n.t('feed.not_found') }, status: 404 }
     end
   end
 

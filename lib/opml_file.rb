@@ -6,17 +6,17 @@ class OPMLFile
     @content_type = content.content_type
     @size = content.size
     @name = sanitize content.original_filename
-    @filename = "tmp/#{DateTime.now.strftime("%Q")}-#{@name}"
+    @filename = "tmp/#{DateTime.now.strftime('%Q')}-#{@name}"
     @fullpath = File.join(Rails.root, @filename)
     if whitelisted_type.include?(File.extname(@name).downcase)
       save(content)
-     else
+    else
       fail UploadError, I18n.t('opml.error.wrong_file')
     end
   end
 
   def whitelisted_type
-    %w'.xml .opml .txt'
+    %w(.xml .opml .txt)
   end
 
   def sanitize(original_name)
@@ -29,7 +29,7 @@ class OPMLFile
     written = 0
     buff = ''
     File.open(@filename, 'wb') do |f|
-      while content.read(32768, buff)
+      while content.read(32_768, buff)
         f.write(buff)
         written += buff.length
       end

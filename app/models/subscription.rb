@@ -8,7 +8,7 @@ class Subscription < ActiveRecord::Base
   before_save :ensure_category
 
   scope :for_view, -> { includes(:newsitems).order('newsitems.published desc, newsitems.id desc') }
-  scope :with_unread_count, -> {
+  scope :with_unread_count, lambda {
     joins(:entries)
       .select('subscriptions.*, sum(case when entries.unread then 1 else 0 end) as unreads')
       .group('subscriptions.id')
@@ -28,7 +28,7 @@ class Subscription < ActiveRecord::Base
   private
 
   def ensure_category
-    self.category_id = Category.where(name: Category.default).first.id unless self.category_id
+    self.category_id = Category.where(name: Category.default).first.id unless category_id
   end
 end
 

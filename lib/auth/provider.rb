@@ -9,10 +9,7 @@ module Shreds
 
       def sign(auth_hash)
         user = User.from_omniauth auth_hash
-        if !user && signup_allowed?
-          user = User.create_from_omniauth auth_hash
-        end
-        user
+        (user.nil? && signup_allowed?) && User.create_from_omniauth(auth_hash)
       end
 
       def signup_allowed?
