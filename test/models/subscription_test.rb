@@ -17,9 +17,9 @@ describe Subscription do
   it 'should have unique feed per user' do
     @newsub = @user.subscriptions.build(:feed => @feed2)
     @newsub.save!
-    lambda {
+    lambda do
       @user.subscriptions << Subscription.create(:feed => @feed2)
-    }.must_raise ActiveRecord::RecordNotUnique
+    end.must_raise ActiveRecord::RecordNotUnique
     @user.subscriptions.count.must_equal 2
   end
 end

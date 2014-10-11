@@ -22,7 +22,7 @@ class Newsitem < ActiveRecord::Base
   private
 
   def adj(comp)
-    Newsitem.for_view.where(:feed_id => feed_id).where(comp, { :pdate => published, :id => id})
+    Newsitem.for_view.where(:feed_id => feed_id).where(comp, :pdate => published, :id => id)
   end
 end
 

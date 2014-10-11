@@ -25,7 +25,7 @@ class FeedsController < ApplicationController
   # POST /feeds.json
   def create
     jid = CreateSubscription.perform_async current_user.id,
-          params[:feed][:url], params[:category][:name].presence
+                                           params[:feed][:url], params[:category][:name].presence
     may_respond_with(
       :html => { :info => I18n.t('feed.created'), :redirect_to => '/' },
       :json => { watch: "create-#{jid}" }

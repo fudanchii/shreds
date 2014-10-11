@@ -27,12 +27,12 @@ describe FeedsController do
   it 'should create feed' do
     login @user
     post :create,
-      :feed => {
-        :url      => 'http://fudanchii.net/atom.xml',
-        :title    => 'fudanchii.net',
-        :feed_url => 'http://fudanchii.net/atom.xml'
-      },
-      :category => { :feed => Category.default }
+         :feed => {
+           :url      => 'http://fudanchii.net/atom.xml',
+           :title    => 'fudanchii.net',
+           :feed_url => 'http://fudanchii.net/atom.xml'
+         },
+         :category => { :feed => Category.default }
     assert_redirected_to feeds_path
   end
 

@@ -3,7 +3,7 @@ module NewsitemsHelper
     entry.unread ? 'circle' : 'sign'
   end
 
-  def set_read_unread(entry)
+  def read_unread(entry)
     "Set #{entry.unread ? 'read' : 'unread'}"
   end
 

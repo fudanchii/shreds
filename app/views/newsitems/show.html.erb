@@ -1,6 +1,6 @@
 <div class="panel panel-default widget widget-transparent feed">
   <div class="panel-heading">
-  <h2><a href="javascript:void(0)" data-on-click="toggleRead" data-id="<%= newsitem.id %>" data-feed-id="<%= @feed.id %>"><span class="glyphicon glyphicon-ok-<%= circle_or_sign(@entry) %> glyph-sm" data-toggle="tooltip" title="<%= set_read_unread(@entry)%>"></span></a>
+  <h2><a href="javascript:void(0)" data-on-click="toggleRead" data-id="<%= newsitem.id %>" data-feed-id="<%= @feed.id %>"><span class="glyphicon glyphicon-ok-<%= circle_or_sign(@entry) %> glyph-sm" data-toggle="tooltip" title="<%= read_unread(@entry)%>"></span></a>
   <%= link_to newsitem.title, newsitem.permalink, target: '_blank' %>
 </h2>
 </div>

@@ -1,4 +1,6 @@
 module Shreds
-  class Auth::TwitterUserProvider < Auth::UserProvider
+  module Auth
+    class TwitterUserProvider < UserProvider
+    end
   end
 end

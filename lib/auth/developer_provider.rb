@@ -1,4 +1,6 @@
 module Shreds
-  class Auth::DeveloperUserProvider < Auth::UserProvider
+  module Auth
+    class DeveloperUserProvider < UserProvider
+    end
   end
 end
