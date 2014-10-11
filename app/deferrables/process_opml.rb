@@ -3,7 +3,7 @@ require 'opml'
 class ProcessOPML
   include Sidekiq::Worker
 
-  sidekiq_options :retry => false
+  sidekiq_options retry: false
 
   def fetch_feed_from(bundle, category = Category.default)
     jids = []

@@ -1,1 +1,1 @@
-json.partial! 'feeds_index', :feeds => @feeds
+json.partial! 'feeds_index', feeds: @feeds

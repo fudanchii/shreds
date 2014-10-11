@@ -3,7 +3,7 @@ require 'test_helper'
 describe Feed do
 
   def create_feed(url)
-    feed = described_class.create :url => url
+    feed = described_class.create url: url
     feed.save!
     feed
   end

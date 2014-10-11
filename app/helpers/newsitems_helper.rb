@@ -10,5 +10,4 @@ module NewsitemsHelper
   def disabled?(entry)
     entry.nil? ? 'disabled' : ''
   end
-
 end

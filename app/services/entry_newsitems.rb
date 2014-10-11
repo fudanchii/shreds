@@ -3,7 +3,7 @@ class EntryNewsitems
 
   def initialize(feed, feed_url)
     @feed = feed
-    @feed_record = Feed.find_by! :feed_url => feed_url
+    @feed_record = Feed.find_by! feed_url: feed_url
     fail InvalidFeed.new(I18n.t('feed.error.not_found')) if @feed_record.nil?
     return if up_to_date? feed, feed_record
   end
@@ -19,7 +19,7 @@ class EntryNewsitems
         (entry.entry_id if entry.entry_id.URLish?)
 
       # Skip to the next entry if it's already exist
-      next unless entry_url.present? && Newsitem.find_by(:permalink => entry_url).nil? &&
+      next unless entry_url.present? && Newsitem.find_by(permalink: entry_url).nil? &&
         (not Itemhash.has? entry_url)
 
       # Create newsitem for this feed
@@ -28,12 +28,12 @@ class EntryNewsitems
 
       # Attach newsitem as entry for each feed's subscriptions
       @feed_record.subscriptions.each do |s|
-        s.entries.build(:newsitem => news).save!
+        s.entries.build(newsitem: news).save!
       end
     end
-    @feed_record.update!(:etag => @feed.etag)
-    @feed_record.update!(:title => @feed.title) if @feed_record.title != @feed.title
-    @feed_record.update!(:url => @feed.url) unless @feed.url.nil? || @feed_record.url == @feed.url
+    @feed_record.update!(etag: @feed.etag)
+    @feed_record.update!(title: @feed.title) if @feed_record.title != @feed.title
+    @feed_record.update!(url: @feed.url) unless @feed.url.nil? || @feed_record.url == @feed.url
   rescue ActiveRecord::RecordInvalid => err
     fail InvalidFeed.new(err.message)
   end

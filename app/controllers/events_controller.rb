@@ -4,6 +4,6 @@ class EventsController < ApplicationController
     @ev.execute
     @payload = @ev.payload
     return render 'watch' unless @payload.empty?
-    render :text => ''
+    render text: ''
   end
 end

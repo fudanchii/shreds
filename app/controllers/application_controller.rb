@@ -4,12 +4,12 @@ class ApplicationController < ActionController::Base
   include Shreds::Auth
   protect_from_forgery
 
-  rescue_from ActiveRecord::RecordNotFound, :with => :feed_not_found
+  rescue_from ActiveRecord::RecordNotFound, with: :feed_not_found
 
   before_action :should_authenticate?
   before_action :fetch_subscriptions, :init_props
 
-  skip_before_action :fetch_subscriptions, :if => -> do
+  skip_before_action :fetch_subscriptions, if: -> do
     request.format == :json && 'events#watch' != "#{params[:controller]}##{params[:action]}"
   end
 
@@ -21,15 +21,15 @@ class ApplicationController < ActionController::Base
 
   def fetch_subscriptions
     newsitems = Newsitem.select('distinct on (feed_id) *')
-      .where(:feed_id => current_user.subscriptions.pluck(:feed_id))
+      .where(feed_id: current_user.subscriptions.pluck(:feed_id))
       .order(:feed_id).for_view.to_ary
     @subscriptions = current_user.subscriptions.with_unread_count
-      .includes(:feed, :category).order(:feed_id).reduce({}) do |prev, current|
+      .includes(:feed, :category).order(:feed_id).each_with_object({}) do |current, prev|
       prev[current.category.name] ||= []
       prev[current.category.name] << {
-        :feed => current.feed,
-        :unreads => current.unreads,
-        :latest => newsitems.shift
+        feed: current.feed,
+        unreads: current.unreads,
+        latest: newsitems.shift
       }
       prev
     end
@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
         flash[:danger] = I18n.t('feed.not_found')
         redirect_to '/'
       end
-      fmt.json { render :json => {error: I18n.t('feed.not_found')}, :status => 404 }
+      fmt.json { render json: {error: I18n.t('feed.not_found')}, status: 404 }
     end
   end
 
@@ -57,8 +57,7 @@ class ApplicationController < ActionController::Base
         flash[:info] = opts[:html][:info]
         redirect_to opts[:html][:redirect_to]
       end
-      fmt.json { render :json => opts[:json] }
+      fmt.json { render json: opts[:json] }
     end
   end
-
 end

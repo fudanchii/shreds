@@ -1,10 +1,10 @@
 require 'uri'
 
 class Feed < ActiveRecord::Base
-  has_many :subscriptions, :dependent => :destroy
-  has_many :categories, :through => :subscriptions
-  has_many :users, :through => :subscriptions
-  has_many :newsitems, :dependent => :destroy
+  has_many :subscriptions, dependent: :destroy
+  has_many :categories, through: :subscriptions
+  has_many :users, through: :subscriptions
+  has_many :newsitems, dependent: :destroy
 
   normalize_attributes :url
 

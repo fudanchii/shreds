@@ -10,5 +10,4 @@ module ApplicationHelper
   def full_url(path)
     ENV['APP_DOMAIN'] + path.to_s
   end
-
 end

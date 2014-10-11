@@ -1,7 +1,7 @@
 class Newsitem < ActiveRecord::Base
   belongs_to :feed
-  has_many :entries, :dependent => :destroy
-  has_many :subscriptions, :through => :entries
+  has_many :entries, dependent: :destroy
+  has_many :subscriptions, through: :entries
 
   scope :for_view, -> { order('published DESC, id DESC') }
 
@@ -16,13 +16,13 @@ class Newsitem < ActiveRecord::Base
   end
 
   def unreads
-    entries.where(:unread => true).count
+    entries.where(unread: true).count
   end
 
   private
 
   def adj(comp)
-    Newsitem.for_view.where(:feed_id => feed_id).where(comp, :pdate => published, :id => id)
+    Newsitem.for_view.where(feed_id: feed_id).where(comp, pdate: published, id: id)
   end
 end
 

@@ -2,8 +2,8 @@ class Subscription < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
   belongs_to :feed
-  has_many :entries, :dependent => :destroy
-  has_many :newsitems, :through => :entries
+  has_many :entries, dependent: :destroy
+  has_many :newsitems, through: :entries
 
   before_save :ensure_category
 
@@ -15,12 +15,12 @@ class Subscription < ActiveRecord::Base
   }
 
   def unread_count
-    entries.where(:unread => true).count
+    entries.where(unread: true).count
   end
 
   def clear_read_news(offset = nil)
     offset ||= Kaminari.config.default_per_page
-    entries.for_view.where(:unread => false).offset(offset).each do |e|
+    entries.for_view.where(unread: false).offset(offset).each do |e|
       e.newsitem.destroy if e.newsitem.unreads == 0
     end
   end
@@ -28,7 +28,7 @@ class Subscription < ActiveRecord::Base
   private
 
   def ensure_category
-    self.category_id = Category.where(:name => Category.default).first.id unless self.category_id
+    self.category_id = Category.where(name: Category.default).first.id unless self.category_id
   end
 end
 

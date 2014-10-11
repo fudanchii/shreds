@@ -3,7 +3,7 @@ class Entry < ActiveRecord::Base
   belongs_to :newsitem
 
   scope :for_view, -> { joins(:newsitem).order('newsitems.published desc, newsitems.id desc') }
-  scope :unread_entry, -> { where(:unread => true) }
+  scope :unread_entry, -> { where(unread: true) }
 
   def mark_as_read
     update_attribute :unread, false

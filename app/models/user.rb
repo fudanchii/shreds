@@ -1,16 +1,16 @@
 class User < ActiveRecord::Base
-  has_many :subscriptions, :dependent => :destroy
-  has_many :categories, :through => :subscriptions
-  has_many :feeds, :through => :subscriptions
+  has_many :subscriptions, dependent: :destroy
+  has_many :categories, through: :subscriptions
+  has_many :feeds, through: :subscriptions
 
   before_save :tokenize
 
-  validates :username, :uid, :provider, :presence => true
+  validates :username, :uid, :provider, presence: true
 
   normalize_attributes :email
 
   def self.from_omniauth(auth_hash)
-    where(:provider => auth_hash[:provider], :uid => auth_hash[:uid]).first
+    where(provider: auth_hash[:provider], uid: auth_hash[:uid]).first
   end
 
   def self.create_from_omniauth(auth_hash)
@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def unread_feeds
-    subscriptions.includes({:entries => :newsitem}, :feed)
+    subscriptions.includes({entries: :newsitem}, :feed)
       .where('entries.unread' => true)
       .order('newsitems.published desc, newsitems.id desc')
   end

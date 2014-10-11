@@ -26,19 +26,18 @@ class OPMLFile
   protected
 
   def save(content)
-    written, buff = 0, ''
+    written = 0
+    buff = ''
     File.open(@filename, 'wb') do |f|
       while content.read(32768, buff)
         f.write(buff)
         written += buff.length
       end
     end
-    if written == 0
-      File.unlink(@filename)
-      fail UploadError, I18n.t('opml.error.empty_file')
-    end
+    return unless written == 0
+    File.unlink(@filename)
+    fail UploadError, I18n.t('opml.error.empty_file')
   end
-
 end
 
 class UploadError < IOError

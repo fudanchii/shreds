@@ -1,7 +1,7 @@
 class Category < ActiveRecord::Base
   has_many :subscriptions
-  has_many :feeds, :through => :subscriptions
-  has_many :users, :through => :subscriptions
+  has_many :feeds, through: :subscriptions
+  has_many :users, through: :subscriptions
 
   accepts_nested_attributes_for :subscriptions
 
@@ -24,9 +24,9 @@ class Category < ActiveRecord::Base
   end
 
   def safe_destroy
-    defcat = Category.where(:name => self.class.default).first
+    defcat = Category.where(name: self.class.default).first
     Subscription.transaction do
-      subscriptions.each { |s| s.update(:category => defcat) }
+      subscriptions.each { |s| s.update(category: defcat) }
       destroy
     end
   end

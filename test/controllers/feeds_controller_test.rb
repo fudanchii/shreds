@@ -27,18 +27,18 @@ describe FeedsController do
   it 'should create feed' do
     login @user
     post :create,
-         :feed => {
-           :url      => 'http://fudanchii.net/atom.xml',
-           :title    => 'fudanchii.net',
-           :feed_url => 'http://fudanchii.net/atom.xml'
+         feed: {
+           url: 'http://fudanchii.net/atom.xml',
+           title: 'fudanchii.net',
+           feed_url: 'http://fudanchii.net/atom.xml'
          },
-         :category => { :feed => Category.default }
+         category: { feed: Category.default }
     assert_redirected_to feeds_path
   end
 
   it 'should show feed' do
     login @user
-    get :show, :id => @feed
+    get :show, id: @feed
     assert_not_nil assigns(:feed)
     assert_response :success
   end
@@ -46,7 +46,7 @@ describe FeedsController do
   describe 'Internal API' do
     it 'GET /i/feeds.json' do
       login @user
-      get :index, :format => 'json'
+      get :index, format: 'json'
       assert_response :success
       res = JSON.parse(response.body)
       res.must_be_instance_of Hash
@@ -54,8 +54,8 @@ describe FeedsController do
 
     it 'POST /i/feeds.json' do
       login @user
-      obj = { :url => 'http://fudanchii.net/atom.xml', :feed_url => 'http://fudanchii.net/atom.xml' }
-      post :create, :feed => obj, :category => { :feed => Category.default }, :format => 'json'
+      obj = { url: 'http://fudanchii.net/atom.xml', feed_url: 'http://fudanchii.net/atom.xml' }
+      post :create, feed: obj, category: { feed: Category.default }, format: 'json'
       assert_response :success
       res = JSON.parse(response.body)
       assert_match(/create/, res['watch'])
@@ -63,7 +63,7 @@ describe FeedsController do
 
     it 'GET /i/feeds/:id.json' do
       login @user
-      get :show, :id => @feed, :format => 'json'
+      get :show, id: @feed, format: 'json'
       assert_response :success
       res = JSON.parse(response.body)
       res['url'].must_equal @feed.url
@@ -72,7 +72,7 @@ describe FeedsController do
 
     it 'DELETE /i/feeds/:id.json' do
       login @user
-      delete :destroy, :id => @feed, :format => 'json'
+      delete :destroy, id: @feed, format: 'json'
       assert_response :success
       res = JSON.parse(response.body)
       assert_match(/ok/, res['result'])
@@ -80,19 +80,19 @@ describe FeedsController do
 
     it 'PATCH /i/feeds/:id/mark_as_read.json' do
       login @user
-      patch :mark_as_read, :id => @feed, :format => 'json'
+      patch :mark_as_read, id: @feed, format: 'json'
       assert_response :success
     end
 
     it 'PATCH /i/feeds/mark_all_as_read.json' do
       login @user
-      patch :mark_all_as_read, :format => 'json'
+      patch :mark_all_as_read, format: 'json'
       assert_response :success
     end
 
     it 'POST /i/upload_opml.json' do
       login @user
-      post :create_from_opml, :format => 'json'
+      post :create_from_opml, format: 'json'
       assert_response :success
     end
   end

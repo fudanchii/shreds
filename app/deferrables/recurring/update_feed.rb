@@ -2,7 +2,7 @@ class UpdateFeed
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-  sidekiq_options :retry => false
+  sidekiq_options retry: false
 
   recurrence { hourly.minute_of_hour(5, 25, 45) }
 
