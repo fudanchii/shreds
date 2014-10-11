@@ -13,7 +13,7 @@ describe CategoriesController do
       delete :destroy, id: @category, format: 'json'
       assert_response :success
       res = JSON.parse response.body
-      assert_match /rmCategory/, res['watch']
+      assert_match(/rmCategory/, res['watch'])
     end
   end
 end

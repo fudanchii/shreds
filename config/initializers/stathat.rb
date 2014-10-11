@@ -1,6 +1,6 @@
 if Rails.env.production? && ENV["STAT_ACCOUNT"].present?
   instLog ||= Logger.new("#{Rails.root}/log/perf.log")
-  ActiveSupport::Notifications.subscribe "process_action.action_controller" do |name, start, finish, id, payload|
+  ActiveSupport::Notifications.subscribe "process_action.action_controller" do |_name, start, finish, _id, payload|
     duration = (finish - start) * 1000
     unless payload[:view_runtime].nil?
       view_time = payload[:view_runtime]
@@ -13,7 +13,7 @@ if Rails.env.production? && ENV["STAT_ACCOUNT"].present?
     end
   end
 
-  ActiveSupport::Notifications.subscribe "sql.active_record" do |name, start, finish, id, payload|
+  ActiveSupport::Notifications.subscribe "sql.active_record" do |_name, start, finish, _id, payload|
     duration = (finish - start) * 1000
     if payload[:name] == 'SQL'
       StatHat::API.ez_post_value("DB Query", ENV["STAT_ACCOUNT"], duration)

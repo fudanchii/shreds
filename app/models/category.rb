@@ -20,13 +20,13 @@ class Category < ActiveRecord::Base
   end
 
   def unread_count
-    feeds.with_unread_count.reduce(0) {|count, feed| count + feed.unreads }
+    feeds.with_unread_count.reduce(0) { |count, feed| count + feed.unreads }
   end
 
   def safe_destroy
     defcat = Category.where(:name => self.class.default).first
     Subscription.transaction do
-      subscriptions.each {|s| s.update(:category => defcat) }
+      subscriptions.each { |s| s.update(:category => defcat) }
       destroy
     end
   end

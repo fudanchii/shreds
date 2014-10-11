@@ -20,7 +20,7 @@ class ProcessOPML
   end
 
   def watch_feed_fetcher(jids)
-    results = EventPool.pipelined { jids.each {|j| EventPool.get(j) } }
+    results = EventPool.pipelined { jids.each { |j| EventPool.get(j) } }
     jids = jids.zip(results).map {|j, r|
       EventPool.remove(j) unless r.nil?
       j if r.nil?

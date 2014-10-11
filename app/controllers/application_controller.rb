@@ -41,7 +41,7 @@ class ApplicationController < ActionController::Base
     @new_feed = @subscription.feed = Feed.new
   end
 
-  def feed_not_found(exceptions)
+  def feed_not_found(_exceptions)
     respond_to do |fmt|
       fmt.html do
         flash[:danger] = I18n.t('feed.not_found')

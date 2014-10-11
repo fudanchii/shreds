@@ -7,7 +7,8 @@ class EventsWatch
   end
 
   def has_update_feed(list)
-    return list unless f_idx = list.find_index {|w| w == 'updateFeed' }
+    f_idx = list.find_index { |w| w == 'updateFeed' }
+    return list if f_idx.nil?
     list.delete_at f_idx
     @payload['updateFeed'] = {'view' => 'feed_update'}
     list

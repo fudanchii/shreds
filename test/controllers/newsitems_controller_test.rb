@@ -26,7 +26,7 @@ describe NewsitemsController do
       get :toggle_read, :feed_id => @feed, :id => @newsitem, :format => 'json'
       assert_response :success
       result = JSON.parse(response.body)
-      assert_match /item marked/i, result['info']
+      assert_match(/item marked/i, result['info'])
     end
   end
 end
