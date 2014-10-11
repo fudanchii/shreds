@@ -16,7 +16,8 @@ class NewsitemsController < ApplicationController
   private
 
   def fetch_subscription
-    @subscription = current_user.subscriptions.includes(:entries, :feed).find_by! feed_id: params[:feed_id]
+    @subscription = current_user.subscriptions
+                    .includes(:entries, :feed).find_by! feed_id: params[:feed_id]
     @entry = @subscription.entries.select { |e| e.newsitem_id == params[:id].to_i }.first
     @feed = @subscription.feed
     fail ActiveRecord::RecordNotFound if @entry.nil?
