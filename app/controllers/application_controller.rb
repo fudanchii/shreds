@@ -18,9 +18,11 @@ class ApplicationController < ActionController::Base
   def fetch_subscriptions
     return if request.format == :json &&
               'events#watch' != "#{params[:controller]}##{params[:action]}"
+
     newsitems = Newsitem.select('distinct on (feed_id) *')
       .where(feed_id: current_user.subscriptions.pluck(:feed_id))
       .order(:feed_id).for_view.to_ary
+
     @subscriptions = current_user.subscriptions.with_unread_count
       .includes(:feed, :category).order(:feed_id).each_with_object({}) do |current, prev|
       prev[current.category.name] ||= []

@@ -8,8 +8,8 @@ class CreateSubscription
   def perform(uid, url, category)
     user = User.find uid
     User.transaction do
-      subscription = user.subscriptions.build(
-        category: create_category(category), feed: create_feed(url))
+      subscription = user.subscriptions.build(category: create_category(category),
+                                              feed: create_feed(url))
       subscription.save!
       subscription.feed.newsitems.each { |n| subscription.entries.build(newsitem: n).save! }
       FeedFetcher.new.perform subscription.feed.feed_url
@@ -38,8 +38,7 @@ class CreateSubscription
   end
 
   def user_param(url, feed_url)
-    ActionController::Parameters.new(url: url, feed_url: feed_url, \
-      title: url).permit!
+    ActionController::Parameters.new(url: url, feed_url: feed_url, title: url).permit!
   end
 end
 
