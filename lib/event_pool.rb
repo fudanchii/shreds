@@ -1,28 +1,32 @@
 require 'redis-namespace'
 
 class EventPool
-  @redis = nil
-  def self.init(ns, redis)
-    @redis = Redis::Namespace.new(ns, redis: redis)
+  attr_reader  :pool
+  def initialize(ns, rconf)
+    @pool = ConnectionPool.new(size: 10, timeout: 30) do
+      Redis.new rconf.dup
+    end
   end
 
-  def self.add(key, value, ex = 60)
-    @redis.set(key, value.to_json, ex: ex)
+  def add(key, value, ex = 60)
+    @pool.with { |conn| conn.set(key, value.to_json, ex: ex) }
   end
 
-  def self.find(*keys)
-    @redis.mget(*keys)
+  def find(*keys)
+    @pool.with { |conn| conn.mget(*keys) }
   end
 
-  def self.remove(key)
-    @redis.del(key)
+  def remove(key)
+    @pool.with { |conn| conn.del(key) }
   end
 
-  def self.method_missing(cmd, *args, &block)
-    if @redis.respond_to? cmd
-      @redis.send(cmd, *args, &block)
-    else
-      super
+  def method_missing(cmd, *args, &block)
+    @pool.with do |conn|
+      if conn.respond_to? cmd
+        conn.send(cmd, *args, &block)
+      else
+        super
+      end
     end
   end
 end

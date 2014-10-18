@@ -70,6 +70,7 @@ gem 'bcrypt', require: false
 gem 'oj'
 gem 'redis'
 gem 'hiredis'
+gem 'connection_pool'
 
 # Profiling
 gem 'stathat'

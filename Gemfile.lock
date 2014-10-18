@@ -261,6 +261,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.2.0)
   bower
   cache_digests
+  connection_pool
   dalli
   feedbag!
   feedjira
