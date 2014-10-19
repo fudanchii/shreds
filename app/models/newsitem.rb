@@ -7,6 +7,20 @@ class Newsitem < ActiveRecord::Base
 
   before_destroy { Itemhash.insert(permalink) if unreads == 0 }
 
+  def self.have?(link)
+    links = [link.dup]
+    scheme = link.slice! %r{^https?://}
+    links << case scheme
+             when 'http://'
+               link.prepend('https://')
+             when 'https://'
+               link.prepend('http://')
+             end
+    links.any? do |lnk|
+      find_by(permalink: lnk).limit(1).length == 1 || Itemhash.has?(lnk)
+    end
+  end
+
   def next
     adj('(published < :pdate and id <> :id) or (published = :pdate and id < :id)').first
   end

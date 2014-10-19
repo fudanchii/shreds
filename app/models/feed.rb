@@ -23,6 +23,17 @@ class Feed < ActiveRecord::Base
     "https://plus.google.com/_/favicon?domain=#{url.host || self.url}"
   end
 
+  def up_to_date_with?(newfeed)
+    etag.present? && (newfeed.etag == etag) && (!newsitems.empty?)
+  end
+
+  def update_meta!(fields)
+    fields = fields.dup.delete_if do |k, v|
+      (k == :title && title != v) || (k == :url && v.present? && url != v)
+    end
+    update_attributes!(fields)
+  end
+
   private
 
   def sanitize_url

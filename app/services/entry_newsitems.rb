@@ -5,22 +5,16 @@ class EntryNewsitems
     @feed = feed
     @feed_record = Feed.find_by! feed_url: feed_url
     fail InvalidFeed, I18n.t('feed.error.not_found') if @feed_record.nil?
-    return if up_to_date? feed, feed_record
-  end
-
-  def up_to_date?(feed, feed_record)
-    feed_record.etag.present? && (feed.etag == feed_record.etag) &&
-      (!feed_record.newsitems.empty?)
   end
 
   def execute
+    return if @feed_record.up_to_date_with? @feed
     @feed.entries.each do |entry|
       entry_url = entry.url.presence ||
-        (entry.entry_id if entry.entry_id.urlish?)
+                  (entry.entry_id if entry.entry_id.urlish?)
 
       # Skip to the next entry if it's already exist
-      next unless entry_url.present? && Newsitem.find_by(permalink: entry_url).nil? &&
-        (!Itemhash.has? entry_url)
+      next if entry_url.to_s.blank? || Newsitem.have?(entry_url)
 
       # Create newsitem for this feed
       news = @feed_record.newsitems.build newsitem_params(entry, entry_url)
@@ -31,9 +25,7 @@ class EntryNewsitems
         s.entries.build(newsitem: news).save!
       end
     end
-    @feed_record.update!(etag: @feed.etag)
-    @feed_record.update!(title: @feed.title) if @feed_record.title != @feed.title
-    @feed_record.update!(url: @feed.url) unless @feed.url.nil? || @feed_record.url == @feed.url
+    @feed_record.update_meta!(etag: @feed.etag, title: @feed.title, url: @feed.url)
   rescue ActiveRecord::RecordInvalid => err
     raise InvalidFeed, err.message
   end
