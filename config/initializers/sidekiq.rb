@@ -1,9 +1,9 @@
 Sidekiq.configure_client do |config|
-  config.redis = $evpool.pool
+  EventPool.wrap { |pool| config.redis = pool }
 end
 
 Sidekiq.configure_server do |config|
-  config.redis = $evpool.pool
+  EventPool.wrap { |pool| config.redis = pool }
 end
 
 Sidetiq.configure do |config|

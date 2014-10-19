@@ -16,7 +16,7 @@ class EventsWatch
 
   def execute
     return if @watch_list.empty?
-    result = $evpool.find(*@watch_list)
+    result = EventPool.find(*@watch_list)
     @watch_list.zip(result).each do |w, r|
       next if r.nil?
       data = JSON.parse r
@@ -25,7 +25,7 @@ class EventsWatch
         data['category'] = Category.find(data['category_id'].to_i)
       end
       @payload[w] = data
-      $evpool.remove w
+      EventPool.remove w
     end
   end
 end

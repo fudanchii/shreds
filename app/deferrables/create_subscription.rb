@@ -13,14 +13,14 @@ class CreateSubscription
       subscription.save!
       subscription.feed.newsitems.each { |n| subscription.entries.build(newsitem: n).save! }
       FeedFetcher.new.perform subscription.feed.feed_url
-      $evpool.add "create-#{jid}", view: 'create', category_id: subscription.category.id
+      EventPool.add "create-#{jid}", view: 'create', category_id: subscription.category.id
     end
   rescue ActiveRecord::RecordNotFound
-    $evpool.add "create-#{jid}", error: I18n.t('user.not_found')
+    EventPool.add "create-#{jid}", error: I18n.t('user.not_found')
   rescue ActiveRecord::RecordNotUnique
-    $evpool.add "create-#{jid}", error: I18n.t('feed.subscribed')
+    EventPool.add "create-#{jid}", error: I18n.t('feed.subscribed')
   rescue InvalidFeed => err
-    $evpool.add "create-#{jid}", error: err.message
+    EventPool.add "create-#{jid}", error: err.message
   end
 
   private

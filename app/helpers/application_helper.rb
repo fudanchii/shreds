@@ -1,6 +1,7 @@
 module ApplicationHelper
   def title(string)
-    "[#{ENV['APP_NAME']}] - #{string}"
+    appname = ENV.key?('app_name') ? ENV['app_name'] : 'shreds'
+    "[#{appname}] - #{string}"
   end
 
   def strdate(date)
@@ -8,6 +9,7 @@ module ApplicationHelper
   end
 
   def full_url(path)
-    ENV['APP_DOMAIN'] + path.to_s
+    apphost = ENV.key?('app_host') ? ENV['app_host'] : ''
+    apphost + path.to_s
   end
 end

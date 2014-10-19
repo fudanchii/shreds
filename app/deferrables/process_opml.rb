@@ -20,13 +20,13 @@ class ProcessOPML
   end
 
   def watch_feed_fetcher(jids)
-    results = $evpool.pipelined { jids.each { |j| $evpool.get(j) } }
+    results = EventPool.pipelined { jids.each { |j| EventPool.get(j) } }
     jids = jids.zip(results).map do |j, r|
-      $evpool.remove(j) unless r.nil?
+      EventPool.remove(j) unless r.nil?
       j if r.nil?
     end.compact
     if jids.empty?
-      $evpool.add("opml-#{jid}", view: 'via_opml')
+      EventPool.add("opml-#{jid}", view: 'via_opml')
     else
       sleep 2
       watch_feed_fetcher(jids)

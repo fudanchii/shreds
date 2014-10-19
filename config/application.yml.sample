@@ -1,8 +1,8 @@
 # Add application configuration variables here, as shown below.
 #
 
-APP_NAME: shreds
-APP_DOMAIN: "http://read.shreds.me"
+app_name: shreds
+app_host: "http://read.shreds.me"
 
 # Allow user to automatically signed up when login via Oauth
 # comment to disable
@@ -13,15 +13,34 @@ allow_signup: yes
 ssl_verify: yes
 
 # Application secret key used in production environment
-SECRET: ""
+shreds_secret: ""
 
-# Cache servers, separated by space
-MEMCACHE_SERVERS: "127.0.0.1:11211 127.0.0.1:6379"
+# event pool / sidekiq redis config
+redis_host:
+redis_port:
+
+# redis pool connection size
+redis_conns: 15
+
+# redis pool timeout
+redis_timeout: 30
+
+# Rails cache servers, separated by space
+cache_servers: "127.0.0.1:11211 127.0.0.1:6379"
+
+# Stathat account key for send analytics to stathat
+stat_account:
 
 # If you want to keep some html tags from being sanitized,
 # put those tags on this whitelist.
-WLTAGS: "figure style iframe"
+# Please keep in mind that some tags may put your site in risks
+# of being hijacked eg. script and style tag
+whitelist_tags: "figure iframe"
 
 # Twitter key/secret for Oauth
-TWITTER_KEY: ""
-TWITTER_SECRET: ""
+twitter_key: ""
+twitter_secret: ""
+
+# set remote ip to allow access to better_errors
+# only set this on development environment
+trusted_ip:

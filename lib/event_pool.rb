@@ -1,10 +1,11 @@
 require 'redis-namespace'
 
-class EventPool
-  attr_reader  :pool
-  def initialize(ns, rconf)
-    @pool = ConnectionPool.new(size: 10, timeout: 30) do
-      Redis.new rconf.dup
+module EventPool
+  def init(ns, rconf)
+    connsize = ENV['redis_conns'] || 10
+    timeout = ENV['redis_timeout'] || 30
+    @pool ||= ConnectionPool.new(size: connsize, timeout: timeout) do
+      Redis::Namespace.new ns, rconf.dup
     end
   end
 
@@ -20,13 +21,9 @@ class EventPool
     @pool.with { |conn| conn.del(key) }
   end
 
-  def method_missing(cmd, *args, &block)
-    @pool.with do |conn|
-      if conn.respond_to? cmd
-        conn.send(cmd, *args, &block)
-      else
-        super
-      end
-    end
+  def wrap
+    yield @pool
   end
+
+  module_function :init, :add, :find, :remove, :wrap
 end
