@@ -161,6 +161,10 @@
     background-color: #eaeaea;
 }
 
+.nav-list > li.nav-item {
+    cursor: pointer;
+}
+
 li#to_the_front.active {
     background-color: #eaeaea;
 }

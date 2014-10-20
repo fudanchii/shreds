@@ -6,8 +6,13 @@ header > h2, header > h1 { display: inline-block; }
 header span { margin-left: 4px; }
 
 .feed.widget-transparent > .panel-heading {
+    padding: 0 15px 0 15px;
     background-color: white;
     border-color: white;
+}
+
+.feed.widget-transparent > .panel-body {
+    padding: 0 15px 15px 15px;
 }
 
 .feed-content {
