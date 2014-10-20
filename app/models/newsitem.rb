@@ -17,7 +17,7 @@ class Newsitem < ActiveRecord::Base
                link.prepend('http://')
              end
     links.any? do |lnk|
-      find_by(permalink: lnk).limit(1).length == 1 || Itemhash.has?(lnk)
+      find_by(permalink: lnk).present? || Itemhash.has?(lnk)
     end
   end
 
