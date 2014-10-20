@@ -183,6 +183,14 @@ li#to_the_front.active {
     color: white;
 }
 
+.label-small {
+    padding: 3px !important;
+    font-size: 8pt !important;
+    position: relative;
+    top: -22px;
+    left: 64px;
+}
+
 .unread-num {
     padding: 4px;
     background-color: rgba(120,120,120,.6);
