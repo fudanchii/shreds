@@ -9,7 +9,6 @@ module ApplicationHelper
   end
 
   def full_url(path)
-    apphost = ENV.key?('app_host') ? ENV['app_host'] : ''
-    apphost + path.to_s
+    ENV['app_host'].to_s + path.to_s
   end
 end
