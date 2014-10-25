@@ -16,14 +16,20 @@ header span { margin-left: 4px; }
 }
 
 .feed-content {
-    font-family: "ff-tisa-web-pro",Georgia,Cambria,"Times New Roman",Times,serif;
+    font-family: 'Alegreya', 'Libre Baskerville', "ff-tisa-web-pro",Georgia,Cambria,"Times New Roman",Times,serif;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 22px;
     line-height: 1.4;
 
     img {
         max-width: 100%;
         height: auto;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    p {
+        margin-top: 1em;
     }
 }
 
@@ -36,6 +42,8 @@ header span { margin-left: 4px; }
 
 .widget-transparent {
     background-color: white;
+    border-left: 0;
+    border-right: 0;
 }
 
 @media screen and (min-width:1152px) {
