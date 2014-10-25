@@ -2,7 +2,8 @@ class ClearReadNews
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-  sidekiq_options retry: false
+  sidekiq_options retry: false,
+                  expires_in: 24.hour
 
   recurrence { daily.hour_of_day(2) }
 
