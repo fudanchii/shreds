@@ -17,13 +17,7 @@ class EntryNewsitems
       next if entry_url.to_s.blank? || Newsitem.have?(entry_url)
 
       # Create newsitem for this feed
-      news = @feed_record.newsitems.build newsitem_params(entry, entry_url)
-      news.save!
-
-      # Attach newsitem as entry for each feed's subscriptions
-      @feed_record.subscriptions.each do |s|
-        s.entries.build(newsitem: news).save!
-      end
+      @feed_record.add_newsitem newsitem_params(entry, entry_url)
     end
     @feed_record.update_meta!(etag: @feed.etag, title: @feed.title, url: @feed.url)
   rescue ActiveRecord::RecordInvalid => err

@@ -27,8 +27,18 @@ class Feed < ActiveRecord::Base
     etag.present? && (newfeed.etag == etag) && (!newsitems.empty?)
   end
 
+  def add_newsitem(params)
+    transaction do
+      news = newsitems.build params
+      news.save!
+      subscriptions.each do |s|
+        s.entries.build(newsitem: news).save!
+      end
+    end
+  end
+
   def update_meta!(fields)
-    fields = fields.dup.delete_if do |k, v|
+    fields.delete_if do |k, v|
       (k == :title && title != v) || (k == :url && v.present? && url != v)
     end
     update_attributes!(fields)
