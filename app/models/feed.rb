@@ -39,9 +39,11 @@ class Feed < ActiveRecord::Base
 
   def update_meta!(fields)
     fields.delete_if do |k, v|
-      (k == :title && title != v) || (k == :url && v.present? && url != v)
+      v.nil? ||
+      (k == :title && title.present? && title == v) ||
+      (k == :url && url.present? && url == v)
     end
-    update_attributes!(fields)
+    update_attributes!(fields) unless fields.empty?
   end
 
   private
