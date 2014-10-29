@@ -5,7 +5,6 @@ gem 'rails', '~> 4.1.5'
 ### 1. Database and modelling related gems
 gem 'pg'
 
-gem 'sqlite3', group: :test
 gem 'annotate', group: :development
 
 gem 'jbuilder'
@@ -56,7 +55,7 @@ gem 'cache_digests'
 
 # Feed fetching
 gem 'feedjira', require: false
-gem 'feedbag', github: 'fudanchii/feedbag', branch: 'dev', require: false
+gem 'feedbag', require: false
 
 # Test-related gems
 gem 'minitest', group: :test
