@@ -2,10 +2,10 @@ require 'redis-namespace'
 
 module EventPool
   def init(ns, rconf)
-    connsize = ENV['redis_conns'] || 10
-    timeout = ENV['redis_timeout'] || 30
+    connsize = rconf[:connections].to_i || 10
+    timeout = rconf[:timeout].to_i || 30
     @pool ||= ConnectionPool.new(size: connsize, timeout: timeout) do
-      Redis::Namespace.new ns, rconf.dup
+      Redis::Namespace.new ns, rconf
     end
   end
 
