@@ -7,15 +7,13 @@ class Feed < ActiveRecord::Base
   has_many :newsitems, dependent: :destroy
 
   normalize_attributes :url
-
   validates :url, presence: true
+  before_save :sanitize_url
 
   scope :for_nav, -> { order('url ASC') }
 
-  before_save :sanitize_url
-
   def to_param
-    "#{id}-#{(title.presence || '(untitled)').downcase.strip.gsub(/[\s\/#\?\.\-]+/, '-')}"
+    "#{id}-#{(title.presence || '(untitled)').downcase.strip.gsub(/[\s[:punct:]]+/, '-')}"
   end
 
   def favicon
