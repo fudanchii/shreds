@@ -1,6 +1,7 @@
 feed1:
-  url: test.com
-  feed_url: test.com
+  url: http://test.com
+  feed_url: http://test.com
+  etag: '2d931510-d99f-494a-8c67-87feb05e1594'
 
 feed2:
   url: example.com
