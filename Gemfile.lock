@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/amatsuda/kaminari.git
-  revision: b1281e21452486b49911e8616fce885b0ea46730
+  revision: b206d89922378dcf6f1f7a6247ce1d5f6f1534ad
   specs:
     kaminari (1.0.0.alpha)
       actionpack (>= 3.0.0)
@@ -134,10 +134,10 @@ GEM
       rails
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
-    mail (2.6.1)
+    mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.4.3)
-    mini_portile (0.6.0)
+    mini_portile (0.6.1)
     minitest (5.4.2)
     minitest-reporters (1.0.7)
       ansi
@@ -148,10 +148,10 @@ GEM
       minitest (~> 5.0)
       rails (~> 4.1)
     multi_json (1.10.1)
-    nokogiri (1.6.3.1)
-      mini_portile (= 0.6.0)
+    nokogiri (1.6.4.1)
+      mini_portile (~> 0.6.0)
     oauth (0.4.7)
-    oj (2.10.4)
+    oj (2.11.0)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
@@ -194,14 +194,14 @@ GEM
     redis (3.1.0)
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
-    ruby-progressbar (1.6.1)
+    ruby-progressbar (1.7.0)
     sass (3.2.19)
     sass-rails (4.0.4)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 2.12)
       sprockets-rails (~> 2.0)
-    sax-machine (1.0.2)
+    sax-machine (1.0.3)
     sidekiq (3.2.4)
       celluloid (>= 0.15.2)
       connection_pool (>= 2.0.0)
