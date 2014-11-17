@@ -21,9 +21,12 @@ gem 'autoprefixer-rails'
 # end of 2.
 
 ### 3. Cosmetics
-gem 'quiet_assets', '>= 1.0.1', group: :development
-gem 'better_errors', '>= 0.3.2', group: :development
-gem 'binding_of_caller', '>= 0.6.8', group: :development
+group :development do
+  gem 'quiet_assets', '>= 1.0.1'
+  gem 'better_errors', '>= 0.3.2'
+  gem 'binding_of_caller', '>= 0.6.8'
+end
+
 gem 'kaminari', github: 'amatsuda/kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'figaro'
@@ -76,5 +79,8 @@ gem 'stathat'
 
 gem 'foreman', require: false
 
-gem 'rack-mini-profiler', group: :development
-gem 'flamegraph', group: :development
+group :development do
+  gem 'rack-mini-profiler'
+  gem 'flamegraph'
+  gem 'stackprof'
+end

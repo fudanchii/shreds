@@ -224,6 +224,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    stackprof (0.2.7)
     stathat (0.1.7)
     teaspoon (0.8.0)
       railties (>= 3.2.5, < 5)
@@ -283,6 +284,7 @@ DEPENDENCIES
   simple_form!
   sinatra
   slim
+  stackprof
   stathat
   teaspoon
   thin
