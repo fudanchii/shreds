@@ -5,16 +5,17 @@ class Newsitem < ActiveRecord::Base
 
   scope :for_view, -> { order('published DESC, id DESC') }
 
-  before_destroy { Itemhash.insert(permalink) if unreads == 0 }
+  before_destroy :hash_permalink
 
   def self.have?(link)
+    ctlnk = link.dup
     links = [link.dup]
-    scheme = link.slice! %r{^https?://}
+    scheme = ctlnk.slice! %r{^https?://}
     links << case scheme
              when 'http://'
-               link.prepend('https://')
+               ctlnk.prepend('https://')
              when 'https://'
-               link.prepend('http://')
+               ctlnk.prepend('http://')
              end
     links.any? do |lnk|
       find_by(permalink: lnk).present? || Itemhash.has?(lnk)
@@ -37,6 +38,10 @@ class Newsitem < ActiveRecord::Base
 
   def adj(comp)
     Newsitem.for_view.where(feed_id: feed_id).where(comp, pdate: published, id: id)
+  end
+
+  def hash_permalink
+    Itemhash.insert(permalink) if permalink.present? && unreads == 0
   end
 end
 

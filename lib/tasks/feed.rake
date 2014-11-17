@@ -1,10 +1,7 @@
 namespace :newsitem do
   desc 'Destroy all newsitem marked as read'
   task clear: :environment do
-    Newsitem
-      .where('created_at < ?', 1.days.ago)
-      .where(unread: false)
-      .destroy_all
+    Subscription.find_each(&:clear_read_news)
   end
 
   desc 'Mark all news as read'
