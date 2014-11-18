@@ -14,7 +14,7 @@ class EntryNewsitems
                   (entry.entry_id if entry.entry_id.urlish?)
 
       # Skip to the next entry if it's already exist
-      next if entry_url.to_s.blank? || Newsitem.have?(entry_url)
+      next if entry_url.to_s.blank? || Newsitem.has?(entry_url)
 
       # Create newsitem for this feed
       @feed_record.add_newsitem newsitem_params(entry, entry_url)

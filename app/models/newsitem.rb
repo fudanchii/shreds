@@ -7,7 +7,7 @@ class Newsitem < ActiveRecord::Base
 
   before_destroy :hash_permalink
 
-  def self.have?(link)
+  def self.has?(link)
     ctlnk = link.dup
     links = [link.dup]
     scheme = ctlnk.slice! %r{^https?://}
