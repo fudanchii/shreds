@@ -17,7 +17,7 @@ class Newsitem < ActiveRecord::Base
              when 'https://'
                ctlnk.prepend('http://')
              end
-    links.any? do |lnk|
+    links.compact.any? do |lnk|
       find_by(permalink: lnk).present? || Itemhash.has?(lnk)
     end
   end
