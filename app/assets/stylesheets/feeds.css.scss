@@ -46,17 +46,17 @@ header span { margin-left: 4px; }
     border-right: 0;
 }
 
-@media screen and (min-width:1152px) {
+@media screen and (min-width:1025px) {
 .span-fixed-sidebar {
     margin-top: 16px;
-    margin-left: 418px;
-    margin-right: 16px;
+    margin-left: 448px;
+    margin-right: 4.5%;
     position: absolute;
     overflow: hidden;
 }
 }
 
-@media screen and (max-width:1152px) {
+@media screen and (max-width:1024px) {
 .span-fixed-sidebar {
     margin-top: 112px;
     margin-left: 32px;

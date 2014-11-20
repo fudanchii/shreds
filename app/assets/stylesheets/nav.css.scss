@@ -1,5 +1,5 @@
 // http://stackoverflow.com/questions/9350818
-@media screen and (min-width:1152px) {
+@media screen and (min-width:1025px) {
 .sidebar-nav-fixed {
     padding: 9px 9px 9px 0px;
     position:fixed;
@@ -68,7 +68,7 @@
 
 }
 
-@media screen and (max-width:1152px) {
+@media screen and (max-width:1024px) {
 .sidebar-nav-fixed {
     padding: 9px 9px 9px 0px;
     position: fixed;
