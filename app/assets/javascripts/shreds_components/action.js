@@ -115,7 +115,8 @@
         Shreds.$.trigger('watch:markAsRead', data);
         Shreds.$.trigger('feeds:_storage:clear');
       }).fail(function () {
-        Shreds.syncView('navigation');
+        var feed = Shreds.model.find('navigation/categories/feeds', id);
+        Shreds.syncView('navlist_item:'+id, feed);
       });
     },
 
@@ -159,7 +160,7 @@
       }).done(function (data) {
         var feed = Shreds.model.find('navigation/categories/feeds', feedId);
         feed.unreadCount = data.feed.unreadCount;
-        Shreds.syncView('navigation');
+        Shreds.syncView('navlist_item:'+feedId, feed);
         this.find('.glyphicon').toggleClass('glyphicon-ok-circle').toggleClass('glyphicon-ok-sign');
         Shreds.notification.info(data.info);
         Shreds.$.trigger('feeds:_storage:clear');

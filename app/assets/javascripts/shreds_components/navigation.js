@@ -9,7 +9,7 @@
           var feed = Shreds.model.find('navigation/categories/feeds', data.feed.id);
           feed.unreadCount = data.feed.unreadCount;
           Shreds.notification.info(data.info);
-          Shreds.syncView(name);
+          Shreds.syncView('navlist_item:'+data.feed.id, feed);
         }
       },
       'watch:markAllAsRead': function (ev, data) {

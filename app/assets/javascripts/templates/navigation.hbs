@@ -1,23 +1,12 @@
 <ul class="nav nav-list">
 {{#each categories}}
   <li class="nav-header">
-  <span><strong>{{./name}}</strong></span>
-  <ul class="nav-list feed-items" style="list-style-type:none;">
+  <a data-toggle="collapse" data-target="#lst_{{@index}}"><span><strong>{{./name}}</strong></span></a>
+  <ul id="lst_{{@index}}" class="nav-list feed-items collapse" style="list-style-type:none;">
     {{#each ./feeds}}
-    <li class="nav-item{{./active}}" data-on-mousedown="navigated" data-feed-id="{{./id}}">
-        <div class="favicon pull-left">
-          <img src="{{./favicon}}" width="16" height="16"/>
-        </div>
-        <p class="feed-title ellipsis">
-          <a alt="{{./title}}" href="{{./path}}">{{./title}}</a>
-        </p>
-        <p class="latest-news text-muted ellipsis"><abbr class="timeago" title="{{./latestEntryPubDate}}">{{readableDate ./latestEntryPubDate}}</abbr> - {{{./latestEntryTitle}}}</p>
-        {{#if ./unreadCount }}
-          <a href="javascript:void(0)" data-id="{{./id}}" data-on-click="markAsRead" data-on-mousedown="doNotPropagate">
-            <span class="pull-right unread-num label">{{./unreadCount}}</span>
-          </a>
-        {{/if}}
-      </li>
+    <li class="nav-item{{./active}}" data-on-mousedown="navigated" data-feed-id="{{./id}}" data-template="navlist_item:{{./id}}">
+        {{> navlist_item }}
+    </li>
     {{/each}}
   </ul>
   </li>

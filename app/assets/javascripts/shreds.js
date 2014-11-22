@@ -62,8 +62,9 @@ window.Shreds = {
   // Optionally checking if we want to append the template instead of
   // replacing the whole dom's content.
   render: function (dom, template, data/*, options*/) {
-    var options = arguments[3] || {};
-    var content = window.HandlebarsTemplates[template](data);
+    var
+      options = arguments[3] || {},
+      content = window.HandlebarsTemplates[template](data);
     this.$.trigger('shreds:prerender');
     if (options.append) {
       dom.append(content);
@@ -76,9 +77,15 @@ window.Shreds = {
   // Synchronize template and its data,
   // which also means re-render the template.
   syncView: function (template/*, data, options*/) {
-    var data = arguments[1] || Shreds.model.get(template);
-    var options = arguments[2] || {};
-    var container = $('[data-template="' + template + '"]');
+    var
+      data = arguments[1] || Shreds.model.get(template),
+      options = arguments[2] || {},
+      container = $('[data-template="' + template + '"]');
+
+    // Add support for namespaced template name:
+    //  `template_name:identifier`
+    template = template.split(':')[0];
+
     this.render(container, template, data, options);
   }
 };
