@@ -41,7 +41,7 @@
         $('a[data-feed-id] > span.glyphicon-ok-circle')
           .removeClass('glyphicon-ok-circle')
           .addClass('glyphicon-ok-sign')
-          .data('title', 'Set unread')
+          .data('title', 'Set unread');
       }
     }
   });
