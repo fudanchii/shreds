@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/amatsuda/kaminari.git
-  revision: b206d89922378dcf6f1f7a6247ce1d5f6f1534ad
+  revision: 2f4d1d8ad9905443a9f24109ad1041d8f0ecc7e7
   specs:
     kaminari (1.0.0.alpha)
       actionpack (>= 3.0.0)
@@ -14,14 +14,14 @@ GIT
 
 GIT
   remote: git://github.com/mhfs/sidekiq-failures.git
-  revision: 9eec7b668e68a345183d0896c3dcf0bf873b4273
+  revision: 95165a61c21bf15a391769f7dcff452816840377
   specs:
     sidekiq-failures (0.4.3)
       sidekiq (>= 2.16.0)
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: 932619c180f90c5aebbb23f4d92fa254b430c775
+  revision: 812f1209bc1d0c264f7e15ad2bdaf98eb1883469
   specs:
     simple_form (3.1.0.rc2)
       actionpack (~> 4.0)
@@ -70,7 +70,7 @@ GEM
       rake (>= 0.8.7)
     ansi (1.4.3)
     arel (5.0.1.20140414130214)
-    autoprefixer-rails (4.0.0.1)
+    autoprefixer-rails (4.0.1)
       execjs
     bcrypt (3.1.9)
     better_errors (2.0.0)
@@ -144,7 +144,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
-    minitest-spec-rails (5.1.0)
+    minitest-spec-rails (5.1.1)
       minitest (~> 5.0)
       rails (~> 4.1)
     multi_json (1.10.1)
@@ -201,9 +201,9 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 2.12)
       sprockets-rails (~> 2.0)
-    sax-machine (1.0.3)
-    sidekiq (3.2.4)
-      celluloid (>= 0.15.2)
+    sax-machine (1.1.1)
+    sidekiq (3.3.0)
+      celluloid (>= 0.16.0)
       connection_pool (>= 2.0.0)
       json
       redis (>= 3.0.6)
