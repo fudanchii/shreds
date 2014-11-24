@@ -14,8 +14,8 @@ class FeedsController < ApplicationController
   # GET /feeds/1.json
   def show
     @subscription = current_user.subscriptions
-      .joins(:feed)
-      .find_by! feed_id: params[:id]
+                    .joins(:feed)
+                    .find_by! feed_id: params[:id]
     @feed = @subscription.feed
     @entries = @subscription.entries.includes(:newsitem).for_view.page params[:page]
     respond_with @feed
