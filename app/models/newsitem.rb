@@ -22,6 +22,11 @@ class Newsitem < ActiveRecord::Base
     end
   end
 
+  def self.latest_issues_for(subscriptions)
+    select('distinct on (feed_id) *').where(feed_id: subscriptions.pluck(:feed_id))
+      .order(:feed_id).for_view
+  end
+
   def next
     adj('(published < :pdate and id <> :id) or (published = :pdate and id < :id)').first
   end
@@ -51,13 +56,14 @@ end
 #
 #  id         :integer          not null, primary key
 #  permalink  :text
+#  unread     :boolean          default(TRUE)
 #  feed_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
 #  content    :text
 #  author     :text
 #  title      :text
-#  published  :datetime         not null
+#  published  :datetime
 #  summary    :text
 #
 # Indexes

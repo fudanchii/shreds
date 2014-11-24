@@ -14,6 +14,10 @@ class Subscription < ActiveRecord::Base
       .group('subscriptions.id')
   }
 
+  def self.bundled_for_navigation
+    with_unread_count.includes(:feed, :category).order(:feed_id)
+  end
+
   def unread_count
     entries.where(unread: true).count
   end

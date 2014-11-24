@@ -19,6 +19,10 @@ module EventPool
     @pool.with { |conn| conn.mget(*keys) }
   end
 
+  def pipelined
+    @pool.with { |conn| conn.pipelined { yield conn } }
+  end
+
   def remove(key)
     @pool.with { |conn| conn.del(key) }
   end
@@ -27,5 +31,5 @@ module EventPool
     yield @pool
   end
 
-  module_function :init, :add, :find, :remove, :wrap
+  module_function :init, :add, :find, :pipelined, :remove, :wrap
 end

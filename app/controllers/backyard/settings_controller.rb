@@ -1,6 +1,6 @@
 module Backyard
   class SettingsController < ApplicationController
-    skip_before_action :fetch_subscriptions, :init_props
+    skip_before_action :fetch_subscriptions, :init_empty_subscriptions
     layout 'backyard'
 
     def activities

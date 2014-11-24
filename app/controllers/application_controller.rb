@@ -6,8 +6,10 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound, with: :feed_not_found
 
-  before_action :should_authenticate?
-  before_action :fetch_subscriptions, :init_props
+  prepend_before_action :should_authenticate?
+
+  before_action :fetch_subscriptions, unless: -> { request.format == :json }
+  before_action :init_empty_subscription, unless: -> { request.format == :json }
 
   private
 
@@ -16,17 +18,12 @@ class ApplicationController < ActionController::Base
   end
 
   def fetch_subscriptions
-    return if request.format == :json &&
-              'events#watch' != "#{params[:controller]}##{params[:action]}"
-
-    newsitems = Newsitem.select('distinct on (feed_id) *')
-      .where(feed_id: current_user.subscriptions.pluck(:feed_id))
-      .order(:feed_id).for_view.to_ary
-
-    @subscriptions = current_user.subscriptions.with_unread_count
-      .includes(:feed, :category).order(:feed_id).each_with_object({}) do |current, prev|
+    current_subs = current_user.subscriptions
+    newsitems = Newsitem.latest_issues_for(current_subs).to_ary
+    presubs = current_subs.bundled_for_navigation
+    @subscriptions = presubs.each_with_object({}) do |current, prev|
       prev[current.category.name] ||= {
-        id: current.category.name,
+        id: current.category.id,
         feeds: []
       }
       prev[current.category.name][:feeds] << {
@@ -38,7 +35,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def init_props
+  def init_empty_subscription
     @subscription = current_user.subscriptions.build
     @category = @subscription.category = Category.new
     @new_feed = @subscription.feed = Feed.new
