@@ -58,7 +58,7 @@ gem 'cache_digests'
 
 # Feed fetching
 gem 'feedjira', require: false
-gem 'feedbag', require: false
+gem 'feedbag', require: false, github: 'fudanchii/feedbag', branch: 'dev'
 
 # Test-related gems
 gem 'minitest', group: :test
