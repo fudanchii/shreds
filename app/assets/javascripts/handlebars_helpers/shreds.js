@@ -16,4 +16,12 @@
     return date.toDateString() + ", " + date.toLocaleTimeString();
   });
 
+  Handlebars.registerHelper('countUnread', function (feeds) {
+    var count = 0;
+    count = feeds.reduce(function (p, c, i, a) {
+      return p + (parseInt(c.unreadCount, 10) || 0);
+    }, 0);
+    return count + '';
+  });
+
 })(window.Handlebars);

@@ -25,8 +25,11 @@ class ApplicationController < ActionController::Base
 
     @subscriptions = current_user.subscriptions.with_unread_count
       .includes(:feed, :category).order(:feed_id).each_with_object({}) do |current, prev|
-      prev[current.category.name] ||= []
-      prev[current.category.name] << {
+      prev[current.category.name] ||= {
+        id: current.category.name,
+        feeds: []
+      }
+      prev[current.category.name][:feeds] << {
         feed: current.feed,
         unreads: current.unreads,
         latest: newsitems.shift

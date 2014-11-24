@@ -6,10 +6,14 @@
         if (data.error) {
           Shreds.notification.error(data.error);
         } else {
-          var feed = Shreds.model.find('navigation/categories/feeds', data.feed.id);
+          var
+            feed = Shreds.model.find('navigation/categories/feeds', data.feed.id),
+            category = Shreds.model.find('navigation/categories', data.feed.categoryId);
+
           feed.unreadCount = data.feed.unreadCount;
           Shreds.notification.info(data.info);
           Shreds.syncView('navlist_item:'+data.feed.id, feed);
+          Shreds.syncView('navlist_header:'+data.feed.categoryId, category);
         }
       },
       'watch:markAllAsRead': function (ev, data) {

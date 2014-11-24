@@ -2,6 +2,7 @@ json.id feed.id
 json.title feed.title
 json.favicon feed.favicon
 json.path url_for(feed)
+json.categoryId category_id
 json.unreadCount unreads
 json.active(' active') if @feed.respond_to?(:id) && @feed.id == feed.id
 

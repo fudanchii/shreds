@@ -1,7 +1,7 @@
 <ul class="nav nav-list">
 {{#each categories}}
   <li class="nav-header">
-  <a data-toggle="collapse" data-target="#lst_{{@index}}"><span><strong>{{./name}}</strong></span></a>
+      <a data-toggle="collapse" data-target="#lst_{{@index}}" data-template="navlist_header:{{./id}}"><span><strong>{{./name}} </strong>({{countUnread ./feeds}})</span></a>
   <ul id="lst_{{@index}}" class="nav-list feed-items collapse" style="list-style-type:none;">
     {{#each ./feeds}}
     <li class="nav-item{{./active}}" data-on-mousedown="navigated" data-feed-id="{{./id}}" data-template="navlist_item:{{./id}}">

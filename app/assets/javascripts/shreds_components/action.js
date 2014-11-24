@@ -54,8 +54,10 @@
    */
   function act(attr) {
     return function (ev) {
-      var $this = $(this);
-      var name = $this.data(attr);
+      var
+        $this = $(this),
+        name = $this.data(attr);
+
       if (!name) { return; }
       if (name === 'init') { throw 'Can\'t call init from events.' }
       Shreds.action[name].call($this, ev);
@@ -69,8 +71,9 @@
      * here we bind those events delegated via $(document)
      */
     init: function () {
-      var $doc = $(document);
-      for (var k in actOn) { $doc.on(k, '[data-on-' + k + ']', actOn[k]); };
+      for (var k in actOn) {
+        $(document).on(k, '[data-on-' + k + ']', actOn[k]);
+      };
     },
 
     /**
@@ -153,14 +156,20 @@
     },
 
     toggleRead: function (ev) {
-      var id = this.data('id');
-      var feedId = this.data('feedId');
+      var
+        id = this.data('id'),
+        feedId = this.data('feedId');
+
       Shreds.ajax.patch('/i/feeds/' + feedId + '/' + id + '/toggle_read.json', {
         failMsg: '<strong>Can\'t mark</strong> this item as read.'
       }).done(function (data) {
-        var feed = Shreds.model.find('navigation/categories/feeds', feedId);
+        var
+          feed = Shreds.model.find('navigation/categories/feeds', feedId),
+          category = Shreds.model.find('navigation/categories', feed.categoryId);
+
         feed.unreadCount = data.feed.unreadCount;
         Shreds.syncView('navlist_item:'+feedId, feed);
+        Shreds.syncView('navlist_header:'+feed.categoryId, category);
         this.find('.glyphicon').toggleClass('glyphicon-ok-circle').toggleClass('glyphicon-ok-sign');
         Shreds.notification.info(data.info);
         Shreds.$.trigger('feeds:_storage:clear');
