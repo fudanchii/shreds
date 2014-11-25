@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140615155241) do
+ActiveRecord::Schema.define(version: 20141125171709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,16 +34,14 @@ ActiveRecord::Schema.define(version: 20140615155241) do
   add_index "entries", ["unread"], name: "index_entries_on_unread", where: "unread", using: :btree
 
   create_table "feeds", force: true do |t|
-    t.text     "url",                                  null: false
+    t.text     "url",                                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "category_id"
     t.text     "feed_url"
-    t.text     "title",       default: "( Untitled )", null: false
+    t.text     "title",      default: "( Untitled )", null: false
     t.string   "etag"
   end
 
-  add_index "feeds", ["category_id", "id"], name: "index_feeds_on_category_id_and_id", unique: true, using: :btree
   add_index "feeds", ["feed_url"], name: "index_feeds_on_feed_url", unique: true, using: :btree
 
   create_table "itemhashes", force: true do |t|
