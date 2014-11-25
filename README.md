@@ -45,4 +45,4 @@ shreds. 2013. Nurahmadie <nurahmadie@gmail.com>.
 
 Distributed under MIT/X11 license.
 
-[![Code Climate](https://codeclimate.com/github/fudanchii/shreds.png)](https://codeclimate.com/github/fudanchii/shreds)
+[![Code Climate](https://codeclimate.com/github/fudanchii/shreds/badges/gpa.svg)](https://codeclimate.com/github/fudanchii/shreds)
