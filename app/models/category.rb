@@ -41,3 +41,7 @@ end
 #  created_at :datetime
 #  updated_at :datetime
 #
+# Indexes
+#
+#  index_categories_on_name  (name) UNIQUE
+#

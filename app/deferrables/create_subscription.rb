@@ -28,6 +28,8 @@ class CreateSubscription
   def create_category(catname)
     catname ||= Category.default
     Category.where(name: catname).first_or_create!
+  rescue ActiveRecord::StatementInvalid
+    retry
   end
 
   def create_feed(url)
