@@ -22,6 +22,22 @@ class User < ActiveRecord::Base
     end
   end
 
+  def bundled_subscriptions
+    newsitems = Newsitem.latest_issues_for(subscriptions).to_ary
+    subscriptions.bundled_for_navigation.each_with_object({}) do |c, p|
+      p[c.category.name] ||= {
+        id: c.category.id,
+        feeds: []
+      }
+      p[c.category.name][:feeds] << {
+        feed: c.feed,
+        unreads: c.unreads,
+        latest: newsitems.shift
+      }
+      p
+    end
+  end
+
   def unread_feeds
     subscriptions.includes({ entries: :newsitem }, :feed)
       .where('entries.unread' => true)

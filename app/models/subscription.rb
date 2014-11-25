@@ -13,10 +13,7 @@ class Subscription < ActiveRecord::Base
       .select('subscriptions.*, sum(case when entries.unread then 1 else 0 end) as unreads')
       .group('subscriptions.id')
   }
-
-  def self.bundled_for_navigation
-    with_unread_count.includes(:feed, :category).order(:feed_id)
-  end
+  scope :bundled_for_navigation, -> { with_unread_count.includes(:feed, :category).order(:feed_id) }
 
   def unread_count
     entries.where(unread: true).count

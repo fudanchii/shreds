@@ -17,25 +17,8 @@ class ApplicationController < ActionController::Base
     redirect_to('/login') unless authenticated?
   end
 
-  def current_subscriptions
-    current_user.subscriptions
-  end
-
   def fetch_subscriptions
-    newsitems = Newsitem.latest_issues_for(current_subscriptions).to_ary
-    @subscriptions = current_subscriptions.bundled_for_navigation
-                     .each_with_object({}) do |current, prev|
-      prev[current.category.name] ||= {
-        id: current.category.id,
-        feeds: []
-      }
-      prev[current.category.name][:feeds] << {
-        feed: current.feed,
-        unreads: current.unreads,
-        latest: newsitems.shift
-      }
-      prev
-    end
+    @subscriptions = current_user.bundled_subscriptions
   end
 
   def init_empty_subscription
