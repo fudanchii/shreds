@@ -47,7 +47,8 @@ class FeedsController < ApplicationController
   end
 
   def mark_as_read
-    @subscription = current_user.subscriptions.find_by! feed_id: params[:id]
+    @subscription = current_user.subscriptions
+                    .includes(:category).find_by! feed_id: params[:id]
     @subscription.entries.unread_entry.update_all unread: false
   end
 
