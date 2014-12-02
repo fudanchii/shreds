@@ -33,6 +33,6 @@ Shreds::Application.routes.draw do
     post '/upload_opml' => 'feeds#create_from_opml'
   end
 
-  get 'subscriptions' => 'categories#feed_subscriptions',
+  get 'subscriptions' => 'users#feed_subscriptions',
       constraints: { format: 'xml' }
 end

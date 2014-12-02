@@ -1,13 +1,11 @@
 require 'opml_file'
 
 class FeedsController < ApplicationController
-  respond_to :html, :json
 
   # GET /feeds
   # GET /feeds.json
   def index
     @feeds = Kaminari.paginate_array(current_user.unread_feeds.to_ary).page(params[:page]).per 5
-    respond_with @feeds
   end
 
   # GET /feeds/1
@@ -18,18 +16,16 @@ class FeedsController < ApplicationController
                     .find_by! feed_id: params[:id]
     @feed = @subscription.feed
     @entries = @subscription.entries.includes(:newsitem).for_view.page params[:page]
-    respond_with @feed
   end
 
   # POST /feeds
   # POST /feeds.json
   def create
     jid = CreateSubscription.perform_async current_user.id,
-                                           params[:feed][:url], params[:category][:name].presence
-    may_respond_with(
-      html: { info: I18n.t('feed.created'), redirect_to: '/' },
-      json: { watch: "create-#{jid}" }
-    )
+                                           params[:feed][:url],
+                                           params[:category][:name].presence
+    may_respond_with html: { info: I18n.t('feed.created'), redirect_to: '/' },
+                     json: { watch: "create-#{jid}" }
   end
 
   def create_from_opml
