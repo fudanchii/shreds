@@ -1,10 +1,9 @@
 class NewsitemsController < ApplicationController
-  respond_to :html, :json
-
   before_action :fetch_subscription
 
   def show
-    respond_with @entry do |fmt|
+    respond_to do |fmt|
+      fmt.json
       fmt.html { render locals: { newsitem: @entry.newsitem } }
     end
   end
