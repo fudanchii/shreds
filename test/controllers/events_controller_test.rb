@@ -33,10 +33,10 @@ describe EventsController do
       refute_empty response.body
     end
 
-    it 'returns data for OPML upload event' do
-    end
-
     it 'returns data for periodical feed update event' do
+      get :watch, watchList: 'updateFeed', format: 'json'
+      assert_response :success
+      refute_empty response.body
     end
 
   end
