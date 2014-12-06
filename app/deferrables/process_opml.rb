@@ -10,7 +10,14 @@ class ProcessOPML
     bundle.each do |outline|
       if outline.feed_url.nil?
         category = outline.title || outline.text
-        jids += fetch_feed_from(outline.outlines, category) unless outline.outlines.empty?
+        unless outline.outlines.empty?
+          outline.outlines.each do |o|
+            unless o.feed_url.nil?
+              jid = CreateSubscription.perform_async @user_id, o.feed_url, category
+              jids << "create-#{jid}"
+            end
+          end
+        end
       else
         jid = CreateSubscription.perform_async @user_id, outline.feed_url, category
         jids << "create-#{jid}"
@@ -20,16 +27,17 @@ class ProcessOPML
   end
 
   def watch_feed_fetcher(jids)
-    results = EventPool.pipelined { |conn| jids.each { |j| conn.get(j) } }
-    jids = jids.zip(results).map do |j, r|
-      EventPool.remove(j) unless r.nil?
-      j if r.nil?
-    end.compact
-    if jids.empty?
-      EventPool.add("opml-#{jid}", view: 'via_opml')
-    else
-      sleep 2
-      watch_feed_fetcher(jids)
+    loop do
+      results = EventPool.pipelined { |conn| jids.each { |j| conn.get(j) } }
+      jids = jids.zip(results).map do |j, r|
+        EventPool.remove(j) unless r.nil?
+        j if r.nil?
+      end.compact
+      if jids.empty?
+        EventPool.add("opml-#{jid}", view: 'via_opml')
+        return
+      end
+      sleep 1
     end
   end
 

@@ -4,7 +4,7 @@ class EntryNewsitems
   def initialize(feed, feed_url)
     @feed = feed
     @feed_record = Feed.find_by! feed_url: feed_url
-    fail InvalidFeed, I18n.t('feed.error.not_found') if @feed_record.nil?
+    fail Shreds::InvalidFeed, I18n.t('feed.error.not_found') if @feed_record.nil?
   end
 
   def execute
@@ -21,7 +21,7 @@ class EntryNewsitems
     end
     @feed_record.update_meta!(etag: @feed.etag, title: @feed.title, url: @feed.url)
   rescue ActiveRecord::RecordInvalid => err
-    raise InvalidFeed, err.message
+    raise Shreds::InvalidFeed, err.message
   end
 
   private
