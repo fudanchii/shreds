@@ -23,7 +23,7 @@ class OPMLFile
     original_name.gsub(/[^\w\.\-]/, '_')
   end
 
-  protected
+  private
 
   def save(content)
     written = 0
