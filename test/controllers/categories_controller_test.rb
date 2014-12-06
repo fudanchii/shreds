@@ -5,11 +5,11 @@ describe CategoriesController do
   before do
     @user = users(:test1)
     @category = @user.subscriptions.first.category
+    login @user
   end
 
   describe 'Internal API' do
     it 'should destroy' do
-      login @user
       delete :destroy, id: @category, format: 'json'
       assert_response :success
       res = JSON.parse response.body

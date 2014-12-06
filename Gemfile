@@ -61,10 +61,13 @@ gem 'feedjira', require: false
 gem 'feedbag', require: false, github: 'fudanchii/feedbag', branch: 'dev'
 
 # Test-related gems
-gem 'minitest', group: :test
-gem 'minitest-reporters', group: :test
-gem 'minitest-spec-rails', group: :test
-gem 'teaspoon', group: [:test, :development]
+group :test do
+  gem 'minitest'
+  gem 'minitest-reporters'
+  gem 'minitest-spec-rails'
+  gem 'minitest-stub_any_instance'
+  gem 'teaspoon'
+end
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt', require: false

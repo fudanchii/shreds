@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/amatsuda/kaminari.git
-  revision: e4dbdd47213c86f9521997585d59378242baae96
+  revision: 40522ff7a6ef1f0c93ebb47c4cb3451eec9c5814
   specs:
     kaminari (1.0.0.alpha)
       actionpack (>= 3.0.0)
@@ -152,6 +152,7 @@ GEM
     minitest-spec-rails (5.1.1)
       minitest (~> 5.0)
       rails (~> 4.1)
+    minitest-stub_any_instance (1.0.0)
     multi_json (1.10.1)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
@@ -194,7 +195,7 @@ GEM
       activesupport (= 4.1.8)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.4.0)
+    rake (10.4.2)
     rake-compiler (0.9.3)
       rake
     redis (3.1.0)
@@ -274,6 +275,7 @@ DEPENDENCIES
   minitest
   minitest-reporters
   minitest-spec-rails
+  minitest-stub_any_instance
   oj
   omniauth
   omniauth-twitter
