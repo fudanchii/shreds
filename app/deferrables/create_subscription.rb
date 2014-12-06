@@ -35,7 +35,7 @@ class CreateSubscription
   def create_feed(url)
     feed_url = Feedbag.find(url).first
     fail Shreds::InvalidFeed if feed_url.nil?
-    feed = Feed.where(feed_url: feed_url).first
+    feed = Feed.find_by feed_url: feed_url
     feed || Feed.create!(user_param url, feed_url)
   end
 
