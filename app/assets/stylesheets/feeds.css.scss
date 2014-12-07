@@ -106,7 +106,7 @@ hr {
     font-size: 75%;
 }
 
-a:hover {
+a:hover, a:focus {
     text-decoration: none;
 }
 
@@ -131,3 +131,4 @@ a:hover {
     background-color: rgba(25, 25, 25, 0.7);
     opacity: 0.7;
 }
+
