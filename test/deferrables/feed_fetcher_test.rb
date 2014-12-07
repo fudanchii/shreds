@@ -10,6 +10,6 @@ describe FeedFetcher do
     Feedjira::Feed.stub :fetch_and_parse, mock do
       assert_raises(Shreds::InvalidFeed) { described_class.new.perform 'example.com/feed' }
     end
-    mock.verify
+    assert mock.verify
   end
 end

@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'minitest/mock'
 
 describe Feed do
 
@@ -9,9 +10,9 @@ describe Feed do
   end
 
   it 'raises error if created with no url' do
-    -> { create_feed nil    }.must_raise(ActiveRecord::RecordInvalid)
-    -> { create_feed ''     }.must_raise(ActiveRecord::RecordInvalid)
-    -> { create_feed '    ' }.must_raise(ActiveRecord::RecordInvalid)
+    assert_raises(ActiveRecord::RecordInvalid) { create_feed nil    }
+    assert_raises(ActiveRecord::RecordInvalid) { create_feed ''     }
+    assert_raises(ActiveRecord::RecordInvalid) { create_feed '    ' }
   end
 
   it 'enforce uniqueness for feed_url' do
@@ -43,6 +44,26 @@ describe Feed do
         feed.url.must_equal 'http://example.com'
         feed.feed_url.must_equal 'http://example.com/feed.rss'
       end
+    end
+  end
+
+  describe 'update_meta!' do
+    it "will update attribute if it's previously empty" do
+      mock_update = MiniTest::Mock.new
+      mock_update.expect :call, true, [{title: 'example feed'}]
+      feed = create_feed 'http://example.com'
+      feed.stub :update_attributes!, mock_update do
+        feed.update_meta! title: 'example feed', url: nil
+      end
+      assert mock_update.verify
+    end
+
+    it "will update attribute if its value changed" do
+      feed = described_class.create! title: 'example feed',
+                                     url: 'http://example.com',
+                                     feed_url: 'http://example.com/feed.atom'
+      feed.update_meta! title: 'awesome feed'
+      feed.title.must_equal 'awesome feed'
     end
   end
 end
