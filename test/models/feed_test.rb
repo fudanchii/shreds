@@ -50,7 +50,7 @@ describe Feed do
   describe 'update_meta!' do
     it "will update attribute if it's previously empty" do
       mock_update = MiniTest::Mock.new
-      mock_update.expect :call, true, [{title: 'example feed'}]
+      mock_update.expect :call, true, [{ title: 'example feed' }]
       feed = create_feed 'http://example.com'
       feed.stub :update_attributes!, mock_update do
         feed.update_meta! title: 'example feed', url: nil
@@ -58,7 +58,7 @@ describe Feed do
       assert mock_update.verify
     end
 
-    it "will update attribute if its value changed" do
+    it 'will update attribute if its value changed' do
       feed = described_class.create! title: 'example feed',
                                      url: 'http://example.com',
                                      feed_url: 'http://example.com/feed.atom'
