@@ -15,6 +15,13 @@ class Category < ActiveRecord::Base
     'uncategorized'
   end
 
+  def self.safe_create(cname)
+    cname ||= default
+    find_or_create_by! name: cname
+  rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordNotUnique
+    find_by! name: cname
+  end
+
   def custom_and_unused?
     feeds.count == 0 && name != self.class.default
   end

@@ -38,6 +38,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def subscribe(subscription)
+    transaction do
+      subscription.save!
+      subscription.feed.create_entries_for subscription
+      FeedFetcher.new.perform subscription.feed.feed_url
+    end
+    subscription
+  end
+
   def unread_feeds
     subscriptions.includes({ entries: :newsitem }, :feed)
       .where('entries.unread' => true)

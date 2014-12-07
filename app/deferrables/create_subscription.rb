@@ -7,14 +7,10 @@ class CreateSubscription
 
   def perform(uid, url, category)
     user = User.find uid
-    subscription = user.subscriptions.build category: create_category(category),
-                                            feed: create_feed(url)
-    User.transaction do
-      subscription.save!
-      subscription.feed.newsitems.each { |n| subscription.entries.build(newsitem: n).save! }
-      FeedFetcher.new.perform subscription.feed.feed_url
-      EventPool.add "create-#{jid}", view: 'create', category_id: subscription.category.id
-    end
+    subscription = user.subscriptions.build feed: create_feed(url),
+                                            category: Category.safe_create(category)
+    user.subscribe subscription
+    EventPool.add "create-#{jid}", view: 'create', category_id: subscription.category.id
   rescue ActiveRecord::RecordNotFound
     EventPool.add "create-#{jid}", error: I18n.t('user.not_found')
   rescue ActiveRecord::RecordNotUnique
@@ -25,21 +21,9 @@ class CreateSubscription
 
   private
 
-  def create_category(catname)
-    catname ||= Category.default
-    Category.find_or_create_by! name: catname
-  rescue ActiveRecord::InvalidStatement
-    retry
-  end
-
   def create_feed(url)
     feed_url = Feedbag.find(url).first
     fail Shreds::InvalidFeed if feed_url.nil?
-    feed = Feed.find_by feed_url: feed_url
-    feed || Feed.create!(user_param url, feed_url)
-  end
-
-  def user_param(url, feed_url)
-    ActionController::Parameters.new(url: url, feed_url: feed_url, title: url).permit!
+    Feed.safe_create url, feed_url
   end
 end

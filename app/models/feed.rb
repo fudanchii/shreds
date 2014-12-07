@@ -7,18 +7,27 @@ class Feed < ActiveRecord::Base
   has_many :newsitems, dependent: :destroy
 
   normalize_attributes :url
-  validates :url, presence: true
+  validates :url, :feed_url, presence: true
   before_save :sanitize_url
 
   scope :for_nav, -> { order('url ASC') }
+
+  # This method should guarantee multi-process /
+  # multi-thread safeness.
+  def self.safe_create(url, feed_url)
+    feed = where(feed_url: feed_url).first
+    feed || create!(by_param url, feed_url)
+  rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordNotUnique
+    find_by! feed_url: feed_url
+  end
 
   def to_param
     "#{id}-#{(title.presence || '(untitled)').downcase.strip.gsub(/[\s[:punct:]]+/, '-')}"
   end
 
   def favicon
-    url = URI.parse(self.url)
-    "https://plus.google.com/_/favicon?domain=#{url.host || self.url}"
+    iurl = URI.parse(url)
+    "https://plus.google.com/_/favicon?domain=#{iurl.host || url}"
   end
 
   def up_to_date_with?(newfeed)
@@ -29,10 +38,12 @@ class Feed < ActiveRecord::Base
     transaction do
       news = newsitems.build params
       news.save!
-      subscriptions.each do |s|
-        s.entries.build(newsitem: news).save!
-      end
+      subscriptions.each { |s| s.entries.build(newsitem: news).save! }
     end
+  end
+
+  def create_entries_for(subscription)
+    newsitems.each { |n| subscription.entries.build(newsitem: n).save! }
   end
 
   def update_meta!(fields)
@@ -48,6 +59,10 @@ class Feed < ActiveRecord::Base
 
   def sanitize_url
     url.prepend('http://') unless url.urlish?
+  end
+
+  def self.by_param(url, feed_url)
+    ActionController::Parameters.new(url: url, feed_url: feed_url, title: url).permit!
   end
 end
 
