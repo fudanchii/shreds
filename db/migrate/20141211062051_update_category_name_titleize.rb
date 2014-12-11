@@ -1,14 +1,13 @@
 class UpdateCategoryNameTitleize < ActiveRecord::Migration
   def change
     Category.all.each do |c|
-      begin
-        c.update! name: c.name.titleize
-      rescue ActiveRecord::RecordNotUnique
-        ucat = Category.find_by! name: c.name.titleize
+      catz = Category.find_by name: c.name.titleize
+      if catz.present?
         Subscription.where(category: c).each do |s|
-          s.update! category: ucat
+          s.update! category: catz
         end
-        c.destroy!
+      else
+        c.update! name: c.name.titleize
       end
     end
   end
