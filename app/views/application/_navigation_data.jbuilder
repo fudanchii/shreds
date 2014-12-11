@@ -1,6 +1,6 @@
 json.categories @subscriptions.each do |category_name, category|
   json.id category[:id]
-  json.name category_name.titleize
+  json.name category_name
   json.has ['feeds']
   json.feeds category[:feeds].each do |entry|
     json.partial! 'feed_for_navigation',

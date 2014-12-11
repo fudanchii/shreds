@@ -7,7 +7,7 @@ class Category < ActiveRecord::Base
 
   scope :for_nav, -> { order('name ASC') }
 
-  before_create { self.name = name.downcase }
+  before_create { self.name = name.titleize }
 
   normalize_attributes :name
 
@@ -17,9 +17,9 @@ class Category < ActiveRecord::Base
 
   def self.safe_create(cname)
     cname ||= default
-    find_or_create_by! name: cname
+    find_or_create_by! name: cname.titleize
   rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordNotUnique
-    find_by! name: cname
+    find_by! name: cname.titleize
   end
 
   def custom_and_unused?
