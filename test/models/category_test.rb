@@ -21,6 +21,6 @@ describe Category do
 
   it 'should sanitize category name before create' do
     @mycategory = Category.create(name: '  mycategory   ')
-    @mycategory.name.must_equal 'mycategory'
+    @mycategory.name.must_equal 'mycategory'.titleize
   end
 end
