@@ -61,10 +61,8 @@
     urlJoin: function (url, path) {
       var rurl = '';
       if (path.match(/^\//)) {
-        console.log('absolute');
         rurl = url.hostname + path;
       } else {
-        console.log('relative');
         rurl = url.hostname + url.pathname.replace(/([^\/]*)$/, '') + path;
       }
       return url.protocol + '//' + rurl;
