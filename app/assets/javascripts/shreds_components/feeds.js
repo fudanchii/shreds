@@ -68,7 +68,10 @@
       Shreds.model.import(context, data, { context: 'feeds' });
       document.title = '[shreds] - ' + (data.title || 'Feeds');
     }
-    setTimeout(function () { Shreds.syncView(context); }, 450);
+    setTimeout(function () {
+      Shreds.syncView(context);
+      Shreds.$.trigger('shreds:feed:postrender');
+    }, 450);
     if (scrollTop > 0) {
       $container.stop(true, true).animate({scrollTop: 0}, 850, 'easeOutCubic');
     }

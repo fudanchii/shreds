@@ -15,6 +15,8 @@
       r.define('/:feed_id/:id',        'newsitem:render:show');
       if (!$('meta[name=pre-rendered]').attr('value')) {
         r.dispatch();
+      } else {
+        Shreds.$.trigger('shreds:feed:postrender');
       }
     }
   });
