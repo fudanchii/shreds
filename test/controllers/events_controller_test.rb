@@ -38,6 +38,5 @@ describe EventsController do
       assert_response :success
       refute_empty response.body
     end
-
   end
 end

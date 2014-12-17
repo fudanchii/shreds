@@ -2,7 +2,6 @@ require 'test_helper'
 require 'minitest/mock'
 
 describe Feed do
-
   def create_feed(url)
     feed = described_class.create url: url, feed_url: 'http://example.com/feed.atom'
     feed.save!

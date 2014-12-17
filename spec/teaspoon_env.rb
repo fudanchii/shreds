@@ -5,7 +5,6 @@ unless defined?(Rails)
 end
 
 Teaspoon.configure do |config|
-
   # Determines where the Teaspoon routes will be mounted. Changing this to "/jasmine" would allow you to browse to
   # `http://localhost:3000/jasmine` to run your tests.
   # config.mount_at = "/teaspoon"
@@ -35,7 +34,6 @@ Teaspoon.configure do |config|
   # - with the rake task: rake teaspoon suite=[suite_name]
   # - with the cli: teaspoon --suite=[suite_name]
   config.suite do |suite|
-
     # Specify the framework you would like to use. This allows you to select versions, and will do some basic setup for
     # you -- which you can override with the directives below. This should be specified first, as it can override other
     # directives.
@@ -79,7 +77,6 @@ Teaspoon.configure do |config|
     # Hooks allow you to use `Teaspoon.hook("fixtures")` before, after, or during your spec run. This will make a
     # synchronous Ajax request to the server that will call all of the blocks you've defined for that hook name.
     # suite.hook :fixtures, proc{ }
-
   end
 
   # Example suite. Since we're just filtering to files already within the root test/javascripts, these files will also
@@ -178,5 +175,4 @@ Teaspoon.configure do |config|
   # coverage.lines = nil
 
   # end
-
 end

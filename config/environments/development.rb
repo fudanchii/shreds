@@ -1,5 +1,4 @@
 Rails.application.configure do
-
   BetterErrors::Middleware.allow_ip! ENV['trusted_ip'] if ENV.key?('trusted_ip')
 
   # In the development environment your application's code is reloaded on

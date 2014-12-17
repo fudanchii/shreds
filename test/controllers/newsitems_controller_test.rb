@@ -1,7 +1,6 @@
 require 'test_helper'
 
 describe NewsitemsController do
-
   before do
     @user = users(:test1)
     @newsitem = newsitems(:newsitem1)

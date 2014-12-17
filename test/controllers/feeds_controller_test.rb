@@ -1,7 +1,6 @@
 require 'test_helper'
 
 describe FeedsController do
-
   before do
     @user = users(:test1)
     @feed = @user.subscriptions.first.feed

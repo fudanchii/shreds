@@ -1,7 +1,6 @@
 require 'sidekiq/web'
 
 Shreds::Application.routes.draw do
-
   get '/login' => 'static#login'
   get '/logout' => 'session#destroy'
   match '/auth/:provider/callback', to: 'session#create', via: [:get, :post]

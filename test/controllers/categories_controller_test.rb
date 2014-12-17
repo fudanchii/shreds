@@ -1,7 +1,6 @@
 require 'test_helper'
 
 describe CategoriesController do
-
   before do
     @user = users(:test1)
     @category = @user.subscriptions.first.category
