@@ -6,21 +6,22 @@
       'route:dispatched': function (ev, data) {
         var category, feed, navdata;
         var fid = parseInt(data.feed_id, 10);
-        if (!fid) { return; }
         category = null;
-        feed = Shreds.model.find('navigation/categories/feeds', fid);
-        navdata = Shreds.model.get('navigation');
-        for (var el in navdata.categories) {
-          for (var f in navdata.categories[el].feeds) {
-            if (navdata.categories[el].feeds[f].id == fid) {
-              category = navdata.categories[el];
+        if (fid) {
+          feed = Shreds.model.find('navigation/categories/feeds', fid);
+          navdata = Shreds.model.get('navigation');
+          for (var el in navdata.categories) {
+            for (var f in navdata.categories[el].feeds) {
+              if (navdata.categories[el].feeds[f].id == fid) {
+                category = navdata.categories[el];
+                break;
+              }
+            }
+            if (category !== null) {
               break;
             }
           }
-          if (category !== null) {
-            break;
-          }
-        };
+        }
         Shreds.syncView(name, { category: category, feed: feed });
       }
     }
