@@ -1,7 +1,7 @@
 module ApplicationHelper
   def title(string)
     appname = ENV.key?('app_name') ? ENV['app_name'] : 'shreds'
-    "[#{appname}] - #{string}"
+    "#{string} · #{appname}"
   end
 
   def strdate(date)

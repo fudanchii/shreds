@@ -66,7 +66,7 @@
     $feedView.removeClass('in').addClass('fade');
     if (context !== 'navigation') {
       Shreds.model.import(context, data, { context: 'feeds' });
-      document.title = '[shreds] - ' + (data.title || 'Feeds');
+      document.title = (data.title || 'Feeds') + ' · shreds';
     }
     setTimeout(function () {
       Shreds.syncView(context);
