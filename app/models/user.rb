@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
     transaction do
       subscription.save!
       subscription.feed.create_entries_for subscription
-      FeedFetcher.new.perform subscription.feed.feed_url
+      FeedFetcherJob.new.perform subscription.feed
     end
     subscription
   end

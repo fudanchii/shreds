@@ -1,10 +1,9 @@
 class EntryNewsitems
   attr_reader :feed_record
 
-  def initialize(feed, feed_url)
+  def initialize(feed, feed_record)
     @feed = feed
-    @feed_record = Feed.find_by! feed_url: feed_url
-    fail Shreds::InvalidFeed, I18n.t('feed.error.not_found') if @feed_record.nil?
+    @feed_record = feed_record
   end
 
   def execute
