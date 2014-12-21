@@ -6,7 +6,6 @@ class Feed < ActiveRecord::Base
   has_many :users, through: :subscriptions
   has_many :newsitems, dependent: :destroy
 
-  normalize_attributes :url
   validates :url, :feed_url, presence: true
   before_save :sanitize_url
 
@@ -58,6 +57,7 @@ class Feed < ActiveRecord::Base
   private
 
   def sanitize_url
+    url.strip!
     url.prepend('http://') unless url.urlish?
   end
 
@@ -76,7 +76,7 @@ end
 #  updated_at :datetime
 #  feed_url   :text
 #  title      :text             default("( Untitled )"), not null
-#  etag       :string(255)
+#  etag       :string
 #
 # Indexes
 #

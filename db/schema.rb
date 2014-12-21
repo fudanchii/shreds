@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20141211084434) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "categories", force: true do |t|
+  create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20141211084434) do
 
   add_index "categories", ["name"], name: "index_categories_on_name", unique: true, using: :btree
 
-  create_table "entries", force: true do |t|
+  create_table "entries", force: :cascade do |t|
     t.integer  "subscription_id"
     t.integer  "newsitem_id"
     t.boolean  "unread",          default: true
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20141211084434) do
   add_index "entries", ["newsitem_id", "subscription_id"], name: "index_entries_on_newsitem_id_and_subscription_id", unique: true, using: :btree
   add_index "entries", ["unread"], name: "index_entries_on_unread", where: "unread", using: :btree
 
-  create_table "feeds", force: true do |t|
+  create_table "feeds", force: :cascade do |t|
     t.text     "url",                                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20141211084434) do
 
   add_index "feeds", ["feed_url"], name: "index_feeds_on_feed_url", unique: true, using: :btree
 
-  create_table "itemhashes", force: true do |t|
+  create_table "itemhashes", force: :cascade do |t|
     t.string   "urlhash",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20141211084434) do
 
   add_index "itemhashes", ["urlhash"], name: "index_itemhashes_on_urlhash", using: :btree
 
-  create_table "newsitems", force: true do |t|
+  create_table "newsitems", force: :cascade do |t|
     t.text     "permalink"
     t.integer  "feed_id"
     t.datetime "created_at"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20141211084434) do
 
   add_index "newsitems", ["feed_id", "id"], name: "index_newsitems_on_feed_id_and_id", unique: true, using: :btree
 
-  create_table "subscriptions", force: true do |t|
+  create_table "subscriptions", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "category_id"
     t.integer  "feed_id"
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20141211084434) do
   add_index "subscriptions", ["feed_id", "category_id", "user_id"], name: "index_subscriptions_on_feed_id_and_category_id_and_user_id", unique: true, using: :btree
   add_index "subscriptions", ["feed_id", "user_id"], name: "index_subscriptions_on_feed_id_and_user_id", unique: true, using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "email"
     t.string   "uid"

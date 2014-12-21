@@ -38,15 +38,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def subscribe(subscription)
-    transaction do
-      subscription.save!
-      subscription.feed.create_entries_for subscription
-      FeedFetcherJob.new.perform subscription.feed
-    end
-    subscription
-  end
-
   def unread_feeds
     subscriptions.includes({ entries: :newsitem }, :feed)
       .where('entries.unread' => true)
@@ -65,11 +56,11 @@ end
 # Table name: users
 #
 #  id         :integer          not null, primary key
-#  username   :string(255)
-#  email      :string(255)
-#  uid        :string(255)
-#  provider   :string(255)
-#  token      :string(255)
+#  username   :string
+#  email      :string
+#  uid        :string
+#  provider   :string
+#  token      :string
 #  created_at :datetime
 #  updated_at :datetime
 #

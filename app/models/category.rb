@@ -7,9 +7,9 @@ class Category < ActiveRecord::Base
 
   scope :for_nav, -> { order('name ASC') }
 
-  before_create { self.name = name.titleize }
+  validates :name , presence: true
 
-  normalize_attributes :name
+  before_create { self.name = name.strip.titleize }
 
   def self.default
     'uncategorized'
@@ -44,7 +44,7 @@ end
 # Table name: categories
 #
 #  id         :integer          not null, primary key
-#  name       :string(255)
+#  name       :string
 #  created_at :datetime
 #  updated_at :datetime
 #

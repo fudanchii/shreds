@@ -15,7 +15,7 @@ end
 # Table name: itemhashes
 #
 #  id         :integer          not null, primary key
-#  urlhash    :string(255)      not null
+#  urlhash    :string           not null
 #  created_at :datetime
 #  updated_at :datetime
 #

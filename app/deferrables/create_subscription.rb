@@ -9,7 +9,7 @@ class CreateSubscription
     user = User.find uid
     subscription = user.subscriptions.build feed: create_feed(url),
                                             category: Category.safe_create(category)
-    user.subscribe subscription
+    subscription.fetch_feeds!
     EventPool.add "create-#{jid}", view: 'create', category_id: subscription.category.id
   rescue ActiveRecord::RecordNotFound
     EventPool.add "create-#{jid}", error: I18n.t('user.not_found')

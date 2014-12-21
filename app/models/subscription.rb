@@ -26,6 +26,14 @@ class Subscription < ActiveRecord::Base
     end
   end
 
+  def fetch_feeds!
+    transaction do
+      save!
+      feed.create_entries_for self
+      FeedFetcherJob.new.perform feed
+    end
+  end
+
   private
 
   def ensure_category
