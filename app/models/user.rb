@@ -7,8 +7,6 @@ class User < ActiveRecord::Base
 
   validates :username, :uid, :provider, presence: true
 
-  normalize_attributes :email
-
   def self.from_omniauth(auth_hash)
     where(provider: auth_hash[:provider], uid: auth_hash[:uid]).first
   end
