@@ -8,7 +8,6 @@ gem 'pg'
 gem 'annotate', group: :development
 
 gem 'jbuilder'
-gem 'attribute_normalizer', github: 'mdeering/attribute_normalizer'
 # gem 'paper_trail'
 # end of 1.
 

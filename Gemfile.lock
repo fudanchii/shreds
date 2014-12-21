@@ -16,12 +16,6 @@ GIT
       open_uri_redirections
 
 GIT
-  remote: git://github.com/mdeering/attribute_normalizer.git
-  revision: 8bdafce8c2eb856c19b00bce747bf05918a199da
-  specs:
-    attribute_normalizer (1.2.0)
-
-GIT
   remote: git://github.com/mhfs/sidekiq-failures.git
   revision: 95165a61c21bf15a391769f7dcff452816840377
   specs:
@@ -274,7 +268,6 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
-  attribute_normalizer!
   autoprefixer-rails
   bcrypt
   better_errors (>= 0.3.2)
