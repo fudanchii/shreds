@@ -3,10 +3,11 @@
   Shreds.registerComponent(name, {
     init: function () {},
     events: {
-      'route:dispatched': function (ev, data) {
-        var category, feed, navdata;
-        var fid = parseInt(data.feed_id, 10);
-        category = null;
+      'shreds:feed:postrender': function (ev, data) {
+        var category, feed, navdata, fid;
+        if (data) {
+          fid = parseInt(data.feed_id, 10);
+        }
         if (fid) {
           feed = Shreds.model.find('navigation/categories/feeds', fid);
           navdata = Shreds.model.get('navigation');

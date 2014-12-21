@@ -3,8 +3,7 @@
     init: function () {
       var r = new Router({
         debug: false,
-        anchor: Shreds.$,
-        on_dispatch: 'route:dispatched'
+        anchor: Shreds.$
       });
       r.define('/',                    'feeds:render:index');
       r.define('/backyard/settings',   'backyard:settings');
@@ -15,9 +14,8 @@
       r.define('/:feed_id/:id',        'newsitem:render:show');
       if (!$('meta[name=pre-rendered]').attr('value')) {
         r.dispatch();
-      } else {
-        Shreds.$.trigger('shreds:feed:postrender');
       }
+      Shreds.$.trigger('shreds:feed:postrender');
     }
   });
 })(window.Shreds, window.Router);
