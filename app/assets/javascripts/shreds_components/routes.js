@@ -3,7 +3,8 @@
     init: function () {
       var r = new Router({
         debug: false,
-        anchor: Shreds.$
+        anchor: Shreds.$,
+        on_dispatch: 'shreds:route:dispatched'
       });
       r.define('/',                    'feeds:render:index');
       r.define('/backyard/settings',   'backyard:settings');
@@ -14,6 +15,8 @@
       r.define('/:feed_id/:id',        'newsitem:render:show');
       if (!$('meta[name=pre-rendered]').attr('value')) {
         r.dispatch();
+      } else {
+        Shreds.$.trigger('shreds:route:dispatched');
       }
       Shreds.$.trigger('shreds:feed:postrender');
     }

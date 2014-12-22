@@ -3,7 +3,7 @@
   Shreds.registerComponent(name, {
     init: function () {},
     events: {
-      'shreds:feed:postrender': function (ev, data) {
+      'shreds:route:dispatched': function (ev, data) {
         var category, feed, navdata, fid;
         if (data) {
           fid = parseInt(data.feed_id, 10);
