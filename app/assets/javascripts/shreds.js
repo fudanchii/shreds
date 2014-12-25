@@ -8,12 +8,11 @@
  * As an example shreds component may be written roughly like this:
  *
  * var name = 'test';
- * Shreds.components.push(name);
- * Shreds[name] = {
+ * Shreds.registerComponent(name, {
  *   init: function () {
  *     console.log('test component initiated.');
  *   }
- * }
+ * });
  *
  * Shreds use facade-like pattern to do inter-components communication.
  * Each component may define `events' object which will be available
