@@ -19,9 +19,14 @@
   Handlebars.registerHelper('countUnread', function (feeds) {
     var count = 0;
     count = feeds.reduce(function (p, c, i, a) {
-      return p + (parseInt(c.unreadCount, 10) || 0);
+      return p + (c.unreadCount || 0);
     }, 0);
     return count + '';
+  });
+
+  Handlebars.registerHelper('ifsingular', function (cond, options) {
+    if (cond == 1) { return options.fn(this); }
+    return options.inverse(this);
   });
 
 })(window.Handlebars);
