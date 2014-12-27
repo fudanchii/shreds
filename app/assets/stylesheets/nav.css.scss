@@ -3,7 +3,7 @@
 .sidebar-nav-fixed {
     padding: 9px 9px 9px 0px;
     position:fixed;
-    z-index: 9000;
+    z-index: 1020;
     width: 386px;
     height: 100%;
     left: 0px;
@@ -46,7 +46,7 @@
     padding-bottom: 9px;
     position: absolute;
     background-color: #f8f8f8;
-    z-index: 1000;
+    z-index: 1021;
     width: 357px;
 }
 
@@ -76,7 +76,7 @@
 .sidebar-nav-fixed {
     padding: 9px 9px 9px 0px;
     position: fixed;
-    z-index: 9000;
+    z-index: 1020;
     width: auto;
     top: 0px;
     left: 0px;
@@ -96,7 +96,7 @@
     padding-right: 18px;
     position: absolute;
     background-color: #f8f8f8;
-    z-index: 1000;
+    z-index: 1021;
     width: 100%;
 }
 
@@ -264,5 +264,5 @@ li#to_the_front.active {
 }
 
 .tooltip {
-    z-index: 9001;
+    z-index: 1022;
 }

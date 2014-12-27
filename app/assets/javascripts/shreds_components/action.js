@@ -100,11 +100,12 @@
 
     markAllAsRead: function (ev) {
       Shreds.ajax.patch('/i/feeds/mark_all_as_read.json', {
-        failMsg: '<strong>Can\'t</strong> mark all feed as read.'
+        failMsg: '<strong>Can\'t</strong> mark all feeds as read.'
       }).done(function (data) {
         Shreds.$.trigger('watch:markAllAsRead', data);
         Shreds.$.trigger('feeds:_storage:clear');
       });
+      $('.mdl-mark-as-read').modal('hide');
     },
 
     markAsRead: function (ev) {
@@ -192,6 +193,15 @@
       if ($subscribeInput.is(':visible') && amOut) {
         $subscribeInput.slideUp();
       }
+    },
+
+    renderModalMessage: function (ev) {
+      var total_unread = Shreds.model.get('navigation').categories.reduce(function (p, c, i, a) {
+        return p + c.feeds.reduce(function (fp, fc, fi, fa) {
+          return fp + fc.unreadCount;
+        }, 0);
+      }, 0);
+      Shreds.syncView('modal_mark_as_read', {total: total_unread || 0});
     },
 
     amOut: function (ev) {

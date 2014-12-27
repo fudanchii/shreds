@@ -5,9 +5,10 @@
   <% end %>
   </li>
   <li data-toggle="tooltip" title="Mark All as Read">
-    <%= link_to 'javascript:void(0)', :'data-on-click' => "markAllAsRead" do %>
-      <span class="glyphicon glyphicon-ok" data-template="total_unread"></span>
-      <%#  <span class="label label-danger label-small">9999</span> %>
+    <%= link_to 'javascript:void(0)', :'data-toggle' => 'modal',
+                                      :'data-target' => '.mdl-mark-as-read',
+                                      :'data-on-mousedown' => 'renderModalMessage' do %>
+      <span class="glyphicon glyphicon-ok"></span>
     <% end %>
   </li>
   <li data-toggle="tooltip" title="Settings (Coming soon!)">
@@ -21,3 +22,22 @@
     <% end %>
   </li>
 </ul>
+
+<%= content_for :modal_etc do %>
+<div class="modal fade mdl-mark-as-read" tabindex="-1" role="dialog" aria-labelledby="mdlMarkAsReadLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="mdlMarkAsReadLabel">Really mark all feeds as read? </h4>
+      </div>
+      <div class="modal-body" data-template='modal_mark_as_read'>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Not yet</button>
+        <button type="button" class="btn btn-primary" data-on-click='markAllAsRead'>Yep!</button>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
