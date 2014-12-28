@@ -20,7 +20,7 @@ describe EventsController do
       mock.expect :call, ['example.com/feed'], ['example.com/feed']
 
       Feedbag.stub :find, mock do
-        FeedFetcherJob.stub_any_instance(:perform, true) do
+        FeedFetcher.stub_any_instance(:perform, true) do
           CreateSubscription.stub_any_instance(:jid, '12345') do
             CreateSubscription.new.perform @user.id, 'example.com/feed', nil
           end

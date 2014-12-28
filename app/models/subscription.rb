@@ -30,7 +30,7 @@ class Subscription < ActiveRecord::Base
     transaction do
       save!
       feed.create_entries_for self
-      FeedFetcherJob.new.perform feed
+      FeedFetcher.new.perform feed.feed_url
     end
   end
 

@@ -1,2 +1,2 @@
-sidekiq: bundle exec sidekiq -c 10 -q default,2 -q feed_fetcher
+sidekiq: bundle exec sidekiq -c 5
 shreds:  bundle exec puma
