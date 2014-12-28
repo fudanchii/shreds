@@ -4,7 +4,7 @@
     list: [],
     add: function (data) {
       this.list.push(data);
-      setTimeout(doWatch.bind(this), 1000);
+      setTimeout(doWatch.bind(this), 700);
     },
     init: function (ctx) {
       setInterval(doWatch.bind(this, 'updateFeed'), 600000);

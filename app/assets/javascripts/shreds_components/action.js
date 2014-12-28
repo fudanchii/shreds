@@ -204,6 +204,10 @@
       Shreds.syncView('modal_mark_as_read', {total: total_unread || 0});
     },
 
+    refreshFeed: function () {
+      Shreds.watch.add('updateFeed');
+    },
+
     amOut: function (ev) {
       if ($subscribeForm.has(ev.target).length === 0) { amOut = true; return; }
       amOut = false;
