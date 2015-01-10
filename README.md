@@ -31,12 +31,12 @@ Now you can `cd` to shreds directory and start with `bundle install`.
 
 You will also need [bower](http://bower.io) to install assets-related dependencies. You can install bower via npm with: `npm install -d -g`, to install all dependencies just type: `bower install`.
 
-For production environment, just make sure you have sane and recent version of ruby available for your OS distribution and all dependencies above. No need to setup bower if you only want to use shreds, since all assets are already precompiled and commited to the repository.
+For production environment, just make sure you have sane and recent version of ruby available for your OS distribution and all dependencies above. No need to setup bower if you only want to use shreds, since all assets are already precompiled and committed to the repository.
 
 Before starting the app, there are these few things which should get set up:  
 First is configuration:
 
-- We're using [figaro](https://github.com/laserlemon/figaro) to manage rails configuration. Under config directory, copy `application.yml.sample` to `application.yml`, then edit the file according to your need.
+- Shreds use [figaro](https://github.com/laserlemon/figaro) to manage its configuration. Under config directory, copy `application.yml.sample` to `application.yml`, then edit the file according to your need.
 
 - Also copy `database.yml.sample` to `database.yml` and edit the file to adapt with your database configuration.
 
