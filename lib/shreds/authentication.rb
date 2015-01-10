@@ -19,6 +19,6 @@ module Shreds
   end
 end
 
-require 'auth/provider'
-require 'auth/developer_provider'
-require 'auth/twitter_provider'
+require 'shreds/auth/provider'
+require 'shreds/auth/developer_provider'
+require 'shreds/auth/twitter_provider'

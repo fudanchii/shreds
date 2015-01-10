@@ -1,4 +1,4 @@
-require 'opml_file'
+require 'opml/file'
 
 class FeedsController < ApplicationController
   # GET /feeds
@@ -28,10 +28,10 @@ class FeedsController < ApplicationController
   end
 
   def create_from_opml
-    filename = OPMLFile.new(params[:OPMLfile]).fullpath
+    filename = OPML::File.new(params[:OPMLfile]).fullpath
     jid = ProcessOPML.perform_async current_user.id, filename
     render json: { watch: "opml-#{jid}" }
-  rescue UploadError => ex
+  rescue OPML::UploadError => ex
     render json: { error: ex.message.html_safe }
   end
 

@@ -1,4 +1,4 @@
-require 'opml'
+require 'opml/defs'
 
 class ProcessOPML
   include Sidekiq::Worker
@@ -38,7 +38,7 @@ class ProcessOPML
     @user_id = uid
     File.open(input_file, 'r') do |f|
       # slurrrp
-      bundle = OPMLDoc.parse(f.read)
+      bundle = OPML::Doc.parse(f.read)
       create_jids = fetch_feed_from(bundle.outlines)
       watch_feed_fetcher(create_jids)
     end

@@ -1,4 +1,4 @@
-require 'authentication'
+require 'shreds/authentication'
 
 class ApplicationController < ActionController::Base
   include Shreds::Auth
