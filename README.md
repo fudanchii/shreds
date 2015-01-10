@@ -34,16 +34,18 @@ For production environment, just make sure you have sane and recent version of r
 Before starting the app, there are these few things which should get set up:  
 First is configuration:
 
-- Under config directory, copy `application.yml.sample` to `application.yml`, then edit according to your need.
+- Setting environment variables in application.yml [figaro](https://github.com/laserlemon/figaro). Under config directory, copy `application.yml.sample` to `application.yml`, then edit according to your need.
 
 - Also copy `database.yml.sample` to `database.yml` and edit the file to adapt with your database configuration.
+
+- Bower to manage Rails app assets [bower](http://bower.io/). 'bower install'
 
 Second is the database, to setup, type `rake db:create` then `rake db:migrate`.
 
 And the last, assuming there is no error, start the application with `foreman start`. By default, shreds using `puma` as its server, this may be changed via both Gemfile and Procfile.
 
 License
----
+---bo
 shreds. 2013-2014. Nurahmadie <nurahmadie@gmail.com>.
 
 Distributed under MIT/X11 license.
