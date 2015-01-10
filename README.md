@@ -38,7 +38,7 @@ First is configuration:
 
 - Also copy `database.yml.sample` to `database.yml` and edit the file to adapt with your database configuration.
 
-- Bower to manage Rails app assets [bower](http://bower.io/). 'bower install'
+- Bower to manage Rails app assets [bower](http://bower.io/). `bower install`
 
 Second is the database, to setup, type `rake db:create` then `rake db:migrate`.
 
