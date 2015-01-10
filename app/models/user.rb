@@ -22,17 +22,18 @@ class User < ActiveRecord::Base
 
   def bundled_subscriptions
     newsitems = Newsitem.latest_issues_for(subscriptions).to_ary
-    subscriptions.bundled_for_navigation.each_with_object({}) do |c, p|
-      p[c.category.name] ||= {
-        id: c.category.id,
-        feeds: []
-      }
-      p[c.category.name][:feeds] << {
-        feed: c.feed,
-        unreads: c.unreads,
-        latest: newsitems.shift
-      }
-      p
+    subscriptions.bundled_for_navigation.each_with_object({}) do |c, hmap|
+      hmap.tap do |p|
+        p[c.category.name] ||= {
+          id: c.category.id,
+          feeds: []
+        }
+        p[c.category.name][:feeds] << {
+          feed: c.feed,
+          unreads: c.unreads,
+          latest: newsitems.shift
+        }
+      end
     end
   end
 
