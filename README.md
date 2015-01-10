@@ -45,7 +45,7 @@ Second is the database, to setup, type `rake db:create` then `rake db:migrate`.
 And the last, assuming there is no error, start the application with `foreman start`. By default, shreds using `puma` as its server, this may be changed via both Gemfile and Procfile.
 
 License
----bo
+---
 shreds. 2013-2014. Nurahmadie <nurahmadie@gmail.com>.
 
 Distributed under MIT/X11 license.
