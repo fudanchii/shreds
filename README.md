@@ -27,18 +27,18 @@ For development or just hacking around shreds, I would recommend using `rvm` to 
 ~$ \curl -L https://get.rvm.io | bash -s stable --ruby=2.1.5
 ```
 
-Now you can `cd` to the repository and start with `bundle install`.
+Now you can `cd` to shreds directory and start with `bundle install`.
 
-For production environment, just make sure you have sane and recent version of ruby available for your OS distribution and all dependencies above.
+You will also need [bower](http://bower.io) to install assets-related dependencies. You can install bower via npm with: `npm install -d -g`, to install all dependencies just type: `bower install`.
+
+For production environment, just make sure you have sane and recent version of ruby available for your OS distribution and all dependencies above. No need to setup bower if you only want to use shreds, since all assets are already precompiled and commited to the repository.
 
 Before starting the app, there are these few things which should get set up:  
 First is configuration:
 
-- Setting environment variables in application.yml [figaro](https://github.com/laserlemon/figaro). Under config directory, copy `application.yml.sample` to `application.yml`, then edit according to your need.
+- We're using [figaro](https://github.com/laserlemon/figaro) to manage rails configuration. Under config directory, copy `application.yml.sample` to `application.yml`, then edit the file according to your need.
 
 - Also copy `database.yml.sample` to `database.yml` and edit the file to adapt with your database configuration.
-
-- Bower to manage Rails app assets [bower](http://bower.io/). `bower install`
 
 Second is the database, to setup, type `rake db:create` then `rake db:migrate`.
 
