@@ -3,8 +3,7 @@ class EventsController < ApplicationController
   skip_before_action :init_empty_subscription
 
   def watch
-    @ev = EventsWatch.new(params[:watchList])
-    @ev.execute
+    @ev = EventsWatch.new(params[:watchList]).tap &:execute
     @payload = @ev.payload
     if @payload.empty?
       render text: ''

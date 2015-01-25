@@ -7,7 +7,7 @@ class Category < ActiveRecord::Base
 
   scope :for_nav, -> { order('name ASC') }
 
-  validates :name , presence: true
+  validates :name, presence: true
 
   before_create { self.name = name.strip.titleize }
 
