@@ -15,7 +15,9 @@
 
 //= require nprogress/nprogress
 
-//= require history.js/scripts/bundled-uncompressed/html4+html5/jquery.history
+//= require history.js/history
+//= require history.js/history.html4
+//= require history.js/history.adapter.jquery
 //= require router
 
 //= require handlebars.runtime
