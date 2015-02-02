@@ -13,7 +13,6 @@ gem 'jbuilder'
 
 ### 2. Assets related gems
 gem 'uglifier'
-gem 'bower', require: false
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'sass-rails', '~> 4.0.3'
 gem 'autoprefixer-rails'
@@ -88,3 +87,13 @@ group :development do
 end
 
 gem 'skylight'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-history.js'
+  gem 'rails-assets-jquery'
+  gem 'rails-assets-jquery-file-upload'
+  gem 'rails-assets-jquery-timeago'
+  gem 'rails-assets-ladda'
+  gem 'rails-assets-scrollup'
+  gem 'rails-assets-nprogress'
+end

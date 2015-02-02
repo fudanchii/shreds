@@ -1,17 +1,17 @@
 //= require bootstrap-sprockets
 
-//= require jquery-file-upload/js/vendor/jquery.ui.widget
-//= require jquery-file-upload/js/jquery.iframe-transport
-//= require jquery-file-upload/js/jquery.fileupload
+//= require jquery-file-upload/vendor/jquery.ui.widget
+//= require jquery-file-upload/jquery.iframe-transport
+//= require jquery-file-upload/jquery.fileupload
 
 //= require jquery-timeago/jquery.timeago
 //= require jquery-timeago/locales/jquery.timeago.en-short
 
-//= require spin.js/spin
-//= require ladda/js/ladda
+//= require ladda/spin.min
+//= require ladda/ladda.min
 
-//= require scrollup/js/lib/jquery.easing.min
-//= require scrollup/js/jquery.scrollUp.min
+//= require scrollup/lib/jquery.easing
+//= require scrollup/jquery.scrollUp.min
 
 //= require nprogress/nprogress
 
