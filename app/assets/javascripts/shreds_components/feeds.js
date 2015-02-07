@@ -71,10 +71,12 @@
     setTimeout(function () {
       Shreds.syncView(context);
       Shreds.$.trigger('shreds:feed:postrender');
-    }, 450);
+      $feedView.addClass('in');
+    }, 400);
     if (scrollTop > 0) {
-      $container.stop(true, true).animate({scrollTop: 0}, 850, 'easeOutCubic');
+      setTimeout(function () {
+        $container.stop(true, true).animate({scrollTop: 0}, 850, 'easeOutCubic');
+      }, 450);
     }
-    setTimeout(function () { $feedView.addClass('in'); }, 450);
   }
 })(window.Shreds);
