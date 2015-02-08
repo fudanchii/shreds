@@ -1,4 +1,5 @@
 require 'uri'
+require 'feedbag'
 
 class Feed < ActiveRecord::Base
   has_many :subscriptions, dependent: :destroy
@@ -13,7 +14,9 @@ class Feed < ActiveRecord::Base
 
   # This method should guarantee multi-process /
   # multi-thread safeness.
-  def self.safe_create(url, feed_url)
+  def self.safe_create(url)
+    feed_url = Feedbag.find(url).first
+    fail Shreds::InvalidFeed if feed_url.nil?
     feed = where(feed_url: feed_url).first
     feed || create!(by_param url, feed_url)
   rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordNotUnique
@@ -31,6 +34,12 @@ class Feed < ActiveRecord::Base
 
   def up_to_date_with?(newfeed)
     etag.present? && (newfeed.etag == etag) && (!newsitems.empty?)
+  end
+
+  def update_feed_url!
+    feed_url = Feedbag.find(@url).first
+    fail Shreds::InvalidFeed if feed_url.nil?
+    update_attributes!(feed_url: feed_url)
   end
 
   def add_newsitem(params)

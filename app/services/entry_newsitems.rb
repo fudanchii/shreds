@@ -8,7 +8,9 @@ class EntryNewsitems
   end
 
   def execute
+    return refine_feed_url if @feed.eql? 404
     return if @feed_record.up_to_date_with? @feed
+    @feed.sanitize_entries!
     @feed.entries.each do |entry|
       entry_url = entry.url.presence ||
                   (entry.entry_id if entry.entry_id.urlish?)
@@ -33,5 +35,11 @@ class EntryNewsitems
     end
     params[:permalink] = permalink
     ActionController::Parameters.new(params).permit!
+  end
+
+  def refine_feed_url
+    @feed_record.update_feed_url!
+    Rails.logger.info("feed_url updated for #{@feed_record.url}: #{@feed_record.feed_url}")
+    FeedFetcher.perform_async @feed_record.feed_url
   end
 end

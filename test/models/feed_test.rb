@@ -1,5 +1,6 @@
 require 'test_helper'
 require 'minitest/mock'
+require 'feedbag'
 
 describe Feed do
   def create_feed(url)
@@ -39,9 +40,13 @@ describe Feed do
         described_class.__minitest_stub__create!(*attr)
       end
       described_class.stub :create!, mock_create do
-        feed = described_class.safe_create 'http://example.com', 'http://example.com/feed.rss'
-        feed.url.must_equal 'http://example.com'
-        feed.feed_url.must_equal 'http://example.com/feed.rss'
+        mock = Minitest::Mock.new
+        mock.expect :call, ['http://example.com/feed.rss'], ['http://example.com']
+        Feedbag.stub :find, mock do
+          feed = described_class.safe_create 'http://example.com'
+          feed.url.must_equal 'http://example.com'
+          feed.feed_url.must_equal 'http://example.com/feed.rss'
+        end
       end
     end
   end
