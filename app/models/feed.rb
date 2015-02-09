@@ -37,7 +37,7 @@ class Feed < ActiveRecord::Base
   end
 
   def update_feed_url!
-    feed_url = Feedbag.find(@url).first
+    feed_url = Feedbag.find(url).first
     fail Shreds::InvalidFeed if feed_url.nil?
     update_attributes!(feed_url: feed_url)
   end
