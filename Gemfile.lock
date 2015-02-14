@@ -142,6 +142,7 @@ GEM
     kaminari-bootstrap (3.0.1)
       kaminari (>= 0.13.0)
       rails
+    libv8 (3.16.14.7)
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -233,6 +234,7 @@ GEM
     redis (3.2.0)
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
+    ref (1.0.5)
     ruby-progressbar (1.7.1)
     sass (3.2.19)
     sass-rails (5.0.1)
@@ -268,6 +270,9 @@ GEM
     teaspoon (0.8.0)
       railties (>= 3.2.5, < 5)
     temple (0.7.5)
+    therubyracer (0.12.1)
+      libv8 (~> 3.16.14.0)
+      ref
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
@@ -334,5 +339,6 @@ DEPENDENCIES
   stackprof
   stathat
   teaspoon
+  therubyracer
   thin
   uglifier

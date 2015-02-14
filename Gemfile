@@ -12,6 +12,7 @@ gem 'jbuilder'
 # end of 1.
 
 ### 2. Assets related gems
+gem 'therubyracer'
 gem 'uglifier'
 gem 'sprockets', '>= 3.0.0.beta'
 gem 'bootstrap-sass', '~> 3.2.0'
