@@ -1,11 +1,13 @@
 //= require spec_helper
 
+var Router = require('Router');
+
 describe('router.js', function () {
   var router = null;
   var msg = '';
 
   before(function () {
-    router = new Router({ debug: false, anchor: Shreds.$ });
+    router = new Router({ anchor: Shreds.$ });
     Shreds.$.on('action:foo', function () {
       msg = 'foo';
     });
@@ -31,8 +33,8 @@ describe('router.js', function () {
   });
 
   it('can define routes', function () {
-    expect(router.define).to.be.a('function');
-    router.define('/foo', 'action:foo');
+    expect(router.map).to.be.a('function');
+    router.map('/foo', 'action:foo');
     expect(router.routes).to.have.length(1);
   });
 
@@ -42,7 +44,7 @@ describe('router.js', function () {
   });
 
   it('can define parameterized routes', function () {
-    router.define('/hello/:name', 'action:hello');
+    router.map('/hello/:name', 'action:hello');
     expect(router.routes).to.have.length(2);
   });
 

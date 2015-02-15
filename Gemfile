@@ -15,9 +15,11 @@ gem 'jbuilder'
 gem 'therubyracer'
 gem 'uglifier'
 gem 'sprockets', '>= 3.0.0.beta'
+gem 'sprockets-es6'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'sass-rails', '~> 5.0.0'
 gem 'autoprefixer-rails'
+gem 'handlebars_assets'
 # end of 2.
 
 ### 3. Cosmetics
@@ -31,7 +33,6 @@ gem 'kaminari', github: 'amatsuda/kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'figaro'
 gem 'simple_form', github: 'plataformatec/simple_form'
-gem 'handlebars_assets'
 # end of 3.
 
 ### 4. Middleware and server related gems
@@ -66,8 +67,8 @@ group :test do
   gem 'minitest-reporters'
   gem 'minitest-spec-rails'
   gem 'minitest-stub_any_instance'
-  gem 'teaspoon'
 end
+gem 'teaspoon', group: [:development, :test]
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt', require: false

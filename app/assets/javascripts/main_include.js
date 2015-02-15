@@ -18,12 +18,14 @@
 //= require history.js/history
 //= require history.js/history.html4
 //= require history.js/history.adapter.jquery
-//= require router
 
 //= require handlebars.runtime
+
+//= require es6-runtime_poormanshack
+//= require router
+
 //= require handlebars_helpers/shreds
 //= require_tree ./templates
 
-//= require shreds
+//= require shreds.js
 //= require_tree ./shreds_components
-//

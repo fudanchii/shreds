@@ -1,7 +1,7 @@
 //= require spec_helper
 
-describe('Shreds app', function () {
-  it('is global object', function () {
+describe('Shreds App', function () {
+  it('is a global object', function () {
     expect(Shreds).to.be.an('object');
   });
 
