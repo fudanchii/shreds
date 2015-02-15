@@ -20,4 +20,4 @@
       Shreds.$.trigger('shreds:feed:postrender');
     }
   });
-})(window.Shreds, require('Router'));
+})(window.Shreds, require('router').Router);

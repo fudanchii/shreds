@@ -1,8 +1,9 @@
-import $ from "jquery";
-import History from "history";
+import $ from 'jquery';
+import History from 'history';
+
+const link_selector = 'a[target!=_blank]:not([href^=http]):not([href^=javascript])';
 
 var debug, $anchor, on_dispatch;
-let link_selector = 'a[target!=_blank]:not([href^=http]):not([href^=javascript])';
 
 export class Router {
   constructor(opts) {

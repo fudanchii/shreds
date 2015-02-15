@@ -1,6 +1,6 @@
 //= require spec_helper
 
-var Router = require('Router');
+var Router = require('router').Router;
 
 describe('router.js', function () {
   var router = null;

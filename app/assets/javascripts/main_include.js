@@ -27,5 +27,5 @@
 //= require handlebars_helpers/shreds
 //= require_tree ./templates
 
-//= require shreds.js
+//= require shreds
 //= require_tree ./shreds_components
