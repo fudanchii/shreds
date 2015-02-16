@@ -5,7 +5,7 @@ const link_selector = 'a[target!=_blank]:not([href^=http]):not([href^=javascript
 
 var debug, $anchor, on_dispatch;
 
-export class Router {
+export default class Router {
   constructor(opts) {
     debug = opts.debug || false;
     $anchor = opts.anchor || null;
