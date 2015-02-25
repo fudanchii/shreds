@@ -33,7 +33,7 @@
         window.NProgress.done();
       },
       'shreds:feed:postrender': function (ev, data) {
-        $('.feed-content img').each(function (idx) {
+        $('.feed-content img[src]').each(function (idx) {
           var
             $this = $(this),
             href, url;
