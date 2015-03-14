@@ -5,12 +5,14 @@
     <li class="nav-header breadcrumbs" data-template="breadcrumbs">
     </li>
 </ul>
-<div class="nav-container" data-template="navigation">
+<div class="nav-container" data-template="navigation" template="navigation">
 </div>
 <%= render 'nav_buttons' %>
 </div>
 
 <% content_for :embedded_javascript do %>
-window.Shreds.model.import('navigation', <%= raw render('navigation_data') %>);
-window.Shreds.assets.add('spinner16x16', '<%= image_path("spinner.16x16.gif") %>');
+(function () {
+  var Navigation = require('shreds/stores/navigation');
+  Navigation.preload(<%= raw render('navigation_data') %>);
+})();
 <% end %>

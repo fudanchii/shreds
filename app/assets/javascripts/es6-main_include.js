@@ -1,11 +1,12 @@
+//= require ractive
+
 //= require bootstrap-sprockets
 
 //= require jquery-file-upload/vendor/jquery.ui.widget
 //= require jquery-file-upload/jquery.iframe-transport
 //= require jquery-file-upload/jquery.fileupload
 
-//= require jquery-timeago/jquery.timeago
-//= require jquery-timeago/locales/jquery.timeago.en-short
+//= require moment/moment
 
 //= require ladda/spin.min
 //= require ladda/ladda.min
@@ -19,15 +20,17 @@
 //= require history.js/history.html4
 //= require history.js/history.adapter.jquery
 
-//= require handlebars.runtime
-
 //= require babel-runtime/core-js
 //= require es6-runtime_poormanshack
 //= require babel-runtime/helpers
+
 //= require router
 
-//= require handlebars_helpers/shreds
-//= require_tree ./templates
+//= require_tree ./shreds/templates
+//= require framework
 
-//= require shreds
-//= require_tree ./shreds_components
+//= require shreds/constants
+//= require_tree ./shreds/actions
+//= require_tree ./shreds/stores
+//= require_tree ./shreds/components
+//= require shreds/main

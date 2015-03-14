@@ -1,5 +1,3 @@
-//= require spec_helper
-
 var Router = require('router');
 
 describe('router.js', function () {

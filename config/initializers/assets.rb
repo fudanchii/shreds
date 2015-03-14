@@ -8,9 +8,9 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-# Rails.application.config.assets.precompile += %w( search.js )
+Rails.application.config.assets.precompile += %w( es6-application.js teaspoon-teaspoon.js teaspoon.css teaspoon-mocha.js mocha/1.17.1.js )
 
 Rails.application.config.assets.configure do |env|
   env.register_transformer 'text/ecmascript-6', 'application/javascript',
-    Sprockets::ES6.new('modules' => 'amd', 'moduleIds' => true)
+                           Sprockets::ES6.new('modules' => 'amd', 'moduleIds' => true, 'optional' => 'runtime')
 end

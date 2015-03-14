@@ -1,0 +1,25 @@
+<ul class="nav nav-list">
+{{#each categories:index}}
+  <li class="nav-header">
+      <a data-toggle="collapse" data-target=".lst-{{index}}" data-template="navlist_header:{{id}}"><span><strong>{{name}} </strong>({{countUnread(feeds)}})</span></a>
+  <ul class="nav-list feed-items collapse lst-{{index}}" style="list-style-type:none;">
+    {{#each feeds:feed_index}}
+    <li class="nav-item{{active}}" on-mousedown="navigate:{{path}},{{index}},{{feed_index}}">
+        <div class="favicon pull-left">
+          <img src="{{favicon}}" width="16" height="16"/>
+        </div>
+        <p class="feed-title ellipsis">
+          <a alt="{{title}}" href="{{path}}">{{title}}</a>
+        </p>
+        <p class="latest-news text-muted ellipsis"><abbr class="timeago small" title="{{readableDate(latestEntryPubDate)}}">{{momentFormat(latestEntryPubDate)}}</abbr> - {{{latestEntryTitle}}}</p>
+        {{#if unreadCount }}
+          <a href="javascript:void(0)" on-mousedown="return false" on-mousedown="mark-as-read:{{id}}">
+            <span class="pull-right unread-num label">{{unreadCount}}</span>
+          </a>
+        {{/if}}
+    </li>
+    {{/each}}
+  </ul>
+  </li>
+{{/each}}
+</ul>

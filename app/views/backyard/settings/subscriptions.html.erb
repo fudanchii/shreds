@@ -1,22 +1,9 @@
-<div class="panel-group" id="accordion">
-  <% @subscriptions.each do |subscription| %>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">
-        <a data-toggle="collapse" data-parent="#accordion" href="<%= "#collapse#{subscription.id}" %>">
-          <%= subscription.feed.title.presence || 'No Title' %>
-        </a>
-      </h4>
-    </div>
-    <div id="<%= "collapse#{subscription.id}" %>" class="panel-collapse collapse">
-      <div class="panel-body">
-        <%= render 'subscription_editor', subscription: subscription %>
-      </div>
-    </div>
-  </div>
-  <% end %>
-</div>
+<ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li class="active">Backyard</li>
+    <li class="active">Subscriptions List</li>
+</ol>
 
 <% content_for :title do %>
-Subscriptions - Shreds:Settings
+  <%= title('Backyard:Subscriptions') %>
 <% end %>

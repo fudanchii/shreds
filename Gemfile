@@ -19,6 +19,7 @@ gem 'sprockets-es6', '>= 0.6.0'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'sass-rails', '~> 5.0.0'
 gem 'autoprefixer-rails'
+gem 'ractive-rails'
 gem 'handlebars_assets'
 # end of 2.
 
@@ -95,8 +96,9 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-history.js'
   gem 'rails-assets-jquery'
   gem 'rails-assets-jquery-file-upload'
-  gem 'rails-assets-jquery-timeago'
   gem 'rails-assets-ladda'
   gem 'rails-assets-scrollup'
   gem 'rails-assets-nprogress'
+  gem 'rails-assets-ractive'
+  gem 'rails-assets-moment'
 end
