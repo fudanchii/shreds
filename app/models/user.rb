@@ -24,11 +24,11 @@ class User < ActiveRecord::Base
     newsitems = Newsitem.latest_issues_for(subscriptions).to_ary
     subscriptions.bundled_for_navigation.each_with_object({}) do |c, hmap|
       hmap.tap do |p|
-        p[c.category.name] ||= {
-          id: c.category.id,
+        p[c.category.id] ||= {
+          name: c.category.name,
           feeds: []
         }
-        p[c.category.name][:feeds] << {
+        p[c.category.id][:feeds] << {
           feed: c.feed,
           unreads: c.unreads,
           latest: newsitems.shift

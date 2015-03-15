@@ -1,3 +1,6 @@
+//= require i18n
+//= require i18n/translations
+
 //= require ractive
 
 //= require bootstrap-sprockets
@@ -30,7 +33,9 @@
 //= require framework
 
 //= require shreds/constants
+//= require shreds/dispatcher
 //= require_tree ./shreds/actions
+//= require_tree ./shreds/services
 //= require_tree ./shreds/stores
 //= require_tree ./shreds/components
 //= require shreds/main

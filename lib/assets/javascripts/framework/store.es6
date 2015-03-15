@@ -1,8 +1,11 @@
 import $ from 'jquery';
+
+import Service from 'framework/service';
 import { ev } from 'framework/helpers/constants';
 
-export default class Store {
-  constructor() {
+export default class Store extends Service {
+  constructor(opts) {
+    super(opts);
     this.sandbox = $({});
   }
 
@@ -22,7 +25,10 @@ export default class Store {
     this.__data = data;
   }
 
-  getData() {
+  getData(arg) {
+    if (arg) {
+      return this.__data[arg];
+    }
     return this.__data;
   }
 }

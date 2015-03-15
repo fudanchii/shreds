@@ -15,12 +15,14 @@ gem 'jbuilder'
 gem 'therubyracer'
 gem 'uglifier'
 gem 'sprockets', '>= 3.0.0.beta'
+gem 'babel-source', '~> 4.6.0'
 gem 'sprockets-es6', '>= 0.6.0'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'sass-rails', '~> 5.0.0'
 gem 'autoprefixer-rails'
 gem 'ractive-rails'
 gem 'handlebars_assets'
+gem "i18n-js", ">= 3.0.0.rc8"
 # end of 2.
 
 ### 3. Cosmetics

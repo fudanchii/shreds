@@ -18,27 +18,22 @@ class Navigation extends Component {
     NavigationStore.addChangeListener((ev, data) => {
       this.update();
     });
-    this.on('navigate', (ev, path, c_id, f_id) => {
-      NavigationActions.navigate(c_id, f_id);
+    this.on('navigate', (ev, path, cid, fid) => {
+      NavigationActions.navigate(path, cid, fid);
     });
-    this.on('mark-as-read', (ev, id) => {
-      NavigationActions.markAsRead(id);
+    this.on('mark-as-read', (ev, cid, fid) => {
+      NavigationActions.markAsRead(cid, fid);
       return false;
     });
-  }
-
-  selectFeed(cid, fid) {
-    if (this.selectedFeed) {
-      this.set(this.selectedFeed, '');
-    }
-    this.selectedFeed = `categories[${cid}].feeds[${fid}].active`;
-    this.set(this.selectedFeed, ' active');
   }
 
   static helpers() {
     return {
       countUnread: function countUnread(feeds) {
-        const count = feeds.reduce((p, c, i, a) => (p + (c.unreadCount || 0)), 0);
+        let count = 0;
+        for (var k in feeds) {
+          count += feeds[k].unreadCount || 0;
+        }
         return count + '';
       },
       readableDate: function readableDate(dateStr) {

@@ -21,10 +21,4 @@ export default class Application {
       this.components[c.Name] = new factoryFn();
     });
   }
-
-  initServices() {
-    const services = Service.loader({ prefix: this.name });
-    services.forEach((c, i, a) => {
-    });
-  }
 }

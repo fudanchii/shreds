@@ -47,4 +47,7 @@ Component.loader = function loader(options) {
   return result;
 }
 
+Component.inject = function () {};
+Component.helpers = function () {};
+
 export default Component;

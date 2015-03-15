@@ -12,7 +12,12 @@
 
 <% content_for :embedded_javascript do %>
 (function () {
-  var Navigation = require('shreds/stores/navigation');
+  var
+    Navigation = require('shreds/stores/navigation'),
+    Assets = require('shreds/stores/assets');
   Navigation.preload(<%= raw render('navigation_data') %>);
+  Assets.preload({
+    "spinner16x16": "<%= image_path("spinner.16x16.gif") %>"
+  });
 })();
 <% end %>

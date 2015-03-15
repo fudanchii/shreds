@@ -34,3 +34,8 @@ en:
     error:
       empty_file: '<strong>Empty file</strong> uploaded.'
       wrong_file: '<strong>Can only</strong> accept xml file.'
+
+  js:
+    fail:
+      navigate: "<strong>Requested Page</strong> couldn't be loaded"
+      mark_feed_as_read: "<strong>Feed</strong> couldn't be marked as read"

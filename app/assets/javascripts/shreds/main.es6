@@ -1,7 +1,6 @@
 import Application from 'framework/application';
 
-import Routes from 'shreds/services/routes';
-import FeedUpdate from 'shreds/services/feed_update';
+import WebAPIService from 'shreds/services/web_api';
 
 const Shreds = new Application({
   name: "shreds",

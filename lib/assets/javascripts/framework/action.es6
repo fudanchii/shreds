@@ -10,6 +10,8 @@ class ActionDispatcher {
     this._isPending = {};
     this._isHandled = {};
     this.storeCallbacks = {};
+    this.serviceCallbacks = {};
+    this.dependencies = {};
   }
 
   dispatch(payload) {
@@ -22,6 +24,7 @@ class ActionDispatcher {
           continue;
         }
         verify(this.storeCallbacks[payload.type][id]);
+        this._resolveDependencies(id, payload);
         this._invokeCallback(id, payload);
       }
     } finally {
@@ -38,6 +41,7 @@ class ActionDispatcher {
         continue;
       }
       verify(this.storeCallbacks[name][ids[i]]);
+      this._resolveDependencies(ids[i], payload)
       this._invokeCallback(ids[i], payload);
     }
   }
@@ -46,10 +50,14 @@ class ActionDispatcher {
     let id = name + ':' + _prefix + _lastID++;
     this.storeCallbacks[name] || (this.storeCallbacks[name] = {});
     this.storeCallbacks[name][id] = callback;
+    if (deps.constructor === Array && deps.length > 0) {
+      this.dependencies[name] || (this.dependencies[name] = {});
+      this.dependencies[name][id] = deps;
+    }
     return id;
   }
 
-  serviceRegister(callback) {
+  serviceRegister(name, callback) {
     let id = _prefix + _lastID++;
     this.serviceCallbacks[id] = callback;
     return id;
@@ -71,5 +79,8 @@ class ActionDispatcher {
     this._isPending[id] = true;
     this.storeCallbacks[payload.type][id](payload);
     this._isHandled[id] = true;
+  }
+
+  _resolveDependencies(id, payload) {
   }
 }

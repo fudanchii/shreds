@@ -1,6 +1,6 @@
+define("babel-runtime/helpers", ["exports", "babel-runtime/core-js"], function (exports, corejs) {
 "use strict";
 
-define("babel-runtime/helpers", ["exports", "babel-runtime/core-js"], function (exports, corejs) {
 var _core = corejs["default"];
 
 var helpers = exports["default"] = {};
@@ -270,5 +270,4 @@ helpers.temporalAssertDefined = function (val, name, undef) {
 };
 
 helpers.selfGlobal = typeof global === "undefined" ? self : global;
-
 });

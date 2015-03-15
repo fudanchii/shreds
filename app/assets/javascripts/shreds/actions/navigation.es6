@@ -1,22 +1,21 @@
-import ActionDispatcher from 'framework/action';
-
+import ShredsDispatcher from 'shreds/dispatcher';
 import { action } from 'shreds/constants';
 
 const NavigationActions = {
-  dispatcher: new ActionDispatcher(),
-
-  navigate(cid, fid) {
-    this.dispatcher.dispatch({
+  navigate(path, cid, fid) {
+    ShredsDispatcher.dispatch({
       type: action.NAVIGATE,
       cid: cid,
-      fid: fid
+      fid: fid,
+      path: path
     });
   },
 
-  markAsRead(id) {
-    this.dispatcher.dispatch({
+  markAsRead(cid, fid) {
+    ShredsDispatcher.dispatch({
       type: action.MARK_FEED_AS_READ,
-      id: id
+      cid: cid,
+      fid: fid
     });
   }
 };
