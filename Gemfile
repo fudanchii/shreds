@@ -22,7 +22,7 @@ gem 'sass-rails', '~> 5.0.0'
 gem 'autoprefixer-rails'
 gem 'ractive-rails'
 gem 'handlebars_assets'
-gem "i18n-js", ">= 3.0.0.rc8"
+gem 'i18n-js', '>= 3.0.0.rc8'
 # end of 2.
 
 ### 3. Cosmetics

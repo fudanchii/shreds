@@ -22,4 +22,3 @@ json.selected do
   json.cid @subscription.category_id
   json.fid @feed.id if @feed.respond_to?(:id)
 end
-
