@@ -9,22 +9,19 @@ class ActionDispatcher {
     this._isDispatching = false;
     this._isPending = {};
     this._isHandled = {};
-    this.storeCallbacks = {};
-    this.serviceCallbacks = {};
-    this.dependencies = {};
+    this._callbacks = {};
   }
 
   dispatch(payload) {
     verify(!this._isDispatching);
     this._startDispatching(payload);
     try {
-      for (var id in this.storeCallbacks[payload.type]) {
+      for (var id in this._callbacks[payload.type]) {
         if (this._isPending[id]) {
           verify(this._isHandled[id]);
           continue;
         }
-        verify(this.storeCallbacks[payload.type][id]);
-        this._resolveDependencies(id, payload);
+        verify(this._callbacks[payload.type][id]);
         this._invokeCallback(id, payload);
       }
     } finally {
@@ -40,20 +37,15 @@ class ActionDispatcher {
         verify(this._isHandled[ids[i]]);
         continue;
       }
-      verify(this.storeCallbacks[name][ids[i]]);
-      this._resolveDependencies(ids[i], payload)
+      verify(this._callbacks[name][ids[i]]);
       this._invokeCallback(ids[i], payload);
     }
   }
 
-  register(name, deps, callback) {
+  register(name, callback) {
     let id = name + ':' + _prefix + _lastID++;
-    this.storeCallbacks[name] || (this.storeCallbacks[name] = {});
-    this.storeCallbacks[name][id] = callback;
-    if (deps.constructor === Array && deps.length > 0) {
-      this.dependencies[name] || (this.dependencies[name] = {});
-      this.dependencies[name][id] = deps;
-    }
+    this._callbacks[name] || (this._callbacks[name] = {});
+    this._callbacks[name][id] = callback;
     return id;
   }
 
@@ -64,7 +56,7 @@ class ActionDispatcher {
   }
 
   _startDispatching(payload) {
-    for (var id in this.storeCallbacks[payload.type]) {
+    for (var id in this._callbacks[payload.type]) {
       this._isPending[id] = false;
       this._isHandled[id] = false;
     }
@@ -77,10 +69,7 @@ class ActionDispatcher {
 
   _invokeCallback(id, payload) {
     this._isPending[id] = true;
-    this.storeCallbacks[payload.type][id](payload);
+    this._callbacks[payload.type][id](payload);
     this._isHandled[id] = true;
-  }
-
-  _resolveDependencies(id, payload) {
   }
 }

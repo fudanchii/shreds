@@ -7,10 +7,10 @@ import { action, event } from 'shreds/constants';
 const NavigationStore = new Store({
   oninit() {
     this.regDispatcher(ShredsDispatcher, [
-      [action.NAVIGATE,           [], this.navigate],
-      [action.MARK_FEED_AS_READ,  [], this.markFeedAsRead],
-      [action.FAIL_NOTIFY,        [], this.failHandler],
-      [event.FEED_MARKED_AS_READ, [], this.feedMarkedAsRead]
+      [action.NAVIGATE,           this.navigate],
+      [action.MARK_FEED_AS_READ,  this.markFeedAsRead],
+      [action.FAIL_NOTIFY,        this.failHandler],
+      [event.FEED_MARKED_AS_READ, this.feedMarkedAsRead]
     ]);
   },
 

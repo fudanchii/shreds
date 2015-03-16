@@ -10,20 +10,21 @@ import { action, event } from 'shreds/constants';
 const WebAPIService = new Service({
   oninit() {
     this.regDispatcher(ShredsDispatcher, [
-      [event.NAVIGATION_STATE_PUSHED, [], this.navigate],
-      [action.MARK_FEED_AS_READ,      [], this.markFeedAsRead]
+      [event.NAVIGATION_STATE_PUSHED, this.navigate],
+      [action.MARK_FEED_AS_READ,      this.markFeedAsRead]
     ]);
     req.init({
       baseURI: '/i',
       dispatcher: ShredsDispatcher,
       failAction: action.FAIL_NOTIFY,
-      prefilters: [function (opts, oriOpts, xhr) {
-        const tokenTagExists = document.querySelector('meta[name=csrf-token]');
-        if (tokenTagExists) {
-          xhr.setRequestHeader('X-CSRF-Token',
-                               tokenTagExists.getAttribute('content'));
+      prefilters: [
+        function (opts, oriOpts, xhr) {
+          const tTag = document.querySelector('meta[name=csrf-token]');
+          if (tTag) {
+            xhr.setRequestHeader('X-CSRF-Token', tTag.getAttribute('content'));
+          }
         }
-      }]
+      ]
     });
   },
 
