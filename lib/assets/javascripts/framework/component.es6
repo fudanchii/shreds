@@ -5,6 +5,8 @@ const modules = require.s.contexts._;
 
 let Component = Ractive.extend({});
 
+Component.prefix = '';
+
 Component.addHelpers = function addHelpers(props) {
   for (var k in props) {
     this.defaults.data[k] = props[k];

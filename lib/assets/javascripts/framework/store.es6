@@ -3,7 +3,8 @@ import $ from 'jquery';
 import Service from 'framework/service';
 import { ev } from 'framework/helpers/constants';
 
-export default class Store extends Service {
+export default
+class Store extends Service {
   constructor(opts) {
     super(opts);
     this.sandbox = $({});

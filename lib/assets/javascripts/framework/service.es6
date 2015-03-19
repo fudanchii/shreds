@@ -5,9 +5,9 @@ class Service {
     for (var k in obj) {
       if (obj[k] instanceof Function) {
         this[k] = obj[k].bind(this);
-      } else {
-        this[k] = obj[k];
+        continue;
       }
+      this[k] = obj[k];
     }
     if (this.oninit instanceof Function) {
       this.oninit();
