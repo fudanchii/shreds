@@ -1,6 +1,8 @@
-import Router from 'lib/assets/framework/router';
+import Router from 'framework/router';
 
-const RouteService = new Router({
+import ShredsDispatcher from 'shreds/dispatcher';
+
+const RoutesService = new Router({
   oninit() {
     this.map(r => {
       r('categories');
@@ -11,28 +13,9 @@ const RouteService = new Router({
         r('showNewsitem', { path: ':feed_id/:id' });
       });
     });
-  },
-
-  feeds: {
-    index(args) {
-    },
-
-    show(args) {
-    },
-
-    showNewsitem(args) {
-    }
-  },
-
-  subscriptions: {
-    index(args) {
-    }
-  },
-
-  categories: {
-    index(args) {
-    }
   }
 });
 
-export default RouteService;
+RoutesService.dispatcher = ShredsDispatcher;
+
+export default RoutesService;
