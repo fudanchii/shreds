@@ -71,7 +71,12 @@ group :test do
   gem 'minitest-spec-rails'
   gem 'minitest-stub_any_instance'
 end
-gem 'teaspoon', group: [:development, :test]
+
+group :development, :test do
+  gem 'guard'
+  gem 'teaspoon'
+  gem 'guard-teaspoon'
+end
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt', require: false
