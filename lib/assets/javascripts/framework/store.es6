@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 import Service from 'framework/service';
-import { ev } from 'framework/helpers/constants';
+import { event } from 'framework/helpers/constants';
 
 export default
 class Store extends Service {
@@ -11,15 +11,15 @@ class Store extends Service {
   }
 
   addChangeListener(callback) {
-    this.sandbox.on(ev.CHANGE, callback);
+    this.sandbox.on(event.CHANGE, callback);
   }
 
   emitChange() {
-    this.sandbox.trigger(ev.CHANGE, this.__data);
+    this.sandbox.trigger(event.CHANGE, this.__data);
   }
 
   removeChangeListener(callback) {
-    this.sandbox.off(ev.CHANGE, callback);
+    this.sandbox.off(event.CHANGE, callback);
   }
 
   preload(data) {

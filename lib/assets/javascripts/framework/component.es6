@@ -5,51 +5,52 @@ const modules = require.s.contexts._;
 
 let Component = Ractive.extend({});
 
-Component.prefix = '';
+Object.assign(Component, {
+  prefix: '',
 
-Component.addHelpers = function addHelpers(props) {
-  for (var k in props) {
-    this.defaults.data[k] = props[k];
-  }
-};
+  _templates: window.RactiveTemplates,
 
-Component._templates = window.RactiveTemplates;
+  template(name) {
+    const
+      tplName = join(this.prefix, 'templates', name);
+    return this._templates[tplName];
+  },
 
-Component.template = function Template(name) {
-  const
-    tplName = join(this.prefix, 'templates', name);
-  return this._templates[tplName];
-}
+  addHelpers(props) {
+    Object.assign(this.defaults.data, props);
+  },
 
-Component.loader = function loader(options) {
-  const
-    prefix = options.prefix || 'app',
-    namespace = join(prefix, 'components'),
-    rgx = new RegExp(`^${namespace}/`);
+  loader(options) {
+    const
+      prefix = options.prefix || 'app',
+      namespace = join(prefix, 'components'),
+      rgx = new RegExp(`^${namespace}/`);
 
-  let result = [];
+    let result = [];
 
-  this.prefix = prefix;
-  for (var k in modules.defined) {
-    if (rgx.test(k)) {
-      result.push({
-        Name: k,
-        Class: modules.defined[k]
-      });
+    this.prefix = prefix;
+    for (var k in modules.defined) {
+      if (rgx.test(k)) {
+        result.push({
+          Name: k,
+          Class: modules.defined[k]
+        });
+      }
     }
-  }
-  for (var k in modules.registry) {
-    if (rgx.test(k)) {
-      result.push({
-        Name: k,
-        Class: require(k)
-      });
+    for (var k in modules.registry) {
+      if (rgx.test(k)) {
+        result.push({
+          Name: k,
+          Class: require(k)
+        });
+      }
     }
-  }
-  return result;
-}
+    return result;
+  },
 
-Component.inject = function () {};
-Component.helpers = function () {};
+  inject() {},
+
+  helpers() {}
+});
 
 export default Component;

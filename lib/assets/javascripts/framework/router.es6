@@ -43,7 +43,7 @@ class Router extends Service {
   }
 
   addSubRoute(pname, ppath, name, props, fn) {
-    if (props.path instanceof String && props.path[0] !== '/') {
+    if (typeof props.path === 'string' && props.path[0] !== '/') {
       props.path = join(ppath, props.path);
     }
     this.addRoute(join(pname, name), props, fn);

@@ -45,8 +45,11 @@ describe('framework/router', function () {
     router.addRoute('d', { path: '/' }, function (r) {
       r(null, { path: 'e' });
     });
+    router.navigate('/');
+    expect(msg.path).to.equal('/');
+    expect(msg.type).to.equal('fwx:routes:d');
     router.navigate('/e');
     expect(msg.path).to.equal('/e');
-    expect(msg.type).to.equal('fwx.routes:d');
+    expect(msg.type).to.equal('fwx:routes:d');
   });
 });

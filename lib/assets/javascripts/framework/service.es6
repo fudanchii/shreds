@@ -2,12 +2,12 @@ export default
 class Service {
   constructor(obj) {
     this.dispatchTokens = {};
-    for (var k in obj) {
-      if (obj[k] instanceof Function) {
-        this[k] = obj[k].bind(this);
+    for (var keys in obj) {
+      if (obj[keys] instanceof Function) {
+        this[keys] = obj[keys].bind(this);
         continue;
       }
-      this[k] = obj[k];
+      this[keys] = obj[keys];
     }
     if (this.oninit instanceof Function) {
       this.oninit();
