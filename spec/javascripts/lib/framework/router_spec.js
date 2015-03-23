@@ -10,7 +10,7 @@ describe('framework/router', function () {
       };
 
   beforeEach(function () {
-    msg = '';
+    msg = {};
   });
 
   before(function () {
@@ -23,14 +23,12 @@ describe('framework/router', function () {
     router.navigate('/a');
     expect(msg).to.be.an('object');
     expect(msg.path).to.equal('/a');
-    expect(msg.type).to.equal('fwx:routes:a');
   });
 
   it('can can add static route with custom path', function () {
     router.addRoute('b', { path: '/bucks' });
     router.navigate('/bucks');
     expect(msg.path).to.equal('/bucks');
-    expect(msg.type).to.equal('fwx:routes:b');
   });
 
   it('can add route with params', function () {
@@ -47,9 +45,7 @@ describe('framework/router', function () {
     });
     router.navigate('/');
     expect(msg.path).to.equal('/');
-    expect(msg.type).to.equal('fwx:routes:d');
     router.navigate('/e');
     expect(msg.path).to.equal('/e');
-    expect(msg.type).to.equal('fwx:routes:d');
   });
 });

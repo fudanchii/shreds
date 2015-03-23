@@ -20,6 +20,7 @@ class Navigation extends Component {
     });
     this.on('navigate', (ev, path, cid, fid) => {
       NavigationActions.navigate(path, cid, fid);
+      this.find(`a[href="${path}"]`).click();
     });
     this.on('mark-as-read', (ev, cid, fid) => {
       NavigationActions.markAsRead(cid, fid);

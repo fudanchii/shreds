@@ -3,9 +3,7 @@
 import { join } from 'framework/helpers/path';
 
 export const event = {
-  CHANGE: 'fwx:change'
+  CHANGE:                  'fwx:event:change',
+  NAVIGATION_STATE_PUSHED: 'fwx:event:navigationStatePushed'
 };
 
-export const routeActionEvent = function (...names) {
-  return `fwx:routes:${join.apply(null, names)}`;
-}

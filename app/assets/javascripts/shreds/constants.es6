@@ -6,6 +6,5 @@ export const action = {
 };
 
 export const event = {
-  NAVIGATION_STATE_PUSHED: 'shreds:event:navigationStatePushed',
   FEED_MARKED_AS_READ:     'shreds:event:feedMarkedAsRead'
 };

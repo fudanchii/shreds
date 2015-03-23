@@ -1,11 +1,12 @@
 import Service from 'framework/service';
 import req from 'framework/helpers/ajax';
 import { join } from 'framework/helpers/path';
+import { event } from 'framework/helpers/constants';
 import I18n from 'I18n';
 
 import ShredsDispatcher from 'shreds/dispatcher';
 import WebAPIServiceActions from 'shreds/actions/web_api_service';
-import { action, event } from 'shreds/constants';
+import { action } from 'shreds/constants';
 
 const WebAPIService = new Service({
   oninit() {
@@ -30,7 +31,7 @@ const WebAPIService = new Service({
 
   navigate(payload) {
     req
-      .get(join('/feeds', payload.path, '.json'), {
+      .get(join('/feeds', payload.path + '.json'), {
         failMsg: I18n.t('fail.navigate'),
         failPayload: payload
       })
