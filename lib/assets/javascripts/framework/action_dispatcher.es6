@@ -43,7 +43,8 @@ class ActionDispatcher {
   }
 
   register(name, callback) {
-    let id = name + ':' + _prefix + _lastID++;
+    const id = name + ':' + _prefix + _lastID++;
+    verify(name);
     this._callbacks[name] || (this._callbacks[name] = {});
     this._callbacks[name][id] = callback;
     return id;

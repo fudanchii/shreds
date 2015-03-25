@@ -2,7 +2,7 @@ import $ from 'jquery';
 import History from 'history';
 
 import Service from 'framework/service';
-import { event } from 'framework/helpers/constants';
+import { action } from 'framework/helpers/constants';
 import { join } from 'framework/helpers/path';
 
 const anchor_selector = 'a[href^=\\/]:not([target=_blank])';
@@ -76,7 +76,7 @@ class Router extends Service {
     // dispatch static routes
     if (this.staticRouteMap[stateHash]) {
       this.dispatcher.dispatch({
-        type: event.NAVIGATION_STATE_PUSHED,
+        type: action.NAVIGATE_TO_ROUTE,
         path: stateHash
       }); return;
     }
@@ -90,7 +90,7 @@ class Router extends Service {
           return p;
         }, {});
         this.dispatcher.dispatch({
-          type: event.NAVIGATION_STATE_PUSHED,
+          type: action.NAVIGATE_TO_ROUTE,
           path: stateHash,
           data: data
         }); return;

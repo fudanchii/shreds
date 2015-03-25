@@ -11,8 +11,8 @@ import { action } from 'shreds/constants';
 const WebAPIService = new Service({
   oninit() {
     this.regDispatcher(ShredsDispatcher, [
-      [event.NAVIGATION_STATE_PUSHED, this.navigate],
-      [action.MARK_FEED_AS_READ,      this.markFeedAsRead]
+      [action.NAVIGATE_TO_ROUTE, this.navigate],
+      [action.MARK_FEED_AS_READ, this.markFeedAsRead]
     ]);
     req.init({
       baseURI: '/i',
@@ -36,7 +36,7 @@ const WebAPIService = new Service({
         failPayload: payload
       })
       .done((data) => {
-        WebAPIServiceActions.pageNavigated(data);
+        WebAPIServiceActions.routeNavigated(data);
       });
   },
 

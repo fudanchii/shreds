@@ -2,9 +2,9 @@ import ShredsDispatcher from 'shreds/dispatcher';
 import { event } from 'shreds/constants';
 
 const WebAPIServiceActions = {
-  pageNavigated(data) {
+  routeNavigated(data) {
     ShredsDispatcher.dispatch({
-      type: event.NAVIGATION_STATE_PUSHED,
+      type: event.ROUTE_NAVIGATED,
       data: data
     });
   },
