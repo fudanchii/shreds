@@ -25,11 +25,20 @@ class Router extends Service {
     fn.call(this, this.addRoute.bind(this));
   }
 
+  // For now, addRoute behavior is not defined
+  // when name is null or arguments.length <= 1
   addRoute(name, props, fn) {
     let path = join('/', name),
         rpath = '';
-    if (props instanceof Object && props.path) {
-      path = props.path;
+    switch (arguments.length) {
+    case 2:
+      if (props && props.constructor === Function) {
+        fn = props;
+      }
+    case 3:
+      if (props && props.path) {
+        path = props.path;
+      }
     }
     rpath = path.replace(/\//g, '\\/').replace(/:[\w]+/g, '([^\\/#\\?]+)');
     if (rpath === path.replace(/\//g, '\\/')) {
@@ -43,14 +52,21 @@ class Router extends Service {
   }
 
   addSubRoute(pname, ppath, name, props, fn) {
-    if (typeof props.path === 'string' && props.path[0] !== '/') {
+    if (name && name.path) {
+      if (props && props.constructor === Function) {
+        fn = props;
+      }
+      props = name;
+      name = null;
+    }
+    if ( props && (typeof props.path === 'string') && props.path[0] !== '/' ) {
       props.path = join(ppath, props.path);
     }
     this.addRoute(join(pname, name), props, fn);
   }
 
   addStaticRouteMap(name, path) {
-    this.staticRouteMap[path] = true;
+    this.staticRouteMap[path] = { name };
   }
 
   addVarsRouteMap(name, path, rpath) {
@@ -77,6 +93,7 @@ class Router extends Service {
     if (this.staticRouteMap[stateHash]) {
       this.dispatcher.dispatch({
         type: action.NAVIGATE_TO_ROUTE,
+        name: this.staticRouteMap[stateHash].name,
         path: stateHash
       }); return;
     }
@@ -92,7 +109,8 @@ class Router extends Service {
         this.dispatcher.dispatch({
           type: action.NAVIGATE_TO_ROUTE,
           path: stateHash,
-          data: data
+          name,
+          data
         }); return;
       }
     }
