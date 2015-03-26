@@ -106,6 +106,6 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-ladda'
   gem 'rails-assets-scrollup'
   gem 'rails-assets-nprogress'
-  gem 'rails-assets-ractive'
+  gem 'rails-assets-ractive', '~> 0.6.1'
   gem 'rails-assets-moment'
 end
