@@ -14,12 +14,18 @@ const NavigationStore = new Store({
     ]);
   },
 
+  getFeed(cid, fid) {
+    return this.__data.categories[cid].feeds[fid];
+  },
+
   navigate(payload) {
     let selected = this.__data.selected;
     if (selected.cid && selected.fid) {
-      this.__data.categories[selected.cid].feeds[selected.fid].active = '';
+      const selectedFeed = this.getFeed(selected.cid, selected.fid);
+      selectedFeed.active = '';
     }
-    this.__data.categories[payload.cid].feeds[payload.fid].active = ' active';
+    const feed = this.getFeed(payload.cid, payload.fid);
+    feed.active = ' active';
     selected.cid = payload.cid;
     selected.fid = payload.fid;
     this.emitChange();
@@ -29,18 +35,21 @@ const NavigationStore = new Store({
     this.__data.__favicons || (this.__data.__favicons = {});
     const
       favicons = this.__data.__favicons,
+      feed = this.getFeed(payload.cid, payload.fid),
       key = `${payload.cid}:${payload.fid}`;
     if (!favicons[key]) {
-      favicons[key] = this.__data.categories[payload.cid].feeds[payload.fid].favicon;
+      favicons[key] = feed.favicon;
     }
-    this.__data.categories[payload.cid].feeds[payload.fid].favicon = AssetsStore.getData('spinner16x16');
+    feed.favicon = AssetsStore.getData('spinner16x16');
     this.emitChange();
   },
 
   feedMarkedAsRead(payload) {
-    const f = payload.data.feed;
+    const
+      f = payload.data.feed,
+      feed = this.getFeed(f.categoryId, f.id);
     this.restoreFavicon(f.categoryId, f.id);
-    this.__data.categories[f.categoryId].feeds[f.id].unreadCount = f.unreadCount;
+    feed.unreadCount = f.unreadCount;
     this.emitChange();
   },
 
@@ -50,8 +59,10 @@ const NavigationStore = new Store({
   },
 
   restoreFavicon(cid, fid) {
-    const key = `${cid}:${fid}`;
-    this.__data.categories[cid].feeds[fid].favicon = this.__data.__favicons[key];
+    const
+      key = `${cid}:${fid}`,
+      feed = this.getFeed(cid. fid);
+    feed.favicon = this.__data.__favicons[key];
   }
 });
 
