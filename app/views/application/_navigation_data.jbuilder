@@ -18,7 +18,9 @@ json.categories do
   end
 end
 
-json.selected do
-  json.cid @subscription.category_id
-  json.fid @feed.id if @feed.respond_to?(:id)
+if @subscription && @subscription.respond_to?(:category_id)
+  json.selected do
+    json.cid @subscriptioncategory_id
+    json.fid @feed.id if @feed.respond_to?(:id)
+  end
 end
