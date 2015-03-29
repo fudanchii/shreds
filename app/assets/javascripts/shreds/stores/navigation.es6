@@ -61,7 +61,7 @@ const NavigationStore = new Store({
   restoreFavicon(cid, fid) {
     const
       key = `${cid}:${fid}`,
-      feed = this.getFeed(cid. fid);
+      feed = this.getFeed(cid, fid);
     feed.favicon = this.__data.__favicons[key];
   }
 });

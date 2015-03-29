@@ -31,12 +31,12 @@ const WebAPIService = new Service({
 
   navigate(payload) {
     req
-      .get(join('/feeds', payload.path + '.json'), {
+      .get(join('/feeds', payload.path) + '.json', {
         failMsg: I18n.t('fail.navigate'),
         failPayload: payload
       })
       .done((data) => {
-        WebAPIServiceActions.routeNavigated(data);
+        WebAPIServiceActions.routeNavigated(payload, data);
       });
   },
 

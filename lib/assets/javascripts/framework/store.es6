@@ -6,8 +6,9 @@ import { event } from 'framework/helpers/constants';
 export default
 class Store extends Service {
   constructor(opts) {
-    super(opts);
     this.sandbox = $({});
+    this.__data = {};
+    super(opts);
   }
 
   addChangeListener(callback) {
@@ -24,6 +25,20 @@ class Store extends Service {
 
   preload(data) {
     this.__data = data;
+  }
+
+  load(data) {
+    Object.assign(this.__data, data);
+  }
+
+  refresh(data) {
+    for (var key in this.__data) {
+      if (kind(this.__data[key]) === 'Function') {
+        continue;
+      }
+      delete this.__data[key];
+    }
+    this.load(data);
   }
 
   getData(arg) {

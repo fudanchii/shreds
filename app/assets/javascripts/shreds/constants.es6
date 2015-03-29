@@ -1,6 +1,7 @@
 import * as defconst from 'framework/helpers/constants';
 
 export const action = Object.assign({}, defconst.action, {
+  SCROLL_UP:         'shreds:action:scrollUp',
   MARK_FEED_AS_READ: 'shreds:action:markFeedAsRead',
   NAVIGATE:          'shreds:action:navigate',
   FAIL_NOTIFY:       'shreds:action:failNotify'

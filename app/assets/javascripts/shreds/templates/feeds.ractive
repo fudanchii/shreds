@@ -1,0 +1,19 @@
+<div id="feeds_frame" class="fade {{in}}">
+{{#each feeds}}
+  <h2><a href="{{./path}}">{{{./title}}}</a>
+      <a href="{{./url}}" target="_blank"><span class="glyphicon glyphicon-new-window glyph-sm" data-toggle="tooltip" title="Go to {{./url}}"></span></a>
+  </h2>
+  {{> newsitems }}
+  <hr>
+{{else}}
+<div class="alert alert-info">
+  <strong>No news</strong> at the moment
+</div>
+{{/each}}
+{{#if feeds.length}}
+<ul class="pager">
+  <li class="previous">{{{prevPage}}}</li>
+  <li class="next">{{{nextPage}}}</li>
+</ul>
+{{/if}}
+</div>

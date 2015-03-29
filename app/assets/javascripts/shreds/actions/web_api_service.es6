@@ -2,17 +2,18 @@ import ShredsDispatcher from 'shreds/dispatcher';
 import { event } from 'shreds/constants';
 
 const WebAPIServiceActions = {
-  routeNavigated(data) {
+  routeNavigated(route, data) {
     ShredsDispatcher.dispatch({
       type: event.ROUTE_NAVIGATED,
-      data: data
+      data,
+      route
     });
   },
 
   feedMarkedAsRead(data) {
     ShredsDispatcher.dispatch({
       type: event.FEED_MARKED_AS_READ,
-      data: data
+      data
     });
   }
 };

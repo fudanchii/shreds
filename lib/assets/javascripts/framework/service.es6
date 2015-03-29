@@ -1,3 +1,5 @@
+import agave from 'framework/helpers/agave';
+
 export default
 class Service {
   constructor(obj) {
@@ -11,6 +13,18 @@ class Service {
     }
     if (this.oninit instanceof Function) {
       this.oninit();
+    }
+  }
+
+  routeHandler(theFn) {
+    return (payload) => {
+      if (this.respondToRoutes.includes(payload.route.name)) {
+        // fade in
+        theFn.call(this, payload);
+        return;
+      }
+      // fade out
+      return;
     }
   }
 

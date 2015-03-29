@@ -45,6 +45,9 @@ Object.assign(Component, {
         });
       }
     }
+    result.forEach((c, i, a) => {
+      this.addHelpers(c.Class.helpers());
+    });
     return result;
   },
 

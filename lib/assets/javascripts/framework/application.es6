@@ -17,7 +17,6 @@ export default class Application {
       const
         args = [null].concat(c.Class.inject()),
         factoryFn = c.Class.bind.apply(c.Class, args);
-      c.Class.addHelpers(c.Class.helpers());
       this.components[c.Name] = new factoryFn();
     });
   }
