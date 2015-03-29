@@ -54,7 +54,11 @@ const NavigationStore = new Store({
   },
 
   failHandler(payload) {
-    this.restoreFavicon(payload.data.cid, payload.data.fid);
+    switch (payload.data.type) {
+    case action.MARK_FEED_AS_READ:
+      this.restoreFavicon(payload.data.cid, payload.data.fid);
+      break;
+    }
     this.emitChange();
   },
 
