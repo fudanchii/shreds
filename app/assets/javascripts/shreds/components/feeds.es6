@@ -38,14 +38,13 @@ class Feeds extends Component {
   }
 
   shouldRerender(data) {
-    if (!data.$_rerender) { return data.$_rerender; }
+    if (!data.flags.rerender) { return data.flags.rerender; }
     this.set('in', '');
     setTimeout(() => {
       this.update();
       this.set('in', 'in');
       ScrollActions.scrollUp();
     }, 400);
-    data.$_rerender = false;
     return true;
   }
 

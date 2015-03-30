@@ -12,9 +12,8 @@ const FeedsStore = new Store({
   },
 
   navigated(payload) {
-    payload.data.$_rerender = true;
     this.refresh(payload.data);
-    this.emitChange();
+    this.emitChange({ rerender: true });
   }
 });
 

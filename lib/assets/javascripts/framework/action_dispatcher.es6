@@ -13,15 +13,17 @@ class ActionDispatcher {
   }
 
   dispatch(payload) {
-    verify(!this._isDispatching);
+    verify(!this._isDispatching,
+           `currently dispatching ${this._currentPayload.type}`);
     this._startDispatching(payload);
     try {
       for (var id in this._callbacks[payload.type]) {
         if (this._isPending[id]) {
-          verify(this._isHandled[id]);
+          verify(this._isHandled[id], `Overlapped job dispatched for: ${id}`);
           continue;
         }
-        verify(this._callbacks[payload.type][id]);
+        verify(this._callbacks[payload.type][id],
+               `handler for ${payload.type}/${id} is registered without any callables`);
         this._invokeCallback(id, payload);
       }
     } finally {
@@ -29,30 +31,11 @@ class ActionDispatcher {
     }
   }
 
-  waitFor(ids, payload) {
-    verify(this._isDispatching);
-    for (var i = 0; i < ids.length; i++) {
-      var name = ids[i].split(':')[0];
-      if (this._isPending[ids[i]]) {
-        verify(this._isHandled[ids[i]]);
-        continue;
-      }
-      verify(this._callbacks[name][ids[i]]);
-      this._invokeCallback(ids[i], payload);
-    }
-  }
-
   register(name, callback) {
     const id = name + ':' + _prefix + _lastID++;
-    verify(name);
+    verify(name, 'can not register unnamed handler');
     this._callbacks[name] || (this._callbacks[name] = {});
     this._callbacks[name][id] = callback;
-    return id;
-  }
-
-  serviceRegister(name, callback) {
-    let id = _prefix + _lastID++;
-    this.serviceCallbacks[id] = callback;
     return id;
   }
 

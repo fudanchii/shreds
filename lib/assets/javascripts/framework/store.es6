@@ -15,8 +15,11 @@ class Store extends Service {
     this.sandbox.on(event.CHANGE, callback);
   }
 
-  emitChange() {
-    this.sandbox.trigger(event.CHANGE, this.__data);
+  emitChange(flags) {
+    this.sandbox.trigger(event.CHANGE, {
+      data: this.__data,
+      flags
+    });
   }
 
   removeChangeListener(callback) {
