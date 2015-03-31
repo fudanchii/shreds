@@ -1,7 +1,15 @@
 import Ractive from 'Ractive';
-import { join } from 'framework/helpers/path';
+import { basename, join } from 'framework/helpers/path';
 
 const modules = require.s.contexts._;
+
+Ractive.defaults.data = {
+  component(name) {
+    if (!!this.partials[name]) { return name; }
+    this.partials[name] = `<${name}/>`;
+    return name;
+  }
+};
 
 let Component = Ractive.extend({});
 
@@ -14,6 +22,11 @@ Object.assign(Component, {
     const
       tplName = join(this.prefix, 'templates', name);
     return this._templates[tplName];
+  },
+
+  addComponent(c) {
+    let args = [null].concat(c.Class.inject());
+    this.components[basename(c.Name)] = c.Class.bind.apply(c.Class, args);
   },
 
   addHelpers(props) {
@@ -46,9 +59,9 @@ Object.assign(Component, {
       }
     }
     result.forEach((c, i, a) => {
+      this.addComponent(c);
       this.addHelpers(c.Class.helpers());
     });
-    return result;
   },
 
   inject() {},

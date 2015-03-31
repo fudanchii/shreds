@@ -9,15 +9,10 @@ export default class Application {
   init() {
     this.components = {};
     this.initComponents();
+    this.main.Instance = new this.main.Class(this.main.Class.inject());
   }
 
   initComponents() {
-    const components = Component.loader({ prefix: this.name });
-    components.forEach((c, i, a) => {
-      const
-        args = [null].concat(c.Class.inject()),
-        factoryFn = c.Class.bind.apply(c.Class, args);
-      this.components[c.Name] = new factoryFn();
-    });
+    Component.loader({ prefix: this.name });
   }
 }

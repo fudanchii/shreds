@@ -1,0 +1,3 @@
+<div id="feeds_frame" class="fade {{in}}">
+{{>component(toDisplay)}}
+</div>

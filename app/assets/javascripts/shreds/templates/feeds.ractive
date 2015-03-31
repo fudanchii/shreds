@@ -1,4 +1,3 @@
-<div id="feeds_frame" class="fade {{in}}">
 {{#each feeds}}
   <h2><a href="{{./path}}">{{{./title}}}</a>
       <a href="{{./url}}" target="_blank"><span class="glyphicon glyphicon-new-window glyph-sm" data-toggle="tooltip" title="Go to {{./url}}"></span></a>
@@ -16,4 +15,3 @@
   <li class="next">{{{nextPage}}}</li>
 </ul>
 {{/if}}
-</div>
