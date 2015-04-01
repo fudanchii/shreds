@@ -25,15 +25,7 @@ Object.assign(Component, {
   },
 
   addComponent(c) {
-    const
-      args = [null].concat(c.Class.inject()),
-      cc = c.Class.bind.apply(c.Class, args);
-    for (var k in c.Class) {
-      cc[k] = c.Class[k];
-    }
-    cc._parent = c.Class._parent;
-    cc.defaults = c.Class.defaults;
-    this.components[basename(c.Name)] = cc;
+    this.components[basename(c.Name)] = c.Class;
   },
 
   addHelpers(props) {
@@ -67,7 +59,6 @@ Object.assign(Component, {
     }
     result.forEach((c, i, a) => {
       this.addComponent(c);
-      this.addHelpers(c.Class.helpers());
     });
   },
 

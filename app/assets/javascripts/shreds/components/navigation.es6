@@ -2,19 +2,15 @@ import Component from 'framework/component';
 import NavigationStore from 'shreds/stores/navigation';
 import NavigationActions from 'shreds/actions/navigation';
 
-import moment from 'moment';
+import NavigationHelpers from 'shreds/helpers/navigation';
 
-export default
-class Navigation extends Component {
-  static inject() {
-    return {
-      el: '[template=navigation]',
-      template: this.template('navigation'),
-      data: NavigationStore.getData()
-    };
-  }
+const Navigation = Component.extend({
+  el: '[template=navigation]',
+  template: Component.template('navigation'),
+  data: NavigationStore.getData(),
 
-  oninit() {
+  oninit(options) {
+    this._super(options);
     NavigationStore.addChangeListener((ev, data) => {
       this.update();
     });
@@ -27,22 +23,6 @@ class Navigation extends Component {
       return false;
     });
   }
+});
 
-  static helpers() {
-    return {
-      countUnread: function countUnread(feeds) {
-        let count = 0;
-        for (var k in feeds) {
-          count += feeds[k].unreadCount || 0;
-        }
-        return count + '';
-      },
-      readableDate: function readableDate(dateStr) {
-        return moment(dateStr).format('dddd, MMMM Do YYYY, HH:mm:ss');
-      },
-      momentFormat: function momentFormat(dateStr) {
-        return moment(dateStr).fromNow(true);
-      }
-    };
-  }
-}
+export default Navigation;
