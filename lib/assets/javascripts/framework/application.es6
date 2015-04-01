@@ -1,9 +1,13 @@
 import Component from 'framework/component';
 
 export default class Application {
-  constructor(options) {
-    this.name = options.name || `app-${GUID.next()}`;
+  constructor(mainComponent, options = {}) {
+    this.name = options.name || 'app';
     this.debug = options.debug || false;
+    this.main = {
+      Class: mainComponent,
+      Instance: null
+    };
   }
 
   init() {

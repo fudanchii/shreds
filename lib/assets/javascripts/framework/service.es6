@@ -4,6 +4,7 @@ export default
 class Service {
   constructor(obj) {
     this.dispatchTokens = {};
+    this.respondToRoutes= [];
     for (var keys in obj) {
       if (obj[keys] instanceof Function) {
         this[keys] = obj[keys].bind(this);

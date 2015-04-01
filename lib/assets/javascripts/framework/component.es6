@@ -25,8 +25,15 @@ Object.assign(Component, {
   },
 
   addComponent(c) {
-    let args = [null].concat(c.Class.inject());
-    this.components[basename(c.Name)] = c.Class.bind.apply(c.Class, args);
+    const
+      args = [null].concat(c.Class.inject()),
+      cc = c.Class.bind.apply(c.Class, args);
+    for (var k in c.Class) {
+      cc[k] = c.Class[k];
+    }
+    cc._parent = c.Class._parent;
+    cc.defaults = c.Class.defaults;
+    this.components[basename(c.Name)] = cc;
   },
 
   addHelpers(props) {
