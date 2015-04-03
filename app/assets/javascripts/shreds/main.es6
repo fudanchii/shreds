@@ -14,24 +14,24 @@ const ShredsAppView = Component.extend({
   data: ShredsAppStore.getData(),
   oninit() {
     this.on('render', () => {
-      setTimeout(() => { this.set('in', 'in'); }, 50);
+      setTimeout(() => { this.set('inflag', 'in'); }, 50);
     });
 
     this.on('unrender', () => {
-      setTimeout(() => { this.set('in', ''); }, 50);
+      setTimeout(() => { this.set('inflag', ''); }, 50);
     });
   },
 
   fadeOut() {
     return new Promise((resolve, reject) => {
-      this.set('in', '');
+      this.set('inflag', '');
       setTimeout(() => { resolve(); }, 400);
     });
   },
 
   fadeIn() {
     return new Promise((resolve, reject) => {
-      this.set('in', 'in');
+      this.set('inflag', 'in');
       setTimeout(() => { resolve(); }, 400);
     });
   }

@@ -32,6 +32,15 @@ Object.assign(Component, {
     Object.assign(this.defaults.data, props);
   },
 
+  assign(target, object) {
+    for (var k in object) {
+      if (kind(object[k]) === 'Function') {
+        continue;
+      }
+      target.set(k, object[k]);
+    }
+  },
+
   loader(options) {
     const
       prefix = options.prefix || 'app',

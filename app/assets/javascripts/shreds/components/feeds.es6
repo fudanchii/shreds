@@ -7,17 +7,17 @@ import FeedsHelpers from 'shreds/helpers/feeds';
 
 const Feeds = Component.extend({
   template: Component.template('feeds'),
-  data: FeedsStore.getData(),
+  data() { return FeedsStore.getData(); },
   partials: {
     newsitems: Component.template('feeds/_newsitems')
   },
 
   oninit() {
     FeedsStore.addChangeListener((ev, data) => {
-      this.data = data.data;
       this.parent.fadeOut().then(() => {
-        this.update();
+        Component.assign(this, data.data);
         this.parent.fadeIn();
+        ScrollActions.scrollUp();
       });
     });
   }

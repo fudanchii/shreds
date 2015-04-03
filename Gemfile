@@ -20,7 +20,7 @@ gem 'sprockets-es6', '>= 0.6.0'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'sass-rails', '~> 5.0.0'
 gem 'autoprefixer-rails'
-gem 'ractive-rails'
+gem 'ractive_assets', github: 'unity/ractive_assets'
 gem 'handlebars_assets'
 gem 'i18n-js', '>= 3.0.0.rc8'
 # end of 2.
@@ -106,6 +106,6 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-ladda'
   gem 'rails-assets-scrollup'
   gem 'rails-assets-nprogress'
-  gem 'rails-assets-ractive', '~> 0.6.1'
+  gem 'rails-assets-ractive'
   gem 'rails-assets-moment'
 end
