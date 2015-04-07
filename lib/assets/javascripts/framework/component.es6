@@ -36,15 +36,6 @@ Object.assign(Component, {
     Object.assign(this.defaults.data, props);
   },
 
-  assign(target, object) {
-    for (var k in object) {
-      if (kind(object[k]) === 'Function') {
-        continue;
-      }
-      target.set(k, object[k]);
-    }
-  },
-
   loader(options) {
     const
       prefix = options.prefix || 'app',
@@ -73,11 +64,20 @@ Object.assign(Component, {
     result.forEach((c, i, a) => {
       this.addComponent(c);
     });
-  },
-
-  inject() {},
-
-  helpers() {}
+  }
 });
+
+
+Object.assign(Component.prototype, {
+  assign(object) {
+    for (var k in object) {
+      if (kind(object[k]) === 'Function') {
+        continue;
+      }
+      this.set(k, object[k]);
+    }
+  }
+});
+
 
 export default Component;

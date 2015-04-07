@@ -15,7 +15,7 @@ const Feeds = Component.extend({
   oninit() {
     FeedsStore.addChangeListener((ev, data) => {
       this.parent.fadeOut().then(() => {
-        Component.assign(this, data.data);
+        this.assign(data.data);
         this.parent.fadeIn();
         ScrollActions.scrollUp();
       });
