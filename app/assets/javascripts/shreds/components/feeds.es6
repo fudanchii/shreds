@@ -1,13 +1,14 @@
 import Component from 'framework/component';
+import Decorator from 'framework/decorator';
 
 import FeedsStore from 'shreds/stores/feeds';
-import ScrollActions from 'shreds/actions/scroll';
-
 import FeedsHelpers from 'shreds/helpers/feeds';
 
 const Feeds = Component.extend({
   template: Component.template('feeds'),
+
   data() { return FeedsStore.getData(); },
+
   partials: {
     newsitems: Component.template('feeds/_newsitems')
   },
@@ -17,7 +18,7 @@ const Feeds = Component.extend({
       this.parent.fadeOut().then(() => {
         this.assign(data.data);
         this.parent.fadeIn();
-        ScrollActions.scrollUp();
+        Decorator.do('scrollUp');
       });
     });
   }
