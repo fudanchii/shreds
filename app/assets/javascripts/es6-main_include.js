@@ -39,4 +39,5 @@
 //= require_tree ./shreds/stores
 //= require_tree ./shreds/helpers
 //= require_tree ./shreds/components
+//= require_tree ./shreds/decorators
 //= require shreds/main

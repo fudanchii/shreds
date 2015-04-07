@@ -13,4 +13,4 @@ const Decorator = {
   }
 };
 
-export default Decorator
+export default Decorator;
