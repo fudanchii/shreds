@@ -7,7 +7,7 @@ import NavigationHelpers from 'shreds/helpers/navigation';
 const Navigation = Component.extend({
   el: '[template=navigation]',
   template: Component.template('navigation'),
-  data: NavigationStore.getData(),
+  data() { return NavigationStore.getData(); },
 
   oninit(options) {
     this._super(options);

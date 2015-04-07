@@ -18,6 +18,10 @@ Object.assign(Component, {
 
   _templates: window.RactiveTemplates,
 
+  setDebug(isdebug) {
+    Ractive.DEBUG = isdebug;
+  },
+
   template(name) {
     const
       tplName = join(this.prefix, 'templates', name);

@@ -4,11 +4,8 @@ export default class Application {
   constructor(mainComponent, options = {}) {
     this.options = options;
     this.name = options.name || 'app';
-    this.debug = options.debug || false;
-    this.main = {
-      Class: mainComponent,
-      Instance: null
-    };
+    this.main = { Class: mainComponent };
+    Component.setDebug(!!options.debug);
   }
 
   init() {
