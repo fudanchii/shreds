@@ -14,11 +14,12 @@ const Feeds = Component.extend({
   },
 
   oninit() {
-    FeedsStore.addChangeListener((ev, data) => {
+    FeedsStore.addChangeListener((ev, payload) => {
       this.parent.fadeOut().then(() => {
-        this.assign(data.data);
+        this.assign(payload.data);
         this.parent.fadeIn();
         Decorator.do('scrollUp');
+        Decorator.do('setTitle', payload.data.title);
       });
     });
   }

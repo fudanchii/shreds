@@ -6,6 +6,7 @@ import WebAPIService from 'shreds/services/web_api';
 import NProgressService from 'shreds/services/nprogress';
 
 import _Scroll from 'shreds/decorators/scroll';
+import _Title from 'shreds/decorators/title';
 
 import ShredsAppStore from 'shreds/stores/shreds_app';
 

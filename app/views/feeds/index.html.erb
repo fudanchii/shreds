@@ -1,3 +1,9 @@
+<% content_for :embedded_javascript do %>
+  (function () {
+    var Feeds = require('shreds/stores/feeds');
+    Feeds.preload(<%= raw render(template: 'feeds/index.json') %>);
+  })();
+<% end %>
 
 <% content_for :title do %>
   <%= title("Feeds") %>
