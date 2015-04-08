@@ -1,0 +1,8 @@
+<h1><a href="{{url}}">{{{title}}}</a></h1>
+{{> newsitems }}
+
+<ul class="pager">
+  <li class="previous">{{{prevPage}}}</li>
+  <li class="next">{{{nextPage}}}</li>
+</ul>
+
