@@ -1,0 +1,20 @@
+<div id="subscribe_form">
+    <form class="simple_form form-inline" novalidate="novalidate" id="new_feed" action="/" accept-charset="UTF-8" method="post">
+        <input name="utf8" type="hidden" value="✓">
+        <input type="hidden" name="authenticity_token" value="{{authToken}}">
+        <div id="subscribeInput" style="display: none;">
+            <textarea class="text required form-control" placeholder="Paste RSS link here" name="feed[url]" id="feed_url" value="{{feedURL}}"></textarea>
+            <input class="string required form-control" placeholder="Category (optional)" type="text" name="category[name]" id="category_name" value="{{categoryName}}">
+        </div>
+        <a href="/"><img class="pull-left main-logo" height="38" alt="Logo" src="{{logoImage}}"></a>
+        <div class="btn-group pull-right">
+            <button name="button" type="submit" class="btn btn-primary ladda-button" id="btnSubmitFeed" data-style="zoom-out" data-on-click="subscribeTo" on-click="subscribe">
+                <span class="ladda-label">Subscribe</span>
+            </button>
+            <button class="btn btn-info fileinput-button ladda-button" type="button" data-on-click="uploadOPML" data-style="zoom-out">
+                <span class="ladda-label">Import</span><span class="ladda-spinner"></span>
+            </button>
+        </div>
+        <input id="fileupload" type="file" name="OPMLfile" data-url="/i/upload_opml.json">
+    </form>
+</div>

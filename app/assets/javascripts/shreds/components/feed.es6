@@ -15,12 +15,8 @@ const FeedComponent = Component.extend({
 
   oninit() {
     FeedStore.addChangeListener((ev, payload) => {
-      this.parent.fadeOut().then(() => {
-        this.assign(payload.data);
-        this.parent.fadeIn();
-        Decorator.do('scrollUp');
-        Decorator.do('setTitle', payload.data.title);
-      });
+      this.assign(payload.data);
+      Decorator.do('setTitle', payload.data.title);
     });
   }
 });

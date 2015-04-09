@@ -1,5 +1,6 @@
 import Application from 'framework/application';
 import Component from 'framework/component';
+import Decorator from 'framework/decorator';
 
 import RoutesService from 'shreds/services/routes';
 import WebAPIService from 'shreds/services/web_api';
@@ -19,7 +20,12 @@ const ShredsAppView = Component.extend({
 
   oninit() {
     ShredsAppStore.addChangeListener((ev, payload) => {
-      this.assign(payload.data);
+      this.fadeOut().then(() => {
+        this.assign(payload.data);
+        this.fadeIn().then(() => {
+          Decorator.do('scrollUp');
+        });
+      });
     });
 
     this.on('render', () => {
@@ -49,7 +55,7 @@ const ShredsAppView = Component.extend({
 const Shreds = new Application(ShredsAppView, {
   name: "shreds",
   debug: true,
-  prerender: ['navigation']
+  prerender: ['navigation', 'subscription']
 });
 
 export default Shreds;
