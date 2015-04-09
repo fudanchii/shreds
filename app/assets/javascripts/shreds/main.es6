@@ -18,6 +18,10 @@ const ShredsAppView = Component.extend({
   data() { return ShredsAppStore.getData(); },
 
   oninit() {
+    ShredsAppStore.addChangeListener((ev, payload) => {
+      this.assign(payload.data);
+    });
+
     this.on('render', () => {
       setTimeout(() => { this.set('inflag', 'in'); }, 50);
     });
