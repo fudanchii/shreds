@@ -1,4 +1,3 @@
-<div id="subscribe_form">
 <%= simple_form_for(@new_feed, html: { :class => "form-inline" }) do |f| %>
   <% content_for :inline_notification do %>
     <% @new_feed.errors.full_messages.each do |msg| %>
@@ -18,5 +17,4 @@
    <% end %><button class="btn btn-info fileinput-button ladda-button" type="button" data-on-click="uploadOPML" data-style="zoom-out"><span class="ladda-label">Import</span></button>
    </div>
 <input id="fileupload" type="file" name="OPMLfile" data-url="/i/upload_opml.json">
- <% end %>
-</div>
+<% end %>

@@ -1,5 +1,7 @@
 <div class="sidebar-nav-fixed widget-transparent">
-  <%= render 'subscribe' %>
+  <div id="subscription_form">
+    <%= render 'subscribe' %>
+  </div>
 
 <ul class="nav nav-list" id="latest_entries">
     <li class="nav-header breadcrumbs" data-template="breadcrumbs">
@@ -13,11 +15,20 @@
 <% content_for :embedded_javascript do %>
 (function () {
   var
+    csrfTag = document.querySelector('meta[name=csrf-token]').getAttribute('content');
     Navigation = require('shreds/stores/navigation'),
-    Assets = require('shreds/stores/assets');
+    Assets = require('shreds/stores/assets'),
+    Subscription = require('shreds/stores/subscription');
   Navigation.preload(<%= raw render('navigation_data') %>);
   Assets.preload({
-    "spinner16x16": "<%= image_path("spinner.16x16.gif") %>"
+    spinner16x16: '<%= image_path("spinner.16x16.gif") %>'
+  });
+  Subscription.preload({
+    collapsed: false,
+    authToken: csrfTag,
+    feedURL: '',
+    categoryName: '',
+    logoImage: '<%= image_path("shreds.png") %>'
   });
 })();
 <% end %>

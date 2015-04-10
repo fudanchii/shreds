@@ -8,6 +8,7 @@ import NProgressService from 'shreds/services/nprogress';
 
 import _Scroll from 'shreds/decorators/scroll';
 import _Title from 'shreds/decorators/title';
+import _SubscriptionForm from 'shreds/decorators/subscription_form';
 
 import ShredsAppStore from 'shreds/stores/shreds_app';
 
