@@ -8,8 +8,10 @@ const RoutesService = new Router({
       r('categories');
       r('subscriptions', { path: '/backyard/subscriptions' });
       r('feeds', { path: '/' }, r => {
-        r({ path: 'page/:page' });
-        r('show', { path: ':feed_id' });
+        r('page', { path: 'page/:page' });
+        r('show', { path: ':feed_id' }, r => {
+          r('page', { path: 'page/:page' });
+        });
         r('showNewsitem', { path: ':feed_id/:id' });
       });
     });

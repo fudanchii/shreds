@@ -5,7 +5,7 @@ import ShredsAppStore from 'shreds/stores/shreds_app';
 import { event } from 'shreds/constants';
 
 const FeedsStore = new Store({
-  respondToRoutes: ['feeds'],
+  respondToRoutes: ['feeds', 'feeds/page'],
   oninit() {
     this.regDispatcher(ShredsDispatcher, [
       [event.ROUTE_NAVIGATED, this.routeHandler(this.navigated)]
@@ -13,10 +13,14 @@ const FeedsStore = new Store({
   },
 
   navigated(payload) {
+    const __this = this;
     ShredsAppStore.load({ toDisplay: 'feeds' });
-    ShredsAppStore.emitChange();
-    this.refresh(payload.data);
-    this.emitChange({ rerender: true });
+    ShredsAppStore.emitChange({
+      callable() {
+        __this.refresh(payload.data);
+        __this.emitChange({ rerender: true });
+      }
+    });
   }
 });
 

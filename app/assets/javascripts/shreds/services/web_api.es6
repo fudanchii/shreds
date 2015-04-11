@@ -12,7 +12,8 @@ const WebAPIService = new Service({
   oninit() {
     this.regDispatcher(ShredsDispatcher, [
       [action.NAVIGATE_TO_ROUTE, this.navigate],
-      [action.MARK_FEED_AS_READ, this.markFeedAsRead]
+      [action.MARK_FEED_AS_READ, this.markFeedAsRead],
+      [action.SUBSCRIBE_TO_FEED, this.subscribe]
     ]);
     req.init({
       baseURI: '/i',
@@ -48,6 +49,19 @@ const WebAPIService = new Service({
       })
       .done((data) => {
         WebAPIServiceActions.feedMarkedAsRead(data);
+      });
+  },
+
+  subscribe(payload) {
+    req
+      .post('/feeds.json', {
+        data: new FormData(payload.form),
+        processData: false,
+        contentType: false,
+        failMsg: I18n.t('fail.subscribe')
+      })
+      .done((data) => {
+        WebAPIServiceActions.feedSubscribed(data);
       });
   }
 });

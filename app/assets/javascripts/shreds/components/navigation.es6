@@ -10,7 +10,6 @@ const Navigation = Component.extend({
   data() { return NavigationStore.getData(); },
 
   oninit(options) {
-    this._super(options);
     NavigationStore.addChangeListener((ev, data) => {
       this.update();
     });

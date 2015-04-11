@@ -5,17 +5,14 @@ const NavigationActions = {
   navigate(path, cid, fid) {
     ShredsDispatcher.dispatch({
       type: action.NAVIGATE,
-      cid: cid,
-      fid: fid,
-      path: path
+      cid, fid, path
     });
   },
 
   markAsRead(cid, fid) {
     ShredsDispatcher.dispatch({
       type: action.MARK_FEED_AS_READ,
-      cid: cid,
-      fid: fid
+      cid, fid
     });
   }
 };

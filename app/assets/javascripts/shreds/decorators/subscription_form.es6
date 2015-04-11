@@ -1,13 +1,12 @@
 import $ from 'jquery';
 import Decorator from 'framework/decorator';
 
-$(document).on('click', (ev) => {
-  if (collapsed && amOut) {
-    Decorator.do('slideUpSubscriptionForm');
-  }
-});
+import SubscriptionStore from 'shreds/stores/subscription';
 
-let collapsed = false;
+const $subscribeForm = $('#subscribe_form');
+
+let collapsed = false,
+    amOut = true;
 
 Decorator.add('slideDownSubscriptionForm', () => {
   $('#subscribeInput').slideDown();
@@ -17,4 +16,18 @@ Decorator.add('slideDownSubscriptionForm', () => {
 Decorator.add('slideUpSubscriptionForm', () => {
   $('#subscribeInput').slideUp();
   collapsed = false;
+});
+
+$(document).on('mousedown', (ev) => {
+  if (collapsed && amOut) {
+    SubscriptionStore.set('collapsed', false);
+    SubscriptionStore.emitChange();
+  }
+});
+
+$(document).on('mouseover', (ev) => {
+  amOut = false;
+  if ($subscribeForm.find(ev.target).length === 0 ) {
+    amOut = true;
+  }
 });

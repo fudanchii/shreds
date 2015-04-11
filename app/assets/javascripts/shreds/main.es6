@@ -22,10 +22,12 @@ const ShredsAppView = Component.extend({
   oninit() {
     ShredsAppStore.addChangeListener((ev, payload) => {
       this.fadeOut().then(() => {
+        if (payload.meta && kind(payload.meta.callable) === 'Function') {
+          payload.meta.callable();
+        }
         this.assign(payload.data);
-        this.fadeIn().then(() => {
-          Decorator.do('scrollUp');
-        });
+        this.fadeIn();
+        Decorator.do('scrollUp');
       });
     });
 

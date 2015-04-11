@@ -4,7 +4,7 @@ import Decorator from 'framework/decorator';
 import FeedsStore from 'shreds/stores/feeds';
 import FeedsHelpers from 'shreds/helpers/feeds';
 
-const Feeds = Component.extend({
+const FeedsComponent = Component.extend({
   template: Component.template('feeds'),
 
   data() { return FeedsStore.getData(); },
@@ -21,4 +21,4 @@ const Feeds = Component.extend({
   }
 });
 
-export default Feeds;
+export default FeedsComponent;

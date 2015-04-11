@@ -19,12 +19,10 @@ class Service {
 
   routeHandler(theFn) {
     return (payload) => {
-      if (this.respondToRoutes.includes(payload.route.name)) {
-        // fade in
+      if (this.respondToRoutes.indexOf(payload.route.name) >= 0) {
         theFn.call(this, payload);
         return;
       }
-      // fade out
       return;
     }
   }

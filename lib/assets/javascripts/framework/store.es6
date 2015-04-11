@@ -15,10 +15,10 @@ class Store extends Service {
     this.sandbox.on(event.CHANGE, callback);
   }
 
-  emitChange(flags) {
+  emitChange(meta) {
     this.sandbox.trigger(event.CHANGE, {
       data: this.__data,
-      flags
+      meta
     });
   }
 
@@ -32,6 +32,10 @@ class Store extends Service {
 
   load(data) {
     Object.assign(this.__data, data);
+  }
+
+  set(key, value) {
+    this.__data[key] = value;
   }
 
   refresh(data) {

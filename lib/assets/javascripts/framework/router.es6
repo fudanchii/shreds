@@ -88,7 +88,6 @@ class Router extends Service {
   dispatch() {
     const state = History.getState(),
           stateHash = state.hash.split('?')[0];
-
     // dispatch static routes
     if (this.staticRouteMap[stateHash]) {
       this.dispatcher.dispatch({
