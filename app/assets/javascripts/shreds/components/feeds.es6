@@ -16,8 +16,9 @@ const FeedsComponent = Component.extend({
   oninit() {
     FeedsStore.addChangeListener((ev, payload) => {
       this.assign(payload.data);
-      Decorator.do('setTitle', payload.data.title);
+      Decorator.do('setTitle', this.get('title'));
     });
+    Decorator.do('setTitle', this.get('title'));
   }
 });
 

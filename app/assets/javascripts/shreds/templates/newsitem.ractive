@@ -1,0 +1,30 @@
+<div class="panel panel-default widget widget-transparent feed">
+  <div class="panel-heading">
+    <h2>
+      <a href="javascript:void(0)" data-on-click="toggleRead" data-id="{{id}}" data-feed-id="{{feed_id}}"><span class="glyphicon {{unreadIcon(unread)}} glyph-sm" data-toggle="tooltip" title="Set {{unreadLabel(unread)}}"></span></a>
+      <a href="{{url}}" target="_blank">{{{title}}}</a>
+    </h2>
+  </div>
+  <div class="feed-content panel-body">
+    <div class="text-muted"><em>by {{author}}</em>
+      <div class="pull-right">
+        <abbr class="timeago" title="{{published}}">
+          <em>{{readableDate(published)}}</em>
+        </abbr>
+      </div>
+    </div>
+    {{{content}}}
+  </div>
+  <div id="news_nav" class="row">
+    <div class="col-md-12 pull-right">
+      <div class="btn-group pull-right">
+        <a href="{{prevPath}}" class="btn btn-default {{noPrev}}">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a href="{{nextPath}}" class="btn btn-default {{noNext}}">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

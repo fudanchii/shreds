@@ -4,8 +4,8 @@ import ShredsDispatcher from 'shreds/dispatcher';
 import ShredsAppStore from 'shreds/stores/shreds_app';
 import { event } from 'shreds/constants';
 
-const FeedsStore = new Store({
-  respondToRoutes: ['feeds', 'feeds/page'],
+const NavigationStore = new Store({
+  respondToRoutes: ['feeds/showNewsitem'],
   oninit() {
     this.regDispatcher(ShredsDispatcher, [
       [event.ROUTE_NAVIGATED, this.routeHandler(this.navigated)]
@@ -13,11 +13,11 @@ const FeedsStore = new Store({
   },
 
   navigated(payload) {
-    ShredsAppStore.viewChange('feeds', () => {
+    ShredsAppStore.viewChange('newsitem', () => {
       this.refresh(payload.data);
-      this.emitChange('feeds');
+      this.emitChange();
     });
   }
 });
 
-export default FeedsStore;
+export default NavigationStore;

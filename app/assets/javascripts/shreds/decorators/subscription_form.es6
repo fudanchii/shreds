@@ -21,7 +21,7 @@ Decorator.add('slideUpSubscriptionForm', () => {
 $(document).on('mousedown', (ev) => {
   if (collapsed && amOut) {
     SubscriptionStore.set('collapsed', false);
-    SubscriptionStore.emitChange();
+    SubscriptionStore.emitChange('from decorators');
   }
 });
 

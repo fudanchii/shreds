@@ -14,13 +14,9 @@ const FeedStore = new Store({
   },
 
   navigated(payload) {
-    const __this = this;
-    ShredsAppStore.load({ toDisplay: 'feed' });
-    ShredsAppStore.emitChange({
-      callable() {
-        __this.refresh(payload.data);
-        __this.emitChange();
-      }
+    ShredsAppStore.viewChange('feed', () => {
+      this.refresh(payload.data);
+      this.emitChange();
     });
   }
 });
