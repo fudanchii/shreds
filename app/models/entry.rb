@@ -17,7 +17,7 @@ end
 #  id              :integer          not null, primary key
 #  subscription_id :integer
 #  newsitem_id     :integer
-#  unread          :boolean          default("true")
+#  unread          :boolean          default(TRUE)
 #  created_at      :datetime
 #  updated_at      :datetime
 #
