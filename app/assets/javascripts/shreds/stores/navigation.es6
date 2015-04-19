@@ -10,6 +10,7 @@ const NavigationStore = new Store({
       [action.NAVIGATE,           this.navigate],
       [action.MARK_FEED_AS_READ,  this.markFeedAsRead],
       [action.FAIL_NOTIFY,        this.failHandler],
+      [action.RELOAD_NAVIGATION,  this.reloadNavigation],
       [event.FEED_MARKED_AS_READ, this.feedMarkedAsRead]
     ]);
   },
@@ -19,8 +20,10 @@ const NavigationStore = new Store({
   },
 
   navigate(payload) {
-    let selected = this.__data.selected;
-    if (selected.cid && selected.fid) {
+    let selected = this.__data.selected || (
+      this.__data.selected = { cid: null, fid: null }
+      );
+    if (selected && selected.cid && selected.fid) {
       const selectedFeed = this.getFeed(selected.cid, selected.fid);
       selectedFeed.active = '';
     }
@@ -67,6 +70,11 @@ const NavigationStore = new Store({
       key = `${cid}:${fid}`,
       feed = this.getFeed(cid, fid);
     feed.favicon = this.__data.__favicons[key];
+  },
+
+  reloadNavigation(payload) {
+    this.refresh(payload.data.data);
+    this.emitChange();
   }
 });
 

@@ -18,7 +18,7 @@ const FeedsStore = new Store({
     ShredsAppStore.emitChange({
       callable() {
         __this.refresh(payload.data);
-        __this.emitChange({ rerender: true });
+        __this.emitChange();
       }
     });
   }

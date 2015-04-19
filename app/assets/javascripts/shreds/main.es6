@@ -5,6 +5,7 @@ import Decorator from 'framework/decorator';
 import RoutesService from 'shreds/services/routes';
 import WebAPIService from 'shreds/services/web_api';
 import NProgressService from 'shreds/services/nprogress';
+import WatchService from 'shreds/services/watch';
 
 import _Scroll from 'shreds/decorators/scroll';
 import _Title from 'shreds/decorators/title';

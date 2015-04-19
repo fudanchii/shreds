@@ -63,6 +63,12 @@ const WebAPIService = new Service({
       .done((data) => {
         WebAPIServiceActions.feedSubscribed(data);
       });
+  },
+
+  watchEvents(list) {
+    return req.get('/watch.json', {
+      data: { watchList: list.join() }
+    });
   }
 });
 

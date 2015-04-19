@@ -14,6 +14,13 @@ const NavigationActions = {
       type: action.MARK_FEED_AS_READ,
       cid, fid
     });
+  },
+
+  reloadNavigation(data) {
+    ShredsDispatcher.dispatch({
+      type: action.RELOAD_NAVIGATION,
+      data
+    });
   }
 };
 

@@ -36,13 +36,15 @@ const req = {
     const
       target_url = join(this.baseURI, url),
       ajax = $.ajax(target_url, opts);
-    ajax.fail(() => {
-      this.dispatcher.dispatch({
-        type: opts.failAction || this.failAction,
-        failMsg: opts.failMsg || arguments[2] || 'Request Error.',
-        data: opts.failPayload
+    if (opts.failPayload) {
+      ajax.fail(() => {
+        this.dispatcher.dispatch({
+          type: opts.failAction || this.failAction,
+          failMsg: opts.failMsg || arguments[2] || 'Request Error.',
+          data: opts.failPayload
+        });
       });
-    });
+    }
     return ajax;
   },
 
