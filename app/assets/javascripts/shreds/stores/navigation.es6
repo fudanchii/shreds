@@ -23,9 +23,16 @@ const NavigationStore = new Store({
     let selected = this.__data.selected || (
       this.__data.selected = { cid: null, fid: null }
       );
-    if (selected && selected.cid && selected.fid) {
+    if (selected.cid && selected.fid) {
       const selectedFeed = this.getFeed(selected.cid, selected.fid);
       selectedFeed.active = '';
+    } else {
+      var categories = this.__data.categories;
+      for (var c in categories) {
+        for (var f in categories[c].feeds) {
+          categories[c].feeds[f].active = '';
+        }
+      }
     }
     const feed = this.getFeed(payload.cid, payload.fid);
     feed.active = ' active';

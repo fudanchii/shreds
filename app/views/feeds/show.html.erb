@@ -4,3 +4,13 @@
 <% end %>
 
 <% content_for :head do %> <%= rel_next_prev_link_tags @entries %> <% end %>
+
+<% content_for :embedded_javascript do %>
+(function () {
+  var
+    ShredsApp = require('shreds/stores/shreds_app'),
+    Feed = require('shreds/stores/feed');
+  Feed.preload(<%= raw render(template: 'feeds/show.json') %>);
+  ShredsApp.preload({ toDisplay: 'feed' });
+})();
+<% end %>

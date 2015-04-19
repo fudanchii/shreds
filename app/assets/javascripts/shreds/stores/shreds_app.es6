@@ -1,11 +1,5 @@
 import Store from 'framework/store';
 
-const ShredsAppStore = new Store({
-  oninit() {
-    this.__data = {
-      toDisplay: 'feeds'
-    }
-  }
-});
+const ShredsAppStore = new Store();
 
 export default ShredsAppStore;
