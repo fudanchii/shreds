@@ -8,8 +8,8 @@
   <div class="feed-content panel-body">
     <div class="text-muted"><em>by {{author}}</em>
       <div class="pull-right">
-        <abbr class="timeago" title="{{published}}">
-          <em>{{readableDate(published)}}</em>
+        <abbr class="timeago" title="{{readableDate(published)}}">
+          <em>{{momentFormat(published)}}</em>
         </abbr>
       </div>
     </div>
