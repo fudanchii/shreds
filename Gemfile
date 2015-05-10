@@ -76,6 +76,7 @@ group :development, :test do
   gem 'guard'
   gem 'teaspoon'
   gem 'guard-teaspoon'
+  gem 'teaspoon-mocha'
 end
 
 # To use ActiveModel has_secure_password
