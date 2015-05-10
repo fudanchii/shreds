@@ -8,8 +8,22 @@ const NavigationStore = new Store({
   respondToRoutes: ['feeds/showNewsitem'],
   oninit() {
     this.regDispatcher(ShredsDispatcher, [
-      [event.ROUTE_NAVIGATED, this.routeHandler(this.navigated)]
+      [event.ROUTE_NAVIGATED,     this.routeHandler(this.navigated)],
+      [event.ITEM_MARKED_AS_READ, this.itemMarkedAsRead],
+      [event.FEED_MARKED_AS_READ, this.feedMarkedAsRead]
     ]);
+  },
+
+  itemMarkedAsRead(payload) {
+    this.__data.unread = !this.__data.unread;
+    this.emitChange();
+  },
+
+  feedMarkedAsRead(payload) {
+    if (payload.data.feed.id === this.__data.feed_id) {
+      this.__data.unread = false;
+      this.emitChange();
+    }
   },
 
   navigated(payload) {

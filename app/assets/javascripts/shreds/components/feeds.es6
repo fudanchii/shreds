@@ -19,10 +19,12 @@ const FeedsComponent = Component.extend({
       this.assign(payload.data);
       Decorator.do('setTitle', this.get('title'));
     });
+
     this.on('mark-as-read', (ev, fid, nid) => {
       FeedActions.markAsRead(fid, nid);
       return false;
     });
+
     Decorator.do('setTitle', this.get('title'));
   }
 });
