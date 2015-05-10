@@ -20,7 +20,7 @@ end
 
 if @subscription && @subscription.respond_to?(:category_id)
   json.selected do
-    json.cid @subscriptioncategory_id
+    json.cid @subscription.category_id
     json.fid @feed.id if @feed.respond_to?(:id)
   end
 end

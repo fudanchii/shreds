@@ -22,6 +22,13 @@ const WebAPIServiceActions = {
       type: event.FEED_SUBSCRIBED,
       data
     });
+  },
+
+  itemMarkedAsRead(data) {
+    ShredsDispatcher.dispatch({
+      type: event.ITEM_MARKED_AS_READ,
+      data
+    });
   }
 };
 

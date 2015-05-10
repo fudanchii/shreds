@@ -13,6 +13,7 @@ const WebAPIService = new Service({
     this.regDispatcher(ShredsDispatcher, [
       [action.NAVIGATE_TO_ROUTE, this.navigate],
       [action.MARK_FEED_AS_READ, this.markFeedAsRead],
+      [action.MARK_ITEM_AS_READ, this.markItemAsRead],
       [action.SUBSCRIBE_TO_FEED, this.subscribe]
     ]);
     req.init({
@@ -49,6 +50,17 @@ const WebAPIService = new Service({
       })
       .done((data) => {
         WebAPIServiceActions.feedMarkedAsRead(data);
+      });
+  },
+
+  markItemAsRead(payload) {
+    req
+      .patch(join('/feeds', payload.fid, payload.nid, '/toggle_read.json'), {
+        failMsg:I18n.t('fail.toggle_read'),
+        failPayload: payload
+      })
+      .done((data) => {
+        WebAPIServiceActions.itemMarkedAsRead(data);
       });
   },
 

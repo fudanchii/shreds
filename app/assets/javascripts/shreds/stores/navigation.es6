@@ -11,7 +11,8 @@ const NavigationStore = new Store({
       [action.MARK_FEED_AS_READ,  this.markFeedAsRead],
       [action.FAIL_NOTIFY,        this.failHandler],
       [action.RELOAD_NAVIGATION,  this.reloadNavigation],
-      [event.FEED_MARKED_AS_READ, this.feedMarkedAsRead]
+      [event.FEED_MARKED_AS_READ, this.feedMarkedAsRead],
+      [event.ITEM_MARKED_AS_READ, this.itemMarkedAsRead]
     ]);
   },
 
@@ -51,6 +52,14 @@ const NavigationStore = new Store({
       favicons[key] = feed.favicon;
     }
     feed.favicon = AssetsStore.getData('spinner16x16');
+    this.emitChange();
+  },
+
+  itemMarkedAsRead(payload) {
+    const
+      f = payload.data.feed,
+      feed = this.getFeed(f.categoryId, f.id);
+    feed.unreadCount = f.unreadCount;
     this.emitChange();
   },
 
