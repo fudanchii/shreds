@@ -1,6 +1,7 @@
 import Component from 'framework/component';
 import Decorator from 'framework/decorator';
 
+import NavigationActions from 'shreds/actions/navigation';
 import SubscriptionStore from 'shreds/stores/subscription';
 import SubscriptionActions from 'shreds/actions/subscription';
 
@@ -23,6 +24,10 @@ const SubscriptionComponent = Component.extend({
       }
       SubscriptionActions.subscribe(this.find('#new_feed'));
       return false;
+    });
+
+    this.on('navigate', () => {
+      NavigationActions.navigate('/', 0, 0);
     });
 
     this.observe('collapsed', (newValue, oldValue, keypath) => {

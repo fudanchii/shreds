@@ -35,10 +35,12 @@ const NavigationStore = new Store({
         }
       }
     }
-    const feed = this.getFeed(payload.cid, payload.fid);
-    feed.active = ' active';
-    selected.cid = payload.cid;
-    selected.fid = payload.fid;
+    if (payload.cid && payload.fid) {
+      const feed = this.getFeed(payload.cid, payload.fid);
+      feed.active = ' active';
+      selected.cid = payload.cid;
+      selected.fid = payload.fid;
+    }
     this.emitChange();
   },
 

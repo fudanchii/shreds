@@ -5,7 +5,7 @@
         <textarea class="text required form-control" placeholder="Paste RSS link here" name="feed[url]" id="feed_url" value="{{feedURL}}"></textarea>
         <input class="string required form-control" placeholder="Category (optional)" type="text" name="category[name]" id="category_name" value="{{categoryName}}">
     </div>
-    <a href="/"><img class="pull-left main-logo" height="38" alt="Logo" src="{{logoImage}}"></a>
+    <a href="/"><img class="pull-left main-logo" height="38" alt="Logo" src="{{logoImage}}" on-mousedown="navigate"></a>
     <div class="btn-group pull-right">
         <button name="button" type="submit" class="btn btn-primary ladda-button" id="btnSubmitFeed" data-style="zoom-out" data-on-click="subscribeTo" on-click="subscribe">
             <span class="ladda-label">Subscribe</span>
