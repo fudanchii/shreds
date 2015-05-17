@@ -51,31 +51,23 @@ header span { margin-left: 4px; }
     border-right: 0;
 }
 
-@media screen and (min-width:1368px) {
+@media screen and (min-width:1000px) {
 .span-fixed-sidebar {
+    left: 0;
     margin-top: 16px;
-    margin-left: 448px;
+    margin-left: 424px;
     position: absolute;
     overflow: hidden;
-    width: 68%;
+    width: calc(100% - 462px);
 }
 }
 
-@media screen and (min-width:1089px) and (max-width:1368px) {
+@media screen and (max-width:1000px) {
 .span-fixed-sidebar {
-    margin-top: 16px;
-    margin-left: 448px;
-    position: absolute;
-    overflow: hidden;
-    width: 60%;
-}
-}
-
-@media screen and (max-width:1089px) {
-.span-fixed-sidebar {
+    left: 0;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
     margin-top: 112px;
-    margin-left: 32px;
-    margin-right: 16px;
     position: absolute;
     overflow: hidden;
     width: 95%;
