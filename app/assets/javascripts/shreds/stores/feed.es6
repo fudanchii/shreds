@@ -33,7 +33,7 @@ const FeedStore = new Store({
       f = payload.data.feed,
       newsitems = this.__data.newsitems;
     for (var i in newsitems) {
-      if (newsitems[i].id === f.newsItemId) {
+      if (newsitems[i].id === f.nid) {
         newsitems[i].unread = !newsitems[i].unread;
       }
     }

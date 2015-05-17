@@ -60,7 +60,7 @@ const NavigationStore = new Store({
   itemMarkedAsRead(payload) {
     const
       f = payload.data.feed,
-      feed = this.getFeed(f.categoryId, f.id);
+      feed = this.getFeed(f.cid, f.id);
     feed.unreadCount = f.unreadCount;
     this.emitChange();
   },
@@ -68,8 +68,8 @@ const NavigationStore = new Store({
   feedMarkedAsRead(payload) {
     const
       f = payload.data.feed,
-      feed = this.getFeed(f.categoryId, f.id);
-    this.restoreFavicon(f.categoryId, f.id);
+      feed = this.getFeed(f.cid, f.id);
+    this.restoreFavicon(f.cid, f.id);
     feed.unreadCount = f.unreadCount;
     this.emitChange();
   },

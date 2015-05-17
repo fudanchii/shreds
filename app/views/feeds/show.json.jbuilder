@@ -1,7 +1,8 @@
-json.id @feed.id
-json.url @feed.url
-json.title @feed.title
-json.newsitems @entries do |entry|
+json.cid        @subscription.category_id
+json.id         @feed.id
+json.url        @feed.url
+json.title      @feed.title
+json.newsitems  @entries do |entry|
   json.partial! entry.newsitem, entry: entry, feed: @feed
 end
 json.prevPage link_to_previous_page @entries, '< Prev', params: { format: nil }

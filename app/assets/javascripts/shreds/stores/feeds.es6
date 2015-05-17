@@ -37,7 +37,7 @@ const FeedsStore = new Store({
     for (var i in feeds) {
       if (feeds[i].id === f.id) {
         for (var j in feeds[i].newsitems) {
-          if (feeds[i].newsitems[j].id === f.newsItemId) {
+          if (feeds[i].newsitems[j].id === f.nid) {
             feeds[i].newsitems[j].unread = !feeds[i].newsitems[j].unread;
             this.emitChange();
             return;
