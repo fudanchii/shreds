@@ -23,6 +23,7 @@ header span { margin-left: 4px; }
 
     img {
         max-width: 100%;
+        width: auto;
         height: auto;
         margin-top: 15px;
         margin-bottom: 5px;
@@ -50,23 +51,34 @@ header span { margin-left: 4px; }
     border-right: 0;
 }
 
-@media screen and (min-width:1025px) {
+@media screen and (min-width:1368px) {
 .span-fixed-sidebar {
     margin-top: 16px;
     margin-left: 448px;
-    margin-right: 4.5%;
     position: absolute;
     overflow: hidden;
+    width: 68%;
 }
 }
 
-@media screen and (max-width:1024px) {
+@media screen and (min-width:1089px) and (max-width:1368px) {
+.span-fixed-sidebar {
+    margin-top: 16px;
+    margin-left: 448px;
+    position: absolute;
+    overflow: hidden;
+    width: 60%;
+}
+}
+
+@media screen and (max-width:1089px) {
 .span-fixed-sidebar {
     margin-top: 112px;
     margin-left: 32px;
     margin-right: 16px;
     position: absolute;
     overflow: hidden;
+    width: 95%;
 }
 }
 
