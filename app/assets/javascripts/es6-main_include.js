@@ -27,8 +27,6 @@
 //= require es6-runtime_poormanshack
 //= require babel-runtime/helpers
 
-//= require router
-
 //= require_tree ./shreds/templates
 //= require framework
 
