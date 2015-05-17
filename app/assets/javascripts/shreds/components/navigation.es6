@@ -6,7 +6,7 @@ import FeedsActions from 'shreds/actions/feeds';
 import NavigationHelpers from 'shreds/helpers/navigation';
 
 const Navigation = Component.extend({
-  el: '[template=navigation]',
+  el: '[data-template=navigation]',
   template: Component.template('navigation'),
   data() { return NavigationStore.getData(); },
 

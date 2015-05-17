@@ -14,7 +14,7 @@ import _SubscriptionForm from 'shreds/decorators/subscription_form';
 import ShredsAppStore from 'shreds/stores/shreds_app';
 
 const ShredsAppView = Component.extend({
-  el: '[template=main-view]',
+  el: '[data-template=main-view]',
 
   template() { return Component.template('main_view'); },
 
