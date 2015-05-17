@@ -90,6 +90,11 @@ const enable = function(prefix) {
     return this;
   };
 
+  var indexOfPolyfill = function (item/*, offset*/) {
+    var offset = arguments[1] || 0;
+    return this.indexOf(item, offset) > -1;
+  }
+
   // array.findItem(testFunction) returns the first item that matches the testFunction
   var findItem = function(testFunction){
     var lastIndex;
@@ -333,7 +338,7 @@ const enable = function(prefix) {
     'Array':{
       'findItem':findItem,
       'extend':arrayExtend,
-      'includes': String.prototype.includes,
+      'includes': String.prototype.includes || indexOfPolyfill,
       'clone':arrayClone,
       'remove':arrayRemove,
       'first':arrayFirst,
