@@ -46,6 +46,7 @@ const WatchService = new Service({
 
   feedSubscribed(payload) {
     this.doWatch(payload.data.watch, (data) => {
+      if (data.error) { return; }
       NavigationActions.reloadNavigation(data);
     });
   },

@@ -11,6 +11,7 @@ import _BacktoTop from 'shreds/decorators/back_to_top';
 import _Scroll from 'shreds/decorators/scroll';
 import _Title from 'shreds/decorators/title';
 import _SubscriptionForm from 'shreds/decorators/subscription_form';
+import _Spinner from 'shreds/decorators/spinner';
 
 import ShredsAppStore from 'shreds/stores/shreds_app';
 

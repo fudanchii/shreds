@@ -20,9 +20,9 @@ const SubscriptionComponent = Component.extend({
     this.on('subscribe', () => {
       if (!this.get('collapsed')) {
         SubscriptionActions.collapse();
-        return false;
+      } else {
+        SubscriptionActions.subscribe(this.find('#new_feed'));
       }
-      SubscriptionActions.subscribe(this.find('#new_feed'));
       return false;
     });
 
@@ -31,11 +31,15 @@ const SubscriptionComponent = Component.extend({
     });
 
     this.observe('collapsed', (newValue, oldValue, keypath) => {
-      if (newValue) {
-        Decorator.do('slideDownSubscriptionForm');
-        return;
-      }
-      Decorator.do('slideUpSubscriptionForm');
+      newValue?
+        Decorator.do('slideDownSubscriptionForm'):
+        Decorator.do('slideUpSubscriptionForm');
+    });
+
+    this.observe('spinnerStarted', (newValue, oldValue, keypath) => {
+      newValue?
+        Decorator.do('startSubscribeSpinner'):
+        Decorator.do('stopSubscribeSpinner');
     });
   }
 });
