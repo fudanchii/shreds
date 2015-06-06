@@ -5,7 +5,7 @@ require 'feedjira'
 describe FeedFetcher do
   it 'raises InvalidFeed when feedjira returns Fixnum' do
     mock = MiniTest::Mock.new
-    mock.expect :call, 502, ['example.com/feed', Rails.configuration.feedjira]
+    mock.expect :call, 502, ['example.com/feed']
 
     Feedjira::Feed.stub :fetch_and_parse, mock do
       assert_raises(Shreds::InvalidFeed) { described_class.new.perform 'example.com/feed' }
