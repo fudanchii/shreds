@@ -98,8 +98,6 @@ group :development do
   gem 'stackprof'
 end
 
-gem 'skylight'
-
 source 'https://rails-assets.org' do
   gem 'rails-assets-history.js'
   gem 'rails-assets-jquery'
