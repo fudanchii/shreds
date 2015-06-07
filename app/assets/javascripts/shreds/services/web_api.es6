@@ -34,7 +34,7 @@ const WebAPIService = new Service({
   navigate(payload) {
     req
       .get(join('/feeds', payload.path) + '.json', {
-        failMsg: I18n.t('fail.navigate'),
+        failMsg: I18n.t('js.fail.navigate'),
         failPayload: payload
       })
       .done((data) => {
@@ -45,7 +45,7 @@ const WebAPIService = new Service({
   markFeedAsRead(payload) {
     req
       .patch(join('/feeds', payload.fid, '/mark_as_read.json'), {
-        failMsg: I18n.t('fail.mark_feed_as_read'),
+        failMsg: I18n.t('js.fail.mark_feed_as_read'),
         failPayload: payload
       })
       .done((data) => {
@@ -56,7 +56,7 @@ const WebAPIService = new Service({
   markItemAsRead(payload) {
     req
       .patch(join('/feeds', payload.fid, payload.nid, '/toggle_read.json'), {
-        failMsg:I18n.t('fail.toggle_read'),
+        failMsg:I18n.t('js.fail.toggle_read'),
         failPayload: payload
       })
       .done((data) => {
@@ -70,7 +70,7 @@ const WebAPIService = new Service({
         data: new FormData(payload.form),
         processData: false,
         contentType: false,
-        failMsg: I18n.t('fail.subscribe')
+        failMsg: I18n.t('js.fail.subscribe')
       })
       .done((data) => {
         WebAPIServiceActions.feedSubscribed(data);

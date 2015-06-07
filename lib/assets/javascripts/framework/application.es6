@@ -7,10 +7,10 @@ export default class Application {
     this.options = options;
     this.name = options.name || 'app';
     this.main = { Class: mainComponent };
-    Component.setup({ prefix: this.name, debug: options.debug });
   }
 
-  init() {
+  init(debug) {
+    Component.setup({ prefix: this.name, debug });
     module.loadNamespace(join(this.name, 'services'));
     module.loadNamespace(join(this.name, 'decorators'));
     Component.loader();

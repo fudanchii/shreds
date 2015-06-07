@@ -51,7 +51,6 @@ const ShredsAppView = Component.extend({
 
 const Shreds = new Application(ShredsAppView, {
   name: "shreds",
-  debug: true,
   prerender: ['navigation', 'subscription']
 });
 

@@ -39,3 +39,5 @@ en:
     fail:
       navigate: "<strong>Requested Page</strong> couldn't be loaded"
       mark_feed_as_read: "<strong>Feed</strong> couldn't be marked as read"
+      toggle_read: "<strong>Item</strong> couldn't be changed"
+      subscribe: "<strong>Feed</strong> couldn't be subscribed"
