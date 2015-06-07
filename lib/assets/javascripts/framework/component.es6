@@ -1,8 +1,6 @@
 import Ractive from 'Ractive';
 import { basename, join } from 'framework/helpers/path';
 
-const modules = require.s.contexts._;
-
 Ractive.defaults.data = {
   component(name) {
     if (!!this.partials[name]) { return name; }
@@ -18,8 +16,13 @@ Object.assign(Component, {
 
   _templates: window.RactiveTemplates,
 
+  setup(options) {
+    this.prefix = options.prefix || 'app';
+    this.setDebug(options.debug);
+  },
+
   setDebug(isdebug) {
-    Ractive.DEBUG = isdebug;
+    Ractive.DEBUG = !!isdebug;
   },
 
   template(name) {
@@ -37,32 +40,10 @@ Object.assign(Component, {
   },
 
   loader(options) {
-    const
-      prefix = options.prefix || 'app',
-      namespace = join(prefix, 'components'),
-      rgx = new RegExp(`^${namespace}/`);
-
-    let result = [];
-
-    this.prefix = prefix;
-    for (var k in modules.defined) {
-      if (rgx.test(k)) {
-        result.push({
-          Name: k,
-          Class: modules.defined[k]
-        });
-      }
-    }
-    for (var k in modules.registry) {
-      if (rgx.test(k)) {
-        result.push({
-          Name: k,
-          Class: require(k)
-        });
-      }
-    }
-    result.forEach((c, i, a) => {
-      this.addComponent(c);
+    module.loadNamespace(join(this.prefix, 'components'), (result) => {
+      result.forEach((c, i, a) => {
+        this.addComponent(c);
+      });
     });
   }
 });
