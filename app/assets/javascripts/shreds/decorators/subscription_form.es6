@@ -27,7 +27,7 @@ $(document).on('mousedown', (ev) => {
 
 $(document).on('mouseover', (ev) => {
   amOut = false;
-  if ($subscribeForm.find(ev.target).length === 0 ) {
+  if (collapsed && ($subscribeForm.find(ev.target).length === 0)) {
     amOut = true;
   }
 });
