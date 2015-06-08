@@ -13,19 +13,19 @@ const FeedsStore = new Store({
       [event.ITEM_MARKED_AS_READ, this.itemMarkedAsRead],
       [event.FEED_MARKED_AS_READ, this.feedMarkedAsRead]
     ]);
+
+    this.__data = { feeds: [] };
   },
 
   feedMarkedAsRead(payload) {
     const
       f = payload.data.feed,
       feeds = this.__data.feeds;
-    for (var i in feeds) {
-      if (feeds[i].id === f.id) {
-        for (var j in feeds[i].newsitems) {
-          feeds[i].newsitems[j].unread = false;
-        }
-        break;
-      }
+    let feed = feeds.findItem(item => item.id === f.id);
+    if (feed) {
+      feed.newsitems.forEach(newsitem => {
+        newsitem.unread = false;
+      });
     }
     this.emitChange();
   },
@@ -34,17 +34,14 @@ const FeedsStore = new Store({
     const
       f = payload.data.feed,
       feeds = this.__data.feeds;
-    for (var i in feeds) {
-      if (feeds[i].id === f.id) {
-        for (var j in feeds[i].newsitems) {
-          if (feeds[i].newsitems[j].id === f.nid) {
-            feeds[i].newsitems[j].unread = !feeds[i].newsitems[j].unread;
-            this.emitChange();
-            return;
-          }
-        }
+    let feed = feeds.findItem(item => item.id === f.id);
+    if (feed) {
+      let newsitem = feed.newsitems.findItem(item => item.id === f.nid);
+      if (newsitem) {
+        newsitem.unread = !newsitem.unread;
       }
     }
+    this.emitChange();
   },
 
   navigated(payload) {

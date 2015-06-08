@@ -13,6 +13,8 @@ const FeedStore = new Store({
       [event.ITEM_MARKED_AS_READ, this.itemMarkedAsRead],
       [event.FEED_MARKED_AS_READ, this.feedMarkedAsRead]
     ]);
+
+    this.__data = { newsitems: [] };
   },
 
   feedMarkedAsRead(payload) {
@@ -22,9 +24,9 @@ const FeedStore = new Store({
     if (this.__data.id !== f.id) {
       return;
     }
-    for (var i in newsitems) {
-      newsitems[i].unread = false;
-    }
+    newsitems.forEach(newsitem => {
+      newsitem.unread = false;
+    });
     this.emitChange();
   },
 
@@ -32,10 +34,9 @@ const FeedStore = new Store({
     const
       f = payload.data.feed,
       newsitems = this.__data.newsitems;
-    for (var i in newsitems) {
-      if (newsitems[i].id === f.nid) {
-        newsitems[i].unread = !newsitems[i].unread;
-      }
+    let newsitem = newsitems.findItem(item => item.id === f.nid);
+    if (newsitem) {
+      newsitem.unread = !newsitem.unread;
     }
     this.emitChange();
   },
