@@ -12,5 +12,5 @@ require_asset("main_include")
 %>
 
 /* Initialize application after all components loaded. *
- * see also: /app/assets/javascripts/shreds.js         */
+ * see also: /app/assets/javascripts/shreds/main.es6   */
 $(function () { require('shreds/main').init(<%= Rails.env.development? %>); });
