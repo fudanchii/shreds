@@ -19,24 +19,18 @@ const WatchService = new Service({
   doWatch(key, fn) {
     if (key) {
       this.list.push(key);
-      if (kind(fn) === 'Function') {
-        this.callbacks[key] = fn;
-      }
+      if (kind(fn) === 'Function') { this.callbacks[key] = fn; }
     }
-    if (this.list.length === 0) {
-      return;
-    }
-    return WebAPIService.watchEvents(this.list)
-      .fail(() => {
-        setTimeout(this.doWatch, 2000);
-      })
+    if (this.list.length === 0) { return; }
+    WebAPIService.watchEvents(this.list)
+      .fail(() => { setTimeout(this.doWatch, 2000); })
       .done((data) => {
-        for (var k in data) {
+        data.forEach((k, v) => {
           if (kind(this.callbacks[k]) === 'Function') {
-            this.callbacks[k](data[k]);
+            this.callbacks[k](v);
             delete this.callbacks[k];
           }
-        }
+        });
         this.list = this.list.filter(k => !data[k]);
       });
   },

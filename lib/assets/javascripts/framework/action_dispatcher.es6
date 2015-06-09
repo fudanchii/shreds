@@ -13,8 +13,7 @@ class ActionDispatcher {
   }
 
   dispatch(payload) {
-    verify(!this._isDispatching,
-           'Dispatch overlapped.');
+    verify(!this._isDispatching, 'Dispatch overlapped.');
     this._startDispatching(payload);
     try {
       for (var id in this._callbacks[payload.type]) {

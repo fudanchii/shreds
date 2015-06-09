@@ -7,17 +7,21 @@ import NavigationHelpers from 'shreds/helpers/navigation';
 
 const Navigation = Component.extend({
   el: '[data-template=navigation]',
+
   template: Component.template('navigation'),
+
   data() { return NavigationStore.getData(); },
 
   oninit(options) {
     NavigationStore.addChangeListener((ev, data) => {
       this.update();
     });
+
     this.on('navigate', (ev, path, cid, fid) => {
       NavigationActions.navigate(path, cid, fid);
       this.find(`a[href="${path}"]`).click();
     });
+
     this.on('mark-as-read', (ev, cid, fid) => {
       FeedsActions.markAsRead(cid, fid);
       return false;
