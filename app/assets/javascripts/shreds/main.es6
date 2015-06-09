@@ -23,14 +23,6 @@ const ShredsAppView = Component.extend({
       });
     });
 
-    this.on('render', () => {
-      setTimeout(() => { this.set('inflag', 'in'); }, 50);
-    });
-
-    this.on('unrender', () => {
-      setTimeout(() => { this.set('inflag', ''); }, 50);
-    });
-
     Decorator.do('backtoTop');
   },
 
