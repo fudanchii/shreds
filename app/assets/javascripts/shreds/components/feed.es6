@@ -2,7 +2,6 @@ import Component from 'framework/component';
 import Decorator from 'framework/decorator';
 
 import FeedStore from 'shreds/stores/feed';
-import ShredsDispatcher from 'shreds/dispatcher';
 import FeedActions from 'shreds/actions/feed';
 import NavigationActions from 'shreds/actions/navigation';
 
