@@ -37,10 +37,7 @@ const WatchService = new Service({
             delete this.callbacks[k];
           }
         }
-        this.list = this.list.filter((k) => {
-          return !data[k];
-        });
-        return data;
+        this.list = this.list.filter(k => !data[k]);
       });
   },
 
