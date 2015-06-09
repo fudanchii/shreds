@@ -23,6 +23,8 @@ const ShredsAppView = Component.extend({
       });
     });
 
+    this.on('complete', () => { this.fadeIn(); });
+
     Decorator.do('backtoTop');
   },
 
