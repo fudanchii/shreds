@@ -13,7 +13,7 @@
         </p>
         <p class="latest-news text-muted ellipsis"><abbr class="timeago small" title="{{readableDate(latestEntryPubDate)}}">{{momentFormat(latestEntryPubDate)}}</abbr> - {{{latestEntryTitle}}}</p>
         {{#if unreadCount }}
-          <a href="javascript:void(0)" on-mousedown="return false" on-mousedown="mark-as-read:{{index}},{{feed_index}}">
+          <a href="javascript:void(0)" on-mousedown="mark-as-read:{{index}},{{feed_index}}">
             <span class="pull-right unread-num label">{{unreadCount}}</span>
           </a>
         {{/if}}
