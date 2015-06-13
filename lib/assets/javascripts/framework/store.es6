@@ -48,7 +48,7 @@ class Store extends Service {
     this.load(data);
   }
 
-  getData(arg) {
+  get(arg) {
     if (arg) {
       return this.__data[arg];
     }

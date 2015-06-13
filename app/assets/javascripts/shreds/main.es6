@@ -9,7 +9,7 @@ const ShredsAppView = Component.extend({
 
   template() { return Component.template('main_view'); },
 
-  data() { return ShredsAppStore.getData(); },
+  data() { return ShredsAppStore.get(); },
 
   oninit() {
     ShredsAppStore.addChangeListener((ev, payload) => {

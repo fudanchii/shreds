@@ -7,7 +7,7 @@ import FeedActions from 'shreds/actions/feed';
 const NewsitemComponent = Component.extend({
   template: Component.template('newsitem'),
 
-  data() { return NewsitemStore.getData(); },
+  data() { return NewsitemStore.get(); },
 
   oninit() {
     NewsitemStore.addChangeListener((ev, payload) => {

@@ -10,7 +10,7 @@ const Navigation = Component.extend({
 
   template: Component.template('navigation'),
 
-  data() { return NavigationStore.getData(); },
+  data() { return NavigationStore.get(); },
 
   oninit(options) {
     NavigationStore.addChangeListener((ev, data) => {

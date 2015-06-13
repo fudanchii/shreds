@@ -10,7 +10,7 @@ const SubscriptionComponent = Component.extend({
 
   template: Component.template('subscription'),
 
-  data() { return SubscriptionStore.getData(); },
+  data() { return SubscriptionStore.get(); },
 
   oninit() {
     SubscriptionStore.addChangeListener((ev, payload) => {

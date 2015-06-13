@@ -8,7 +8,7 @@ import NavigationActions from 'shreds/actions/navigation';
 const FeedComponent = Component.extend({
   template: Component.template('feed'),
 
-  data() { return FeedStore.getData(); },
+  data() { return FeedStore.get(); },
 
   partials: {
     newsitems: Component.template('feeds/_newsitems')

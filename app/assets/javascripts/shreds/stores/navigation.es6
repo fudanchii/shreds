@@ -50,7 +50,7 @@ const NavigationStore = new Store({
     if (!favicons[key]) {
       favicons[key] = feed.favicon;
     }
-    feed.favicon = AssetsStore.getData('spinner16x16');
+    feed.favicon = AssetsStore.get('spinner16x16');
     this.emitChange();
   },
 
