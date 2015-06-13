@@ -20,6 +20,7 @@
     Assets = require('shreds/stores/assets'),
     Subscription = require('shreds/stores/subscription');
   Navigation.preload(<%= raw render('navigation_data') %>);
+  Navigation.formatEntriesPubDate();
   Assets.preload({
     spinner16x16: '<%= image_path("spinner.16x16.gif") %>'
   });

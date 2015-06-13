@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import Store from 'framework/store';
 
 import AssetsStore from 'shreds/stores/assets';
@@ -16,20 +18,35 @@ const NavigationStore = new Store({
     ]);
   },
 
+  emitChange() {
+    this.formatEntriesPubDate();
+    super.emitChange();
+  },
+
+  formatEntriesPubDate() {
+    const categories = this.get('categories');
+    categories.forEach((k, category) => {
+      category.feeds.forEach((k, feed) => {
+        feed.momentFmtEntryPubDate = moment(feed.latestEntryPubDate).fromNow(true);
+      });
+    });
+  },
+
   getFeed(cid, fid) {
-    return this.__data.categories[cid].feeds[fid];
+    return this.get('categories')[cid].feeds[fid];
   },
 
   navigate(payload) {
-    let selected = this.__data.selected || (
-      this.__data.selected = { cid: null, fid: null }
+    const data = this.get();
+    let selected = data.selected || (
+      data.selected = { cid: null, fid: null }
       );
     if (selected.cid && selected.fid) {
       const selectedFeed = this.getFeed(selected.cid, selected.fid);
       selectedFeed.active = '';
     } else {
-      this.__data.categories.forEach(category => {
-        for (var f in category.feeds) { category.feeds[f].active = ''; }
+      this.get('categories').forEach((k, category) => {
+        category.feeds.forEach((k, feed) => { feed.active = ''; });
       });
     }
     if (payload.cid && payload.fid) {
@@ -42,9 +59,11 @@ const NavigationStore = new Store({
   },
 
   markFeedAsRead(payload) {
-    this.__data.__favicons || (this.__data.__favicons = {});
+    if (kind(this.get('__favicons')) === 'undefined') {
+      this.set('__favicons', {});
+    }
     const
-      favicons = this.__data.__favicons,
+      favicons = this.get('__favicons'),
       feed = this.getFeed(payload.cid, payload.fid),
       key = `${payload.cid}:${payload.fid}`;
     if (!favicons[key]) {
@@ -84,7 +103,7 @@ const NavigationStore = new Store({
     const
       key = `${cid}:${fid}`,
       feed = this.getFeed(cid, fid);
-    feed.favicon = this.__data.__favicons[key];
+    feed.favicon = this.get('__favicons')[key];
   },
 
   reloadNavigation(payload) {

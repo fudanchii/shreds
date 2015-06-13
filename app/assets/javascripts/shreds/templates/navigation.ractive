@@ -11,7 +11,7 @@
         <p class="feed-title ellipsis">
           <a alt="{{title}}" href="{{path}}">{{title}}</a>
         </p>
-        <p class="latest-news text-muted ellipsis"><abbr class="timeago small" title="{{readableDate(latestEntryPubDate)}}">{{momentFormat(latestEntryPubDate)}}</abbr> - {{{latestEntryTitle}}}</p>
+        <p class="latest-news text-muted ellipsis"><abbr class="timeago small" title="{{readableDate(latestEntryPubDate)}}">{{momentFmtEntryPubDate}}</abbr> - {{{latestEntryTitle}}}</p>
         {{#if unreadCount }}
           <a href="javascript:void(0)" on-mousedown="mark-as-read:{{index}},{{feed_index}}">
             <span class="pull-right unread-num label">{{unreadCount}}</span>
