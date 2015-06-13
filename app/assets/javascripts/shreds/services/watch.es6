@@ -3,6 +3,7 @@ import Service from 'framework/service';
 import ShredsDispatcher from 'shreds/dispatcher';
 import WebAPIService from 'shreds/services/web_api';
 import NavigationActions from 'shreds/actions/navigation';
+import WatchActions from 'shreds/actions/watch';
 import { event } from 'shreds/constants';
 
 const WatchService = new Service({
@@ -37,7 +38,10 @@ const WatchService = new Service({
 
   feedSubscribed(payload) {
     this.doWatch(payload.data.watch, (data) => {
-      if (data.error) { return; }
+      if (data.error) {
+        WatchActions.notifyError(data.error);
+        return;
+      }
       NavigationActions.reloadNavigation(data);
     });
   },
