@@ -29,7 +29,7 @@ const NavigationStore = new Store({
       selectedFeed.active = '';
     } else {
       this.__data.categories.forEach(category => {
-        category.feeds.forEach(feed => { feed.active = ''; });
+        for (var f in category.feeds) { category.feeds[f].active = ''; }
       });
     }
     if (payload.cid && payload.fid) {
