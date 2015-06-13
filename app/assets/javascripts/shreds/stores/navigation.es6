@@ -28,12 +28,9 @@ const NavigationStore = new Store({
       const selectedFeed = this.getFeed(selected.cid, selected.fid);
       selectedFeed.active = '';
     } else {
-      var categories = this.__data.categories;
-      for (var c in categories) {
-        for (var f in categories[c].feeds) {
-          categories[c].feeds[f].active = '';
-        }
-      }
+      this.__data.categories.forEach(category => {
+        category.feeds.forEach(feed => { feed.active = ''; });
+      });
     }
     if (payload.cid && payload.fid) {
       const feed = this.getFeed(payload.cid, payload.fid);
