@@ -1,5 +1,5 @@
 import ShredsDispatcher from 'shreds/dispatcher';
-import { action } from 'shreds/constants';
+import { action, event } from 'shreds/constants';
 
 const SubscriptionActions = {
   collapse() {

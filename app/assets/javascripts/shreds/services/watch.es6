@@ -57,6 +57,7 @@ const WatchService = new Service({
         return;
       }
       NavigationActions.reloadNavigation(data);
+      NotificationActions.info(data.info);
     });
   },
 

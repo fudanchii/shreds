@@ -7,6 +7,7 @@ export const action = defconst.defActions(
   'NAVIGATE',
   'RELOAD_NAVIGATION',
   'FAIL_NOTIFY',
+  'INFO_NOTIFY',
   'COLLAPSE_SUBSCRIPTION_FORM',
   'SUBSCRIBE_TO_FEED',
   'START_UPLOAD_SPINNER',

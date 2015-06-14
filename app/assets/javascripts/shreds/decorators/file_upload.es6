@@ -21,7 +21,7 @@ $fileUpload.fileupload({ dataType: 'json', replaceFileInput: false })
                SubscriptionActions.stopUploadSpinner();
                return;
              }
-             SubscriptionActions.opmlUploaded(data);
+             SubscriptionActions.opmlUploaded(result);
            })
            .on('fileuploadfail', () => {
              NotificationActions.error(I18n.t('js.fail.upload'));

@@ -24,7 +24,7 @@ const NavigationStore = new Store({
   },
 
   formatEntriesPubDate() {
-    const categories = this.get('categories');
+    const categories = this.get('categories') || {};
     categories.forEach((k, category) => {
       category.feeds.forEach((k, feed) => {
         feed.momentFmtEntryPubDate = moment(feed.latestEntryPubDate).fromNow(true);

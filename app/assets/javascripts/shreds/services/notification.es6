@@ -8,6 +8,7 @@ const NotificationService = new Service({
   oninit() {
     this.regDispatcher(ShredsDispatcher, [
         [action.FAIL_NOTIFY,        this.failNotify],
+        [action.INFO_NOTIFY,        this.okNotify],
         [event.FEED_MARKED_AS_READ, this.okNotify],
         [event.ITEM_MARKED_AS_READ, this.okNotify],
     ]);

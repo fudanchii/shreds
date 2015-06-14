@@ -9,6 +9,13 @@ const NotificationActions = {
       data: { type: null },
       failMsg: msg
     });
+ },
+
+ info(msg) {
+   ShredsDispatcher.dispatch({
+     type: action.INFO_NOTIFY,
+     data: { info: msg }
+   });
  }
 };
 
