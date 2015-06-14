@@ -7,10 +7,10 @@
     </div>
     <a href="/"><img class="pull-left main-logo" height="38" alt="Logo" src="{{logoImage}}" on-mousedown="navigate"></a>
     <div class="btn-group pull-right">
-        <button name="button" type="submit" class="btn btn-primary ladda-button" id="btnSubmitFeed" data-style="zoom-out" data-on-click="subscribeTo" on-click="subscribe">
+        <button name="button" type="submit" class="btn btn-primary ladda-button" id="btnSubmitFeed" data-style="zoom-out" on-click="subscribe">
             <span class="ladda-label">Subscribe</span>
         </button>
-        <button id="btnOPMLUpload" class="btn btn-info fileinput-button ladda-button" type="button" data-on-click="uploadOPML" data-style="zoom-out">
+        <button id="btnOPMLUpload" class="btn btn-info fileinput-button ladda-button" type="button" on-click="import-opml" data-style="zoom-out">
             <span class="ladda-label">Import</span><span class="ladda-spinner"></span>
         </button>
     </div>

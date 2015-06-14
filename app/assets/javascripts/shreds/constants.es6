@@ -8,9 +8,13 @@ export const action = defconst.defActions(
   'RELOAD_NAVIGATION',
   'FAIL_NOTIFY',
   'COLLAPSE_SUBSCRIPTION_FORM',
-  'SUBSCRIBE_TO_FEED');
+  'SUBSCRIBE_TO_FEED',
+  'START_UPLOAD_SPINNER',
+  'STOP_SUBSCRIBE_SPINNER',
+  'STOP_UPLOAD_SPINNER');
 
 export const event = defconst.defEvents(
   'FEED_MARKED_AS_READ',
   'ITEM_MARKED_AS_READ',
-  'FEED_SUBSCRIBED');
+  'FEED_SUBSCRIBED',
+  'OPML_UPLOADED');

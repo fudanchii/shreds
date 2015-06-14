@@ -9,7 +9,9 @@ const SubscriptionStore = new Store({
       [action.COLLAPSE_SUBSCRIPTION_FORM, this.collapseForm],
       [action.SUBSCRIBE_TO_FEED,          this.uncollapseForm],
       [action.FAIL_NOTIFY,                this.failHandler],
-      [event.FEED_SUBSCRIBED,             this.feedSubscribed]
+      [action.STOP_SUBSCRIBE_SPINNER,     this.feedSubscribed],
+      [action.START_UPLOAD_SPINNER,       this.startUploadSpinner],
+      [action.STOP_UPLOAD_SPINNER,        this.stopUploadSpinner]
     ]);
   },
 
@@ -35,6 +37,16 @@ const SubscriptionStore = new Store({
 
   feedSubscribed() {
     this.set('spinnerStarted', false);
+    this.emitChange();
+  },
+
+  startUploadSpinner() {
+    this.set('uploadSpinnerStarted', true);
+    this.emitChange();
+  },
+
+  stopUploadSpinner() {
+    this.set('uploadSpinnerStarted', false);
     this.emitChange();
   }
 });

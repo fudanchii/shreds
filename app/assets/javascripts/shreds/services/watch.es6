@@ -3,13 +3,15 @@ import Service from 'framework/service';
 import ShredsDispatcher from 'shreds/dispatcher';
 import WebAPIService from 'shreds/services/web_api';
 import NavigationActions from 'shreds/actions/navigation';
-import WatchActions from 'shreds/actions/watch';
+import NotificationActions from 'shreds/actions/notification';
+import SubscriptionActions from 'shreds/actions/subscription';
 import { event } from 'shreds/constants';
 
 const WatchService = new Service({
   oninit() {
     this.regDispatcher(ShredsDispatcher, [
-      [event.FEED_SUBSCRIBED, this.feedSubscribed]
+      [event.FEED_SUBSCRIBED, this.feedSubscribed],
+      [event.OPML_UPLOADED,   this.opmlUploaded]
     ]);
 
     this.callbacks = {};
@@ -38,8 +40,20 @@ const WatchService = new Service({
 
   feedSubscribed(payload) {
     this.doWatch(payload.data.watch, (data) => {
+      SubscriptionActions.stopSubscribeSpinner();
       if (data.error) {
-        WatchActions.notifyError(data.error);
+        NotificationActions.error(data.error);
+        return;
+      }
+      NavigationActions.reloadNavigation(data);
+    });
+  },
+
+  opmlUploaded(payload) {
+    this.doWatch(payload.data.watch, (data) => {
+      SubscriptionActions.stopUploadSpinner();
+      if (data.error) {
+        NotificationActions.error(data.error);
         return;
       }
       NavigationActions.reloadNavigation(data);

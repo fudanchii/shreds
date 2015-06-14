@@ -30,6 +30,10 @@ const SubscriptionComponent = Component.extend({
       NavigationActions.navigate('/', 0, 0);
     });
 
+    this.on('import-opml', () => {
+      Decorator.do('selectFileThenUpload');
+    });
+
     this.observe('collapsed', (newValue, oldValue, keypath) => {
       newValue?
         Decorator.do('slideDownSubscriptionForm'):
@@ -40,6 +44,12 @@ const SubscriptionComponent = Component.extend({
       newValue?
         Decorator.do('startSubscribeSpinner'):
         Decorator.do('stopSubscribeSpinner');
+    });
+
+    this.observe('uploadSpinnerStarted', (newValue, oldValue, keypath) => {
+      newValue?
+        Decorator.do('startUploadSpinner'):
+        Decorator.do('stopUploadSpinner');
     });
   }
 });

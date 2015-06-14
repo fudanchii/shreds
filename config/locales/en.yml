@@ -41,3 +41,4 @@ en:
       mark_feed_as_read: "<strong>Feed</strong> couldn't be marked as read"
       toggle_read: "<strong>Item</strong> couldn't be changed"
       subscribe: "<strong>Feed</strong> couldn't be subscribed"
+      upload: "<strong>OPML</strong> couldn't be uploaded"
