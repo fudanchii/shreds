@@ -10,6 +10,5 @@ describe Shreds::Feed do
     it 'turns url with agnostic scheme to https scheme' do
       self_.to_valid_url('//ruby-lang.org').must_equal 'https://ruby-lang.org'
     end
-
   end
 end

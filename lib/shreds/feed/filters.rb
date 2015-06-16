@@ -21,10 +21,10 @@ module Shreds
           %w(content summary).each do |prop|
             fragment = Nokogiri::XML::DocumentFragment.parse entry.send(prop)
             nodes = fragment.children
-            while !nodes.empty?
+            until nodes.empty?
               nodes.each do |node|
                 if node.name.eql?('img') && node.attributes['src'] &&
-                  (!node.attributes['src'].value.urlish?)
+                   (!node.attributes['src'].value.urlish?)
                   node.attributes['src'].value = URI.join(permalink, node.attributes['src'].value).to_s
                 end
               end
