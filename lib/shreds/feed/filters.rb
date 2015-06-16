@@ -10,6 +10,7 @@ module Shreds
         # Run all filters against this entry,
         # entry is assumed to be an instance of Newsitem model
         def run(entry)
+          @fragments = nil
           @permalink = Shreds::Feed.to_valid_url entry.permalink
           %i(img_src_to_full_url remove_inline_style).each do |method|
             traverse_transform(entry) { |node| send method, node }
