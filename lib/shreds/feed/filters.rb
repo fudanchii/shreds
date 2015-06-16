@@ -1,6 +1,8 @@
 require 'nokogiri'
 require 'uri'
 
+require 'shreds/feed'
+
 module Shreds
   module Feed
     module Filters
@@ -13,15 +15,21 @@ module Shreds
           end
         end
 
-        # Turn image with relative path to its absolute path
+        # Turn image with relative path to its absolute URL
         def img_src_to_full_url(entry)
+          permalink = Shreds::Feed.to_valid_url entry.permalink
           %w(content summary).each do |prop|
             fragment = Nokogiri::XML::DocumentFragment.parse entry.send(prop)
-            fragment.traverse do |node|
-              if node.name.eql?('img') && (!node.attributes['src'].value.urlish?)
-                node.attributes['src'].value = URI.join(entry.permalink, node.attributes['src'].value).to_s
+            nodes = fragment.children
+            while !nodes.empty?
+              nodes.each do |node|
+                if node.name.eql?('img') && (!node.attributes['src'].value.urlish?)
+                  node.attributes['src'].value = URI.join(permalink, node.attributes['src'].value).to_s
+                end
               end
+              nodes = nodes.children
             end
+
             entry.send :"#{prop}=", fragment.to_s
           end
         end
