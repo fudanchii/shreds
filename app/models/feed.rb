@@ -71,8 +71,8 @@ class Feed < ActiveRecord::Base
   private
 
   def sanitize_url
-    url.strip!
-    url.prepend('http://') unless url.urlish?
+    self.url.strip!
+    self.url = Shreds::Feed.to_valid_url(self.url) unless self.url.urlish?
   end
 
   def self.by_param(url, feed_url)
