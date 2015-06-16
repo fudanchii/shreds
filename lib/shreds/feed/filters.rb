@@ -20,23 +20,28 @@ module Shreds
           permalink = Shreds::Feed.to_valid_url entry.permalink
           %w(content summary).each do |prop|
             fragment = Nokogiri::XML::DocumentFragment.parse entry.send(prop)
-            nodes = fragment.children
-            until nodes.empty?
-              nodes.each do |node|
-                if node.name.eql?('img') && node.attributes['src'] &&
-                   (!node.attributes['src'].value.urlish?)
-                  node.attributes['src'].value = URI.join(permalink, node.attributes['src'].value).to_s
-                end
+            traverse_transform(fragment) do |node|
+              if node.name.eql?('img') && node.attributes['src'] &&
+                 (!node.attributes['src'].value.urlish?)
+                node.attributes['src'].value = URI.join(permalink, node.attributes['src'].value).to_s
               end
-              nodes = nodes.children
             end
-
             entry.send :"#{prop}=", fragment.to_s
           end
         end
 
         def remove_inline_style(entry)
           entry
+        end
+
+        private
+
+        def traverse_transform(fragment, &block)
+          nodes = fragment.children
+          until nodes.empty?
+            nodes.each { |node| yield node }
+            nodes = nodes.children
+          end
         end
       end
     end
