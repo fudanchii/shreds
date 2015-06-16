@@ -63,7 +63,7 @@ class Newsitem < ActiveRecord::Base
   end
 
   def filter_content
-    Shreds::Feed::Filters.run self
+    Shreds::Feed::Filters.new.run self
   end
 end
 
