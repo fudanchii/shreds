@@ -1,3 +1,5 @@
+require 'shreds/feed/filters'
+
 class Newsitem < ActiveRecord::Base
   belongs_to :feed
   has_many :entries, dependent: :destroy
@@ -6,6 +8,8 @@ class Newsitem < ActiveRecord::Base
   scope :for_view, -> { order('published DESC, id DESC') }
 
   before_destroy :hash_permalink
+
+  before_create :filter_content
 
   def self.has?(link)
     ctlnk = link.dup
@@ -47,6 +51,10 @@ class Newsitem < ActiveRecord::Base
 
   def hash_permalink
     Itemhash.insert(permalink) if permalink.present? && unreads == 0
+  end
+
+  def filter_content
+    Shreds::Feed::Filters.run self
   end
 end
 

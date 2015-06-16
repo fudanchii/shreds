@@ -2,8 +2,13 @@ ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
+require 'feedjira'
+require 'nokogiri'
+
 require 'minitest/reporters'
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
+
+CWD = File.dirname __FILE__
 
 module ActiveSupport
   class TestCase
@@ -25,4 +30,13 @@ end
 
 def login(user)
   session[Shreds::Auth::USER_TOKEN] = user.token
+end
+
+def load_feed(name)
+  feed_content = File.read File.join(CWD, "fixtures/feeds", "#{name}.xml")
+  Feedjira::Feed.parse feed_content
+end
+
+def reparse(fragment)
+  Nokogiri::XML::DocumentFragment.parse(fragment).to_s
 end

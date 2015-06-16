@@ -10,6 +10,7 @@ class EntryNewsitems
   def execute
     return refine_feed_url if @feed.eql? 404
     return if @feed_record.up_to_date_with? @feed
+
     @feed.sanitize_entries!
     @feed.entries.each do |entry|
       entry_url = entry.url.presence ||
@@ -21,6 +22,7 @@ class EntryNewsitems
       # Create newsitem for this feed
       @feed_record.add_newsitem newsitem_params(entry, entry_url)
     end
+
     @feed_record.update_meta!(etag: @feed.etag, title: @feed.title, url: @feed.url)
   rescue ActiveRecord::RecordInvalid => err
     raise Shreds::InvalidFeed, err.message
