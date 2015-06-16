@@ -7,3 +7,4 @@ AllCops:
     - bin/*
     - db/**/*
     - vendor/**/*
+    - app/views/**/*

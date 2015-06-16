@@ -6,7 +6,7 @@ class CreateSubscription
   sidekiq_options retry: false
 
   def perform(uid, url, category)
-    if url.nil? or url.blank?
+    if url.to_s.blank?
       fail Shreds::InvalidFeed, I18n.t('feed.error.empty_url')
     end
     user = User.find uid

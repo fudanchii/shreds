@@ -30,3 +30,6 @@ Metrics/PerceivedComplexity:
 # Offense count: 39
 Style/Documentation:
   Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
