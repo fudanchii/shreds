@@ -1,5 +1,6 @@
 require 'uri'
 require 'feedbag'
+require 'shreds/feed'
 
 class Feed < ActiveRecord::Base
   has_many :subscriptions, dependent: :destroy
@@ -44,9 +45,11 @@ class Feed < ActiveRecord::Base
     update_attributes!(feed_url: feed_url)
   end
 
-  def add_newsitem(params)
+  def add_newsitem(entry)
+    entry_url = Shreds::Feed.entry_url entry
+    return if entry_url.to_s.blank? || Newsitem.has?(entry_url)
     transaction do
-      news = newsitems.build params
+      news = newsitems.build Newsitem.sanitize_field(entry, entry_url)
       news.save!
       subscriptions.each { |s| s.entries.build(newsitem: news).save! }
     end

@@ -33,8 +33,13 @@ def login(user)
 end
 
 def load_feed(name)
-  feed_content = File.read File.join(CWD, "fixtures/feeds", "#{name}.xml")
+  feed_content = File.read File.join(CWD, 'fixtures/feeds', "#{name}.xml")
   Feedjira::Feed.parse feed_content
+end
+
+def to_newsitem(entry)
+  entry_url = Shreds::Feed.entry_url entry
+  Newsitem.new Newsitem.sanitize_field(entry, entry_url)
 end
 
 def reparse(fragment)

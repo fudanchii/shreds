@@ -11,6 +11,15 @@ class Newsitem < ActiveRecord::Base
 
   before_create :filter_content
 
+  def self.sanitize_field(entry, permalink)
+    params = {}
+    %i(title published content author summary).each do |field|
+      params[field] = entry.send(field) if entry.respond_to? field
+    end
+    params[:permalink] = permalink
+    ActionController::Parameters.new(params).permit!
+  end
+
   def self.has?(link)
     ctlnk = link.dup
     links = [link.dup]
