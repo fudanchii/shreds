@@ -18,7 +18,7 @@ class CreateSubscription
     EventPool.add "create-#{jid}", error: I18n.t('user.not_found')
   rescue ActiveRecord::RecordNotUnique
     EventPool.add "create-#{jid}", error: I18n.t('feed.subscribed')
-  rescue Shreds::InvalidFeed => err
+  rescue => err
     EventPool.add "create-#{jid}", error: err.message
   end
 end
