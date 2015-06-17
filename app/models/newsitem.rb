@@ -11,12 +11,14 @@ class Newsitem < ActiveRecord::Base
 
   before_create :filter_content
 
-  def self.sanitize_field(entry, permalink)
+  before_save { permalink.strip! }
+
+  def self.sanitize_field(entry, url)
     params = {}
     %i(title published content author summary).each do |field|
       params[field] = entry.send(field) if entry.respond_to? field
     end
-    params[:permalink] = permalink
+    params[:permalink] = url.strip
     ActionController::Parameters.new(params).permit!
   end
 
