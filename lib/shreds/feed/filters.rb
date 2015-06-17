@@ -17,10 +17,8 @@ module Shreds
 
       # Turn image with relative path to its absolute URL
       def img_src_to_full_url(node)
-        if node.name.eql?('img') && node.attributes['src'] &&
-           (!node.attributes['src'].value.urlish?)
-          node.attributes['src'].value = URI.join(@permalink, node.attributes['src'].value).to_s
-        end
+        return unless valid_img?(node) && !node.attributes['src'].value.urlish?
+        node.attributes['src'].value = URI.join(@permalink, node.attributes['src'].value).to_s
       end
 
       def remove_inline_style(node)
@@ -29,14 +27,18 @@ module Shreds
 
       private
 
+      def valid_img?(node)
+        node.name.eql?('img') && node.attributes['src']
+      end
+
       def fragments(entry)
         @fragments ||= %w(content summary).map do |method|
           [Nokogiri::XML::DocumentFragment.parse(entry.send(method)),
-           method]
-        end
+           method] if entry.send(method).present?
+        end.compact
       end
 
-      def traverse_transform(entry, &block)
+      def traverse_transform(entry)
         fragments(entry).each do |fragment, property|
           nodes = fragment.children
           until nodes.empty?
