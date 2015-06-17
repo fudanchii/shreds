@@ -1,5 +1,3 @@
-require 'feedbag'
-
 class CreateSubscription
   include Sidekiq::Worker
 
