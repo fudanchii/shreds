@@ -13,12 +13,12 @@ class Newsitem < ActiveRecord::Base
 
   before_save { permalink.strip! }
 
-  def self.sanitize_field(entry, url)
+  def self.sanitize_field(entry)
     params = {}
     %i(title published content author summary).each do |field|
       params[field] = entry.send(field) if entry.respond_to? field
     end
-    params[:permalink] = url.strip
+    params[:permalink] = get_entry_url entry
     ActionController::Parameters.new(params).permit!
   end
 
@@ -55,6 +55,10 @@ class Newsitem < ActiveRecord::Base
   end
 
   private
+
+  def self.get_entry_url(entry)
+    entry.url.presence.strip || (entry.entry_id.strip if entry.entry_id.urlish?)
+  end
 
   def adj(comp)
     Newsitem.for_view.where(feed_id: feed_id).where(comp, pdate: published, id: id)

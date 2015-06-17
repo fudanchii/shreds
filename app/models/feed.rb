@@ -46,10 +46,10 @@ class Feed < ActiveRecord::Base
   end
 
   def add_newsitem(entry)
-    entry_url = Shreds::Feed.entry_url entry
-    return if entry_url.to_s.blank? || Newsitem.has?(entry_url)
+    nf = Newsitem.sanitize_field(entry)
+    return if nf[:permalink].to_s.blank? || Newsitem.has?(nf[:permalink])
     transaction do
-      news = newsitems.build Newsitem.sanitize_field(entry, entry_url)
+      news = newsitems.build nf
       news.save!
       subscriptions.each { |s| s.entries.build(newsitem: news).save! }
     end

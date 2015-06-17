@@ -38,8 +38,7 @@ def load_feed(name)
 end
 
 def to_newsitem(entry)
-  entry_url = Shreds::Feed.entry_url entry
-  Newsitem.new Newsitem.sanitize_field(entry, entry_url)
+  Newsitem.new Newsitem.sanitize_field(entry)
 end
 
 def reparse(fragment)
