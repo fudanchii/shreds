@@ -43,5 +43,5 @@ def to_newsitem(entry)
 end
 
 def reparse(fragment)
-  Nokogiri::XML::DocumentFragment.parse(fragment).to_s
+  Nokogiri::HTML::DocumentFragment.parse(fragment).to_s
 end
