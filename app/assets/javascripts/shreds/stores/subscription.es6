@@ -6,12 +6,13 @@ import { action, event } from 'shreds/constants';
 const SubscriptionStore = new Store({
   oninit() {
     this.regDispatcher(ShredsDispatcher, [
-      [action.COLLAPSE_SUBSCRIPTION_FORM, this.collapseForm],
-      [action.SUBSCRIBE_TO_FEED,          this.uncollapseForm],
-      [action.FAIL_NOTIFY,                this.failHandler],
-      [action.STOP_SUBSCRIBE_SPINNER,     this.feedSubscribed],
-      [action.START_UPLOAD_SPINNER,       this.startUploadSpinner],
-      [action.STOP_UPLOAD_SPINNER,        this.stopUploadSpinner]
+      [action.COLLAPSE_SUBSCRIPTION_FORM,   this.collapseForm],
+      [action.UNCOLLAPSE_SUBSCRIPTION_FORM, this.uncollapseForm],
+      [action.SUBSCRIBE_TO_FEED,            this.subscribeToFeed],
+      [action.FAIL_NOTIFY,                  this.failHandler],
+      [action.STOP_SUBSCRIBE_SPINNER,       this.feedSubscribed],
+      [action.START_UPLOAD_SPINNER,         this.startUploadSpinner],
+      [action.STOP_UPLOAD_SPINNER,          this.stopUploadSpinner]
     ]);
   },
 
@@ -20,9 +21,13 @@ const SubscriptionStore = new Store({
     this.emitChange();
   },
 
+  subscribeToFeed() {
+    this.set('spinnerStarted', true);
+    this.uncollapseForm();
+  },
+
   uncollapseForm() {
     this.set('collapsed', false);
-    this.set('spinnerStarted', true);
     this.emitChange();
   },
 

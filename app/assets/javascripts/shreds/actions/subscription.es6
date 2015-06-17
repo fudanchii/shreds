@@ -6,6 +6,10 @@ const SubscriptionActions = {
     ShredsDispatcher.dispatch({ type: action.COLLAPSE_SUBSCRIPTION_FORM });
   },
 
+  uncollapse() {
+    ShredsDispatcher.dispatch({ type: action.UNCOLLAPSE_SUBSCRIPTION_FORM });
+  },
+
   subscribe(form) {
     ShredsDispatcher.dispatch({
       type: action.SUBSCRIBE_TO_FEED,

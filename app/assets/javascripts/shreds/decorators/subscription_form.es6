@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import Decorator from 'framework/decorator';
 
-import SubscriptionStore from 'shreds/stores/subscription';
+import SubscriptionActions from 'shreds/actions/subscription';
 
 const $subscribeForm = $('#subscribe_form');
 
@@ -20,8 +20,7 @@ Decorator.add('slideUpSubscriptionForm', () => {
 
 $(document).on('mousedown', (ev) => {
   if (collapsed && amOut) {
-    SubscriptionStore.set('collapsed', false);
-    SubscriptionStore.emitChange('from decorators');
+    SubscriptionActions.uncollapse();
   }
 });
 
