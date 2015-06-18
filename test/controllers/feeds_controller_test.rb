@@ -76,9 +76,9 @@ describe FeedsController do
       assert_response :success
     end
 
-    it 'POST /i/upload_opml.json' do
+    it 'POST /i/upload_opml.json (no upload)' do
       post :create_from_opml, format: 'json'
-      assert_response :success
+      assert_response :unprocessable_entity
     end
   end
 end
