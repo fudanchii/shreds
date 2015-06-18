@@ -11,8 +11,8 @@ const RoutesService = new Router({
         r('page', { path: 'page/:page' });
         r('show', { path: ':feed_id' }, r => {
           r('page', { path: 'page/:page' });
+          r('newsitem', { path: ':id' });
         });
-        r('showNewsitem', { path: ':feed_id/:id' });
       });
     });
   }
