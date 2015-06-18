@@ -2,17 +2,15 @@ import agave from 'framework/helpers/agave';
 
 export default
 class Service {
-  constructor(obj) {
+  constructor(obj = {}) {
     this.dispatchTokens = {};
     this.respondToRoutes= [];
-    for (var keys in obj) {
-      if (obj[keys] instanceof Function) {
-        this[keys] = obj[keys].bind(this);
-        continue;
-      }
-      this[keys] = obj[keys];
-    }
-    if (this.oninit instanceof Function) {
+    obj.forEach((k, v) => {
+      if (kind(v) === 'Function') {
+        this[k] = v.bind(this);
+      } else this[k] = v;
+    });
+    if (kind(this.oninit) === 'Function') {
       this.oninit();
     }
   }
