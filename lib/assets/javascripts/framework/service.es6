@@ -21,9 +21,7 @@ class Service {
     return (payload) => {
       if (this.respondToRoutes.indexOf(payload.route.name) >= 0) {
         theFn.call(this, payload);
-        return;
       }
-      return;
     }
   }
 
