@@ -20,6 +20,7 @@ class FeedsController < ApplicationController
   # POST /feeds
   # POST /feeds.json
   def create
+    return error_response(I18n.t('feed.error.empty_url'), :unprocessable_entity) unless params[:feed][:url].present?
     jid = CreateSubscription.perform_async current_user.id,
                                            params[:feed][:url],
                                            params[:category][:name].presence
@@ -32,7 +33,7 @@ class FeedsController < ApplicationController
     jid = ProcessOPML.perform_async current_user.id, filename
     render json: { watch: "opml-#{jid}" }
   rescue OPML::UploadError => ex
-    render json: { error: ex.message.html_safe }
+    error_response ex.message.html_safe, :unprocessable_entity
   end
 
   # DELETE /feeds/1

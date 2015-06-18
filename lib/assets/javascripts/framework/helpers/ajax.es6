@@ -37,10 +37,10 @@ const req = {
       target_url = join(this.baseURI, url),
       ajax = $.ajax(target_url, opts);
     if (opts.failPayload) {
-      ajax.fail(() => {
+      ajax.fail((xhr, status, error) => {
         this.dispatcher.dispatch({
           type: opts.failAction || this.failAction,
-          failMsg: opts.failMsg || arguments[2] || 'Request Error.',
+          failMsg: xhr.responseJSON.error || opts.failMsg || error,
           data: opts.failPayload
         });
       });

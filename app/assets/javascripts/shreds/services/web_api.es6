@@ -69,7 +69,8 @@ const WebAPIService = new Service({
         data: new FormData(payload.form),
         processData: false,
         contentType: false,
-        failMsg: I18n.t('js.fail.subscribe')
+        failMsg: I18n.t('js.fail.subscribe'),
+        failPayload: payload
       })
       .done((data) => {
         WebAPIServiceActions.feedSubscribed(data);

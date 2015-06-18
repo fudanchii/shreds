@@ -4,9 +4,6 @@ class CreateSubscription
   sidekiq_options retry: false
 
   def perform(uid, url, category)
-    if url.to_s.blank?
-      fail Shreds::InvalidFeed, I18n.t('feed.error.empty_url')
-    end
     user = User.find uid
     subscription = user.subscriptions.build feed: Feed.safe_create(url),
                                             category: Category.safe_create(category)
