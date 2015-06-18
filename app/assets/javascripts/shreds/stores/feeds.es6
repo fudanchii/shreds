@@ -14,14 +14,12 @@ const FeedsStore = new Store({
       [event.FEED_MARKED_AS_READ, this.feedMarkedAsRead]
     ]);
 
-    this.__data = { feeds: [] };
+    this.set('feeds', []);
   },
 
   feedMarkedAsRead(payload) {
-    const
-      f = payload.data.feed,
-      feeds = this.__data.feeds;
-    let feed = feeds.findItem(item => item.id === f.id);
+    const f = payload.data.feed;
+    let feed = this.get('feeds').findItem(item => item.id === f.id);
     if (feed) {
       feed.newsitems.forEach(newsitem => {
         newsitem.unread = false;
@@ -31,10 +29,8 @@ const FeedsStore = new Store({
   },
 
   itemMarkedAsRead(payload) {
-    const
-      f = payload.data.feed,
-      feeds = this.__data.feeds;
-    let feed = feeds.findItem(item => item.id === f.id);
+    const f = payload.data.feed;
+    let feed = this.get('feeds').findItem(item => item.id === f.id);
     if (feed) {
       let newsitem = feed.newsitems.findItem(item => item.id === f.nid);
       if (newsitem) {

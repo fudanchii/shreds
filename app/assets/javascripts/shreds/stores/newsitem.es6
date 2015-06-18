@@ -15,13 +15,13 @@ const NavigationStore = new Store({
   },
 
   itemMarkedAsRead(payload) {
-    this.__data.unread = !this.__data.unread;
+    this.set('unread', !this.get('unread'));
     this.emitChange();
   },
 
   feedMarkedAsRead(payload) {
-    if (payload.data.feed.id === this.__data.fid) {
-      this.__data.unread = false;
+    if (payload.data.feed.id === this.get('fid')) {
+      this.set('unread', false);
       this.emitChange();
     }
   },
