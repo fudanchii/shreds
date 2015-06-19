@@ -2,7 +2,7 @@ require 'shreds/authentication'
 
 class ApplicationController < ActionController::Base
   include Shreds::Auth
-  protect_from_forgery
+  protect_from_forgery with: :exception
 
   rescue_from ActiveRecord::RecordNotFound, with: :feed_not_found
 
