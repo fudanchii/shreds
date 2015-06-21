@@ -38,9 +38,10 @@ const req = {
       ajax = $.ajax(target_url, opts);
     if (opts.failPayload) {
       ajax.fail((xhr, status, error) => {
+        const errorMsg = xhr.responseJSON && xhr.responseJSON.error;
         this.dispatcher.dispatch({
           type: opts.failAction || this.failAction,
-          failMsg: xhr.responseJSON.error || opts.failMsg || error,
+          failMsg: errorMsg || opts.failMsg || error,
           data: opts.failPayload
         });
       });
