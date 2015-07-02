@@ -58,7 +58,6 @@ gem 'omniauth-twitter'
 
 # caching
 gem 'dalli'
-gem 'cache_digests'
 
 # Feed fetching
 gem 'feedjira', require: false
