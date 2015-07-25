@@ -55,7 +55,7 @@ const WebAPIService = new Service({
   markItemAsRead(payload) {
     req
       .patch(join('/feeds', payload.fid, payload.nid, '/toggle_read.json'), {
-        failMsg:I18n.t('js.fail.toggle_read'),
+        failMsg: I18n.t('js.fail.toggle_read'),
         failPayload: payload
       })
       .done((data) => {

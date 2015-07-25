@@ -10,7 +10,7 @@ namespace :feed do
   task filter: :environment do
     require 'shreds/feed/filters'
     Newsitem.find_each do |n|
-      Shreds::Feed::Filters.new.run n
+      Shreds::Feed::Filters.apply n
       n.save!
       puts "#{n.permalink} filtered..."
     end
