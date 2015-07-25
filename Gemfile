@@ -39,7 +39,7 @@ gem 'simple_form', github: 'plataformatec/simple_form'
 # end of 3.
 
 ### 4. Middleware and server related gems
-gem 'puma', platforms: [:mri, :jruby, :rbx]
+gem 'passenger', platforms: [:mri, :jruby, :rbx]
 gem 'thin', platforms: [:mswin, :mingw]
 # end of 4.
 
