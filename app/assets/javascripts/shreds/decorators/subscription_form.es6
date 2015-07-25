@@ -10,6 +10,7 @@ let collapsed = false,
 
 Decorator.add('slideDownSubscriptionForm', () => {
   $('#subscribeInput').slideDown();
+  $('#feed_url').focus();
   collapsed = true;
 });
 

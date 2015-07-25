@@ -22,6 +22,8 @@ const SubscriptionComponent = Component.extend({
         SubscriptionActions.collapse();
       } else {
         SubscriptionActions.subscribe(this.find('#new_feed'));
+        this.find('#feed_url').value = '';
+        this.find('#category_name').value = '';
       }
       return false;
     });
