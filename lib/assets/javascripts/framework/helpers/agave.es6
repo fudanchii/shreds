@@ -116,17 +116,18 @@ const enable = function(prefix) {
     var originalFunction = this;
     return function() {
       var context = this;
+      var args = arguments;
       var delayedFunction = function() {
         timeoutID = null;
         if ( ! immediate ) {
-          originalFunction.apply(context, arguments);
+          originalFunction.apply(context, args);
         }
       };
       var callNow = immediate && ! timeoutID;
       clearTimeout(timeoutID);
       timeoutID = setTimeout(delayedFunction, wait);
       if (callNow) {
-        originalFunction.apply(context, arguments);
+        originalFunction.apply(context, args);
       }
     };
   };
