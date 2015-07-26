@@ -23,6 +23,7 @@ module Shreds
           node.attributes['src'].value = URI.join(@permalink, node.attributes['src'].value).to_s
         end
 
+        # TODO: specify inline styles to be nuked
         def remove_inline_style(node)
           node
         end
