@@ -1,30 +1,29 @@
-import agave from 'framework/helpers/agave';
 
 export default
 class Service {
   constructor(obj = {}) {
     this.dispatchTokens = {};
     this.respondToRoutes= [];
-    obj.forEach((k, v) => {
-      if (kind(v) === 'Function') {
+    _.each(obj, (v, k) => {
+      if (_.isFunction(v)) {
         this[k] = v.bind(this);
       } else this[k] = v;
     });
-    if (kind(this.oninit) === 'Function') {
+    if (_.isFunction(this.oninit)) {
       this.oninit();
     }
   }
 
   routeHandler(theFn) {
     return (payload) => {
-      if (this.respondToRoutes.indexOf(payload.route.name) >= 0) {
+      if (_.includes(this.respondToRoutes, payload.route.name)) {
         theFn.call(this, payload);
       }
     }
   }
 
   regDispatcher(dispatcher, entries) {
-    entries.forEach((entry) => {
+    _.each(entries, (entry) => {
       this.dispatchTokens[entry[0]] = dispatcher.register.apply(dispatcher, entry);
     });
   }

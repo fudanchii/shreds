@@ -3,7 +3,7 @@ const actionRegistry = {};
 
 const Decorator = {
   do(name, ...args) {
-    if (kind(actionRegistry[name]) === 'Function') {
+    if (_.isFunction(actionRegistry[name])) {
       actionRegistry[name].apply(null, args);
     }
   },

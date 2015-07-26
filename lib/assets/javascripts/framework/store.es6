@@ -40,7 +40,7 @@ class Store extends Service {
 
   refresh(data) {
     for (var key in this.__data) {
-      if (kind(this.__data[key]) === 'Function') {
+      if (_.isFunction(this.__data[key])) {
         continue;
       }
       delete this.__data[key];

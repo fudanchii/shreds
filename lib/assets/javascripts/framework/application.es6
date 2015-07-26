@@ -23,7 +23,7 @@ export default class Application {
     Component.prototype.parent = this.main.Instance;
     for (var name in Component.components) {
       this.components[name] = { Class: Component.components[name] };
-      if (this.options.prerender.includes(name)) {
+      if (_.includes(this.options.prerender, name)) {
         this.components[name].Instance = new this.components[name].Class();
       }
     }

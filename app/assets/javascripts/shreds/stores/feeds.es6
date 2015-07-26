@@ -19,7 +19,7 @@ const FeedsStore = new Store({
 
   feedMarkedAsRead(payload) {
     const f = payload.data.feed;
-    let feed = this.get('feeds').findItem(item => item.id === f.id);
+    let feed = _.find(this.get('feeds'), item => item.id === f.id);
     if (feed) {
       feed.newsitems.forEach(newsitem => {
         newsitem.unread = false;
@@ -30,9 +30,9 @@ const FeedsStore = new Store({
 
   itemMarkedAsRead(payload) {
     const f = payload.data.feed;
-    let feed = this.get('feeds').findItem(item => item.id === f.id);
+    let feed = _.find(this.get('feeds'), item => item.id === f.id);
     if (feed) {
-      let newsitem = feed.newsitems.findItem(item => item.id === f.nid);
+      let newsitem = _find(feed.newsitems, item => item.id === f.nid);
       if (newsitem) {
         newsitem.unread = !newsitem.unread;
       }

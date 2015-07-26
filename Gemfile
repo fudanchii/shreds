@@ -98,6 +98,7 @@ group :development do
 end
 
 source 'https://rails-assets.org' do
+  gem 'rails-assets-lodash'
   gem 'rails-assets-history.js'
   gem 'rails-assets-jquery'
   gem 'rails-assets-jquery-file-upload'

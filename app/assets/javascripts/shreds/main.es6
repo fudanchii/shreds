@@ -14,7 +14,7 @@ const ShredsAppView = Component.extend({
   oninit() {
     ShredsAppStore.addChangeListener((ev, payload) => {
       this.fadeOut().then(() => {
-        if (payload.meta && kind(payload.meta.callable) === 'Function') {
+        if (payload.meta && _.isFunction(payload.meta.callable)) {
           payload.meta.callable();
         }
         this.assign(payload.data);

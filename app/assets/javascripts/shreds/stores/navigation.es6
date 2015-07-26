@@ -25,8 +25,8 @@ const NavigationStore = new Store({
 
   formatEntriesPubDate() {
     const categories = this.get('categories') || {};
-    categories.forEach((k, category) => {
-      category.feeds.forEach((k, feed) => {
+    _.each(categories, (category, k) => {
+      _.each(category.feeds, (feed, k) => {
         feed.momentFmtEntryPubDate = moment(feed.latestEntryPubDate).fromNow(true);
       });
     });
@@ -45,8 +45,8 @@ const NavigationStore = new Store({
       const selectedFeed = this.getFeed(selected.cid, selected.fid);
       selectedFeed.active = '';
     } else {
-      this.get('categories').forEach((k, category) => {
-        category.feeds.forEach((k, feed) => { feed.active = ''; });
+      _.each(this.get('categories'), (category, k) => {
+        _.each(category.feeds, (feed, k) => { feed.active = ''; });
       });
     }
     if (payload.cid && payload.fid) {
@@ -59,7 +59,7 @@ const NavigationStore = new Store({
   },
 
   markFeedAsRead(payload) {
-    if (kind(this.get('__favicons')) === 'undefined') {
+    if (_.isUndefined(this.get('__favicons'))) {
       this.set('__favicons', {});
     }
     const

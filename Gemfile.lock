@@ -293,7 +293,8 @@ GEM
       rails-assets-jquery (>= 1.6)
     rails-assets-ladda (0.9.8)
       rails-assets-spin.js (~> 2.0.2)
-    rails-assets-moment (2.10.3)
+    rails-assets-lodash (3.10.0)
+    rails-assets-moment (2.10.5)
     rails-assets-nprogress (0.2.0)
     rails-assets-ractive (0.7.3)
     rails-assets-scrollup (2.4.1)
@@ -420,6 +421,7 @@ DEPENDENCIES
   rails-assets-jquery!
   rails-assets-jquery-file-upload!
   rails-assets-ladda!
+  rails-assets-lodash!
   rails-assets-moment!
   rails-assets-nprogress!
   rails-assets-ractive!

@@ -52,7 +52,7 @@ Object.assign(Component, {
 Object.assign(Component.prototype, {
   assign(object) {
     for (var k in object) {
-      if (kind(object[k]) === 'Function') {
+      if (_.isFunction(object[k])) {
         continue;
       }
       this.set(k, object[k]);

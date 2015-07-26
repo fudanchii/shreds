@@ -20,7 +20,7 @@ const req = {
   },
 
   prefilter(filters) {
-    if (filters instanceof Array && filters.length) {
+    if (_.isArray(filters) && filters.length) {
       $.ajaxPrefilter((opts, oriOpts, xhr) => {
         filters.forEach((func) => {
           func(opts, oriOpts, xhr);

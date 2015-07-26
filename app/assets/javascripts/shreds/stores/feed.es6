@@ -30,7 +30,7 @@ const FeedStore = new Store({
 
   itemMarkedAsRead(payload) {
     const f = payload.data.feed;
-    let newsitem = this.get('newsitems').findItem(item => item.id === f.nid);
+    let newsitem = _.find(this.get('newsitems'), item => item.id === f.nid);
     if (newsitem) {
       newsitem.unread = !newsitem.unread;
     }

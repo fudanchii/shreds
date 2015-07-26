@@ -13,14 +13,14 @@ Decorator.add('slideDownSubscriptionForm', () => {
   $('#subscribeInput').slideDown();
   $('#feed_url').focus();
   collapsed = true;
-  $document.on('mouseover', (ev) => {
+  $document.on('mouseover', _.throttle(ev => {
     amOut = false;
     if (collapsed && ($subscribeForm.find(ev.target).length === 0)) {
       amOut = true;
     }
-  }.throttle(250));
+  }, 250));
 
-  $document.on('mousedown', (ev) => {
+  $document.on('mousedown', ev => {
     if (collapsed && amOut) {
       SubscriptionActions.uncollapse();
     }

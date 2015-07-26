@@ -22,14 +22,14 @@ const WatchService = new Service({
   doWatch(key, fn) {
     if (key) {
       this.list.push(key);
-      if (kind(fn) === 'Function') { this.callbacks[key] = fn; }
+      if (_.isFunction(fn)) { this.callbacks[key] = fn; }
     }
     if (this.list.length === 0) { return; }
     WebAPIService.watchEvents(this.list)
       .fail(() => { setTimeout(this.doWatch, 2000); })
       .done((data) => {
-        data.forEach((k, v) => {
-          if (kind(this.callbacks[k]) === 'Function') {
+        _.each(data, (v, k) => {
+          if (_.isFunction(this.callbacks[k])) {
             this.callbacks[k](v);
             delete this.callbacks[k];
           }
