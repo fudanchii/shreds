@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/amatsuda/kaminari.git
-  revision: 61e387251bf37527b26b6554a96e66914fef72af
+  revision: 4b2121e7507d6760d35e5bfa8d2c716c95767af4
   specs:
     kaminari (1.0.0.alpha)
       actionpack (>= 3.0.0)
@@ -17,14 +17,14 @@ GIT
 
 GIT
   remote: git://github.com/mhfs/sidekiq-failures.git
-  revision: 8614658cc152888a7e08c965e4ccd22cf6fbe638
+  revision: cd2785f0877add69bd11d40e1cac7f885b886b4c
   specs:
-    sidekiq-failures (0.4.4)
+    sidekiq-failures (0.4.5)
       sidekiq (>= 2.16.0)
 
 GIT
   remote: git://github.com/plataformatec/simple_form.git
-  revision: 43dccaf1cc941b78337577fd4c154594b86f8635
+  revision: cdc1718b6a0ae2aa684a53108ecaa958b2f49bce
   specs:
     simple_form (3.1.0)
       actionpack (~> 4.0)
@@ -92,8 +92,8 @@ GEM
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
     ansi (1.5.0)
-    arel (6.0.0)
-    autoprefixer-rails (5.2.1)
+    arel (6.0.2)
+    autoprefixer-rails (5.2.1.1)
       execjs
       json
     babel-source (4.6.6)
@@ -110,17 +110,57 @@ GEM
     bootstrap-sass (3.2.0.2)
       sass (~> 3.2)
     builder (3.2.2)
-    celluloid (0.16.0)
+    celluloid (0.17.0)
+      bundler
+      celluloid-essentials
+      celluloid-extras
+      celluloid-fsm
+      celluloid-pool
+      celluloid-supervision
+      dotenv
+      nenv
+      rspec-logsplit (>= 0.1.2)
+      timers (~> 4.0.0)
+    celluloid-essentials (0.20.1.1)
+      bundler
+      dotenv
+      nenv
+      rspec-logsplit (>= 0.1.2)
+      timers (~> 4.0.0)
+    celluloid-extras (0.20.0)
+      bundler
+      dotenv
+      nenv
+      rspec-logsplit (>= 0.1.2)
+      timers (~> 4.0.0)
+    celluloid-fsm (0.20.0)
+      bundler
+      dotenv
+      nenv
+      rspec-logsplit (>= 0.1.2)
+      timers (~> 4.0.0)
+    celluloid-pool (0.20.0)
+      bundler
+      dotenv
+      nenv
+      rspec-logsplit (>= 0.1.2)
+      timers (~> 4.0.0)
+    celluloid-supervision (0.20.0)
+      bundler
+      dotenv
+      nenv
+      rspec-logsplit (>= 0.1.2)
       timers (~> 4.0.0)
     coderay (1.1.0)
     connection_pool (2.2.0)
     dalli (2.7.4)
     debug_inspector (0.0.2)
+    dotenv (2.0.2)
     erubis (2.7.0)
     execjs (2.5.2)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
-    faraday_middleware (0.9.1)
+    faraday_middleware (0.10.0)
       faraday (>= 0.7.4, < 0.10)
     fast_stack (0.1.0)
       rake
@@ -140,7 +180,7 @@ GEM
     formatador (0.2.5)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
-    guard (2.12.7)
+    guard (2.12.9)
       formatador (>= 0.2.4)
       listen (>= 2.7, <= 4.0)
       lumberjack (~> 1.0)
@@ -164,7 +204,7 @@ GEM
     i18n-js (3.0.0.rc11)
       i18n (~> 0.6)
     ice_cube (0.11.1)
-    jbuilder (2.3.0)
+    jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     json (1.8.3)
@@ -172,7 +212,7 @@ GEM
       kaminari (>= 0.13.0)
       rails
     libv8 (3.16.14.11)
-    listen (3.0.1)
+    listen (3.0.3)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
     loofah (2.0.2)
@@ -184,7 +224,7 @@ GEM
     mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (5.7.0)
-    minitest-reporters (1.0.17)
+    minitest-reporters (1.0.19)
       ansi
       builder
       minitest (>= 5.0)
@@ -193,7 +233,7 @@ GEM
       minitest (~> 5.0)
       rails (~> 4.1)
     minitest-stub_any_instance (1.0.1)
-    multi_json (1.11.1)
+    multi_json (1.11.2)
     multipart-post (2.0.0)
     nenv (0.2.0)
     nokogiri (1.6.6.2)
@@ -202,7 +242,7 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     oauth (0.4.7)
-    oj (2.12.9)
+    oj (2.12.10)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
@@ -224,7 +264,7 @@ GEM
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
-    rack-mini-profiler (0.9.3)
+    rack-mini-profiler (0.9.6)
       rack (>= 1.1.3)
     rack-protection (1.5.3)
       rack
@@ -241,12 +281,12 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.3)
       sprockets-rails
-    rails-assets-blueimp-canvas-to-blob (2.1.1)
-    rails-assets-blueimp-load-image (1.13.0)
-    rails-assets-blueimp-tmpl (2.5.4)
+    rails-assets-blueimp-canvas-to-blob (2.2.0)
+    rails-assets-blueimp-load-image (1.13.1)
+    rails-assets-blueimp-tmpl (2.5.5)
     rails-assets-history.js (1.8.0)
     rails-assets-jquery (2.1.4)
-    rails-assets-jquery-file-upload (9.10.4)
+    rails-assets-jquery-file-upload (9.10.5)
       rails-assets-blueimp-canvas-to-blob (>= 2.1.1)
       rails-assets-blueimp-load-image (>= 1.13.0)
       rails-assets-blueimp-tmpl (>= 2.5.4)
@@ -281,9 +321,10 @@ GEM
     redis (3.2.1)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
-    ref (1.0.5)
+    ref (2.0.0)
+    rspec-logsplit (0.1.3)
     ruby-progressbar (1.7.5)
-    sass (3.4.15)
+    sass (3.4.16)
     sass-rails (5.0.3)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
@@ -292,8 +333,8 @@ GEM
       tilt (~> 1.1)
     sax-machine (1.3.2)
     shellany (0.0.1)
-    sidekiq (3.4.1)
-      celluloid (~> 0.16.0)
+    sidekiq (3.4.0)
+      celluloid (>= 0.16.0)
       connection_pool (>= 2.1.1)
       json
       redis (>= 3.0.6)
@@ -308,7 +349,7 @@ GEM
     slop (3.6.0)
     sprockets (3.2.0)
       rack (~> 1.0)
-    sprockets-es6 (0.6.2)
+    sprockets-es6 (0.7.0)
       babel-transpiler
       sprockets (>= 3.0.0)
     sprockets-rails (2.3.2)
