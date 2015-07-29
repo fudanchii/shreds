@@ -15,25 +15,36 @@ describe('framework/router', function () {
 
   before(function () {
     router = new Router();
+    router.map(function (r) {
+      r('a');
+      r('b', { path: '/bucks' });
+      r('c', { path: '/c/:id' });
+      r('d', { path: '/' }, function (r) {
+        r({ path: 'e' });
+      });
+      r('f', function (r) {
+        r('g');
+        r('h', { path: 'heyya' }, function (r) {
+          r('i', { path: ':h_id' });
+        });
+      });
+    });
     router.dispatcher = mockDispatcher;
   });
 
   it('can add static route', function () {
-    router.addRoute('a');
     router.navigate('/a');
     expect(msg).to.be.an('object');
     expect(msg.path).to.equal('/a');
   });
 
   it('can can add static route with custom path', function () {
-    router.addRoute('b', { path: '/bucks' });
     router.navigate('/bucks');
     expect(msg.path).to.equal('/bucks');
     expect(msg.name).to.equal('b');
   });
 
   it('can add route with params', function () {
-    router.addRoute('c', { path: '/c/:id' });
     router.navigate('/c/1234');
     expect(msg.path).to.equal('/c/1234');
     expect(msg.name).to.equal('c');
@@ -42,9 +53,6 @@ describe('framework/router', function () {
   });
 
   it('can add nested routes', function () {
-    router.addRoute('d', { path: '/' }, function (r) {
-      r({ path: 'e' });
-    });
     router.navigate('/');
     expect(msg.path).to.equal('/');
     expect(msg.name).to.equal('d');
@@ -54,12 +62,6 @@ describe('framework/router', function () {
   });
 
   it('should have concatenated name for named nested routes', function () {
-    router.addRoute('f', function (r) {
-      r('g');
-      r('h', { path: 'heyya' }, function (r) {
-        r('i', { path: ':h_id' });
-      });
-    });
     router.navigate('/f');
     expect(msg.path).to.equal('/f');
     expect(msg.name).to.equal('f');
