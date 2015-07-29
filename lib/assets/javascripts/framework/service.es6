@@ -4,8 +4,10 @@ class Service {
   constructor(obj = {}) {
     this.dispatchTokens = {};
     this.respondToRoutes= [];
+    this._super = {};
     _.each(obj, (v, k) => {
       if (_.isFunction(v)) {
+        this[k] && (this._super[k] = this[k].bind(this));
         this[k] = v.bind(this);
       } else this[k] = v;
     });

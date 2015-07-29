@@ -10,18 +10,18 @@ const anchor_selector = 'a[href^=\\/]:not([target=_blank])';
 export default
 class Router extends Service {
   constructor(opts) {
-    this.staticRouteMap = {};
-    this.varsRouteMap = {};
+    super(opts);
     History.Adapter.bind(window, 'statechange', this.dispatch.bind(this));
     $(document).on('click', anchor_selector, ev => {
       ev.preventDefault();
       ev.stopPropagation();
       this.navigate($(ev.currentTarget).attr('href'));
     });
-    super(opts);
   }
 
   map(fn) {
+    this.staticRouteMap || (this.staticRouteMap = {});
+    this.varsRouteMap || (this.varsRouteMap = {});
     fn.call(this, this.addRoute.bind(this));
   }
 

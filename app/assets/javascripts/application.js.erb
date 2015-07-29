@@ -3,8 +3,9 @@
 # Use local copy of jquery for development.
 # see also: /app/views/layouts/application.html.erb
 if Rails.env.development?
-  require_asset("jquery/jquery")
   require_asset("lodash/lodash")
+  require_asset("jquery/jquery")
+  require_asset("core.js/core.js")
 end
 
 # Our dependencies and load priority sorted in this file.

@@ -96,7 +96,7 @@ GEM
     autoprefixer-rails (5.2.1.1)
       execjs
       json
-    babel-source (4.6.6)
+    babel-source (5.8.12)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
@@ -180,7 +180,7 @@ GEM
     formatador (0.2.5)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
-    guard (2.12.9)
+    guard (2.13.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, <= 4.0)
       lumberjack (~> 1.0)
@@ -238,7 +238,7 @@ GEM
     nenv (0.2.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
-    notiffany (0.0.6)
+    notiffany (0.0.7)
       nenv (~> 0.1)
       shellany (~> 0.0)
     oauth (0.4.7)
@@ -294,12 +294,13 @@ GEM
     rails-assets-ladda (0.9.8)
       rails-assets-spin.js (~> 2.0.2)
     rails-assets-lodash (3.10.0)
-    rails-assets-moment (2.10.5)
+    rails-assets-moment (2.10.6)
     rails-assets-nprogress (0.2.0)
     rails-assets-ractive (0.7.3)
     rails-assets-scrollup (2.4.1)
       rails-assets-jquery (>= 1.11.0)
     rails-assets-spin.js (2.0.2)
+    rails-assets-zloirock--core-js (1.0.0)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.6)
@@ -384,7 +385,6 @@ PLATFORMS
 DEPENDENCIES
   annotate
   autoprefixer-rails
-  babel-source (~> 4.6.0)
   bcrypt
   better_errors (>= 0.3.2)
   binding_of_caller (>= 0.6.8)
@@ -426,6 +426,7 @@ DEPENDENCIES
   rails-assets-nprogress!
   rails-assets-ractive!
   rails-assets-scrollup!
+  rails-assets-zloirock--core-js!
   redis
   sass-rails (~> 5.0.0)
   sidekiq

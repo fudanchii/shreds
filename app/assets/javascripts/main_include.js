@@ -23,10 +23,8 @@
 //= require history.js/history.html4
 //= require history.js/history.adapter.jquery
 
-//= require babel-runtime/core-js
 //= require es6-runtime_poormanshack
-//= require babel-runtime/helpers
-
+//= require babel-helpers
 //= require_tree ./shreds/templates
 //= require framework
 

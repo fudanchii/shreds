@@ -6,9 +6,9 @@ import { event } from 'framework/helpers/constants';
 export default
 class Store extends Service {
   constructor(opts) {
+    super(opts);
     this.sandbox = $({});
     this.__data = {};
-    super(opts);
   }
 
   addChangeListener(callback) {
@@ -35,6 +35,7 @@ class Store extends Service {
   }
 
   set(key, value) {
+    this.__data || (this.__data = {});
     this.__data[key] = value;
   }
 

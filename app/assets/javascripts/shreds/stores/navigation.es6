@@ -20,7 +20,7 @@ const NavigationStore = new Store({
 
   emitChange() {
     this.formatEntriesPubDate();
-    super.emitChange();
+    this._super.emitChange();
   },
 
   formatEntriesPubDate() {

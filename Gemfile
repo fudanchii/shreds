@@ -15,7 +15,6 @@ gem 'jbuilder'
 gem 'therubyracer'
 gem 'uglifier'
 gem 'sprockets', '>= 3.0.0.beta'
-gem 'babel-source', '~> 4.6.0'
 gem 'sprockets-es6', '>= 0.6.0'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'sass-rails', '~> 5.0.0'
@@ -107,4 +106,5 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-nprogress'
   gem 'rails-assets-ractive'
   gem 'rails-assets-moment'
+  gem 'rails-assets-zloirock--core-js'
 end
