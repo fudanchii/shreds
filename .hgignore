@@ -7,4 +7,6 @@ syntax: regexp
 ^.rvmrc
 ^.ruby-version
 ^.ruby-gemset
+\.pid$
+\.pid\.lock$
 ^db/.+\.sqlite3$
