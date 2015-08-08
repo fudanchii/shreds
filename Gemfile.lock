@@ -107,8 +107,6 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.2.0.2)
-      sass (~> 3.2)
     builder (3.2.2)
     celluloid (0.17.0)
       bundler
@@ -192,11 +190,6 @@ GEM
     guard-teaspoon (0.8.0)
       guard (~> 2.2)
       teaspoon (>= 0.8.0)
-    handlebars_assets (0.20.2)
-      execjs (~> 2.0)
-      multi_json (~> 1.0)
-      sprockets (>= 2.0.0, < 4.0)
-      tilt (~> 1.2)
     hashie (3.4.2)
     hiredis (0.6.0)
     hitimes (1.2.2)
@@ -208,9 +201,6 @@ GEM
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     json (1.8.3)
-    kaminari-bootstrap (3.0.1)
-      kaminari (>= 0.13.0)
-      rails
     libv8 (3.16.14.11)
     listen (3.0.3)
       rb-fsevent (>= 0.9.3)
@@ -286,7 +276,7 @@ GEM
     rails-assets-blueimp-tmpl (2.5.5)
     rails-assets-history.js (1.8.0)
     rails-assets-jquery (2.1.4)
-    rails-assets-jquery-file-upload (9.10.6)
+    rails-assets-jquery-file-upload (9.10.7)
       rails-assets-blueimp-canvas-to-blob (>= 2.1.1)
       rails-assets-blueimp-load-image (>= 1.13.0)
       rails-assets-blueimp-tmpl (>= 2.5.4)
@@ -299,6 +289,8 @@ GEM
     rails-assets-ractive (0.7.3)
     rails-assets-scrollup (2.4.1)
       rails-assets-jquery (>= 1.11.0)
+    rails-assets-semantic-ui (2.0.7)
+      rails-assets-jquery (>= 1.8)
     rails-assets-spin.js (2.0.2)
     rails-assets-zloirock--core-js (1.0.1)
     rails-deprecated_sanitizer (1.0.3)
@@ -388,7 +380,6 @@ DEPENDENCIES
   bcrypt
   better_errors (>= 0.3.2)
   binding_of_caller (>= 0.6.8)
-  bootstrap-sass (~> 3.2.0)
   connection_pool
   dalli
   feedbag!
@@ -398,12 +389,10 @@ DEPENDENCIES
   foreman
   guard
   guard-teaspoon
-  handlebars_assets
   hiredis
   i18n-js (>= 3.0.0.rc8)
   jbuilder
   kaminari!
-  kaminari-bootstrap (~> 3.0.1)
   minitest
   minitest-reporters
   minitest-spec-rails
@@ -426,6 +415,7 @@ DEPENDENCIES
   rails-assets-nprogress!
   rails-assets-ractive!
   rails-assets-scrollup!
+  rails-assets-semantic-ui!
   rails-assets-zloirock--core-js!
   redis
   sass-rails (~> 5.0.0)

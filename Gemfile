@@ -16,11 +16,9 @@ gem 'therubyracer'
 gem 'uglifier'
 gem 'sprockets', '>= 3.0.0.beta'
 gem 'sprockets-es6', '>= 0.6.0'
-gem 'bootstrap-sass', '~> 3.2.0'
 gem 'sass-rails', '~> 5.0.0'
 gem 'autoprefixer-rails'
 gem 'ractive_assets', github: 'unity/ractive_assets'
-gem 'handlebars_assets'
 gem 'i18n-js', '>= 3.0.0.rc8'
 # end of 2.
 
@@ -32,7 +30,6 @@ group :development do
 end
 
 gem 'kaminari', github: 'amatsuda/kaminari'
-gem 'kaminari-bootstrap', '~> 3.0.1'
 gem 'figaro'
 gem 'simple_form', github: 'plataformatec/simple_form'
 # end of 3.
@@ -56,7 +53,7 @@ gem 'omniauth-twitter'
 # end of 6.
 
 # caching
-gem 'dalli'
+gem 'dalli', require: false
 
 # Feed fetching
 gem 'feedjira', require: false
@@ -107,4 +104,5 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-ractive'
   gem 'rails-assets-moment'
   gem 'rails-assets-zloirock--core-js'
+  gem 'rails-assets-semantic-ui'
 end
