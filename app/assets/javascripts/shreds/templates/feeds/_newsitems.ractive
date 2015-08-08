@@ -1,18 +1,18 @@
 {{#each newsitems}}
-<div class="panel panel-default widget widget-transparent feed">
+<div class="ui vertical segment">
     <div class="panel-heading">
       <h3>
       <a href="javascript:void(0)" on-mousedown="mark-as-read:{{../../id}},{{id}}">
-      <span class="glyphicon {{unreadIcon(unread)}} glyph-sm" data-toggle="tooltip" title="Set {{unreadLabel(unread)}}"></span>
+      <i class="{{unreadIcon(unread)}} small icon" data-toggle="tooltip" title="Set {{unreadLabel(unread)}}"></i>
       </a>
       <a href="{{path}}" on-mousedown="navigate:{{path}},{{cid}},{{../../id}}">{{{title}}}</a>
-      <a href="{{url}}" target="_blank"><span class="glyphicon glyphicon-new-window glyph-sm" data-toggle="tooltip" title="Go to {{url}}"></span></a>
+      <a href="{{url}}" target="_blank"><i class="external small icon" data-toggle="tooltip" title="Go to {{url}}"></i></a>
       </h3>
     </div>
     <div class="feed-content panel-body">
-      <div class="text-muted">
+      <div class="flex text-muted">
         <em>by {{author}}</em>
-        <div class="pull-right">
+        <div class="right floated column">
           <abbr class="timeago" title="{{readableDate(published)}}">{{momentFormat(published)}}</abbr>
         </div>
       </div>

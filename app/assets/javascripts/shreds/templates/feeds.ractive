@@ -1,12 +1,11 @@
 {{#each feeds}}
   <h2><a href="{{./path}}" on-mousedown="navigate:{{./path}},{{cid}},{{id}}">{{{./title}}}</a>
     <a href="{{./url}}" target="_blank">
-      <span class="glyphicon glyphicon-new-window glyph-sm" data-toggle="tooltip" title="Go to {{./url}}">
-      </span>
+      <i class="external extra small icon" data-toggle="tooltip" title="Go to {{./url}}">
+      </i>
     </a>
   </h2>
   {{> newsitems }}
-  <hr>
 {{else}}
 <div class="alert alert-info">
   <strong>No news</strong> at the moment

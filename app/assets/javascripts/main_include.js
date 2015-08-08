@@ -3,7 +3,7 @@
 
 //= require ractive
 
-//= require bootstrap-sprockets
+//= require semantic-ui/semantic
 
 //= require jquery-file-upload/vendor/jquery.ui.widget
 //= require jquery-file-upload/jquery.iframe-transport

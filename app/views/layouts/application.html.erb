@@ -9,13 +9,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="container" class="row">
+  <div id="container" class="ui two column padded grid">
     <%= render 'navigation_hbs' %>
-    <%= render 'head_notification' %>
-    <div class="span-fixed-sidebar" data-template="main-view">
+    <div class="five wide computer only column"></div>
+    <div class="sixteen wide mobile eleven wide computer column" data-template="main-view">
       <%= yield %>
     </div>
   </div>
+  <%= render 'head_notification' %>
 
   <%= yield :modal_etc %>
 

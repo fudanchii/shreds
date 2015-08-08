@@ -5,16 +5,6 @@
 header > h2, header > h1 { display: inline-block; }
 header span { margin-left: 4px; }
 
-.feed.widget-transparent > .panel-heading {
-    padding: 0 15px 0 15px;
-    background-color: white;
-    border-color: white;
-}
-
-.feed.widget-transparent > .panel-body {
-    padding: 0 15px 15px 15px;
-}
-
 .feed-content {
     font-family: 'Alegreya', 'Libre Baskerville', "ff-tisa-web-pro",Georgia,Cambria,"Times New Roman",Times,serif;
     font-weight: 400;
@@ -38,47 +28,6 @@ header span { margin-left: 4px; }
     }
 }
 
-.feed {
-    width: auto;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-}
-
-.widget-transparent {
-    background-color: white;
-    border-left: 0;
-    border-right: 0;
-}
-
-@media screen and (min-width:1000px) {
-.span-fixed-sidebar {
-    left: 0;
-    margin-top: 16px;
-    margin-left: 434px;
-    position: absolute;
-    overflow: hidden;
-    width: calc(100% - 482px);
-}
-}
-
-@media screen and (max-width:1000px) {
-.span-fixed-sidebar {
-    left: 0;
-    margin-left: 2.5%;
-    margin-right: 2.5%;
-    margin-top: 112px;
-    position: absolute;
-    overflow: hidden;
-    width: 95%;
-}
-}
-
-hr {
-    width: 90%;
-    text-align: center;
-}
-
 #new_feed {
     margin-left: 0px;
     margin-right: 0px;
@@ -88,10 +37,6 @@ hr {
         border-bottom: 2px solid #9c9c9c;
         background: none;
         box-shadow: none;
-        -webkit-box-shadow: none;
-        -moz-box-shadow: none;
-        -webkit-border-radius: 0;
-        -moz-border-radius: 0;
         border-radius: 0;
         margin-bottom: 10px;
     }
@@ -104,10 +49,6 @@ hr {
 
 #news_nav {
     padding: 16px;
-}
-
-.glyph-sm {
-    font-size: 75%;
 }
 
 a:hover, a:focus {
@@ -136,3 +77,37 @@ a:hover, a:focus {
     opacity: 0.7;
 }
 
+i.extra.small.icon, i.extra.small.icons {
+    font-size: 0.75em;
+}
+
+#feeds-frame {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+blockquote {
+    font-style: italic;
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\201C""\201D";
+
+    &:before {
+        color: #ccc;
+        content: open-quote;
+        font-size: 4em;
+        line-height: 0.1em;
+        margin-right: 0.25em;
+        vertical-align: -0.4em;
+    }
+
+    p {
+        display: inline;
+    }
+}
+
+code, pre {
+    font-size: 1rem;
+}

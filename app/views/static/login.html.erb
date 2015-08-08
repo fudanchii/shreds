@@ -1,12 +1,8 @@
-<div class="container">
-  <div class="login-container">
-    <div class="form-box">
-      <% if Rails.env.development? %>
-        <a href="/auth/developer" class="btn btn-default btn-block login">Developer Login</a>
-      <% end %>
-      <a href="/auth/twitter" class="twitter btn btn-info btn-block login">Login with Twitter</a>
-    </div>
+  <div id="login-box" class="ui raised very padded text container segment">
+    <% if Rails.env.development? %>
+      <a href="/auth/developer" class="ui basic button login-form"><i class="sign in icon"></i>Developer Login</a>
+    <% end %>
+    <a href="/auth/twitter" class="ui twitter button login-form"><i class="twitter icon"></i>Login with Twitter</a>
   </div>
-</div>
 
 <% content_for :title do %>Shreds - Login<% end %>

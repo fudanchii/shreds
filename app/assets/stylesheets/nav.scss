@@ -1,132 +1,71 @@
 // http://stackoverflow.com/questions/9350818
 @media screen and (min-width:1000px) {
-.sidebar-nav-fixed {
-    padding: 9px 9px 9px 0px;
-    position:fixed;
-    z-index: 1020;
-    width: 386px;
-    height: 100%;
-    left: 0px;
-    background-color: #f8f8f8;
-    border-right: 1px solid #dddddd;
-  -webkit-border-radius: 0px;
-     -moz-border-radius: 0px;
-          border-radius: 0px;
-}
+    #side-navigator {
+        padding: 9px 9px 9px 0px;
+        position:fixed;
+        z-index: 1020;
+        height: 100%;
+        left: 0px;
+        background-color: #f8f8f8;
+        border-right: 1px solid #dddddd;
+    }
 
-.nav-buttons {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    width: 100%;
-    height: 46px;
-    margin-bottom: 0px;
-    padding-left: 0px;
+    #nav-container {
+        position: absolute;
+        bottom: 48px;
+        top: 56px;
+        overflow: auto;
+        border-width: 1px 0 1px 0;
+        border-color: #e5e5e5;
+        border-style: solid;
+        max-width: 100%;
+    }
 
-    li {
+    .nav-buttons {
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        right: 0px;
+        width: 100%;
         height: 46px;
-        border-left: 1px solid #e5e5e5;
-        span {
-            padding: 9px 0px 9px 0px;
-            font-size: 18pt;
-            width: 100%;
-            height: 100%;
-        }
+        margin-bottom: 0px;
+        padding-left: 0px;
 
-        &:first-child {
-            border-left: 0px;
+        li {
+            height: 46px;
+            border-left: 1px solid #e5e5e5;
+            span {
+                padding: 9px 0px 9px 0px;
+                font-size: 18pt;
+                width: 100%;
+                height: 100%;
+            }
+
+            &:first-child {
+                border-left: 0px;
+            }
         }
     }
-}
 
-#subscribe_form {
-    margin-right: 18px;
-    margin-left: 9px;
-    padding-bottom: 9px;
-    position: absolute;
-    background-color: #f8f8f8;
-    z-index: 1021;
-    width: 357px;
-}
+    #subscribe_form {
+        margin-right: 18px;
+        margin-left: 9px;
+        padding-bottom: 9px;
+        position: absolute;
+        background-color: #f8f8f8;
+        z-index: 1021;
+    }
 
-.nav {
-    width: 367px;
-}
-
-.nav-container {
-    position: absolute;
-    bottom: 48px;
-    top: 58px;
-    left: 0px;
-    right: 0px;
-    overflow: auto;
-    border-width: 1px 0 1px 0;
-    border-color: #e5e5e5;
-    border-style: solid;
-}
-
-.breadcrumbs {
-    display: none !important;
-}
+    .breadcrumbs {
+        display: none !important;
+    }
 
 }
 
 @media screen and (max-width:1000px) {
-.sidebar-nav-fixed {
-    padding: 9px 9px 9px 0px;
-    position: fixed;
-    z-index: 1020;
-    width: auto;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    height: auto;
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #dddddd;
-  -webkit-border-radius: 0px;
-     -moz-border-radius: 0px;
-          border-radius: 0px;
-}
-
-#subscribe_form {
-    margin-right: 9px;
-    margin-left: 9px;
-    padding-bottom: 9px;
-    padding-right: 18px;
-    position: absolute;
-    background-color: #f8f8f8;
-    z-index: 1021;
-    width: 100%;
-}
-
-.nav {
-    width: 100%;
-}
-
-.nav-buttons {
-    display: none;
-}
-
-.nav-container {
-    display: none;
-    max-width: 512px;
-    min-width: 368px;
-}
-
-.breadcrumbs {
-    display: inline-block;
-    padding-left: 9px;
-    font-weight: bold;
-    text-transform: capitalize;
-}
-
-.breadcrumbs > .breadcrumb {
-    margin-bottom: 0px;
-}
-
-#to_the_front { display: none; }
-
+    #side-navigator {
+        display: none !important;
+    }
 }
 
 #new_feed .form-control {
@@ -153,8 +92,6 @@
 
     &.active {
         background-color: #eaeaea;
-        -webkit-box-shadow: inset 0px 0px 7px rgba(50, 50, 50, 0.20);
-        -moz-box-shadow:    inset 0px 0px 7px rgba(50, 50, 50, 0.20);
         box-shadow:         inset 0px 0px 7px rgba(50, 50, 50, 0.20);
     }
 }
@@ -200,14 +137,6 @@ li#to_the_front.active {
     color: white;
 }
 
-.label-small {
-    padding: 3px !important;
-    font-size: 8pt !important;
-    position: relative;
-    top: -22px;
-    left: 64px;
-}
-
 .unread-num {
     padding: 4px;
     background-color: rgba(120,120,120,.6);
@@ -232,37 +161,31 @@ li#to_the_front.active {
     cursor: pointer;
 }
 
-.feed-title {
-    width: 310px;
+.flex {
     font-size: 16px;
-    display: inline-block;
     margin-bottom: 0px;
+    display: flex;
 }
 
 .ellipsis {
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;  // IE 6+, FF 7+, Op 11+, Saf 1.3+, Chr 1+
-    -o-text-overflow: ellipsis;  // for Opera 9 & 10
-}
-
-.latest-news {
-    width: 300px;
-    display: inline-block;
-}
-
-#latest_entries {
-    margin-top: 48px;
+    text-overflow: ellipsis;
 }
 
 .nav-header:first-child {
     margin-top: 0px;
 }
 
-.main-logo {
+#main-logo {
+    margin-left: 9px;
     display: inline-block;
 }
 
 .tooltip {
     z-index: 1022;
+}
+
+.text-muted {
+    color: #777777;
 }

@@ -10,11 +10,11 @@
     <%= c.input_field :name, class: "form-control", placeholder: "Category (optional)" %>
   <% end %>
 </div>
-<%= link_to image_tag("shreds.png", :class =>"pull-left main-logo", :height => "38", :alt => "Logo"), '/' %>
-  <div class="btn-group pull-right">
-  <%= button_tag(type: 'submit', class: "btn btn-primary ladda-button", id: "btnSubmitFeed", 'data-style' => "zoom-out", 'data-on-click' => "subscribeTo") do %>
+<%= link_to image_tag("shreds.png", :id => "main-logo", :class =>"left floated main-logo", :height => "38", :alt => "Logo"), '/' %>
+  <div class="right floated ui buttons">
+  <%= button_tag(type: 'submit', class: "ui blue button", id: "btnSubmitFeed", 'data-on-click' => "subscribeTo") do %>
      <span class="ladda-label">Subscribe</span>
-   <% end %><button class="btn btn-info fileinput-button ladda-button" type="button" data-on-click="uploadOPML" data-style="zoom-out"><span class="ladda-label">Import</span></button>
+   <% end %><button class="ui teal button" type="button" data-on-click="uploadOPML"><span class="ladda-label">Import</span></button>
    </div>
 <input id="fileupload" type="file" name="OPMLfile" data-url="/i/upload_opml.json">
 <% end %>

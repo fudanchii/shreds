@@ -5,12 +5,12 @@
         <textarea class="text required form-control" placeholder="Paste RSS link here" name="feed[url]" id="feed_url" value="{{feedURL}}"></textarea>
         <input class="string required form-control" placeholder="Category (optional)" type="text" name="category[name]" id="category_name" value="{{categoryName}}">
     </div>
-    <a href="/"><img class="pull-left main-logo" height="38" alt="Logo" src="{{logoImage}}" on-mousedown="navigate"></a>
-    <div class="btn-group pull-right">
-        <button name="button" type="submit" class="btn btn-primary ladda-button" id="btnSubmitFeed" data-style="zoom-out" on-click="subscribe">
+    <a href="/"><img id="main-logo" class="left floated" height="38" alt="Logo" src="{{logoImage}}" on-mousedown="navigate"></a>
+    <div class="right floated ui buttons">
+        <button name="button" type="submit" class="ui blue button" id="btnSubmitFeed" on-click="subscribe">
             <span class="ladda-label">Subscribe</span>
         </button>
-        <button id="btnOPMLUpload" class="btn btn-info fileinput-button ladda-button" type="button" on-click="import-opml" data-style="zoom-out">
+        <button id="btnOPMLUpload" class="ui teal button" type="button" on-click="import-opml" data-style="zoom-out">
             <span class="ladda-label">Import</span><span class="ladda-spinner"></span>
         </button>
     </div>

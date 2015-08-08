@@ -1,19 +1,14 @@
-.login-container{
-    position: relative;
+#login-box {
     width: 300px;
+    position: relative;
     margin: 80px auto;
-    padding: 20px 40px 40px;
-    text-align: center;
-    background: #fff;
-    border: 1px solid #ccc;
 }
 
-.form-box input{
+.ui.button.login-form {
     width: 100%;
-    padding: 10px;
-    text-align: center;
-    height:40px;
-    border: 1px solid #ccc;;
-    background: #fafafa;
-    transition:0.2s ease-in-out;
+    margin-top: 10px;
+
+    &:first-child {
+        margin-top: 0px;
+    }
 }
