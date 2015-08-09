@@ -3,7 +3,7 @@ import Decorator from 'framework/decorator';
 
 import SubscriptionActions from 'shreds/actions/subscription';
 
-const $subscribeForm = $('#subscribe_form'),
+const $subscribeForm = $('#subscribe-form'),
       $document = $(document);
 
 let collapsed = false,

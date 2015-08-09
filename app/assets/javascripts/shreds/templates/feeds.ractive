@@ -7,8 +7,18 @@
   </h2>
   {{> newsitems }}
 {{else}}
-<div class="alert alert-info">
-  <strong>No news</strong> at the moment
+<div class="ui teal message">
+  <div class="header">
+      No news at the moment
+  </div>
+  Here's some suggestions on what to do:
+  <ul class="list">
+    <li>Back to work</li>
+    <li>Go out and play!</li>
+    <li>Add more feeds by clicking on the <kbd>subscribe</kbd> button on the left</li>
+    <li>Try uploading your OPML files from <kbd>import</kbd> button on the left</li>
+    <li>Or take some sleep</li>
+  </ul>
 </div>
 {{/each}}
 {{#if feeds.length}}

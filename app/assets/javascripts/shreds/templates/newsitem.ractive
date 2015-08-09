@@ -1,13 +1,14 @@
 <div class="ui vertical segment">
   <div class="panel-heading">
     <h2>
-      <a href="javascript:void(0)" on-mousedown="mark-as-read:{{fid}},{{id}}"><i class="{{unreadIcon(unread)}} small icon" data-toggle="tooltip" title="Set {{unreadLabel(unread)}}"></i></a>
+
       <a href="{{url}}" target="_blank">{{{title}}}</a>
     </h2>
   </div>
   <div class="feed-content panel-body">
     <div class="flex text-muted"><em>by {{author}}</em>
       <div class="right floated column">
+        <a href="javascript:void(0)" on-mousedown="mark-as-read:{{fid}},{{id}}"><i class="{{unreadIcon(unread)}} small icon" data-toggle="tooltip" title="Set {{unreadLabel(unread)}}"></i></a>
         <abbr class="timeago" title="{{readableDate(published)}}">
           <em>{{momentFormat(published)}}</em>
         </abbr>

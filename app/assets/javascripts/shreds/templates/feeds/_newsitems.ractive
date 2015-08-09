@@ -2,9 +2,6 @@
 <div class="ui vertical segment">
     <div class="panel-heading">
       <h3>
-      <a href="javascript:void(0)" on-mousedown="mark-as-read:{{../../id}},{{id}}">
-      <i class="{{unreadIcon(unread)}} small icon" data-toggle="tooltip" title="Set {{unreadLabel(unread)}}"></i>
-      </a>
       <a href="{{path}}" on-mousedown="navigate:{{path}},{{cid}},{{../../id}}">{{{title}}}</a>
       <a href="{{url}}" target="_blank"><i class="external small icon" data-toggle="tooltip" title="Go to {{url}}"></i></a>
       </h3>
@@ -13,6 +10,9 @@
       <div class="flex text-muted">
         <em>by {{author}}</em>
         <div class="right floated column">
+          <a href="javascript:void(0)" on-mousedown="mark-as-read:{{../../id}},{{id}}">
+            <i class="{{unreadIcon(unread)}} small icon" data-toggle="tooltip" title="Set {{unreadLabel(unread)}}"></i>
+          </a>
           <abbr class="timeago" title="{{readableDate(published)}}">{{momentFormat(published)}}</abbr>
         </div>
       </div>

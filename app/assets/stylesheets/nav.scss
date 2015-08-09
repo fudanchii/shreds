@@ -3,7 +3,7 @@
     #side-navigator {
         padding: 9px 9px 9px 0px;
         position:fixed;
-        z-index: 1020;
+        z-index: 1;
         height: 100%;
         left: 0px;
         background-color: #f8f8f8;
@@ -47,13 +47,12 @@
         }
     }
 
-    #subscribe_form {
-        margin-right: 18px;
-        margin-left: 9px;
-        padding-bottom: 9px;
-        position: absolute;
+    #subscribe-form {
+        margin-right: -9px;
+        padding-right: 9px;
+        position: relative;
         background-color: #f8f8f8;
-        z-index: 1021;
+        z-index: 1;
     }
 
     .breadcrumbs {
@@ -178,12 +177,11 @@ li#to_the_front.active {
 }
 
 #main-logo {
-    margin-left: 9px;
     display: inline-block;
 }
 
 .tooltip {
-    z-index: 1022;
+    z-index: 2;
 }
 
 .text-muted {

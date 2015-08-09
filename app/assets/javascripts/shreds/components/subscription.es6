@@ -6,7 +6,7 @@ import SubscriptionStore from 'shreds/stores/subscription';
 import SubscriptionActions from 'shreds/actions/subscription';
 
 const SubscriptionComponent = Component.extend({
-  el: '#subscribe_form',
+  el: '#subscribe-form',
 
   template: Component.template('subscription'),
 
