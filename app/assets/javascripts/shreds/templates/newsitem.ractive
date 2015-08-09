@@ -1,7 +1,6 @@
 <div class="ui vertical segment">
   <div class="panel-heading">
     <h2>
-
       <a href="{{url}}" target="_blank">{{{title}}}</a>
     </h2>
   </div>

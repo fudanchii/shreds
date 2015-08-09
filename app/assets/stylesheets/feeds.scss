@@ -111,3 +111,13 @@ blockquote {
 code, pre {
     font-size: 1rem;
 }
+
+.feed-title {
+    i.external {
+        display: none;
+    }
+
+    &:hover i.external {
+        display: inline;
+    }
+}
