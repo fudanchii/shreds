@@ -2,6 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@media screen and (min-width:1000px) {
+    #feeds-frame {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    #feeds-frame {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
 header > h2, header > h1 { display: inline-block; }
 header span { margin-left: 4px; }
 
@@ -78,12 +92,7 @@ a:hover, a:focus {
 }
 
 i.extra.small.icon, i.extra.small.icons {
-    font-size: 0.75em;
-}
-
-#feeds-frame {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    font-size: 60%;
 }
 
 blockquote {
