@@ -12,7 +12,7 @@ Decorator.add('backtoTop', () => {
     scrollSpeed: 850,
     easingType: 'easeOutCubic',
     scrollTitle: 'Back to top',
-    scrollText: '<i class="glyphicon glyphicon-chevron-up"></i>',
+    scrollText: '<i class="chevron up icon"></i>',
   });
 
   applied = true;
