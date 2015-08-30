@@ -20,7 +20,7 @@ class Feed < ActiveRecord::Base
     if feed_url.nil? || !feed_url.urlish?
       fail Shreds::InvalidFeed, I18n.t('feed.invalid')
     end
-    first_or_create!(by_param url, feed_url)
+    where(feed_url: feed_url).first_or_create!(by_param url, feed_url)
   rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordNotUnique
     find_by! feed_url: feed_url
   end
