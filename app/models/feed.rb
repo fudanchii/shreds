@@ -17,11 +17,10 @@ class Feed < ActiveRecord::Base
   # multi-thread safeness.
   def self.safe_create(url)
     feed_url = Feedbag.find(url).first
-    if feed_url.nil?
+    if feed_url.nil? || !feed_url.urlish?
       fail Shreds::InvalidFeed, I18n.t('feed.invalid')
     end
-    feed = where(feed_url: feed_url).first
-    feed || create!(by_param url, feed_url)
+    first_or_create!(by_param url, feed_url)
   rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordNotUnique
     find_by! feed_url: feed_url
   end
