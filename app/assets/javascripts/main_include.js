@@ -11,9 +11,6 @@
 
 //= require moment/moment
 
-//= require ladda/spin.min
-//= require ladda/ladda.min
-
 //= require scrollup/lib/jquery.easing
 //= require scrollup/jquery.scrollUp.min
 

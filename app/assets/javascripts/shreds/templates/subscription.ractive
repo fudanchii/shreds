@@ -7,11 +7,13 @@
     </div>
     <a href="/"><img id="main-logo" class="left floated" height="38" alt="Logo" src="{{logoImage}}" on-mousedown="navigate"></a>
     <div class="right floated ui buttons">
-        <button name="button" type="submit" class="ui blue button" id="btnSubmitFeed" on-click="subscribe">
-            <span class="ladda-label">Subscribe</span>
+        <button name="button" type="submit" class="ui blue basic labeled icon button" id="btnSubmitFeed" on-click="subscribe">
+            <i class="plus icon"></i>
+            <span><i class="feed icon"></i></span>
         </button>
-        <button id="btnOPMLUpload" class="ui teal button" type="button" on-click="import-opml" data-style="zoom-out">
-            <span class="ladda-label">Import</span><span class="ladda-spinner"></span>
+        <button type="button" id="btnOPMLUpload" class="ui teal basic labeled icon button" on-click="import-opml">
+            <i class="upload icon"></i>
+            <span><i class="file outline icon"></i></span>
         </button>
     </div>
     <input id="fileupload" type="file" name="OPMLfile" data-url="/i/upload_opml.json">

@@ -17,6 +17,10 @@ const SubscriptionComponent = Component.extend({
       this.update();
     });
 
+    this.on('complete', () => {
+      Decorator.do('initFileUpload');
+    });
+
     this.on('subscribe', () => {
       if (!this.get('collapsed')) {
         SubscriptionActions.collapse();

@@ -1,17 +1,18 @@
-import Ladda from 'Ladda';
-
 import Decorator from 'framework/decorator';
 
 const spinnerRegistry = {};
 
 function spin(el) {
-  const spinner = Ladda.create(el);
-  spinner.start();
-  return spinner;
+  el.classList.add('disabled');
+  el.classList.add('loading');
+  return el;
 }
 
 function stop(spinner) {
-  if (spinner && spinner.stop) { spinner.stop(); }
+  if (spinner) {
+    spinner.className.replace(/\s?disabled\s?/, '');
+    spinner.className.replace(/\s?loading\s?/, '');
+  }
 }
 
 Decorator.add('startSubscribeSpinner', () => {

@@ -98,7 +98,6 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-history.js'
   gem 'rails-assets-jquery'
   gem 'rails-assets-jquery-file-upload'
-  gem 'rails-assets-ladda'
   gem 'rails-assets-scrollup'
   gem 'rails-assets-nprogress'
   gem 'rails-assets-ractive'
