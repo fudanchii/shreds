@@ -10,8 +10,8 @@ function spin(el) {
 
 function stop(spinner) {
   if (spinner) {
-    spinner.className.replace(/\s?disabled\s?/, '');
-    spinner.className.replace(/\s?loading\s?/, '');
+    spinner.classList.remove('disabled');
+    spinner.classList.remove('loading');
   }
 }
 
