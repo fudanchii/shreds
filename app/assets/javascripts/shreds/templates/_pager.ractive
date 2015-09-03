@@ -1,0 +1,10 @@
+
+<div id="pager" class="ui grid">
+  <div class="left floated eight wide column">
+      {{{prevPage}}}
+  </div>
+  <div class="right floated right aligned eight wide column">
+      {{{nextPage}}}
+  </div>
+</div>
+

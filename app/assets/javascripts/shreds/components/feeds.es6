@@ -12,7 +12,8 @@ const FeedsComponent = Component.extend({
   data() { return FeedsStore.get(); },
 
   partials: {
-    newsitems: Component.template('feeds/_newsitems')
+    newsitems: Component.template('feeds/_newsitems'),
+    pager: Component.template('_pager')
   },
 
   oninit() {

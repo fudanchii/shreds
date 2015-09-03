@@ -22,8 +22,5 @@
 </div>
 {{/each}}
 {{#if feeds.length}}
-<ul class="pager">
-  <li class="previous">{{{prevPage}}}</li>
-  <li class="next">{{{nextPage}}}</li>
-</ul>
+{{> pager }}
 {{/if}}
