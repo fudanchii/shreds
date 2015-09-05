@@ -1,5 +1,5 @@
 // http://stackoverflow.com/questions/9350818
-@media screen and (min-width:1000px) {
+@media screen and (min-width:990px) {
     #side-navigator {
         padding: 9px 0px 9px 0px;
         position:fixed;
@@ -73,6 +73,11 @@
     padding-bottom: 8px;
     padding-left: 18px;
     border-bottom: 1px solid #e5e5e5;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #eaeaea;
+    }
 
     &:first-child {
         border-top: 1px solid #e5e5e5;
@@ -82,6 +87,10 @@
         background-color: #eaeaea;
         box-shadow:         inset 0px 0px 7px rgba(50, 50, 50, 0.20);
     }
+
+    > span {
+        margin-right: 15px;
+    }
 }
 
 .nav-list {
@@ -89,18 +98,6 @@
     padding-left: 0px;
     margin-right: 0px;
     padding-right: 0px;
-
-    > li.nav-item {
-        cursor: pointer;
-    }
-}
-
-.nav-list > li.nav-item:hover, li#to_the_front:hover {
-    background-color: #eaeaea;
-}
-
-.nav-item > span {
-    margin-right: 15px;
 }
 
 .nav-header {
@@ -108,8 +105,8 @@
     font-size: 16px;
     padding-left: 0px;
 
-    h3 {
-        margin-top: 1rem;
+    &:first-child {
+        margin-top: 0px;
     }
 }
 
@@ -139,7 +136,6 @@
     right: 0;
     margin: 0;
     opacity: 0;
-    -ms-filter: 'alpha(opacity=0)';
     font-size: 1px;
     direction: ltr;
     cursor: pointer;
@@ -155,10 +151,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.nav-header:first-child {
-    margin-top: 0px;
 }
 
 #main-logo {
