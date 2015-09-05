@@ -1,28 +1,28 @@
 // http://stackoverflow.com/questions/9350818
 @media screen and (min-width:1000px) {
     #side-navigator {
-        padding: 9px 9px 9px 0px;
+        padding: 9px 0px 9px 0px;
         position:fixed;
         z-index: 1;
         height: 100%;
         left: 0px;
         background-color: #f8f8f8;
         border-right: 1px solid #dddddd;
+        display: flex;
+        flex-direction: column;
     }
 
     #nav-container {
-        position: absolute;
-        bottom: 48px;
         top: 56px;
         overflow: auto;
         border-width: 1px 0 1px 0;
         border-color: #e5e5e5;
         border-style: solid;
         width: 100%;
+        flex: 1 1 0;
     }
 
     .nav-buttons {
-        position: absolute;
         bottom: 0px;
         left: 0px;
         right: 0px;
@@ -48,23 +48,12 @@
     }
 
     #subscribe-form {
-        margin-right: -9px;
         padding-right: 9px;
         position: relative;
         background-color: #f8f8f8;
         z-index: 1;
     }
 
-    .breadcrumbs {
-        display: none !important;
-    }
-
-}
-
-@media screen and (max-width:1000px) {
-    #side-navigator {
-        display: none !important;
-    }
 }
 
 #new_feed .form-control {
@@ -100,17 +89,13 @@
     padding-left: 0px;
     margin-right: 0px;
     padding-right: 0px;
+
+    > li.nav-item {
+        cursor: pointer;
+    }
 }
 
 .nav-list > li.nav-item:hover, li#to_the_front:hover {
-    background-color: #eaeaea;
-}
-
-.nav-list > li.nav-item {
-    cursor: pointer;
-}
-
-li#to_the_front.active {
     background-color: #eaeaea;
 }
 
@@ -122,18 +107,18 @@ li#to_the_front.active {
     margin-top: 8px;
     font-size: 16px;
     padding-left: 0px;
-}
 
-.nav-header > span {
-    margin-left: 9px;
+    h3 {
+        margin-top: 1rem;
+    }
 }
 
 .dropdown-menu {
     background-color: rgba(25,25,25,.8);
-}
 
-.dropdown-menu > li > a {
-    color: white;
+    > li > a {
+        color: white;
+    }
 }
 
 .unread-num {
@@ -189,5 +174,5 @@ li#to_the_front.active {
 }
 
 #side-navigator, #side-navigator-shadow {
-    max-width: 480px;
+    max-width: 420px;
 }
