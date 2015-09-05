@@ -7,13 +7,15 @@
     </div>
     <a href="/"><img id="main-logo" class="left floated" height="38" alt="Logo" src="{{logoImage}}" on-mousedown="navigate"></a>
     <div class="right floated ui buttons">
-        <div class="ui blue basic labeled icon button" id="btnSubmitFeed" on-click="subscribe">
+        <div id="btnSubmitFeed" class="ui blue basic icon button" on-click="subscribe">
+            <span>
             <i class="plus icon"></i>
-            <span><i class="feed icon"></i></span>
+            <i class="feed icon"></i></span>
         </div>
-        <div id="btnOPMLUpload" class="ui teal basic labeled icon button" on-click="import-opml">
+        <div id="btnOPMLUpload" class="ui teal basic icon button" on-click="import-opml">
+            <span>
             <i class="upload icon"></i>
-            <span><i class="file outline icon"></i></span>
+            <i class="file outline icon"></i></span>
         </div>
     </div>
     <input id="fileupload" type="file" name="OPMLfile" data-url="/i/upload_opml.json">
