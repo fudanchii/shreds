@@ -42,7 +42,7 @@ gem 'thin', platforms: [:mswin, :mingw]
 ### 5. Job queueing related gems
 gem 'sidekiq'
 gem 'sidekiq-failures', github: 'mhfs/sidekiq-failures'
-gem 'sidetiq', github: 'tobiassvn/sidetiq'
+gem 'sidekiq-cron', github: 'ondrejbartas/sidekiq-cron'
 gem 'sinatra', require: false
 gem 'slim', require: false
 # end of 5.

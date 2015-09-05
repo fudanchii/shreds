@@ -23,21 +23,20 @@ GIT
       sidekiq (>= 2.16.0)
 
 GIT
-  remote: git://github.com/plataformatec/simple_form.git
-  revision: d4c51cc7a2095a2b8d12177afa53fad482d959b2
+  remote: git://github.com/ondrejbartas/sidekiq-cron.git
+  revision: 8df294a003fefe3d917e3d721f9c37ae6868026e
   specs:
-    simple_form (3.1.0)
-      actionpack (~> 4.0)
-      activemodel (~> 4.0)
+    sidekiq-cron (0.3.1)
+      rufus-scheduler (>= 2.0.24)
+      sidekiq (>= 2.17.3)
 
 GIT
-  remote: git://github.com/tobiassvn/sidetiq.git
-  revision: 3d78df37384e664bbb59df9091235a79700650aa
+  remote: git://github.com/plataformatec/simple_form.git
+  revision: 451e25de1bcee67dd0f67f2a6c963e421655f62a
   specs:
-    sidetiq (0.6.3)
-      celluloid (>= 0.14.1)
-      ice_cube (= 0.11.1)
-      sidekiq (>= 3.0.0)
+    simple_form (3.1.1)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
 
 GIT
   remote: git://github.com/unity/ractive_assets.git
@@ -93,7 +92,7 @@ GEM
       rake (~> 10.4)
     ansi (1.5.0)
     arel (6.0.3)
-    autoprefixer-rails (5.2.1.3)
+    autoprefixer-rails (6.0.0)
       execjs
       json
     babel-source (5.8.23)
@@ -196,7 +195,6 @@ GEM
     i18n (0.7.0)
     i18n-js (3.0.0.rc11)
       i18n (~> 0.6)
-    ice_cube (0.11.1)
     jbuilder (2.3.1)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -232,7 +230,7 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     oauth (0.4.7)
-    oj (2.12.12)
+    oj (2.12.13)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
@@ -246,7 +244,7 @@ GEM
     passenger (5.0.16)
       rack
       rake (>= 0.8.1)
-    pg (0.18.2)
+    pg (0.18.3)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -287,9 +285,9 @@ GEM
     rails-assets-ractive (0.7.3)
     rails-assets-scrollup (2.4.1)
       rails-assets-jquery (>= 1.11.0)
-    rails-assets-semantic-ui (2.0.8)
+    rails-assets-semantic-ui (2.1.3)
       rails-assets-jquery (>= 1.8)
-    rails-assets-zloirock--core-js (1.1.3)
+    rails-assets-zloirock--core-js (1.1.4)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -306,7 +304,7 @@ GEM
     rake (10.4.2)
     rake-compiler (0.9.5)
       rake
-    rb-fsevent (0.9.5)
+    rb-fsevent (0.9.6)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     redis (3.2.1)
@@ -315,21 +313,22 @@ GEM
     ref (2.0.0)
     rspec-logsplit (0.1.3)
     ruby-progressbar (1.7.5)
+    rufus-scheduler (3.1.4)
     sass (3.4.18)
-    sass-rails (5.0.3)
+    sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
-      tilt (~> 1.1)
+      tilt (>= 1.1, < 3)
     sax-machine (1.3.2)
     shellany (0.0.1)
-    sidekiq (3.4.0)
-      celluloid (>= 0.16.0)
-      connection_pool (>= 2.1.1)
-      json
-      redis (>= 3.0.6)
-      redis-namespace (>= 1.3.1)
+    sidekiq (3.5.0)
+      celluloid (~> 0.17.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      json (~> 1.0)
+      redis (~> 3.2, >= 3.2.1)
+      redis-namespace (~> 1.5, >= 1.5.2)
     sinatra (1.4.6)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -338,7 +337,7 @@ GEM
       temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
     slop (3.6.0)
-    sprockets (3.3.3)
+    sprockets (3.3.4)
       rack (~> 1.0)
     sprockets-es6 (0.7.0)
       babel-transpiler
@@ -359,7 +358,7 @@ GEM
       ref
     thor (0.19.1)
     thread_safe (0.3.5)
-    tilt (1.4.1)
+    tilt (2.0.1)
     timers (4.1.1)
       hitimes
     tzinfo (1.2.2)
@@ -416,8 +415,8 @@ DEPENDENCIES
   redis
   sass-rails (~> 5.0.0)
   sidekiq
+  sidekiq-cron!
   sidekiq-failures!
-  sidetiq!
   simple_form!
   sinatra
   slim

@@ -1,0 +1,7 @@
+
+:verbose: false
+:concurrency: 5
+
+:queues:
+  - housekeeping
+  - default

@@ -1,4 +1,5 @@
 require 'sidekiq/web'
+require 'sidekiq/cron/web'
 
 Shreds::Application.routes.draw do
   get '/login' => 'static#login'

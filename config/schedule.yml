@@ -1,0 +1,10 @@
+
+clear_read_news:
+  cron: "50 1 * * *"
+  class: "ClearReadNews"
+  queue: "housekeeping"
+
+fetch_feeds:
+  cron: "*/20 * * * *"
+  class: "UpdateFeed"
+  queue: "default"
