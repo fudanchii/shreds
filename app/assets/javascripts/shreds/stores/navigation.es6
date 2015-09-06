@@ -40,14 +40,16 @@ const NavigationStore = new Store({
     if (_.isUndefined(this.get('__feed-category_map'))) {
       this.set('__feed-category_map', {});
     }
-    const map = this.get('__feed-category_map');
+    const
+      map = this.get('__feed-category_map'),
+      prefix = '/' + payload.path.split('/')[1];
     if (payload.cid && payload.fid) {
-      map[payload.path] = { cid: payload.cid, fid: payload.fid };
+      map[prefix] = { cid: payload.cid, fid: payload.fid };
       return;
     }
-    if (map[payload.path]) {
-      payload.cid = map[payload.path].cid;
-      payload.fid = map[payload.path].fid;
+    if (map[prefix]) {
+      payload.cid = map[prefix].cid;
+      payload.fid = map[prefix].fid;
     }
     this.setActiveFeedItem(payload);
   },
