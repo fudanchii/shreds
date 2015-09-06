@@ -18,12 +18,16 @@ const ShredsAppView = Component.extend({
           payload.meta.callable();
         }
         this.assign(payload.data);
+        Decorator.do('fixResponsiveImages');
         this.fadeIn();
         Decorator.do('scrollUp');
       });
     });
 
-    this.on('complete', () => { this.fadeIn(); });
+    this.on('complete', () => {
+      Decorator.do('fixResponsiveImages');
+      this.fadeIn();
+    });
 
     Decorator.do('backtoTop');
   },
