@@ -5,7 +5,7 @@
   <ul class="nav-list feed-items collapse lst-{{index}}" style="list-style-type:none;">
     {{#each feeds:feed_index}}
     <li class="nav-item{{active}}" on-mousedown="navigate:{{path}},{{index}},{{feed_index}}">
-        <div class="flex">
+        <div class="row--inline-containing-elements">
         <div class="favicon">
           <img src="{{favicon}}" width="16" height="16"/>
         </div>
@@ -13,8 +13,8 @@
           <a alt="{{title}}" href="{{path}}">{{title}}</a>
         </p>
         </div>
-        <div class="flex">
-        <p class="left floated column text-muted ellipsis"><abbr class="timeago small" title="{{readableDate(latestEntryPubDate)}}">{{momentFmtEntryPubDate}}</abbr> - {{{latestEntryTitle}}}</p>
+        <div class="row--inline-containing-elements">
+        <p class="left floated column text--muted ellipsis"><abbr class="timeago text--small" title="{{readableDate(latestEntryPubDate)}}">{{momentFmtEntryPubDate}}</abbr> - {{{latestEntryTitle}}}</p>
         {{#if unreadCount }}
           <a class="right floated column" href="javascript:void(0)" on-mousedown="mark-as-read:{{index}},{{feed_index}}">
             <span class="unread-num ui label">{{unreadCount}}</span>

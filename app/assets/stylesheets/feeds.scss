@@ -2,14 +2,14 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@media screen and (min-width:1000px) {
+@media screen and (min-width: 990px) {
     #feeds-frame {
         padding-left: 3rem;
         padding-right: 3rem;
     }
 }
 
-@media screen and (max-width:1000px) {
+@media screen and (max-width: 990px) {
     #feeds-frame {
         padding-left: 1rem;
         padding-right: 1rem;
@@ -136,11 +136,15 @@ code, pre {
     padding-bottom: 3em;
 }
 
-.ui.grid > .column.grow {
+.ui.grid > .column--take-the-rest-of-space {
     flex: 1 1 0;
 }
 
 #pager {
     margin-top: 2em;
     margin-bottom: 2em;
+}
+
+.text--small {
+    font-size: 75%;
 }

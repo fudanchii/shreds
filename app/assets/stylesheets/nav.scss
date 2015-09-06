@@ -141,9 +141,7 @@
     cursor: pointer;
 }
 
-.flex {
-    font-size: 16px;
-    margin-bottom: 0px;
+.row--inline-containing-elements {
     display: flex;
 }
 
@@ -161,7 +159,7 @@
     z-index: 2;
 }
 
-.text-muted {
+.text--muted {
     color: #777777;
 }
 

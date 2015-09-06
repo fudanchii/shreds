@@ -7,7 +7,7 @@
       </h2>
     </div>
     <div class="feed-content panel-body">
-      <div class="flex text-muted">
+      <div class="text--small text--muted row--inline-containing-elements">
         <em>by {{author}}</em>
         <div class="right floated column">
           <a href="javascript:void(0)" on-mousedown="mark-as-read:{{../../id}},{{id}}">

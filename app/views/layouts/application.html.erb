@@ -12,7 +12,7 @@
   <div id="container" class="ui padded grid">
     <%= render 'navigation_hbs' %>
     <div id="side-navigator-shadow" class="five wide column computer only"></div>
-    <div class="sixteen wide mobile eleven wide computer column grow" data-template="main-view">
+    <div class="sixteen wide column mobile eleven wide column computer column--take-the-rest-of-space" data-template="main-view">
       <%= yield %>
     </div>
   </div>
