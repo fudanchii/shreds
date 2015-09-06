@@ -4,7 +4,7 @@ import { action } from 'shreds/constants';
 const NavigationActions = {
   navigate(path, cid, fid) {
     ShredsDispatcher.dispatch({
-      type: action.NAVIGATE,
+      type: action.NAVIGATE_TO_ROUTE,
       cid, fid, path
     });
   },

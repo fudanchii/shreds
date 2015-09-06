@@ -4,7 +4,6 @@ export const action = defconst.defActions(
   'SCROLL_UP',
   'MARK_FEED_AS_READ',
   'MARK_ITEM_AS_READ',
-  'NAVIGATE',
   'RELOAD_NAVIGATION',
   'FAIL_NOTIFY',
   'INFO_NOTIFY',

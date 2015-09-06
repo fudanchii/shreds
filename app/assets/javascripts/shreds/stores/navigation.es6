@@ -9,7 +9,7 @@ import { action, event } from 'shreds/constants';
 const NavigationStore = new Store({
   oninit() {
     this.regDispatcher(ShredsDispatcher, [
-      [action.NAVIGATE,           this.navigate],
+      [action.NAVIGATE_TO_ROUTE,  this.navigate],
       [action.MARK_FEED_AS_READ,  this.markFeedAsRead],
       [action.FAIL_NOTIFY,        this.failHandler],
       [action.RELOAD_NAVIGATION,  this.reloadNavigation],
@@ -37,6 +37,22 @@ const NavigationStore = new Store({
   },
 
   navigate(payload) {
+    if (_.isUndefined(this.get('__feed-category_map'))) {
+      this.set('__feed-category_map', {});
+    }
+    const map = this.get('__feed-category_map');
+    if (payload.cid && payload.fid) {
+      map[payload.path] = { cid: payload.cid, fid: payload.fid };
+      return;
+    }
+    if (map[payload.path]) {
+      payload.cid = map[payload.path].cid;
+      payload.fid = map[payload.path].fid;
+    }
+    this.setActiveFeedItem(payload);
+  },
+
+  setActiveFeedItem(payload) {
     const data = this.get();
     let selected = data.selected || (
       data.selected = { cid: null, fid: null }
