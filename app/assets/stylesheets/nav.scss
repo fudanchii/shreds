@@ -56,10 +56,6 @@
 
 }
 
-#new_feed .form-control {
-    width: 100%;
-}
-
 .favicon {
     margin-top: 0px;
     margin-right: 8px;
@@ -141,10 +137,6 @@
     cursor: pointer;
 }
 
-.row--inline-containing-elements {
-    display: flex;
-}
-
 .ellipsis {
     white-space: nowrap;
     overflow: hidden;
@@ -157,10 +149,6 @@
 
 .tooltip {
     z-index: 2;
-}
-
-.text--muted {
-    color: #777777;
 }
 
 #side-navigator, #side-navigator-shadow {

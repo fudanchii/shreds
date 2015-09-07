@@ -20,9 +20,11 @@
 
   <%= yield :modal_etc %>
 
-  <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.min.js" if Rails.env.production? %>
-  <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" if Rails.env.production? %>
-  <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/core-js/1.0.0/core.min.js" if Rails.env.production?%>
+  <% if Rails.env.production? %>
+    <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.min.js" %>
+    <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" %>
+    <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/core-js/1.0.0/core.min.js" %>
+  <% end %>
   <%= javascript_include_tag "application" %>
 
 <script type="text/javascript">
