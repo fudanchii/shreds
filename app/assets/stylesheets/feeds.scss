@@ -42,25 +42,6 @@ header span { margin-left: 4px; }
     }
 }
 
-#new_feed {
-    margin-left: 0px;
-    margin-right: 0px;
-
-    input[type="text"], textarea, textarea:focus {
-        border: none;
-        border-bottom: 2px solid #9c9c9c;
-        background: none;
-        box-shadow: none;
-        border-radius: 0;
-        margin-bottom: 10px;
-    }
-
-    textarea {
-        resize: none;
-        height: 54px;
-    }
-}
-
 #news_nav {
     padding: 16px;
 }
@@ -81,12 +62,12 @@ a:hover, a:focus {
     background-color: rgba(25, 25, 25, 0.5);
     opacity: 0.5;
     border-radius: 50%;
-}
 
-#scrollUp:hover {
-    color: white;
-    background-color: rgba(25, 25, 25, 0.7);
-    opacity: 0.7;
+    &:hover {
+        color: white;
+        background-color: rgba(25, 25, 25, 0.7);
+        opacity: 0.7;
+    }
 }
 
 i.extra.small.icon, i.extra.small.icons {
