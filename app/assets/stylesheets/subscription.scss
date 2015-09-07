@@ -1,0 +1,24 @@
+
+@mixin form-input-style() {
+    border: none;
+    border-bottom: 2px solid #9c9c9c;
+    background: none;
+    border-radius: 0;
+    margin-bottom: 10px;
+}
+
+.subscribe-form {
+    padding: 0 9px 0 9px;
+}
+
+.subscribe-block {
+    &__input {
+        @include form-input-style();
+    }
+
+    &__textarea {
+        @include form-input-style();
+        resize: none;
+        height: 54px;
+    }
+}

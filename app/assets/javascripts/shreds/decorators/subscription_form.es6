@@ -10,8 +10,8 @@ let collapsed = false,
     amOut = true;
 
 Decorator.add('slideDownSubscriptionForm', () => {
-  $('#subscribeInput').slideDown();
-  $('#feed_url').focus();
+  $('#subscribe-block').slideDown();
+  $('#feed-url').focus();
   collapsed = true;
   $document.on('mouseover', _.throttle(ev => {
     amOut = false;
@@ -28,7 +28,7 @@ Decorator.add('slideDownSubscriptionForm', () => {
 });
 
 Decorator.add('slideUpSubscriptionForm', () => {
-  $('#subscribeInput').slideUp();
+  $('#subscribe-block').slideUp();
   collapsed = false;
   $document.off('mouseover');
   $document.off('mousedown');

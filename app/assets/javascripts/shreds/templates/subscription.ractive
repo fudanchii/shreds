@@ -1,9 +1,9 @@
-<form id="new_feed" novalidate="novalidate" action="/" accept-charset="UTF-8" method="post">
+<form id="subscribe-form" class="subscribe-form" novalidate="novalidate" action="/" accept-charset="UTF-8" method="post">
     <input name="utf8" type="hidden" value="✓">
     <input type="hidden" name="authenticity_token" value="{{authToken}}">
-    <div id="subscribeInput" class="block--hidden">
-        <textarea class="element--full-width" placeholder="Paste RSS link here" name="feed[url]" id="feed_url" value="{{feedURL}}"></textarea>
-        <input class="element--full-width" placeholder="Category (optional)" type="text" name="category[name]" id="category_name" value="{{categoryName}}">
+    <div id="subscribe-block" class="subscribe-block block--hidden">
+        <textarea class="subscribe-block__textarea element--full-width" placeholder="Paste RSS link here" name="feed[url]" id="feed-url" value="{{feedURL}}"></textarea>
+        <input class="subscribe-block__input element--full-width" placeholder="Category (optional)" type="text" name="category[name]" id="category-name" value="{{categoryName}}">
     </div>
     <a href="/"><img id="main-logo" class="left floated" height="38" alt="Logo" src="{{logoImage}}" on-mousedown="navigate"></a>
     <div class="right floated ui buttons">
