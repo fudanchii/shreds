@@ -16,7 +16,7 @@ function stop(spinner) {
 }
 
 Decorator.add('startSubscribeSpinner', () => {
-  spinnerRegistry.subscribeSpinner = spin(document.getElementById('btnSubmitFeed'));
+  spinnerRegistry.subscribeSpinner = spin(document.getElementById('button-submit-feed'));
 });
 
 Decorator.add('stopSubscribeSpinner', () => {
@@ -25,7 +25,7 @@ Decorator.add('stopSubscribeSpinner', () => {
 });
 
 Decorator.add('startUploadSpinner', () => {
-  spinnerRegistry.uploadSpinner = spin(document.getElementById('btnOPMLUpload'));
+  spinnerRegistry.uploadSpinner = spin(document.getElementById('button-OPML-upload'));
 });
 
 Decorator.add('stopUploadSpinner', () => {

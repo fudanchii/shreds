@@ -7,12 +7,12 @@
     </div>
     <a href="/"><img id="main-logo" class="left floated" height="38" alt="Logo" src="{{logoImage}}" on-mousedown="navigate"></a>
     <div class="right floated ui buttons">
-        <div id="btnSubmitFeed" class="ui blue basic icon button" on-click="subscribe">
+        <div id="button-submit-feed" class="ui blue basic icon button" on-click="subscribe">
             <span>
             <i class="plus icon"></i>
             <i class="feed icon"></i></span>
         </div>
-        <div id="btnOPMLUpload" class="ui teal basic icon button" on-click="import-opml">
+        <div id="button-OPML-upload" class="ui teal basic icon button" on-click="import-opml">
             <span>
             <i class="upload icon"></i>
             <i class="file outline icon"></i></span>
