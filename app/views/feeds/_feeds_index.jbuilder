@@ -9,5 +9,4 @@ json.feeds feeds do |v|
     json.partial! entry.newsitem, entry: entry, feed: v.feed
   end
 end
-json.prevPage link_to_previous_page feeds, 'Prev', params: { format: nil }
-json.nextPage link_to_next_page feeds, 'Next', params: { format: nil }
+json.partial! 'feed_pager', entries: feeds
