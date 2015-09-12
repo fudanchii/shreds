@@ -23,7 +23,6 @@ const ShredsAppView = Component.extend({
 
     this.on('complete', () => {
       Decorator.do('fixResponsiveImages');
-      this.fadeIn();
     });
 
     Decorator.do('backtoTop');
