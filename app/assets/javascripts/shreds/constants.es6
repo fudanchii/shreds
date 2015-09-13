@@ -1,6 +1,7 @@
 import * as defconst from 'framework/helpers/constants';
 
 export const action = defconst.defActions(
+  'NAVIGATE',
   'SCROLL_UP',
   'MARK_FEED_AS_READ',
   'MARK_ITEM_AS_READ',

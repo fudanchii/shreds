@@ -9,6 +9,7 @@ import { action, event } from 'shreds/constants';
 const NavigationStore = new Store({
   oninit() {
     this.regDispatcher(ShredsDispatcher, [
+      [action.NAVIGATE,           this.navigate],
       [action.NAVIGATE_TO_ROUTE,  this.navigate],
       [action.MARK_FEED_AS_READ,  this.markFeedAsRead],
       [action.FAIL_NOTIFY,        this.failHandler],
@@ -37,11 +38,8 @@ const NavigationStore = new Store({
   },
 
   navigate(payload) {
-    if (_.isUndefined(this.get('__feed-category_map'))) {
-      this.set('__feed-category_map', {});
-    }
     const
-      map = this.get('__feed-category_map'),
+      map = this.getOrCreate('__feed-category_map'),
       prefix = '/' + payload.path.split('/')[1];
     if (payload.cid && payload.fid) {
       map[prefix] = { cid: payload.cid, fid: payload.fid };
@@ -77,11 +75,8 @@ const NavigationStore = new Store({
   },
 
   markFeedAsRead(payload) {
-    if (_.isUndefined(this.get('__favicons'))) {
-      this.set('__favicons', {});
-    }
     const
-      favicons = this.get('__favicons'),
+      favicons = this.getOrCreate('__favicons'),
       feed = this.getFeed(payload.cid, payload.fid),
       key = `${payload.cid}:${payload.fid}`;
     if (!favicons[key]) {

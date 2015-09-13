@@ -49,10 +49,18 @@ class Store extends Service {
     this.load(data);
   }
 
-  get(arg) {
+  get(arg /*, options */) {
+    let options = arguments[1] || {};
     if (arg) {
+      if (options.createIfUndefined && _.isUndefined(this.__data[arg])) {
+        this.__data[arg] = {};
+      }
       return this.__data[arg];
     }
     return this.__data;
+  }
+
+  getOrCreate(arg) {
+    return this.get(arg, { createIfUndefined: true });
   }
 }
