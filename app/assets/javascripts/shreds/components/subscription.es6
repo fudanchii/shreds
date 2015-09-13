@@ -32,10 +32,6 @@ const SubscriptionComponent = Component.extend({
       return false;
     });
 
-    this.on('navigate', () => {
-      NavigationActions.navigate('/', 0, 0);
-    });
-
     this.on('import-opml', () => {
       Decorator.do('selectFileThenUpload');
     });

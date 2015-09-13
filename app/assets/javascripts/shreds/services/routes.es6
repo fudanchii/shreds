@@ -1,6 +1,7 @@
 import Router from 'framework/router';
 
 import ShredsDispatcher from 'shreds/dispatcher';
+import { action } from 'framework/helpers/constants';
 
 const RoutesService = new Router({
   oninit() {
@@ -18,6 +19,6 @@ const RoutesService = new Router({
   }
 });
 
-RoutesService.dispatcher = ShredsDispatcher;
+RoutesService.use(ShredsDispatcher, action.NAVIGATE_TO_ROUTE);
 
 export default RoutesService;

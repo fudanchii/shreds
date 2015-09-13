@@ -10,7 +10,7 @@
           <img src="{{favicon}}" width="16" height="16"/>
         </div>
         <p class="ellipsis">
-          <a alt="{{title}}" href="{{path}}">{{title}}</a>
+          <a alt="{{title}}" href="{{path}}" data-args='{"cid": "{{index}}", "fid": "{{feed_index}}"}'>{{title}}</a>
         </p>
         </div>
         <div class="row--inline-containing-elements">

@@ -2,7 +2,7 @@
 <div class="ui vertical segment">
     <div class="panel-heading">
       <h2 class="feed-title ui header">
-      <a href="{{path}}" on-mousedown="navigate:{{path}},{{cid}},{{../../id}}">{{{title}}}</a>
+      <a href="{{path}}" data-args='{"cid:": "{{cid}}", "fid": "{{../../id}}"}'>{{{title}}}</a>
       <a href="{{url}}" target="_blank"><i class="external extra small icon" data-toggle="tooltip" title="Go to {{url}}"></i></a>
       </h2>
     </div>

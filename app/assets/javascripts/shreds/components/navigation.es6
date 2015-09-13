@@ -18,7 +18,6 @@ const Navigation = Component.extend({
     });
 
     this.on('navigate', (ev, path, cid, fid) => {
-      NavigationActions.navigate(path, cid, fid);
       this.find(`a[href="${path}"]`).click();
     });
 

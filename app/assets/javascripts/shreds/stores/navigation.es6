@@ -9,7 +9,6 @@ import { action, event } from 'shreds/constants';
 const NavigationStore = new Store({
   oninit() {
     this.regDispatcher(ShredsDispatcher, [
-      [action.NAVIGATE,           this.navigate],
       [action.NAVIGATE_TO_ROUTE,  this.navigate],
       [action.MARK_FEED_AS_READ,  this.markFeedAsRead],
       [action.FAIL_NOTIFY,        this.failHandler],
@@ -41,19 +40,18 @@ const NavigationStore = new Store({
     const
       map = this.getOrCreate('__feed-category_map'),
       prefix = '/' + payload.path.split('/')[1];
-    if (payload.cid && payload.fid) {
-      map[prefix] = { cid: payload.cid, fid: payload.fid };
-      return;
-    }
-    if (map[prefix]) {
-      payload.cid = map[prefix].cid;
-      payload.fid = map[prefix].fid;
+    if (payload.args && payload.args.cid && payload.args.fid) {
+      map[prefix] = { cid: payload.args.cid, fid: payload.args.fid };
+    } else if (map[prefix]) {
+      payload.args = map[prefix];
     }
     this.setActiveFeedItem(payload);
   },
 
   setActiveFeedItem(payload) {
-    const data = this.get();
+    const
+      data = this.get(),
+      args = payload.args;
     let selected = data.selected || (
       data.selected = { cid: null, fid: null }
       );
@@ -65,11 +63,11 @@ const NavigationStore = new Store({
         _.each(category.feeds, (feed, k) => { feed.active = ''; });
       });
     }
-    if (payload.cid && payload.fid) {
-      const feed = this.getFeed(payload.cid, payload.fid);
+    if (args.cid && args.fid) {
+      const feed = this.getFeed(args.cid, args.fid);
       feed.active = ' active';
-      selected.cid = payload.cid;
-      selected.fid = payload.fid;
+      selected.cid = args.cid;
+      selected.fid = args.fid;
     }
     this.emitChange();
   },

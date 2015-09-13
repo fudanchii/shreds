@@ -2,7 +2,6 @@ import $ from 'jquery';
 import History from 'history';
 
 import Service from 'framework/service';
-import { action } from 'framework/helpers/constants';
 import { join } from 'framework/helpers/path';
 
 const anchor_selector = 'a[href^=\\/]:not([target=_blank])';
@@ -13,10 +12,16 @@ class Router extends Service {
     super(opts);
     History.Adapter.bind(window, 'statechange', this.dispatch.bind(this));
     $(document).on('click', anchor_selector, ev => {
+      const args = JSON.parse(ev.currentTarget.getAttribute('data-args') || '{}');
       ev.preventDefault();
       ev.stopPropagation();
-      this.navigate($(ev.currentTarget).attr('href'));
+      this.navigate(ev.currentTarget.getAttribute('href'), args);
     });
+  }
+
+  use(dispatcher, action) {
+    this.dispatcher = dispatcher;
+    this.action = action;
   }
 
   map(fn) {
@@ -81,8 +86,8 @@ class Router extends Service {
     return (match || []).map((el) => el.replace(/:/g, ''));
   }
 
-  navigate(path) {
-    History.pushState({}, '···', path);
+  navigate(path, args = {}) {
+    History.pushState(args, '···', path);
   }
 
   dispatch() {
@@ -91,9 +96,10 @@ class Router extends Service {
     // dispatch static routes
     if (this.staticRouteMap[stateHash]) {
       this.dispatcher.dispatch({
-        type: action.NAVIGATE_TO_ROUTE,
+        type: this.action,
         name: this.staticRouteMap[stateHash].name,
-        path: stateHash
+        path: stateHash,
+        args: state.data
       }); return;
     }
 
@@ -106,8 +112,9 @@ class Router extends Service {
           return p;
         }, {});
         this.dispatcher.dispatch({
-          type: action.NAVIGATE_TO_ROUTE,
+          type: this.action,
           path: stateHash,
+          args: state.data,
           name,
           data
         }); return;

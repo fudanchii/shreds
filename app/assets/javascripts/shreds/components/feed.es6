@@ -26,10 +26,6 @@ const FeedComponent = Component.extend({
       return false;
     });
 
-    this.on('navigate', (ev, path, cid, fid) => {
-      NavigationActions.navigate(path, cid, fid);
-    });
-
     Decorator.do('setTitle', this.get('title'));
   }
 });
