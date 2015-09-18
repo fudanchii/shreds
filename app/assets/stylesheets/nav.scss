@@ -14,7 +14,8 @@
 
     #nav-container {
         top: 56px;
-        overflow: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
         border-width: 1px 0 1px 0;
         border-color: #e5e5e5;
         border-style: solid;
