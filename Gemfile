@@ -101,6 +101,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-scrollup'
   gem 'rails-assets-nprogress'
   gem 'rails-assets-ractive'
+  gem 'rails-assets-ractive-transitions-fade'
   gem 'rails-assets-moment'
   gem 'rails-assets-zloirock--core-js'
   gem 'rails-assets-semantic-ui'

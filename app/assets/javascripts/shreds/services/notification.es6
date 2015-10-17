@@ -16,10 +16,10 @@ const NotificationService = new Service({
 
   notify: {
     info(message) {
-      new Notification({ data: { type: 'info', text: message } });
+      new Notification({ data: { type: 'blue', text: message } });
     },
     error(message) {
-      new Notification({ data: { type: 'danger', text: message } });
+      new Notification({ data: { type: 'red', text: message } });
     }
   },
 
@@ -47,14 +47,8 @@ const Notification = Component.extend({
   oninit() {
     this.on('complete', (ev) => {
       setTimeout(() => {
-        this.set('transition', 'in');
-      }, 150);
-      setTimeout(() => {
-        this.set('transition', '');
-      }, 5150);
-      setTimeout(() => {
         this.teardown();
-      }, 6300);
+      }, 4500);
     });
   }
 });

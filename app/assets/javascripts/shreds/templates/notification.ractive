@@ -1,4 +1,4 @@
-<div class="alert fade alert-float alert-{{type}} {{transition}}" id="{{id}}">
-<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+<div intro="fade:{to:1, duration: 600}" outro="fade" class="alert-float ui {{type}} message" id="{{id}}">
+<i class="close icon"></i>
 {{{text}}}
 </div>

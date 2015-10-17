@@ -258,6 +258,7 @@ GEM
     rails-assets-moment (2.10.6)
     rails-assets-nprogress (0.2.0)
     rails-assets-ractive (0.7.3)
+    rails-assets-ractive-transitions-fade (0.2.1)
     rails-assets-scrollup (2.4.1)
       rails-assets-jquery (>= 1.11.0)
     rails-assets-semantic-ui (2.1.4)
@@ -384,6 +385,7 @@ DEPENDENCIES
   rails-assets-moment!
   rails-assets-nprogress!
   rails-assets-ractive!
+  rails-assets-ractive-transitions-fade!
   rails-assets-scrollup!
   rails-assets-semantic-ui!
   rails-assets-zloirock--core-js!
