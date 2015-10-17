@@ -1,4 +1,4 @@
-<div intro="fade:{to:1, duration: 600}" outro="fade" class="alert-float ui {{type}} message" id="{{id}}">
+<div intro="fade:{to:1, duration: 600}" outro="fade" class="alert-float {{visibility}} ui {{type}} message" id="{{id}}">
 <i class="close icon"></i>
 {{{text}}}
 </div>

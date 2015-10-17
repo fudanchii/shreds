@@ -41,14 +41,14 @@ const Notification = Component.extend({
 
   data: {
     type: '',
-    text: ''
+    text: '',
+    visibility: ''
   },
 
   oninit() {
     this.on('complete', (ev) => {
-      setTimeout(() => {
-        this.teardown();
-      }, 4500);
+      setTimeout(() => { this.set('visibility', 'visible'); }, 100);
+      setTimeout(() => { this.teardown(); }, 4000);
     });
   }
 });
