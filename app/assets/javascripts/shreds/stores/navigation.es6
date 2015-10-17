@@ -118,7 +118,10 @@ const NavigationStore = new Store({
   },
 
   reloadNavigation(payload) {
+    const
+      selected = this.get('selected');
     this.refresh(payload.data.data);
+    this.setActiveFeedItem({ args: selected });
     this.emitChange();
   }
 });

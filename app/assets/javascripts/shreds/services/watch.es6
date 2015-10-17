@@ -6,6 +6,7 @@ import NavigationActions from 'shreds/actions/navigation';
 import NotificationActions from 'shreds/actions/notification';
 import SubscriptionActions from 'shreds/actions/subscription';
 import { event } from 'shreds/constants';
+import I18n from 'I18n';
 
 const WatchService = new Service({
   oninit() {
@@ -65,6 +66,7 @@ const WatchService = new Service({
   updateFeed() {
     this.doWatch('updateFeed', (data) => {
       NavigationActions.reloadNavigation(data);
+      NotificationActions.info(I18n.t('js.feed.updated'));
     });
   }
 });

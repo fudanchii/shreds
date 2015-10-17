@@ -42,3 +42,5 @@ en:
       toggle_read: "<strong>Item</strong> couldn't be changed"
       subscribe: "<strong>Feed</strong> couldn't be subscribed"
       upload: "<strong>OPML</strong> couldn't be uploaded"
+    feed:
+      updated: "<strong>News entries</strong> updated"
