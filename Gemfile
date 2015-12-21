@@ -14,6 +14,10 @@ gem 'jbuilder'
 ### 2. Assets related gems
 gem 'therubyracer'
 gem 'uglifier'
+
+# Lock sprockets-rails to 2.x.x since 3.0.0 breaks all other gems
+gem 'sprockets-rails', '< 3.0.0'
+
 gem 'sprockets', '>= 3.0.0.beta'
 gem 'sprockets-es6', '>= 0.6.0'
 gem 'sass-rails', '~> 5.0.0'
@@ -35,7 +39,7 @@ gem 'simple_form', github: 'plataformatec/simple_form'
 # end of 3.
 
 ### 4. Middleware and server related gems
-gem 'passenger', platforms: [:mri, :jruby, :rbx]
+gem 'puma', platforms: [:mri, :jruby, :rbx]
 gem 'thin', platforms: [:mswin, :mingw]
 # end of 4.
 
