@@ -22,6 +22,9 @@ const SubscriptionComponent = Component.extend({
     });
 
     this.on('subscribe', () => {
+      if (this.get('spinnerStarted')) {
+        return false;
+      }
       if (!this.get('collapsed')) {
         SubscriptionActions.collapse();
       } else {
@@ -33,23 +36,25 @@ const SubscriptionComponent = Component.extend({
     });
 
     this.on('import-opml', () => {
-      Decorator.do('selectFileThenUpload');
+      if (!this.get('uploadSpinnerStarted')) {
+        Decorator.do('selectFileThenUpload');
+      }
     });
 
-    this.observe('collapsed', (newValue, oldValue, keypath) => {
-      newValue?
+    this.observe('collapsed', (shouldCollapse, oldValue, keypath) => {
+      shouldCollapse?
         Decorator.do('slideDownSubscriptionForm'):
         Decorator.do('slideUpSubscriptionForm');
     });
 
-    this.observe('spinnerStarted', (newValue, oldValue, keypath) => {
-      newValue?
+    this.observe('spinnerStarted', (shouldStart, oldValue, keypath) => {
+      shouldStart?
         Decorator.do('startSubscribeSpinner'):
         Decorator.do('stopSubscribeSpinner');
     });
 
-    this.observe('uploadSpinnerStarted', (newValue, oldValue, keypath) => {
-      newValue?
+    this.observe('uploadSpinnerStarted', (shouldStart, oldValue, keypath) => {
+      shouldStart?
         Decorator.do('startUploadSpinner'):
         Decorator.do('stopUploadSpinner');
     });
