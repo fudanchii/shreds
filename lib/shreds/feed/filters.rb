@@ -10,21 +10,20 @@ module Shreds
         # Run all filters against this entry,
         # entry is assumed to be an instance of Newsitem model
         def apply(entry)
-          @permalink = Shreds::Feed.to_valid_url entry.permalink
+          permalink = Shreds::Feed.to_valid_url entry.permalink
           %i(img_src_to_full_url remove_inline_style).each do |method|
-            traverse_transform(entry) { |node| send method, node }
+            traverse_transform(entry) { |node| send method, permalink, node }
           end
-          @fragments = nil
         end
 
         # Turn image with relative path to its absolute URL
-        def img_src_to_full_url(node)
+        def img_src_to_full_url(permalink, node)
           return unless valid_img?(node) && !node.attributes['src'].value.urlish?
-          node.attributes['src'].value = URI.join(@permalink, node.attributes['src'].value).to_s
+          node.attributes['src'].value = URI.join(permalink, node.attributes['src'].value).to_s
         end
 
         # TODO: specify inline styles to be nuked
-        def remove_inline_style(node)
+        def remove_inline_style(permalink, node)
           node
         end
 
@@ -35,7 +34,7 @@ module Shreds
         end
 
         def fragments(entry)
-          @fragments ||= %w(content summary).map do |method|
+          %w(content summary).map do |method|
             [Nokogiri::HTML::DocumentFragment.parse(entry.send(method)),
              method] if entry.send(method).present?
           end.compact
