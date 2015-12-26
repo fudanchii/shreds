@@ -2,7 +2,7 @@
 //= require i18n/translations
 
 //= require ractive
-//= require ractive-transitions-fade
+//= require ractive-transitions-fade/ractive-transitions-fade.umd
 
 //= require semantic-ui/semantic
 
