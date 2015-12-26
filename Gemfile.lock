@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/amatsuda/kaminari.git
-  revision: 45ee71b74c7a21333e2b05ae8672a0e8c0625e38
+  revision: 20450f64fc3f8811ea524c7798e623068d48e64d
   specs:
     kaminari (1.0.0.alpha)
       actionpack (>= 3.0.0)
@@ -93,7 +93,7 @@ GEM
       rake (~> 10.4)
     ansi (1.5.0)
     arel (6.0.3)
-    autoprefixer-rails (6.2.0)
+    autoprefixer-rails (6.2.1)
       execjs
       json
     babel-source (5.8.34)
@@ -245,7 +245,7 @@ GEM
       rails-assets-jquery (>= 1.11.0)
     rails-assets-semantic-ui (2.1.7)
       rails-assets-jquery (>= 1.8)
-    rails-assets-zloirock--core-js (1.2.6)
+    rails-assets-zloirock--core-js (2.0.0)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -387,3 +387,6 @@ DEPENDENCIES
   therubyracer
   thin
   uglifier
+
+BUNDLED WITH
+   1.11.2
