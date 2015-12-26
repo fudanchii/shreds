@@ -40,6 +40,12 @@ header span { margin-left: 4px; }
             display: block;
         }
     }
+
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
 }
 
 #news_nav {
