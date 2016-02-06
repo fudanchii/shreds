@@ -116,6 +116,14 @@ code, pre {
     }
 }
 
+h1.feed-title.ui.header {
+    padding-top: 1em;
+
+    + .ui.vertical.segment {
+        padding-top: 0;
+    }
+}
+
 .ui.vertical.segment {
     ~ .ui.vertical.segment {
         padding-top: 2em;
