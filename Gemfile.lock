@@ -8,10 +8,10 @@ GIT
 
 GIT
   remote: git://github.com/fudanchii/feedbag.git
-  revision: c737c293cc2ff91566484a3bb3f72c9be653965e
+  revision: 44cd9f8b2e83c7988ce50563de1c68ae24dc691d
   branch: dev
   specs:
-    feedbag (0.9.1)
+    feedbag (0.9.5)
       nokogiri
       open_uri_redirections
 
