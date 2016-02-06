@@ -16,17 +16,17 @@ const WatchService = new Service({
     ]);
 
     this.callbacks = {};
-    this.list = [];
+    this.list = new Set();
     setInterval(this.updateFeed, 600000);
   },
 
   doWatch(key, fn) {
     if (key) {
-      this.list.push(key);
+      this.list.add(key);
       if (_.isFunction(fn)) { this.callbacks[key] = fn; }
     }
-    if (this.list.length === 0) { return; }
-    WebAPIService.watchEvents(this.list)
+    if (this.list.size === 0) { return; }
+    WebAPIService.watchEvents(Array.from(this.list))
       .fail(() => { setTimeout(this.doWatch, 2000); })
       .done((data) => {
         _.each(data, (v, k) => {
@@ -35,7 +35,7 @@ const WatchService = new Service({
             delete this.callbacks[k];
           }
         });
-        this.list = this.list.filter(k => !data[k]);
+        this.list = new Set((Array.from(this.list)).filter(k => !data[k]));
       });
   },
 
