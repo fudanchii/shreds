@@ -34,7 +34,7 @@ describe Feed do
   end
 
   describe 'safe_create' do
-    it 'is thread-safe even if called concurrently' do
+    it 'ensure thread-safety' do
       mock_create = lambda do |*attr|
         described_class.__minitest_stub__create!(*attr)
         described_class.__minitest_stub__create!(*attr)

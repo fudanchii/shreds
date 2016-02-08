@@ -30,8 +30,10 @@ Shreds::Application.routes.draw do
 
     resources :categories, only: [:destroy]
 
-    resources :subscriptions, only: [:index, :show, :destroy] do
-      patch 'set_fetched_url', on: :member
+    scope '/backyard' do
+      resources :subscriptions, only: [:index, :show, :destroy] do
+        patch 'feed_url', on: :member
+      end
     end
 
     get '/watch' => 'events#watch'

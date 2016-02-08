@@ -31,8 +31,13 @@ const WebAPIService = new Service({
   },
 
   navigate(payload) {
+    const prefix = payload.name.split('/')[0];
+    if (prefix === 'feeds') {
+      payload.path = join('/feeds', payload.path);
+    }
+
     req
-      .get(join('/feeds', payload.path) + '.json', {
+      .get(payload.path + '.json', {
         failMsg: I18n.t('js.fail.navigate'),
         failPayload: payload
       })

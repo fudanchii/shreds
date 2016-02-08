@@ -9,7 +9,6 @@ describe FeedsController do
 
   after do
     @feed.destroy
-    `redis-cli flushall`
   end
 
   it 'should get index' do
