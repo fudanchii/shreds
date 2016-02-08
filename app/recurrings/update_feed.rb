@@ -5,6 +5,6 @@ class UpdateFeed
                   expires_in: 21.minute
 
   def perform
-    Feed.find_each { |f| FeedFetcher.perform_async(f.feed_url) }
+    Subscription.find_each { |s| FeedFetcher.perform_async(s.feed.feed_url) }
   end
 end

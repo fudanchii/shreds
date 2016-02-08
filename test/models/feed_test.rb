@@ -43,10 +43,11 @@ describe Feed do
         mock = Minitest::Mock.new
         mock.expect :call, ['http://example.com/feed.rss'], ['http://example.com']
         Feedbag.stub :find, mock do
-          feed = described_class.safe_create 'http://example.com'
-          feed.url.must_equal 'http://example.com'
-          feed.feed_url.must_equal 'http://example.com/feed.rss'
+          feeds = described_class.safe_create 'http://example.com'
+          feeds.first.url.must_equal 'http://example.com'
+          feeds.first.feed_url.must_equal 'http://example.com/feed.rss'
         end
+        assert mock.verify
       end
     end
   end

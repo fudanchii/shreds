@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   def unread_feeds
     subscriptions.includes({ entries: :newsitem }, :feed)
       .where('entries.unread' => true)
-      .order('newsitems.published desc, newsitems.id desc')
+      .order('newsitems.published desc, newsitems.id asc')
   end
 
   private

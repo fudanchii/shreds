@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160206122259) do
+ActiveRecord::Schema.define(version: 20160208063729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,28 +36,24 @@ ActiveRecord::Schema.define(version: 20160206122259) do
   add_index "entries", ["unread"], name: "index_entries_on_unread", where: "unread", using: :btree
 
   create_table "feeds", force: :cascade do |t|
-    t.text     "url",                                 null: false
+    t.text     "url",                                  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "feed_url"
-    t.text     "title",      default: "( Untitled )", null: false
+    t.text     "title",       default: "( Untitled )", null: false
     t.string   "etag"
+    t.string   "last_status"
   end
 
   add_index "feeds", ["feed_url"], name: "index_feeds_on_feed_url", unique: true, using: :btree
 
-  create_table "feedurls", force: :cascade do |t|
-    t.text     "url"
-    t.string   "last_fetch_status"
-    t.datetime "last_fetch_time"
-    t.integer  "feed_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+  create_table "feeds_subscriptions", id: false, force: :cascade do |t|
+    t.integer "feed_id"
+    t.integer "subscription_id"
   end
 
-  add_index "feedurls", ["feed_id"], name: "index_feedurls_on_feed_id", using: :btree
-  add_index "feedurls", ["last_fetch_status"], name: "index_feedurls_on_last_fetch_status", using: :btree
-  add_index "feedurls", ["url", "feed_id"], name: "index_feedurls_on_url_and_feed_id", unique: true, using: :btree
+  add_index "feeds_subscriptions", ["feed_id"], name: "index_feeds_subscriptions_on_feed_id", using: :btree
+  add_index "feeds_subscriptions", ["subscription_id"], name: "index_feeds_subscriptions_on_subscription_id", using: :btree
 
   create_table "itemhashes", force: :cascade do |t|
     t.string   "urlhash",    null: false
@@ -105,5 +101,4 @@ ActiveRecord::Schema.define(version: 20160206122259) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["token"], name: "index_users_on_token", unique: true, using: :btree
 
-  add_foreign_key "feedurls", "feeds"
 end

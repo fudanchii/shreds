@@ -1,13 +1,14 @@
 class EntryNewsitems
-  attr_reader :feed_record
 
-  def initialize(feed, feed_url)
+  def initialize(feed, feed_url, feed_status)
     @feed = feed
+    @feed_status = feed_status
     @feed_record = Feed.find_by! feed_url: feed_url
     fail Shreds::InvalidFeed, I18n.t('feed.not_found') if @feed_record.nil?
   end
 
   def execute
+    @feed_record.update_stats! @feed_status
     return if @feed_record.up_to_date_with? @feed
 
     @feed.sanitize_entries!

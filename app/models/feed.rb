@@ -3,11 +3,10 @@ require 'feedbag'
 require 'shreds/feed'
 
 class Feed < ActiveRecord::Base
-  has_many :subscriptions, dependent: :destroy
+  has_and_belongs_to_many :subscriptions, dependent: :destroy
   has_many :categories, through: :subscriptions
   has_many :users, through: :subscriptions
   has_many :newsitems, dependent: :destroy
-  has_many :feedurls, dependent: :destroy
 
   validates :url, :feed_url, presence: true
   before_save :sanitize_url
@@ -18,22 +17,14 @@ class Feed < ActiveRecord::Base
   # multi-thread safeness.
   def self.safe_create(url)
     urls = Feedbag.find(url)
-    feed_url = urls.first
-    if feed_url.nil? || !feed_url.urlish?
-      fail Shreds::InvalidFeed, I18n.t('feed.invalid')
-    end
-    feed = nil
-    begin
-      feed = where(feed_url: feed_url).first_or_create!(by_param url, feed_url)
-    rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordNotUnique
-      feed = find_by! feed_url: feed_url
-    ensure
-      urls.each do |u|
-        feed.feedurls << Feedurl.create!(url: u)
+    fail Shreds::InvalidFeed, I18n.t('feed.invalid') if urls.nil? || urls.empty?
+    urls.map do |feed_url|
+      begin
+        where(feed_url: feed_url).first_or_create!(by_param url, feed_url)
+      rescue ActiveRecord::StatementInvalid, ActiveRecord::RecordNotUnique
+        find_by! feed_url: feed_url
       end
-      feed.save!
     end
-    feed
   end
 
   def to_param
@@ -76,6 +67,10 @@ class Feed < ActiveRecord::Base
         (k == :url && url.present? && url == v)
     end
     update_attributes!(fields) unless fields.empty?
+  end
+
+  def update_stats!(status)
+    update_attributes! last_status: status
   end
 
   private

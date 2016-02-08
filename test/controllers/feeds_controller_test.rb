@@ -18,17 +18,6 @@ describe FeedsController do
     assert_not_nil assigns(:feeds)
   end
 
-  it 'should create feed' do
-    post :create,
-         feed: {
-           url: 'http://fudanchii.net/atom.xml',
-           title: 'fudanchii.net',
-           feed_url: 'http://fudanchii.net/atom.xml'
-         },
-         category: { feed: Category.default }
-    assert_redirected_to feeds_path
-  end
-
   it 'should show feed' do
     get :show, id: @feed
     assert_not_nil assigns(:feed)

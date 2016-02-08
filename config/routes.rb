@@ -6,13 +6,12 @@ Shreds::Application.routes.draw do
   get '/logout' => 'session#destroy'
   match '/auth/:provider/callback', to: 'session#create', via: [:get, :post]
 
-  namespace 'backyard' do
+  scope '/backyard' do
     mount Sidekiq::Web => '/sidekiq'
-    get '/activities' => 'settings#activities'
-    get '/subscriptions' => 'settings#subscriptions'
+    resources :subscriptions, only: [:index, :show], format: false
   end
 
-  resources :feeds, only: [:create, :index, :show], path: '/', format: false do
+  resources :feeds, only: [:index, :show], path: '/', format: false do
     get 'page/:page', action: :show, on: :member
     get 'page/:page', action: :index, on: :collection
     resources :newsitems, only: [:show], path: '/'
@@ -28,7 +27,13 @@ Shreds::Application.routes.draw do
         patch 'toggle_read', on: :member
       end
     end
+
     resources :categories, only: [:destroy]
+
+    resources :subscriptions, only: [:index, :show, :destroy] do
+      patch 'set_fetched_url', on: :member
+    end
+
     get '/watch' => 'events#watch'
     post '/upload_opml' => 'feeds#create_from_opml'
   end
