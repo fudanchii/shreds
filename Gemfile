@@ -18,10 +18,10 @@ gem 'uglifier', require: false
 # Lock sprockets-rails to 2.x.x since 3.0.0 breaks all other gems
 gem 'sprockets-rails', '< 3.0.0'
 
-gem 'sprockets', '>= 3.0.0.beta'
+gem 'sprockets', '~> 3.0'
 gem 'sprockets-es6', '>= 0.6.0'
 gem 'sass-rails', require: false
-gem 'autoprefixer-rails'
+gem 'autoprefixer-rails', require: false
 gem 'ractive_assets', github: 'unity/ractive_assets'
 gem 'i18n-js' # , '>= 3.0.0.rc8'
 # end of 2.
