@@ -18,7 +18,7 @@ Shreds::Application.routes.draw do
   end
 
   scope '/i', format: true, constraints: { format: 'json' } do
-    resources :feeds, only: [:index, :create, :show, :destroy] do
+    resources :feeds, only: [:index, :show] do
       get 'page/:page', action: :show, on: :member
       get 'page/:page', action: :index, on: :collection
       patch 'mark_as_read', on: :member
@@ -28,13 +28,9 @@ Shreds::Application.routes.draw do
       end
     end
 
-    resources :categories, only: [:destroy]
+    resources :subscriptions, only: [:create]
 
-    scope '/backyard' do
-      resources :subscriptions, only: [:index, :show, :destroy] do
-        patch 'feed_url', on: :member
-      end
-    end
+    resources :categories, only: [:destroy]
 
     get '/watch' => 'events#watch'
     post '/upload_opml' => 'feeds#create_from_opml'

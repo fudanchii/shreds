@@ -31,7 +31,7 @@ class Category < ActiveRecord::Base
   end
 
   def safe_destroy
-    defcat = Category.where(name: self.class.default).first
+    defcat = Category.find_by(name: self.class.default)
     Subscription.transaction do
       subscriptions.each { |s| s.update(category: defcat) }
       destroy

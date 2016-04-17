@@ -10,7 +10,7 @@
 </head>
 <body>
   <div id="container" class="ui padded grid">
-    <%= render 'navigation_template' %>
+    <%= render 'navigation_template', subscriptions: @subscriptions %>
     <div id="side-navigator-shadow" class="five wide column computer only"></div>
     <div class="eleven wide column computer column--take-the-rest-of-space" data-template="main-view">
       <%= yield %>

@@ -1,0 +1,6 @@
+article1:
+  title: This Is News One
+  content: yay
+  published: <%= Time.now %>
+  permalink: http://example.com
+  feed: feed1

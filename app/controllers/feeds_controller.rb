@@ -1,57 +1,19 @@
-require 'opml/file'
-
 class FeedsController < ApplicationController
-  # GET /feeds
-  # GET /feeds.json
   def index
-    @feeds = Kaminari.paginate_array(current_user.unread_feeds.to_ary).page(params[:page]).per 5
+    @feeds = FeedsIndexSerializer.new(
+      current_user.subscriptions_list(
+        page: params[:page].presence || 1,
+        per_page: Figaro.env.index_item_per_page,
+        per_feed: Figaro.env.index_item_per_feed
+      )
+    ).as_json
   end
 
-  # GET /feeds/1
-  # GET /feeds/1.json
   def show
-    @subscription = current_user.subscriptions
-                    .joins(:feed)
-                    .find_by! feed_id: params[:id]
-    @feed = @subscription.feed
-    @entries = @subscription.entries.includes(:newsitem).for_view.page params[:page]
-  end
-
-  # POST /feeds
-  # POST /feeds.json
-  def create
-    return error_response(I18n.t('feed.error.empty_url'), :unprocessable_entity) unless params[:feed][:url].present?
-    jid = CreateSubscription.perform_async current_user.id,
-                                           params[:feed][:url],
-                                           params[:category][:name].presence
-    may_respond_with html: { info: I18n.t('feed.created'), redirect_to: '/' },
-                     json: { watch: "create-#{jid}" }
-  end
-
-  def create_from_opml
-    filename = OPML::File.new(params[:OPMLfile]).fullpath
-    jid = ProcessOPML.perform_async current_user.id, filename
-    render json: { watch: "opml-#{jid}" }
-  rescue OPML::UploadError => ex
-    error_response ex.message.html_safe, :unprocessable_entity
-  end
-
-  # DELETE /feeds/1
-  # DELETE /feeds/1.json
-  def destroy
-    current_user.subscriptions.find_by!(feed_id: params[:id]).destroy
-  end
-
-  def mark_as_read
-    @subscription = current_user.subscriptions
-                    .includes(:category).find_by! feed_id: params[:id]
-    @subscription.entries.unread_entry.update_all unread: false
-  end
-
-  def mark_all_as_read
-    Entry.joins(:subscription)
-      .where('subscriptions.user_id' => current_user.id)
-      .unread_entry
-      .update_all unread: false
+    @feed = current_user.one_subscription(
+      feed_id: params[:id],
+      page: params[:page].presence || 1,
+      per_page: Figaro.env.feed_item_per_page
+    )
   end
 end

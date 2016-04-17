@@ -7,7 +7,7 @@ gem 'pg'
 
 gem 'annotate', group: :development
 
-gem 'jbuilder'
+gem 'jbuilder' # to be removed
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 # gem 'paper_trail'
 # end of 1.
@@ -70,6 +70,7 @@ group :test do
   gem 'minitest-reporters'
   gem 'minitest-spec-rails'
   gem 'minitest-stub_any_instance'
+  gem 'm'
 end
 
 group :development, :test do
@@ -93,7 +94,7 @@ gem 'stathat'
 gem 'foreman', require: false
 
 group :development do
-  gem 'rack-mini-profiler'
+  gem 'rack-mini-profiler', require: false
   gem 'flamegraph'
   gem 'stackprof'
 end

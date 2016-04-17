@@ -4,13 +4,10 @@ module Shreds
   module Feed
     class << self
       def to_valid_url(url)
-        return url if url.to_s.start_with?('http://') || url.to_s.start_with?('https://')
+        return url if url.to_s.start_with?('http://', 'https://')
         parsed_url = URI.parse url
-        if parsed_url.host.to_s.blank?
-          return url.prepend 'http://'
-        else
-          parsed_url.scheme = 'https'
-        end
+        return url.prepend 'http://' if parsed_url.host.to_s.blank?
+        parsed_url.scheme = 'https'
         parsed_url.to_s
       end
     end

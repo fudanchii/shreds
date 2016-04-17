@@ -1,10 +1,9 @@
-class EntryNewsitems
-
+class EntryArticles
   def initialize(feed, feed_url, feed_status)
     @feed = feed
     @feed_status = feed_status
     @feed_record = Feed.find_by! feed_url: feed_url
-    fail Shreds::InvalidFeed, I18n.t('feed.not_found') if @feed_record.nil?
+    raise Shreds::InvalidFeed, I18n.t('feed.not_found') if @feed_record.nil?
   end
 
   def execute
@@ -12,7 +11,7 @@ class EntryNewsitems
     return if @feed_record.up_to_date_with? @feed
 
     @feed.sanitize_entries!
-    @feed.entries.each { |entry| @feed_record.add_newsitem entry }
+    @feed.entries.each { |entry| @feed_record.add_article entry }
 
     @feed_record.update_meta!(etag: @feed.etag, title: @feed.title, url: @feed.url)
   rescue ActiveRecord::RecordInvalid => err

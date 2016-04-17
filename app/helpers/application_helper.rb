@@ -11,4 +11,8 @@ module ApplicationHelper
   def full_url(path)
     ENV['app_host'].to_s + path.to_s
   end
+
+  def navigation_data(user)
+    NavigationListSerializer.new(user).as_json
+  end
 end

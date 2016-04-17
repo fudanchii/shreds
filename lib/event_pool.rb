@@ -5,7 +5,7 @@ module EventPool
     rconf[:connections] = 10 if rconf[:connections].to_i == 0
     rconf[:timeout] = 30 if rconf[:timeout].to_i == 0
     @pool = ConnectionPool.new(
-            size: rconf[:connections].to_i, timeout: rconf[:timeout].to_i) do
+      size: rconf[:connections].to_i, timeout: rconf[:timeout].to_i) do
       Redis::Namespace.new ns, rconf
     end
   end

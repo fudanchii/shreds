@@ -1,7 +1,7 @@
 class Itemhash < ActiveRecord::Base
   def self.has?(str)
     sha = Digest::SHA2.new(256) << str
-    where(urlhash: sha.to_s).first || false
+    find_by(urlhash: sha.to_s) || false
   end
 
   def self.insert(str)

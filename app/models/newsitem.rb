@@ -6,6 +6,7 @@ class Newsitem < ActiveRecord::Base
   has_many :subscriptions, through: :entries
 
   scope :for_view, -> { order('published DESC, id DESC') }
+  scope :latest_issue, -> { for_view.take 1 }
 
   before_destroy :hash_permalink
 
@@ -13,33 +14,36 @@ class Newsitem < ActiveRecord::Base
 
   before_save { permalink.strip! }
 
-  def self.sanitize_field(entry)
-    params = {}
-    %i(title published content author summary).each do |field|
-      params[field] = entry.send(field) if entry.respond_to? field
+  class << self
+    def sanitize_field(entry)
+      params = {}
+      %i(title published content author summary).each do |field|
+        params[field] = entry.send(field) if entry.respond_to? field
+      end
+      params[:permalink] = get_entry_url entry
+      ActionController::Parameters.new(params).permit!
     end
-    params[:permalink] = get_entry_url entry
-    ActionController::Parameters.new(params).permit!
-  end
 
-  def self.has?(link)
-    ctlnk = link.dup
-    links = [link.dup]
-    scheme = ctlnk.slice! %r{^https?://}
-    links << case scheme
-             when 'http://'
-               ctlnk.prepend('https://')
-             when 'https://'
-               ctlnk.prepend('http://')
-             end
-    links.compact.any? do |lnk|
-      find_by(permalink: lnk).present? || Itemhash.has?(lnk)
+    def has?(link)
+      ctlnk = link.dup
+      links = [link.dup]
+      scheme = ctlnk.slice! %r{^https?://}
+      links << case scheme
+               when 'http://'
+                 ctlnk.prepend('https://')
+               when 'https://'
+                 ctlnk.prepend('http://')
+               end
+      links.compact.any? do |lnk|
+        find_by(permalink: lnk).present? || Itemhash.has?(lnk)
+      end
     end
-  end
 
-  def self.latest_issues_for(subscriptions)
-    select('distinct on (feed_id) *').where(feed_id: subscriptions.pluck(:feed_id))
-      .order(:feed_id).for_view
+    private
+
+    def get_entry_url(entry)
+      entry.url.presence.strip || (entry.entry_id.strip if entry.entry_id.urlish?)
+    end
   end
 
   def next
@@ -55,10 +59,6 @@ class Newsitem < ActiveRecord::Base
   end
 
   private
-
-  def self.get_entry_url(entry)
-    entry.url.presence.strip || (entry.entry_id.strip if entry.entry_id.urlish?)
-  end
 
   def adj(comp)
     Newsitem.for_view.where(feed_id: feed_id).where(comp, pdate: published, id: id)

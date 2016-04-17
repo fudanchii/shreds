@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: subscriptions
+#
+#  id          :integer          not null, primary key
+#  user_id     :integer
+#  category_id :integer
+#  feed_id     :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+# Indexes
+#
+#  index_subscriptions_on_feed_id_and_category_id_and_user_id  (feed_id,category_id,user_id) UNIQUE
+#  index_subscriptions_on_feed_id_and_user_id                  (feed_id,user_id) UNIQUE
+#
+
 require 'test_helper'
 
 describe Subscription do

@@ -3,13 +3,14 @@ class Subscription < ActiveRecord::Base
   belongs_to :category
   belongs_to :feed
 
-  has_and_belongs_to_many :feeds
+  has_many :urls
+  has_many :feeds, through: :urls
   has_many :entries, dependent: :destroy
-  has_many :newsitems, through: :entries
+  has_many :articles, through: :entries
 
   before_save :ensure_category
 
-  scope :for_view, -> { includes(:newsitems).order('newsitems.published desc, newsitems.id desc') }
+  scope :with_articles, -> { includes(:articles).order('articles.published desc, articles.id desc') }
   scope :with_unread_count, lambda {
     joins(:entries)
       .select('subscriptions.*, sum(case when entries.unread then 1 else 0 end) as unreads')
@@ -22,8 +23,8 @@ class Subscription < ActiveRecord::Base
   end
 
   def clear_read_news(offset = Kaminari.config.default_per_page)
-    entries.for_view.where(unread: false).offset(offset).each do |e|
-      e.newsitem.destroy if e.newsitem.unreads == 0
+    entries.joins_article.where(unread: false).offset(offset).each do |e|
+      e.article.destroy if e.article.unreads == 0
     end
   end
 
@@ -38,7 +39,7 @@ class Subscription < ActiveRecord::Base
   private
 
   def ensure_category
-    self.category_id = Category.where(name: Category.default).first.id unless category_id
+    self.category_id = Category.find_by(name: Category.default).id unless category_id
   end
 end
 

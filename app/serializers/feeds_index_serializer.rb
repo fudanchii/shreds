@@ -1,0 +1,2 @@
+class FeedsIndexSerializer < ApplicationSerializer
+end

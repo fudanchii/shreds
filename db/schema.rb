@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208063729) do
+ActiveRecord::Schema.define(version: 20160417034451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: :cascade do |t|
+    t.text     "permalink"
+    t.text     "content"
+    t.text     "author"
+    t.text     "title"
+    t.datetime "published",  default: "now()", null: false
+    t.text     "summary"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "feed_id"
+  end
+
+  add_index "articles", ["feed_id"], name: "index_articles_on_feed_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -30,8 +44,10 @@ ActiveRecord::Schema.define(version: 20160208063729) do
     t.boolean  "unread",          default: true
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "article_id"
   end
 
+  add_index "entries", ["article_id"], name: "index_entries_on_article_id", using: :btree
   add_index "entries", ["newsitem_id", "subscription_id"], name: "index_entries_on_newsitem_id_and_subscription_id", unique: true, using: :btree
   add_index "entries", ["unread"], name: "index_entries_on_unread", where: "unread", using: :btree
 
@@ -87,6 +103,7 @@ ActiveRecord::Schema.define(version: 20160208063729) do
 
   add_index "subscriptions", ["feed_id", "category_id", "user_id"], name: "index_subscriptions_on_feed_id_and_category_id_and_user_id", unique: true, using: :btree
   add_index "subscriptions", ["feed_id", "user_id"], name: "index_subscriptions_on_feed_id_and_user_id", unique: true, using: :btree
+  add_index "subscriptions", ["user_id", "id"], name: "index_subscriptions_on_user_id_and_id", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -101,4 +118,6 @@ ActiveRecord::Schema.define(version: 20160208063729) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["token"], name: "index_users_on_token", unique: true, using: :btree
 
+  add_foreign_key "articles", "feeds"
+  add_foreign_key "entries", "articles"
 end

@@ -30,13 +30,10 @@ class ApplicationController < ActionController::Base
   end
 
   def fetch_subscriptions
-    @subscriptions = current_user.bundled_subscriptions
+    @subscriptions = NavigationListSerializer.new(current_user).as_json
   end
 
   def init_empty_subscription
-    @subscription = current_user.subscriptions.build
-    @category = @subscription.category = Category.new
-    @new_feed = @subscription.feed = Feed.new
   end
 
   def feed_not_found(_exceptions)
@@ -47,7 +44,7 @@ class ApplicationController < ActionController::Base
     respond_to do |fmt|
       fmt.html do
         flash[:info] = opts[:html][:info]
-        redirect_to opts[:html][:redirect_to]
+        redirect_to opts[:html][:redirect_to] if opts[:html][:redirect_to].present?
       end
       fmt.json { render json: opts[:json] }
     end

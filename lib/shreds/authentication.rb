@@ -1,6 +1,6 @@
 module Shreds
   module Auth
-    USER_TOKEN = '_shreds_user_token'
+    USER_TOKEN = '_shreds_user_token'.freeze
 
     def current_user
       @current_user ||= User.where(token: session[USER_TOKEN]).first

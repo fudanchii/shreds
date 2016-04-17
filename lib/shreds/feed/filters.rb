@@ -23,7 +23,7 @@ module Shreds
         end
 
         # TODO: specify inline styles to be nuked
-        def remove_inline_style(permalink, node)
+        def remove_inline_style(_permalink, node)
           node
         end
 

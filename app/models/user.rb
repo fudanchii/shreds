@@ -7,40 +7,29 @@ class User < ActiveRecord::Base
 
   validates :username, :uid, :provider, presence: true
 
-  def self.from_omniauth(auth_hash)
-    where(provider: auth_hash[:provider], uid: auth_hash[:uid]).first
-  end
-
-  def self.create_from_omniauth(auth_hash)
-    create! do |user|
-      user.provider = auth_hash[:provider]
-      user.uid = auth_hash[:uid]
-      user.username = auth_hash[:info][:nickname] || auth_hash[:info][:name]
-      user.email = auth_hash[:info][:email]
+  class << self
+    def from_omniauth(auth_hash)
+      find_by(provider: auth_hash[:provider], uid: auth_hash[:uid])
     end
-  end
 
-  def bundled_subscriptions
-    newsitems = Newsitem.latest_issues_for(subscriptions).to_ary
-    subscriptions.bundled_for_navigation.each_with_object({}) do |c, hmap|
-      hmap.tap do |p|
-        p[c.category.id] ||= {
-          name: c.category.name,
-          feeds: []
-        }
-        p[c.category.id][:feeds] << {
-          feed: c.feed,
-          unreads: c.unreads,
-          latest: newsitems.shift
-        }
+    def create_from_omniauth(auth_hash)
+      create! do |user|
+        user.provider = auth_hash[:provider]
+        user.uid = auth_hash[:uid]
+        user.username = auth_hash[:info][:nickname] || auth_hash[:info][:name]
+        user.email = auth_hash[:info][:email]
       end
     end
   end
 
+  def subscriptions_list(page: 1, per_page: 5, per_feed: 3)
+    unread_feeds.page(page).per(per_page)
+  end
+
   def unread_feeds
-    subscriptions.includes({ entries: :newsitem }, :feed)
-      .where('entries.unread' => true)
-      .order('newsitems.published desc, newsitems.id asc')
+    subscriptions.includes({ entries: :article }, :feed)
+                 .where('entries.unread' => true)
+                 .order('articles.published desc, articles.id asc')
   end
 
   private

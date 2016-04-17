@@ -3,6 +3,6 @@ class UsersController < ApplicationController
 
   def feed_subscriptions
     @categories = Category.includes(:subscriptions, :feeds)
-                  .where('subscriptions.user_id' => current_user.id)
+                          .where('subscriptions.user_id' => current_user.id)
   end
 end
