@@ -160,9 +160,6 @@ GEM
     i18n (0.7.0)
     i18n-js (3.0.0.rc12)
       i18n (~> 0.6, >= 0.6.6)
-    jbuilder (2.4.1)
-      activesupport (>= 3.0.0, < 5.1)
-      multi_json (~> 1.2)
     json (1.8.3)
     libv8 (3.16.14.13)
     listen (3.0.6)
@@ -351,7 +348,6 @@ DEPENDENCIES
   guard-teaspoon
   hiredis
   i18n-js
-  jbuilder
   kaminari!
   m
   minitest

@@ -58,4 +58,5 @@ end
 #
 #  index_subscriptions_on_feed_id_and_category_id_and_user_id  (feed_id,category_id,user_id) UNIQUE
 #  index_subscriptions_on_feed_id_and_user_id                  (feed_id,user_id) UNIQUE
+#  index_subscriptions_on_user_id_and_id                       (user_id,id) UNIQUE
 #

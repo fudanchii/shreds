@@ -10,7 +10,7 @@
   var
     ShredsApp = require('shreds/stores/shreds_app'),
     Feed = require('shreds/stores/feed');
-  Feed.preload(<%= raw render(template: 'feeds/show.json') %>);
+  Feed.preload(<%= raw SubscriptionEntriesSerializer.new(@subscription).to_json %>);
   ShredsApp.preload({ toDisplay: 'feed' });
 })();
 <% end %>

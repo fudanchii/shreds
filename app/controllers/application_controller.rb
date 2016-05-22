@@ -13,6 +13,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def current_page
+    return params[:page] if params[:page].to_i > 0
+    1
+  end
+
   def error_response(message, code)
     respond_to do |fmt|
       fmt.html do
@@ -43,8 +48,10 @@ class ApplicationController < ActionController::Base
   def may_respond_with(opts)
     respond_to do |fmt|
       fmt.html do
-        flash[:info] = opts[:html][:info]
-        redirect_to opts[:html][:redirect_to] if opts[:html][:redirect_to].present?
+        if opts[:html].present?
+          flash[:info] = opts[:html][:info]
+          redirect_to opts[:html][:redirect_to] if opts[:html][:redirect_to].present?
+        end
       end
       fmt.json { render json: opts[:json] }
     end

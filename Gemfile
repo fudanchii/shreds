@@ -7,7 +7,6 @@ gem 'pg'
 
 gem 'annotate', group: :development
 
-gem 'jbuilder' # to be removed
 gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
 # gem 'paper_trail'
 # end of 1.

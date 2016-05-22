@@ -40,8 +40,8 @@ describe FeedsController do
       get :show, id: feed, format: 'json'
       assert_response :success
       res = JSON.parse(response.body)
-      res['url'].must_equal feed.url
-      res['newsitems'].must_be_instance_of Array
+      res['feed_url'].must_equal feed.url
+      res['entries'].must_be_instance_of Array
     end
 
     it 'DELETE /i/feeds/:id.json' do

@@ -12,7 +12,7 @@ end
 #  content    :text
 #  author     :text
 #  title      :text
-#  published  :datetime         default(Sun, 10 Apr 2016 02:13:25 UTC +00:00), not null
+#  published  :datetime         not null
 #  summary    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

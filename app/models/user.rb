@@ -22,14 +22,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  def subscriptions_list(page: 1, per_page: 5, per_feed: 3)
-    unread_feeds.page(page).per(per_page)
-  end
-
-  def unread_feeds
-    subscriptions.includes({ entries: :article }, :feed)
-                 .where('entries.unread' => true)
-                 .order('articles.published desc, articles.id asc')
+  def latest_unread_entries(page: 1, subscription_per_page: 5, entries_per_subscription: 3)
+    Entries.latest_unread_for(
+      subscriptions: subscriptions,
+      limit: entries_per_subscription)
+      .per(subscription_per_page * entries_per_subscription)
+      .page(page)
   end
 
   private

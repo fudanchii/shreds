@@ -1,10 +1,18 @@
 class Entry < ActiveRecord::Base
   belongs_to :subscription
   belongs_to :article
+  has_one :user, through: :subscription
+  has_one :feed, through: :subscription
 
   scope :joins_article,
     -> { joins(:article).order('articles.published desc, articles.id asc') }
   scope :unread_entry, -> { where(unread: true) }
+
+  class << self
+    def latest_unread_for(opts)
+
+    end
+  end
 
   def mark_as_read
     update_attribute :unread, false

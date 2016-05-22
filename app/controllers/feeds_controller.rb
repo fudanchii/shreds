@@ -1,19 +1,19 @@
 class FeedsController < ApplicationController
   def index
-    @feeds = FeedsIndexSerializer.new(
-      current_user.subscriptions_list(
-        page: params[:page].presence || 1,
-        per_page: Figaro.env.index_item_per_page,
-        per_feed: Figaro.env.index_item_per_feed
-      )
-    ).as_json
+    @feeds = FeedsUnreadEntriesArticles.new
+      .subscriptions(current_user.subscriptions)
+      .articles_per_feed(3)
+      .page(current_page)
+      .feeds_per_page(5)
+      .select!
   end
 
   def show
-    @feed = current_user.one_subscription(
-      feed_id: params[:id],
-      page: params[:page].presence || 1,
-      per_page: Figaro.env.feed_item_per_page
-    )
+    @feed = FeedEntriesArticles.new
+      .subscription(current_user.subscriptions
+                    .includes(:feeds).find_by(feed_id: params[:id]))
+      .articles_per_page(15)
+      .page(current_page)
+      .select!
   end
 end

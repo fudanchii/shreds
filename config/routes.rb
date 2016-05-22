@@ -14,16 +14,20 @@ Shreds::Application.routes.draw do
   resources :feeds, only: [:index, :show], path: '/', format: false do
     get 'page/:page', action: :show, on: :member
     get 'page/:page', action: :index, on: :collection
-    resources :newsitems, only: [:show], path: '/'
+    resources :articles, only: [:show], path: '/'
   end
 
   scope '/i', format: true, constraints: { format: 'json' } do
     resources :feeds, only: [:index, :show] do
       get 'page/:page', action: :show, on: :member
       get 'page/:page', action: :index, on: :collection
-      patch 'mark_as_read', on: :member
-      patch 'mark_all_as_read', on: :collection
-      resources :newsitems, only: [:show], path: '/' do
+
+      patch 'mark_as_read', action: :mark_feed_as_read, on: :member
+      patch 'mark_as_unread', action: :mark_feed_as_unread, on: :member
+      patch 'mark_as_read', action: :mark_all_as_read, on: :collection
+      patch 'mark_as_unread', action: :mark_all_as_unread, on: :collection
+
+      resources :articles, only: [:show], path: '/' do
         patch 'toggle_read', on: :member
       end
     end

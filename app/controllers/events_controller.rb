@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     if @payload.empty?
       render text: ''
     else
-      render 'watch'
+      render json: @payload
     end
   end
 end

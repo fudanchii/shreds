@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160417034451) do
+ActiveRecord::Schema.define(version: 20160522070405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -105,6 +105,19 @@ ActiveRecord::Schema.define(version: 20160417034451) do
   add_index "subscriptions", ["feed_id", "user_id"], name: "index_subscriptions_on_feed_id_and_user_id", unique: true, using: :btree
   add_index "subscriptions", ["user_id", "id"], name: "index_subscriptions_on_user_id_and_id", unique: true, using: :btree
 
+  create_table "urls", force: :cascade do |t|
+    t.text     "url"
+    t.integer  "feed_id"
+    t.integer  "subscription_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "urls", ["feed_id", "id"], name: "index_urls_on_feed_id_and_id", unique: true, using: :btree
+  add_index "urls", ["subscription_id", "id"], name: "index_urls_on_subscription_id_and_id", unique: true, using: :btree
+  add_index "urls", ["url", "feed_id"], name: "index_urls_on_url_and_feed_id", unique: true, using: :btree
+  add_index "urls", ["url", "subscription_id"], name: "index_urls_on_url_and_subscription_id", unique: true, using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "email"
@@ -120,4 +133,6 @@ ActiveRecord::Schema.define(version: 20160417034451) do
 
   add_foreign_key "articles", "feeds"
   add_foreign_key "entries", "articles"
+  add_foreign_key "urls", "feeds"
+  add_foreign_key "urls", "subscriptions"
 end
