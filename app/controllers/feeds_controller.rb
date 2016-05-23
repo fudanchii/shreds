@@ -1,11 +1,10 @@
 class FeedsController < ApplicationController
   def index
-    @feeds = FeedsUnreadEntriesArticles.new
-      .subscriptions(current_user.subscriptions)
-      .articles_per_feed(3)
-      .page(current_page)
-      .feeds_per_page(5)
-      .select!
+    @feeds = FeedsUnreadEntriesArticles.new(
+      subscriptions: current_user.subscriptions,
+      articles_per_feed: 3,
+      page: current_page,
+      feeds_per_page: 5)
   end
 
   def show

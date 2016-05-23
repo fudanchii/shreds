@@ -10,7 +10,7 @@ class FeedEntriesArticles < ModelBuilder
   def articles
     @subscription.entries.joins_article
       .select('articles.*, entries.unread, entries.subscription_id')
-      .per(@articles_per_page)
       .page(@page)
+      .per(@articles_per_page)
   end
 end
