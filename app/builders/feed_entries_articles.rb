@@ -1,8 +1,14 @@
-class FeedEntriesArticles < ModelBuilder
-  builder_attr :subscription, :articles_per_page, :page
+class FeedEntriesArticles
+  attr_reader :subscription, :articles_per_page, :page
+
+  def initialize(opts)
+    @subscription = opts[:subscription]
+    @articles_per_page = opts[:articles_per_page]
+    @page = opts[:page]
+  end
 
   def select!
-    @feed = FeedWithArticles.new(@subscription.feed, articles)
+    FeedWithArticles.new(@subscription.feed, articles)
   end
 
   private

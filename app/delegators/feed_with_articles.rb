@@ -1,10 +1,8 @@
 class FeedWithArticles < SimpleDelegator
+  attr_reader :articles
+
   def initialize(feed, articles)
     super(feed)
-    @articles = articles.group_by(&:feed_id)
-  end
-
-  def articles
-    @articles[id] || []
+    @articles = articles
   end
 end

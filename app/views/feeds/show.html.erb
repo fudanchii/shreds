@@ -3,14 +3,14 @@
   <%= title(@feed.title) %>
 <% end %>
 
-<% content_for :head do %> <%= rel_next_prev_link_tags @entries %> <% end %>
+<% content_for :head do %> <%= rel_next_prev_link_tags @feed.articles %> <% end %>
 
 <% content_for :embedded_javascript do %>
 (function () {
   var
     ShredsApp = require('shreds/stores/shreds_app'),
     Feed = require('shreds/stores/feed');
-  Feed.preload(<%= raw SubscriptionEntriesSerializer.new(@subscription).to_json %>);
+  Feed.preload(<%= raw FeedArticlesSerializer.new(@feed).to_json %>);
   ShredsApp.preload({ toDisplay: 'feed' });
 })();
 <% end %>

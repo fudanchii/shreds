@@ -1,17 +1,17 @@
 class FeedsUnreadEntriesArticles
   attr_reader :articles_per_feed, :page, :feeds_per_page, :subscriptions
 
-  def select!
-    @entries_articles = select_articles
-    @feeds = Feed.where(id: @subscriptions.pluck(:feed_id)).page(@page).per(@feeds_per_page)
-      .map {|feed| FeedWithArticles.new(feed, @entries_articles) }
-  end
-
   def initialize(opts)
     @subscriptions = opts[:subscriptions]
     @articles_per_feed = opts[:articles_per_feed]
     @feeds_per_page = opts[:feeds_per_page]
     @page = opts[:page]
+  end
+
+  def select!
+    entries_articles = select_articles.group_by(&:feed_id)
+    Feed.where(id: @subscriptions.pluck(:feed_id)).page(@page).per(@feeds_per_page)
+      .map {|feed| FeedWithArticles.new(feed, entries_articles[feed.id]) }
   end
 
   private
