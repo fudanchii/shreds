@@ -11,11 +11,9 @@ class Feed < ActiveRecord::Base
   validates :url, :feed_url, presence: true
   before_save :sanitize_url
 
-  scope :for_nav, -> { order('url ASC') }
+  scope :url_asc, -> { order('url ASC') }
 
   class << self
-    # This method should guarantee multi-process /
-    # multi-thread safeness.
     def safe_create(url)
       urls = Feedbag.find(url)
       raise Shreds::InvalidFeed, I18n.t('feed.invalid') if urls.nil? || urls.empty?
@@ -26,6 +24,20 @@ class Feed < ActiveRecord::Base
           find_by! feed_url: feed_url
         end
       end
+    end
+
+    def from_subscription_with_articles(subscription, options)
+      FeedWithArticles.new(subscription.feed,
+        Article.from_subscription_with_unreads(subscription, options))
+    end
+
+    def from_subscriptions_with_unread_articles(subscriptions, options)
+      articles = Article.from_subscriptions_with_unreads(subscriptions, options)
+        .group_by(&:feed_id)
+      where(id: subscriptions.pluck(:feed_id))
+        .page(options[:page])
+        .per(options[:feeds_per_page])
+        .map {|feed| FeedWithArticles.new(feed, articles[feed.id]) }
     end
 
     private

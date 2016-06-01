@@ -1,18 +1,19 @@
 class FeedsController < ApplicationController
+  def create
+  end
+
   def index
-    @feeds = FeedsUnreadEntriesArticles.new(
-      subscriptions: current_user.subscriptions,
+    @feeds = Feed.from_subscriptions_with_unread_articles(
+      current_user.subscriptions,
       articles_per_feed: 3,
       page: current_page,
-      feeds_per_page: 5).select!
+      feeds_per_page: 5)
   end
 
   def show
-    @feed = FeedEntriesArticles.new(
-      subscription: current_user.subscriptions
-        .includes(:feed)
-        .find_by(feed_id: params[:id]),
+    @feed = Feed.from_subscription_with_articles(
+      current_user.subscriptions.includes(:feed).find_by(feed_id: params[:id]),
       articles_per_page: 15,
-      page: current_page).select!
+      page: current_page)
   end
 end
