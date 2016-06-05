@@ -25,7 +25,8 @@ describe FeedsController do
       get :index, format: 'json'
       assert_response :success
       res = JSON.parse(response.body)
-      res.must_be_instance_of Hash
+      res.must_be_instance_of Array
+      res.count.must_equal 1
     end
 
     it 'POST /i/feeds.json' do
@@ -40,8 +41,8 @@ describe FeedsController do
       get :show, id: feed, format: 'json'
       assert_response :success
       res = JSON.parse(response.body)
-      res['feed_url'].must_equal feed.url
-      res['entries'].must_be_instance_of Array
+      res['url'].must_equal feed.url
+      res['articles'].must_be_instance_of Array
     end
 
     it 'DELETE /i/feeds/:id.json' do

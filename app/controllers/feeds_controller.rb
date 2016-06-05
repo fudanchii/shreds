@@ -1,5 +1,6 @@
 class FeedsController < ApplicationController
   def create
+
   end
 
   def index
@@ -8,6 +9,10 @@ class FeedsController < ApplicationController
       articles_per_feed: 3,
       page: current_page,
       feeds_per_page: 5)
+    respond_to do |format|
+      format.html
+      format.json { render_serialized(@feeds, FeedsIndexSerializer) }
+    end
   end
 
   def show
@@ -15,5 +20,9 @@ class FeedsController < ApplicationController
       current_user.subscriptions.includes(:feed).find_by(feed_id: params[:id]),
       articles_per_page: 15,
       page: current_page)
+    respond_to do |format|
+      format.html
+      format.json { render_serialized(@feed, FeedArticlesSerializer) }
+    end
   end
 end

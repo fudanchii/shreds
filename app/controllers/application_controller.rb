@@ -50,10 +50,16 @@ class ApplicationController < ActionController::Base
       fmt.html do
         if opts[:html].present?
           flash[:info] = opts[:html][:info]
-          redirect_to opts[:html][:redirect_to] if opts[:html][:redirect_to].present?
+          redirect_to(opts[:html][:redirect_to]) if opts[:html][:redirect_to].present?
         end
       end
       fmt.json { render json: opts[:json] }
     end
+  end
+
+  def render_serialized(obj, serializer, options=nil)
+    options ||= {}
+    render json: MultiJson.dump(serializer.new(obj).as_json),
+      status: options[:status] || 200
   end
 end
