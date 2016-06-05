@@ -1,6 +1,12 @@
 class FeedsController < ApplicationController
   def create
-
+    return error_response(I18n.t("feed.error.empty_url"),
+      :unprocessable_entity) unless params[:feed][:url].present?
+    jid = CreateSubscription.perform_async(
+      current_user,
+      params[:feed][:url],
+      params[:category][:name].presence)
+    render json: { watch: "create-#{jid}" }
   end
 
   def index
@@ -13,6 +19,30 @@ class FeedsController < ApplicationController
       format.html
       format.json { render_serialized(@feeds, FeedsIndexSerializer) }
     end
+  end
+
+  def mark_all_as_read
+    Entry.where(subscription_id: current_user.subscriptions.pluck(:id))
+      .update_all(unread: false)
+    render json: { info: I18n.t("feed.all_marked_read") }
+  end
+
+  def mark_all_as_unread
+    Entry.where(subscription_id: current_user.subscriptions.pluck(:id))
+      .update_all(unread: true)
+    render json: { info: I18n.t("feed.all_marked_unread") }
+  end
+
+  def mark_feed_as_read
+    current_user.subscriptions.find_by(feed_id: params[:id])
+      .entries.update_all(unread: true)
+    render json: { info: I18n.t("feed.feed_marked_read") }
+  end
+
+  def mark_feed_as_unread
+    current_user.subscriptions.find_by(feed_id: params[:id])
+      .entries.update_all(unread: false)
+    render json: { info: I18n.t("feed.feed_marked_unread") }
   end
 
   def show

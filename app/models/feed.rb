@@ -77,7 +77,7 @@ class Feed < ActiveRecord::Base
   end
 
   def create_entries_for(subscription)
-    newsitems.each { |n| subscription.entries.build(newsitem: n).save! }
+    articles.each { |n| subscription.entries.build(article: n).save! }
   end
 
   def update_meta!(fields)

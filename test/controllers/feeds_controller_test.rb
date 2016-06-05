@@ -45,15 +45,8 @@ describe FeedsController do
       res['articles'].must_be_instance_of Array
     end
 
-    it 'DELETE /i/feeds/:id.json' do
-      delete :destroy, id: feed, format: 'json'
-      assert_response :success
-      res = JSON.parse(response.body)
-      assert_match(/ok/, res['result'])
-    end
-
     it 'PATCH /i/feeds/:id/mark_as_read.json' do
-      patch :mark_as_read, id: feed, format: 'json'
+      patch :mark_feed_as_read, id: feed, format: 'json'
       assert_response :success
     end
 

@@ -11,6 +11,6 @@ class FeedFetcher
   rescue => err
     feed_status = err.message
   ensure
-    EntryNewsitems.new(feed, feed_url, feed_status).execute
+    EntryArticles.new(feed, feed_url, feed_status).execute
   end
 end

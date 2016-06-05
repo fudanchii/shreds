@@ -30,6 +30,8 @@ en:
     invalid: "<strong>Can't find any feed,</strong> are you sure the url is valid?"
     not_found: '<strong>Feed</strong> not found.'
     subscribed: '<strong>Already subscribed</strong> to the feed.'
+    all_marked_read: '<strong>All feeds</strong> marked as read.'
+    feed_marked_read: '<strong>Feed</strong> marked as read.'
   opml:
     error:
       empty_file: '<strong>Empty file</strong> uploaded.'
