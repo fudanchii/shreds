@@ -37,8 +37,8 @@ def load_feed(name)
   Feedjira::Feed.parse feed_content
 end
 
-def to_newsitem(entry)
-  Newsitem.new Newsitem.sanitize_field(entry)
+def to_article(entry)
+  Article.new Article.sanitize_field(entry)
 end
 
 def reparse(fragment)
