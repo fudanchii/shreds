@@ -29,14 +29,6 @@ describe FeedsController do
       res.count.must_equal 1
     end
 
-    it 'POST /i/feeds.json' do
-      obj = { url: 'http://fudanchii.net/atom.xml', feed_url: 'http://fudanchii.net/atom.xml' }
-      post :create, feed: obj, category: { feed: Category.default }, format: 'json'
-      assert_response :success
-      res = JSON.parse(response.body)
-      assert_match(/create/, res['watch'])
-    end
-
     it 'GET /i/feeds/:id.json' do
       get :show, id: feed, format: 'json'
       assert_response :success
@@ -53,11 +45,6 @@ describe FeedsController do
     it 'PATCH /i/feeds/mark_all_as_read.json' do
       patch :mark_all_as_read, format: 'json'
       assert_response :success
-    end
-
-    it 'POST /i/upload_opml.json (no upload)' do
-      post :create_from_opml, format: 'json'
-      assert_response :unprocessable_entity
     end
   end
 end

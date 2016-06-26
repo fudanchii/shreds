@@ -1,14 +1,4 @@
 class FeedsController < ApplicationController
-  def create
-    return error_response(I18n.t("feed.error.empty_url"),
-      :unprocessable_entity) unless params[:feed][:url].present?
-    jid = CreateSubscription.perform_async(
-      current_user,
-      params[:feed][:url],
-      params[:category][:name].presence)
-    render json: { watch: "create-#{jid}" }
-  end
-
   def index
     @feeds = Feed.from_subscriptions_with_unread_articles(
       current_user.subscriptions,

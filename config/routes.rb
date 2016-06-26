@@ -18,7 +18,7 @@ Shreds::Application.routes.draw do
   end
 
   scope '/i', format: true, constraints: { format: 'json' } do
-    resources :feeds, only: [:create, :index, :show] do
+    resources :feeds, only: [:index, :show] do
       get 'page/:page', action: :show, on: :member
       get 'page/:page', action: :index, on: :collection
 
@@ -32,7 +32,9 @@ Shreds::Application.routes.draw do
       end
     end
 
-    resources :subscriptions, only: [:create]
+    resources :subscriptions, only: [:create] do
+      post 'create_by_opml'
+    end
 
     resources :categories, only: [:destroy]
 

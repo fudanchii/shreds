@@ -3,7 +3,7 @@ module OPML
     attr_reader :name, :content_type, :size, :fullpath
 
     def initialize(content)
-      raise UploadError, I18n.t('opml.error.empty_file') if content.nil?
+      raise UploadError, I18n.t('opml.error.empty_file') if content.size <= 0
       @content_type = content.content_type
       @size = content.size
       @name = sanitize content.original_filename
