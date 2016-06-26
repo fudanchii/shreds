@@ -70,7 +70,7 @@ const WebAPIService = new Service({
 
   subscribe(payload) {
     req
-      .post('/feeds.json', {
+      .post('/subscriptions.json', {
         data: new FormData(payload.form),
         processData: false,
         contentType: false,

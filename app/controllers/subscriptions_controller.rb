@@ -16,7 +16,7 @@ class SubscriptionsController < ApplicationController
                  Category.default
                end
     jid = CreateSubscription.perform_async(
-      current_user,
+      current_user.id,
       params[:feed][:url],
       category)
     render json: { watch: "create-#{jid}" }

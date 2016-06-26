@@ -57,7 +57,7 @@ class Feed < ActiveRecord::Base
   end
 
   def up_to_date_with?(newfeed)
-    etag.present? && (newfeed.etag == etag) && !newsitems.empty?
+    etag.present? && (newfeed.etag == etag) && !articles.empty?
   end
 
   def update_feed_url!

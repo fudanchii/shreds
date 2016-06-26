@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
 
   def render_serialized(obj, serializer, options=nil)
     options ||= {}
-    render json: MultiJson.dump(serializer.new(obj).as_json),
+    render json: MultiJson.dump(serializer.new(obj).as_json, pretty: !Rails.env.production?),
       status: options[:status] || 200
   end
 end

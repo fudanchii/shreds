@@ -1,3 +1,10 @@
 class ArticleSerializer < ApplicationSerializer
-  attributes :id, :title, :content, :summary, :permalink
+  attributes :id,
+             :title,
+             :author,
+             :content,
+             :summary,
+             :permalink,
+             :published,
+             :unread
 end

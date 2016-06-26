@@ -1,3 +1,5 @@
+require 'shreds/feed/filters'
+
 class Article < ActiveRecord::Base
   belongs_to :feed
   has_many :entries
@@ -12,14 +14,6 @@ class Article < ActiveRecord::Base
   before_save { permalink.strip! }
 
   class << self
-    def from_subscription_with_unreads(subscription, options)
-      subscription.articles.joins(:entries)
-        .select('articles.*, entries.unread, entries.subscription_id')
-        .order('articles.published desc, articles.id asc')
-        .page(options[:page])
-        .per(options[:article_per_page])
-    end
-
     def from_subscriptions_with_unreads(subscriptions, options)
       select('*')
         .from(Arel.sql("(#{entries_query(subscriptions)}) p_articles"))
@@ -59,7 +53,7 @@ class Article < ActiveRecord::Base
           articles.*, entries.unread, entries.subscription_id,
           row_number() over (
             partition by entries.subscription_id
-            order by articles.published desc, articles.id asc
+            order by articles.published desc, articles.id desc
           ) as row_num
         SQL
     end

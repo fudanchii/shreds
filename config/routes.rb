@@ -32,14 +32,12 @@ Shreds::Application.routes.draw do
       end
     end
 
-    resources :subscriptions, only: [:create] do
-      post 'create_by_opml'
-    end
+    resources :subscriptions, only: [:create]
 
     resources :categories, only: [:destroy]
 
     get '/watch' => 'events#watch'
-    post '/upload_opml' => 'feeds#create_from_opml'
+    post '/upload_opml' => 'subscriptions#create_from_opml'
   end
 
   get 'subscriptions' => 'users#feed_subscriptions',

@@ -3,9 +3,9 @@ class FeedPreviewSerializer < ApplicationSerializer
              :feed_id,
              :feed_title,
              :feed_url,
-             :category_id
-
-  attribute :latest_article, serializer: ArticlePreviewSerializer
+             :category_id,
+             :unread_count,
+             :latest_article
 
   def feed_url
     object.feed.url
@@ -16,6 +16,7 @@ class FeedPreviewSerializer < ApplicationSerializer
   end
 
   def latest_article
-    object.articles.order('published desc, id asc').first
+    obj = object.articles.order('published desc, id asc').first
+    ArticlePreviewSerializer.new(obj)
   end
 end

@@ -9,10 +9,10 @@ module ApplicationHelper
   end
 
   def full_url(path)
-    ENV['app_host'].to_s + path.to_s
+    File.join(ENV['app_host'].to_s,  path.to_s)
   end
 
-  def navigation_data(user)
-    NavigationListSerializer.new(user).as_json
+  def pretty_json(obj)
+    MultiJson.dump(obj.as_json, pretty: !Rails.env.production?)
   end
 end

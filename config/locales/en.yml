@@ -36,6 +36,8 @@ en:
     error:
       empty_file: '<strong>Empty file</strong> uploaded.'
       wrong_file: '<strong>Can only</strong> accept xml file.'
+  user:
+    not_found: '<strong>Can not</strong> find specified user.'
 
   js:
     fail:
