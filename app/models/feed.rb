@@ -27,8 +27,12 @@ class Feed < ActiveRecord::Base
     end
 
     def from_subscription_with_articles(subscription, options)
-      FeedWithArticles.new(subscription.feed,
-        Article.from_subscription_with_unreads(subscription, options))
+      articles = subscription.entries.where(subscription_id: subscription.id)
+        .joins_article
+        .select('articles.*, entries.unread, entries.subscription_id')
+        .page(options[:page])
+        .per(options[:articles_per_page])
+      FeedWithArticles.new(subscription.feed, articles)
     end
 
     def from_subscriptions_with_unread_articles(subscriptions, options)
