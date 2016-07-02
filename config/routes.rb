@@ -3,7 +3,7 @@ require 'sidekiq/cron/web'
 
 Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
 
-Shreds::Application.routes.draw do
+Rails.application.routes.draw do
   get '/login' => 'static#login'
   get '/logout' => 'session#destroy'
   match '/auth/:provider/callback', to: 'session#create', via: [:get, :post]
