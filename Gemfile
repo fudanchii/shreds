@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2'
+gem 'rails', '~> 5.0'
 
 ### 1. Database and modelling related gems
 gem 'pg'
@@ -28,7 +28,7 @@ gem 'i18n-js' # , '>= 3.0.0.rc8'
 
 ### 3. Cosmetics
 group :development do
-  gem 'quiet_assets', '>= 1.0.1'
+# gem 'quiet_assets', '>= 1.0.1'
   gem 'better_errors', '>= 0.3.2'
   gem 'binding_of_caller', '>= 0.6.8'
 end
@@ -47,7 +47,7 @@ gem 'thin', platforms: [:mswin, :mingw]
 gem 'sidekiq'
 gem 'sidekiq-failures', github: 'mhfs/sidekiq-failures'
 gem 'sidekiq-cron', github: 'ondrejbartas/sidekiq-cron'
-gem 'sinatra', require: false
+gem 'sinatra', require: false, github: 'sinatra/sinatra', branch: 'master'
 gem 'slim', require: false
 # end of 5.
 
@@ -70,6 +70,7 @@ group :test do
   gem 'minitest-spec-rails'
   gem 'minitest-stub_any_instance'
   gem 'm'
+  gem 'rails-controller-testing'
 end
 
 group :development, :test do

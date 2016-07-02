@@ -10,7 +10,7 @@ describe EventsController do
 
   describe 'Internal API' do
     it 'returns empty if no events occured' do
-      get :watch, watchList: 'test', format: 'json'
+      get :watch, params: {watchList: 'test' }, format: 'json'
       assert_response :success
       assert_empty response.body
     end
@@ -28,13 +28,13 @@ describe EventsController do
       end
       assert mock.verify
 
-      get :watch, watchList: 'create-12345', format: 'json'
+      get :watch, params: { watchList: 'create-12345' }, format: 'json'
       assert_response :success
       refute_empty response.body
     end
 
     it 'returns data for periodical feed update event' do
-      get :watch, watchList: 'updateFeed', format: 'json'
+      get :watch, params: { watchList: 'updateFeed' }, format: 'json'
       assert_response :success
       refute_empty response.body
     end

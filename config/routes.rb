@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 require 'sidekiq/cron/web'
 
+Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
+
 Shreds::Application.routes.draw do
   get '/login' => 'static#login'
   get '/logout' => 'session#destroy'

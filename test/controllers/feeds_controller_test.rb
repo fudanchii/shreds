@@ -15,7 +15,7 @@ describe FeedsController do
   end
 
   it 'should show feed' do
-    get :show, id: feed
+    get :show, params: { id: feed }
     assert_not_nil assigns(:feed)
     assert_response :success
   end
@@ -30,7 +30,7 @@ describe FeedsController do
     end
 
     it 'GET /i/feeds/:id.json' do
-      get :show, id: feed, format: 'json'
+      get :show, params: { id: feed }, format: 'json'
       assert_response :success
       res = JSON.parse(response.body)
       res['url'].must_equal feed.url
@@ -38,7 +38,7 @@ describe FeedsController do
     end
 
     it 'PATCH /i/feeds/:id/mark_as_read.json' do
-      patch :mark_feed_as_read, id: feed, format: 'json'
+      patch :mark_feed_as_read, params: { id: feed }, format: 'json'
       assert_response :success
     end
 

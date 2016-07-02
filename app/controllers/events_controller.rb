@@ -6,7 +6,7 @@ class EventsController < ApplicationController
     @ev = EventsWatch.new(params[:watchList].to_s).tap(&:execute)
     @payload = @ev.payload
     if @payload.empty?
-      render text: ''
+      render plain: ''
     else
       render json: @payload
     end
