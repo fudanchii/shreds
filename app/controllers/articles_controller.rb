@@ -3,8 +3,8 @@ class ArticlesController < ApplicationController
 
   def show
     respond_to do |fmt|
-      fmt.json
-      fmt.html { render locals: { newsitem: @entry.newsitem } }
+      fmt.json { render_serialized(@entry, EntryArticleSerializer) }
+      fmt.html { render locals: { article: @entry.article } }
     end
   end
 
@@ -16,8 +16,12 @@ class ArticlesController < ApplicationController
 
   def fetch_subscription
     @subscription = current_user.subscriptions
-                                .includes(:entries, :feed).find_by! feed_id: params[:feed_id]
-    @entry = @subscription.entries.select { |e| e.newsitem_id == params[:id].to_i }.first
+      .includes(entries: :article)
+      .includes(:feed)
+      .find_by!(feed_id: params[:feed_id].to_i)
+    @entry = @subscription.entries
+      .select { |e| e.article_id == params[:id].to_i }
+      .first
     @feed = @subscription.feed
     raise ActiveRecord::RecordNotFound if @entry.nil?
   end

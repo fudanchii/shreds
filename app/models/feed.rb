@@ -41,7 +41,11 @@ class Feed < ActiveRecord::Base
       where(id: subscriptions.pluck(:feed_id))
         .page(options[:page])
         .per(options[:feeds_per_page])
-        .map {|feed| FeedWithArticles.new(feed, articles[feed.id]) }
+        .map do |feed|
+          FeedWithArticles.new(feed,
+            articles[feed.id]) unless articles[feed.id].nil?
+        end
+        .compact
     end
 
     private
