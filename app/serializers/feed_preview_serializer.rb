@@ -1,22 +1,33 @@
 class FeedPreviewSerializer < ApplicationSerializer
+  include Rails.application.routes.url_helpers
+
   attributes :id,
+             :active,
              :feed_id,
              :feed_title,
-             :feed_url,
+             :feed_icon,
+             :path,
              :category_id,
              :unread_count,
              :latest_article
 
-  def feed_url
-    object.feed.url
+  def active
+    ''
   end
 
   def feed_title
     object.feed.title
   end
 
+  def feed_icon
+    object.feed.favicon
+  end
+
+  def path
+    feed_path object.feed
+  end
+
   def latest_article
-    obj = object.articles.order('published desc, id asc').first
-    ArticlePreviewSerializer.new(obj)
+    ArticlePreviewSerializer.new(object.latest_article.first)
   end
 end

@@ -1,5 +1,8 @@
-class FeedsIndexSerializer < ActiveModel::Serializer::CollectionSerializer
-  def initialize(resources, options = {})
-    super(resources, options.merge(serializer: FeedArticlesSerializer))
+class FeedsIndexSerializer < ApplicationSerializer
+  attributes :feeds
+
+  def feeds
+    ActiveModel::Serializer::CollectionSerializer
+      .new(object, serializer: FeedArticlesSerializer)
   end
 end

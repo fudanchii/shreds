@@ -26,14 +26,14 @@ const NavigationStore = new Store({
   formatEntriesPubDate() {
     const categories = this.get('categories') || {};
     _.each(categories, (category, k) => {
-      _.each(category.feeds, (feed, k) => {
-        feed.momentFmtEntryPubDate = moment(feed.latestEntryPubDate).fromNow(true);
+      _.each(category.subscriptions, (feed, k) => {
+        feed.momentFmtEntryPubDate = moment(feed.latest_article.published).fromNow(true);
       });
     });
   },
 
   getFeed(cid, fid) {
-    return this.get('categories')[cid].feeds[fid];
+    return this.get('categories')[cid].subscriptions[fid];
   },
 
   navigate(payload) {
@@ -60,7 +60,7 @@ const NavigationStore = new Store({
       selectedFeed.active = '';
     } else {
       _.each(this.get('categories'), (category, k) => {
-        _.each(category.feeds, (feed, k) => { feed.active = ''; });
+        _.each(category.subscriptions, (feed, k) => { feed.active = ''; });
       });
     }
     if (args.cid && args.fid) {
@@ -78,9 +78,9 @@ const NavigationStore = new Store({
       feed = this.getFeed(payload.cid, payload.fid),
       key = `${payload.cid}:${payload.fid}`;
     if (!favicons[key]) {
-      favicons[key] = feed.favicon;
+      favicons[key] = feed.feed_icon;
     }
-    feed.favicon = AssetsStore.get('spinner16x16');
+    feed.feed_icon = AssetsStore.get('spinner16x16');
     this.emitChange();
   },
 
@@ -88,7 +88,7 @@ const NavigationStore = new Store({
     const
       f = payload.data.feed,
       feed = this.getFeed(f.cid, f.id);
-    feed.unreadCount = f.unreadCount;
+    feed.unread_count = f.unread_count;
     this.emitChange();
   },
 
@@ -96,8 +96,8 @@ const NavigationStore = new Store({
     const
       f = payload.data.feed,
       feed = this.getFeed(f.cid, f.id);
-    this.restoreFavicon(f.cid, f.id);
-    feed.unreadCount = f.unreadCount;
+    this.restoreFeedIcon(f.cid, f.id);
+    feed.unread_count = f.unread_count;
     this.emitChange();
   },
 
@@ -110,11 +110,11 @@ const NavigationStore = new Store({
     this.emitChange();
   },
 
-  restoreFavicon(cid, fid) {
+  restoreFeedIcon(cid, fid) {
     const
       key = `${cid}:${fid}`,
       feed = this.getFeed(cid, fid);
-    feed.favicon = this.get('__favicons')[key];
+    feed.feed_icon = this.get('__favicons')[key];
   },
 
   reloadNavigation(payload) {

@@ -20,6 +20,12 @@ class Article < ActiveRecord::Base
         .where("row_num <= ?", options[:articles_per_feed])
     end
 
+    def latest_issues_on(subscriptions)
+      select('*')
+        .from(Arel.sql("(#{latest_articles_query(subscriptions)}) l_articles"))
+        .where('row_num = 1')
+    end
+
     def sanitize_field(entry)
       params = {}
       %i(title published content author summary).each do |field|
@@ -58,8 +64,20 @@ class Article < ActiveRecord::Base
         SQL
     end
 
+    def latest_articles_query(subscriptions)
+      Entry.where(subscription_id: subscriptions.pluck(:id))
+        .joins_article
+        .select(<<-SQL).to_sql
+          articles.*, entries.unread, entries.subscription_id,
+          row_number() over (
+            partition by entries.subscription_id
+            order by articles.published desc, articles.id desc
+          ) as row_num
+        SQL
+    end
+
     def get_entry_url(entry)
-      entry.url.presence.strip || (entry.entry_id.strip if entry.entry_id.urlish?)
+      entry.url.presence.strip || (entry.entry_id.strip if entry.entry_id.strip.urlish?)
     end
   end
 

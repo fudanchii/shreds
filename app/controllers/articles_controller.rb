@@ -1,4 +1,4 @@
-class NewsitemsController < ApplicationController
+class ArticlesController < ApplicationController
   before_action :fetch_subscription
 
   def show

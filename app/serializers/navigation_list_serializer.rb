@@ -1,4 +1,8 @@
 class NavigationListSerializer < ApplicationSerializer
-  has_many :categories
-  has_many :subscriptions, serializer: FeedPreviewSerializer
+  attributes :categories
+
+  def categories
+    ActiveModel::Serializer::CollectionSerializer
+      .new(object, serializer: NavigationItemSerializer)
+  end
 end

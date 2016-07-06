@@ -35,7 +35,8 @@ class ApplicationController < ActionController::Base
   end
 
   def fetch_subscriptions
-    @subscriptions = NavigationListSerializer.new(current_user).as_json
+    subs = Subscription.group_by_categories(current_user.subscriptions)
+    @subscriptions = NavigationListSerializer.new(subs)
   end
 
   def init_empty_subscription

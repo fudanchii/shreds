@@ -1,23 +1,23 @@
 <ul class="nav nav-list">
 {{#each categories:index}}
   <li class="nav-header">
-      <a data-toggle="collapse" data-target=".lst-{{index}}" data-template="navlist_header:{{id}}"><h3>{{name}} ({{countUnread(feeds)}})</h3></a>
+      <a data-toggle="collapse" data-target=".lst-{{index}}" data-template="navlist_header:{{category_id}}"><h3>{{category_name}} ({{countUnread(subscriptions)}})</h3></a>
   <ul class="nav-list feed-items collapse lst-{{index}}" style="list-style-type:none;">
-    {{#each feeds:feed_index}}
+    {{#each subscriptions:feed_index}}
     <li class="nav-item{{active}}" on-mousedown="navigate:{{path}},{{index}},{{feed_index}}">
         <div class="row--inline-containing-elements">
         <div class="favicon">
-          <img src="{{favicon}}" width="16" height="16"/>
+          <img src="{{feed_icon}}" width="16" height="16"/>
         </div>
         <p class="ellipsis">
-          <a alt="{{title}}" href="{{path}}" data-args='{"cid": "{{index}}", "fid": "{{feed_index}}"}'>{{title}}</a>
+          <a alt="{{feed_title}}" href="{{path}}" data-args='{"cid": "{{index}}", "fid": "{{feed_index}}"}'>{{feed_title}}</a>
         </p>
         </div>
         <div class="row--inline-containing-elements">
-        <p class="left floated column text--muted ellipsis"><abbr class="timeago text--small" title="{{readableDate(latestEntryPubDate)}}">{{momentFmtEntryPubDate}}</abbr> - {{{latestEntryTitle}}}</p>
-        {{#if unreadCount }}
+        <p class="left floated column text--muted ellipsis"><abbr class="timeago text--small" title="{{readableDate(latest_article.published)}}">{{momentFmtEntryPubDate}}</abbr> - {{{latest_article.title}}}</p>
+        {{#if unread_count }}
           <a class="right floated column" href="javascript:void(0)" on-mousedown="mark-as-read:{{index}},{{feed_index}}">
-            <span class="unread-num ui label">{{unreadCount}}</span>
+            <span class="unread-num ui label">{{unread_count}}</span>
           </a>
         {{/if}}
         </div>
