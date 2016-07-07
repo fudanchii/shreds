@@ -1,16 +1,16 @@
 <ul class="nav nav-list">
 {{#each categories:index}}
   <li class="nav-header">
-      <a data-toggle="collapse" data-target=".lst-{{index}}" data-template="navlist_header:{{category_id}}"><h3>{{category_name}} ({{countUnread(subscriptions)}})</h3></a>
+      <a data-toggle="collapse" data-target=".lst-{{index}}" data-template="navlist_header:{{index}}"><h3>{{name}} ({{countUnread(subscriptions)}})</h3></a>
   <ul class="nav-list feed-items collapse lst-{{index}}" style="list-style-type:none;">
-    {{#each subscriptions:feed_index}}
-    <li class="nav-item{{active}}" on-mousedown="navigate:{{path}},{{index}},{{feed_index}}">
+    {{#each subscriptions:subscription_index}}
+    <li class="nav-item{{active}}" on-mousedown="navigate:{{path}},{{index}},{{feed_id}}">
         <div class="row--inline-containing-elements">
         <div class="favicon">
           <img src="{{feed_icon}}" width="16" height="16"/>
         </div>
         <p class="ellipsis">
-          <a alt="{{feed_title}}" href="{{path}}" data-args='{"cid": "{{index}}", "fid": "{{feed_index}}"}'>{{feed_title}}</a>
+          <a alt="{{feed_title}}" href="{{path}}" data-args='{"cid": "{{index}}", "sid": "{{subscription_index}}"}'>{{feed_title}}</a>
         </p>
         </div>
         <div class="row--inline-containing-elements">

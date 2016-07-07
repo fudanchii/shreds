@@ -28,6 +28,6 @@ class FeedPreviewSerializer < ApplicationSerializer
   end
 
   def latest_article
-    ArticlePreviewSerializer.new(object.latest_article.first)
+    ArticlePreviewSerializer.new(object.latest_article.first).as_json
   end
 end

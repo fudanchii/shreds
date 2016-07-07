@@ -6,7 +6,6 @@ class ArticleSerializer < ApplicationSerializer
              :author,
              :content,
              :summary,
-             :permalink,
              :published,
              :path,
              :url,

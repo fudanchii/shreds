@@ -1,8 +1,8 @@
-class NavigationListSerializer < ApplicationSerializer
-  attributes :categories
-
-  def categories
-    ActiveModel::Serializer::CollectionSerializer
-      .new(object, serializer: NavigationItemSerializer)
+class NavigationListSerializer < ActiveModelSerializers::SerializableResource
+  def initialize(resource)
+    super(resource, {
+      serializer: ActiveModel::Serializer::CollectionSerializer,
+      each_serializer: NavigationItemSerializer
+    })
   end
 end

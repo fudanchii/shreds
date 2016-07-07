@@ -5,4 +5,8 @@ class CategoriedSubscriptions < SimpleDelegator
     super(category)
     @subscriptions = subscriptions
   end
+
+  def self.model_name
+    'category'
+  end
 end

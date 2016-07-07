@@ -1,18 +1,10 @@
 class NavigationItemSerializer < ApplicationSerializer
-  attributes :category_id,
-             :category_name,
-             :subscriptions
+  attributes :id,
+             :name
 
-  def category_id
-    object.id
-  end
-
-  def category_name
-    object.name
-  end
+  has_many :subscriptions, serializer: FeedPreviewSerializer
 
   def subscriptions
-    ActiveModel::Serializer::CollectionSerializer
-      .new(object.subscriptions, serializer: FeedPreviewSerializer)
+    object.subscriptions
   end
 end

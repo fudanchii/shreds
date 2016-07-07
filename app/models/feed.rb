@@ -32,18 +32,25 @@ class Feed < ActiveRecord::Base
         .select('articles.*, entries.unread, entries.subscription_id')
         .page(options[:page])
         .per(options[:articles_per_page])
-      FeedWithArticles.new(subscription.feed, articles)
+      FeedWithArticles.new(subscription.feed,
+        articles,
+        subscription.category_id,
+        subscription.id)
     end
 
     def from_subscriptions_with_unread_articles(subscriptions, options)
       articles = Article.from_subscriptions_with_unreads(subscriptions, options)
         .group_by(&:feed_id)
+      categories = subscriptions.inject({}) {|rs, n| rs[n.feed_id] = n.category_id; rs }
+      sids = subscriptions.inject({}) {|h, s| h[s.feed_id] = s.id; h }
       where(id: subscriptions.pluck(:feed_id))
         .page(options[:page])
         .per(options[:feeds_per_page])
         .map do |feed|
           FeedWithArticles.new(feed,
-            articles[feed.id]) unless articles[feed.id].nil?
+            articles[feed.id],
+            categories[feed.id],
+            sids[feed.id]) unless articles[feed.id].nil?
         end
         .compact
     end
