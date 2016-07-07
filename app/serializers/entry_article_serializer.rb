@@ -5,7 +5,6 @@ class EntryArticleSerializer < ApplicationSerializer
              :title,
              :author,
              :content,
-             :summary,
              :published,
              :path,
              :url,
@@ -24,11 +23,7 @@ class EntryArticleSerializer < ApplicationSerializer
   end
 
   def content
-    object.article.content
-  end
-
-  def summary
-    object.article.summary
+    object.article.content || object.article.summary
   end
 
   def published

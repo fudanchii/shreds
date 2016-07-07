@@ -1,6 +1,6 @@
 
 <% content_for :title do %>
-  <%= title(newsitem.title) %>
+  <%= title(article.title) %>
 <% end %>
 
 <% content_for :meta do %>
@@ -12,7 +12,7 @@
   var
     ShredsApp = require('shreds/stores/shreds_app'),
     Newsitem = require('shreds/stores/newsitem');
-  Newsitem.preload(<%= raw render(template: 'newsitems/show.json') %>);
+  Newsitem.preload(<%= raw pretty_json(EntryArticleSerializer.new(@entry)) %>);
   ShredsApp.preload({ toDisplay: 'newsitem' });
 })();
 <% end %>
