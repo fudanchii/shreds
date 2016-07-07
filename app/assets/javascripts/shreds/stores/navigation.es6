@@ -41,7 +41,7 @@ const NavigationStore = new Store({
       map = this.getOrCreate('__feed-category_map'),
       prefix = '/' + payload.path.split('/')[1];
     if (payload.args && payload.args.cid && payload.args.sid) {
-      map[prefix] = { cid: payload.args.cid, fid: payload.args.sid };
+      map[prefix] = { cid: payload.args.cid, sid: payload.args.sid };
     } else if (map[prefix]) {
       payload.args = map[prefix];
     }
