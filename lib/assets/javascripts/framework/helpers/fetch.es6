@@ -44,7 +44,7 @@ export default class Fetch {
 
     let qkey = Object.keys(args.queries || {});
     if (qkey.length) {
-      url = new URL(this.baseURL);
+      const url = new URL(this.baseURL);
       url.pathname = path;
       qkey.forEach((key) => {
         url.searchParams.append(key, args.queries[key]);
