@@ -1,5 +1,6 @@
 import Service from 'framework/service';
 import req from 'framework/helpers/ajax';
+import Fetch from 'framework/helpers/fetch';
 import { join } from 'framework/helpers/path';
 import I18n from 'I18n';
 
@@ -7,13 +8,15 @@ import ShredsDispatcher from 'shreds/dispatcher';
 import WebAPIServiceActions from 'shreds/actions/web_api_service';
 import { action, event } from 'shreds/constants';
 
+
+const tTag = document.querySelector('meta[name=csrf-token]');
 const WebAPIService = new Service({
   oninit() {
     this.regDispatcher(ShredsDispatcher, [
-      [action.NAVIGATE_TO_ROUTE, this.navigate],
-      [action.MARK_FEED_AS_READ, this.markFeedAsRead],
-      [action.MARK_ITEM_AS_READ, this.markItemAsRead],
-      [action.SUBSCRIBE_TO_FEED, this.subscribe]
+        [action.NAVIGATE_TO_ROUTE, this.navigate],
+        [action.MARK_FEED_AS_READ, this.markFeedAsRead],
+        [action.MARK_ITEM_AS_READ, this.markItemAsRead],
+        [action.SUBSCRIBE_TO_FEED, this.subscribe]
     ]);
     req.init({
       baseURI: '/i',
@@ -21,29 +24,36 @@ const WebAPIService = new Service({
       failAction: action.FAIL_NOTIFY,
       prefilters: [
         function (opts, oriOpts, xhr) {
-          const tTag = document.querySelector('meta[name=csrf-token]');
           if (tTag) {
             xhr.setRequestHeader('X-CSRF-Token', tTag.getAttribute('content'));
           }
         }
       ]
     });
+    this.fetcher = new Fetch({
+      endpoints: {
+        navigateIndex: '/i/feeds.json',
+        navigate: '/i/feeds/:fid.json',
+        markFeedAsRead: '/i/feeds/:fid/mark_as_read.json',
+        markItemAsRead: '/i/feeds/:fid/:eid/toggle_read.json',
+        subscribe: '/i/subscriptions.json',
+        watchEvents: '/i/watch.json'
+      },
+      headers: {
+        'X-CSRF-Token': tTag.getAttribute('content')
+      },
+      errorHandler: {
+        dispatcher: ShredsDispatcher,
+        failAction: action.FAIL_NOTIFY
+      }
+    });
   },
 
   navigate(payload) {
-    const prefix = payload.name.split('/')[0];
-    if (prefix === 'feeds') {
-      payload.path = join('/feeds', payload.path);
-    }
-
-    req
-      .get(payload.path + '.json', {
-        failMsg: I18n.t('js.fail.navigate'),
-        failPayload: payload
-      })
-      .done((data) => {
-        WebAPIServiceActions.routeNavigated(payload, data);
-      });
+    // FIXME: Consider using `gon` to load rails var
+    const path = payload.path === '/' ? 'navigateIndex' : 'navigate';
+    this.fetcher.getJSON(path, { params: { fid: payload.path } })
+      .then((data) => { WebAPIServiceActions.routeNavigated(payload, data) });
   },
 
   markFeedAsRead(payload) {
@@ -52,9 +62,9 @@ const WebAPIService = new Service({
         failMsg: I18n.t('js.fail.mark_feed_as_read'),
         failPayload: payload
       })
-      .done((data) => {
-        WebAPIServiceActions.feedMarkedAsRead(data);
-      });
+    .done((data) => {
+      WebAPIServiceActions.feedMarkedAsRead(data);
+    });
   },
 
   markItemAsRead(payload) {
@@ -63,9 +73,9 @@ const WebAPIService = new Service({
         failMsg: I18n.t('js.fail.toggle_read'),
         failPayload: payload
       })
-      .done((data) => {
-        WebAPIServiceActions.itemMarkedAsRead(data);
-      });
+    .done((data) => {
+      WebAPIServiceActions.itemMarkedAsRead(data);
+    });
   },
 
   subscribe(payload) {
@@ -77,14 +87,14 @@ const WebAPIService = new Service({
         failMsg: I18n.t('js.fail.subscribe'),
         failPayload: payload
       })
-      .done((data) => {
-        WebAPIServiceActions.feedSubscribed(data);
-      });
+    .done((data) => {
+      WebAPIServiceActions.feedSubscribed(data);
+    });
   },
 
   watchEvents(list) {
-    return req.get('/watch.json', {
-      data: { watchList: list.join() }
+    return this.fetcher.getJSON('watchEvents', {
+      queries: { watchList: list.join() }
     });
   }
 });

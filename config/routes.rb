@@ -26,8 +26,8 @@ Rails.application.routes.draw do
 
       patch 'mark_as_read', action: :mark_feed_as_read, on: :member
       patch 'mark_as_unread', action: :mark_feed_as_unread, on: :member
-      patch 'mark_as_read', action: :mark_all_as_read, on: :collection
-      patch 'mark_as_unread', action: :mark_all_as_unread, on: :collection
+      patch 'mark_all_as_read', action: :mark_all_as_read, on: :collection
+      patch 'mark_all_as_unread', action: :mark_all_as_unread, on: :collection
 
       resources :articles, only: [:show], path: '/' do
         patch 'toggle_read', on: :member

@@ -256,6 +256,7 @@ GEM
     rails-assets-blueimp-canvas-to-blob (3.3.0)
     rails-assets-blueimp-load-image (2.6.1)
     rails-assets-blueimp-tmpl (3.4.0)
+    rails-assets-fetch (1.0.0)
     rails-assets-history.js (1.8.0)
     rails-assets-jquery (3.0.0)
     rails-assets-jquery-file-upload (9.12.5)
@@ -385,6 +386,7 @@ DEPENDENCIES
   rack-mini-profiler
   ractive_assets!
   rails (~> 5.0)
+  rails-assets-fetch!
   rails-assets-history.js!
   rails-assets-jquery!
   rails-assets-jquery-file-upload!

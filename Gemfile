@@ -100,6 +100,7 @@ group :development do
 end
 
 source 'https://rails-assets.org' do
+  gem 'rails-assets-fetch'
   gem 'rails-assets-lodash'
   gem 'rails-assets-history.js'
   gem 'rails-assets-jquery'
