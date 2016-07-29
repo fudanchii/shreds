@@ -10,3 +10,4 @@ syntax: regexp
 \.pid$
 \.pid\.lock$
 ^db/.+\.sqlite3$
+^public/assets/
