@@ -3,11 +3,11 @@ import ShredsDispatcher from 'shreds/dispatcher';
 import { action } from 'shreds/constants';
 
 const NotificationActions = {
- error(msg) {
+ error(msg, data = { type: null }) {
    ShredsDispatcher.dispatch({
       type: action.FAIL_NOTIFY,
-      data: { type: null },
-      failMsg: msg
+      failMsg: msg,
+      data
     });
  },
 

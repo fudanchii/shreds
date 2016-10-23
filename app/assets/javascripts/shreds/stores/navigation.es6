@@ -33,7 +33,7 @@ const NavigationStore = new Store({
   },
 
   getFeed(cid, sid) {
-    return this.get('categories')[cid].subscriptions[sid];
+    return this.get('categories')[cid+''].subscriptions[sid+''];
   },
 
   navigate(payload) {
@@ -86,9 +86,8 @@ const NavigationStore = new Store({
 
   itemMarkedAsRead(payload) {
     const
-      f = payload.data.subscription,
-      feed = this.getFeed(f.category_id, f.id);
-    feed.unread_count = f.unread_count;
+      feed = this.getFeed(payload.data.cid, payload.data.sid);
+    feed.unread_count = feed.unread_count + (payload.data.unread ? -1 : 1);
     this.emitChange();
   },
 
@@ -104,7 +103,7 @@ const NavigationStore = new Store({
   failHandler(payload) {
     switch (payload.data.type) {
     case action.MARK_FEED_AS_READ:
-      this.restoreFavicon(payload.data.cid, payload.data.sid);
+      this.restoreFeedIcon(payload.data.cid, payload.data.sid);
       break;
     }
     this.emitChange();

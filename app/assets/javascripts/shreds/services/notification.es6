@@ -28,7 +28,8 @@ const NotificationService = new Service({
   },
 
   okNotify(payload) {
-    this.notify.info(payload.data.info);
+    if (payload.data && payload.data.info)
+      this.notify.info(payload.data.info);
   }
 });
 

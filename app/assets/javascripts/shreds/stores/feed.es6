@@ -14,25 +14,23 @@ const FeedStore = new Store({
       [event.FEED_MARKED_AS_READ, this.feedMarkedAsRead]
     ]);
 
-    this.set('newsitems', []);
+    this.set('articles', []);
   },
 
   feedMarkedAsRead(payload) {
-    const f = payload.data.feed;
-    if (this.get('id') !== f.id) {
+    if (this.get('id') !== payload.data.fid) {
       return;
     }
-    this.get('newsitems').forEach(newsitem => {
-      newsitem.unread = false;
+    this.get('articles').forEach(article => {
+      article.unread = false;
     });
     this.emitChange();
   },
 
   itemMarkedAsRead(payload) {
-    const f = payload.data.feed;
-    let newsitem = _.find(this.get('newsitems'), item => item.id === f.nid);
-    if (newsitem) {
-      newsitem.unread = !newsitem.unread;
+    let article = _.find(this.get('articles'), item => item.id === payload.data.nid);
+    if (article) {
+      article.unread = !article.unread;
     }
     this.emitChange();
   },

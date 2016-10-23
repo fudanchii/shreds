@@ -2,10 +2,10 @@ import ShredsDispatcher from 'shreds/dispatcher';
 import { action } from 'shreds/constants';
 
 const FeedsActions = {
-  markAsRead(cid, fid) {
+  markAsRead(cid, sid) {
     ShredsDispatcher.dispatch({
       type: action.MARK_FEED_AS_READ,
-      cid, fid
+      cid, sid
     });
   }
 };

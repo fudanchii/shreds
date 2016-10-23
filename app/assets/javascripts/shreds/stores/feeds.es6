@@ -18,23 +18,21 @@ const FeedsStore = new Store({
   },
 
   feedMarkedAsRead(payload) {
-    const f = payload.data.feed;
-    let feed = _.find(this.get('feeds'), item => item.id === f.id);
+    let feed = _.find(this.get('feeds'), item => item.id === payload.fid);
     if (feed) {
-      feed.newsitems.forEach(newsitem => {
-        newsitem.unread = false;
+      feed.articles.forEach(article => {
+        article.unread = false;
       });
     }
     this.emitChange();
   },
 
   itemMarkedAsRead(payload) {
-    const f = payload.data.feed;
-    let feed = _.find(this.get('feeds'), item => item.id === f.id);
+    let feed = _.find(this.get('feeds'), item => item.id === payload.data.fid);
     if (feed) {
-      let newsitem = _.find(feed.newsitems, item => item.id === f.nid);
-      if (newsitem) {
-        newsitem.unread = !newsitem.unread;
+      let article = _.find(feed.articles, item => item.id === payload.data.nid);
+      if (article) {
+        article.unread = !article.unread;
       }
     }
     this.emitChange();

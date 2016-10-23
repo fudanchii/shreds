@@ -22,8 +22,8 @@ const FeedsComponent = Component.extend({
       Decorator.do('setTitle', this.get('title'));
     });
 
-    this.on('mark-as-read', (ev, fid, nid) => {
-      FeedActions.markAsRead(fid, nid);
+    this.on('mark-as-read', (ev, cid, sid, fid, nid, unread) => {
+      FeedActions.markAsRead(cid, sid, fid, nid, unread);
       return false;
     });
 

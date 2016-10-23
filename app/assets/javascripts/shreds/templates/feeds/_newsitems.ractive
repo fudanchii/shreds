@@ -10,7 +10,7 @@
       <div class="text--small text--muted row--inline-containing-elements">
         <em>by {{author}}</em>
         <div class="right floated column">
-          <a href="javascript:void(0)" on-mousedown="mark-as-read:{{../../id}},{{id}}">
+          <a href="javascript:void(0)" on-mousedown="mark-as-read:{{category_id}},{{subscription_id}},{{../../id}},{{id}},{{unread}}">
             <i class="{{unreadIcon(unread)}} small icon" data-toggle="tooltip" title="Set {{unreadLabel(unread)}}"></i>
           </a>
           <abbr class="timeago" title="{{readableDate(published)}}">{{momentFormat(published)}}</abbr>
