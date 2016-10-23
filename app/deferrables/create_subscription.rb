@@ -6,9 +6,8 @@ class CreateSubscription
   def perform(uid, url, category)
     user = User.find uid
     feeds = Feed.safe_create url
-    subscription = user.subscriptions.build feed: feeds.first,
-                                            category: Category.safe_create(category)
-    feeds.each { |feed| subscription.feeds << feed }
+    subscription = user.subscriptions.create! feed: feeds.first,
+                                              category: Category.safe_create(category)
     subscription.fetch_feeds!
     EventPool.add "create-#{jid}", view: 'create', category_id: subscription.category.id
   rescue ActiveRecord::RecordNotFound

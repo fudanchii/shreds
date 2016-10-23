@@ -8,8 +8,7 @@ describe Subscription do
   end
 
   it 'can be created by user' do
-    @newsub = @user.subscriptions.build(feed: @feed2)
-    @newsub.save!
+    @newsub = @user.subscriptions.create!(feed: @feed2)
     @user.subscriptions.count.must_equal 2
     @newsub.category.name.must_equal Category.default
   end
