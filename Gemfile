@@ -18,12 +18,13 @@ gem 'uglifier', require: false
 # Lock sprockets-rails to 2.x.x since 3.0.0 breaks all other gems
 gem 'sprockets-rails', '< 3.0.0'
 
+gem 'multi_json'
 gem 'sprockets', '~> 3.0'
 gem 'sprockets-es6', '>= 0.6.0'
 gem 'sass-rails', require: false
 gem 'autoprefixer-rails', require: false
-gem 'ractive_assets', github: 'unity/ractive_assets'
 gem 'i18n-js' # , '>= 3.0.0.rc8'
+gem 'ractive_assets', github: 'fudanchii/ractive_assets'
 # end of 2.
 
 ### 3. Cosmetics
@@ -41,13 +42,14 @@ gem 'simple_form', github: 'plataformatec/simple_form'
 ### 4. Middleware and server related gems
 gem 'puma', platforms: [:mri, :jruby, :rbx]
 gem 'thin', platforms: [:mswin, :mingw]
+
+gem 'message_bus'
 # end of 4.
 
 ### 5. Job queueing related gems
 gem 'sidekiq'
 gem 'sidekiq-failures', github: 'mhfs/sidekiq-failures'
 gem 'sidekiq-cron', github: 'ondrejbartas/sidekiq-cron'
-gem 'sinatra', require: false, github: 'sinatra/sinatra', branch: 'master'
 gem 'slim', require: false
 # end of 5.
 
@@ -66,8 +68,8 @@ gem 'feedbag', require: false, github: 'fudanchii/feedbag', branch: 'dev'
 # Test-related gems
 group :test do
   gem 'minitest'
-  gem 'minitest-reporters'
   gem 'minitest-spec-rails'
+  gem 'minitest-reporters'
   gem 'minitest-stub_any_instance'
   gem 'm'
   gem 'rails-controller-testing'
@@ -106,7 +108,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-file-upload'
   gem 'rails-assets-scrollup'
   gem 'rails-assets-nprogress'
-  gem 'rails-assets-ractive'
+  gem 'rails-assets-ractive', '~> 0.7.3'
   gem 'rails-assets-ractive-transitions-fade'
   gem 'rails-assets-moment'
   gem 'rails-assets-zloirock--core-js'
