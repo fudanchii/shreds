@@ -1,5 +1,4 @@
 import Service from 'framework/service';
-import req from 'framework/helpers/ajax';
 import F from 'framework/helpers/fetch';
 import { join } from 'framework/helpers/path';
 import I18n from 'I18n';
@@ -19,18 +18,6 @@ const WebAPIService = new Service({
         [action.MARK_ITEM_AS_READ, this.markItemAsRead],
         [action.SUBSCRIBE_TO_FEED, this.subscribe]
     ]);
-    req.init({
-      baseURI: '/i',
-      dispatcher: ShredsDispatcher,
-      failAction: action.FAIL_NOTIFY,
-      prefilters: [
-        function (opts, oriOpts, xhr) {
-          if (tTag) {
-            xhr.setRequestHeader('X-CSRF-Token', tTag.getAttribute('content'));
-          }
-        }
-      ]
-    });
     this.fetch = new F({
       endpoints: {
         navigateIndex: F.get('/i/feeds.json'),
@@ -47,40 +34,32 @@ const WebAPIService = new Service({
   },
 
   navigate(payload) {
-    // FIXME: Consider using `gon` to load rails var
     const path = payload.path === '/' ? 'navigateIndex' : 'navigate';
-    this.fetch
-      .json(path, { fid: payload.path })
+    this.fetch.json(path,{ args: { fid: payload.path } })
       .then(data => { Events.routeNavigated(payload, data) })
       .catch(ex => Notification.error(ex, payload));
   },
 
   markFeedAsRead(payload) {
-    this.fetch
-      .cmd('markFeedAsRead', { fid: payload.fid })
+    this.fetch.cmd('markFeedAsRead', { args: { fid: payload.fid } })
       .then(() => { Events.feedMarkedAsRead(payload) })
       .catch(ex => Notification.error(ex, payload));
   },
 
   markItemAsRead(payload) {
-    this.fetch
-      .cmd('markItemAsRead', { fid: payload.fid, eid: payload.nid })
+    this.fetch.cmd('markItemAsRead', {
+      args: { fid: payload.fid, eid: payload.nid }
+    })
       .then(() => { Events.itemMarkedAsRead(payload) })
       .catch(ex => Notification.error(ex, payload));
   },
 
   subscribe(payload) {
-    req
-      .post('/subscriptions.json', {
-        data: new FormData(payload.form),
-        processData: false,
-        contentType: false,
-        failMsg: I18n.t('js.fail.subscribe'),
-        failPayload: payload
-      })
-    .done((data) => {
-      Events.feedSubscribed(data);
-    });
+    this.fetch.json('subscribe', {
+      inits: { body: new FormData(payload.form) }
+    })
+      .then(data => Events.feedSubscribed(data))
+      .catch(ex => Notification.error(ex, payload));
   }
 });
 

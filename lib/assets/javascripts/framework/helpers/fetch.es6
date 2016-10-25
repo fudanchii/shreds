@@ -45,12 +45,12 @@ export default class Fetch {
     return fetch(url, this.defaults(inits));
   }
 
-  json(endpoint, args, queries, inits) {
+  json(endpoint, { args, queries, inits }) {
     return this.doFetch(endpoint, args, queries, inits)
       .then(response => response.json());
   }
 
-  cmd(endpoint, args, queries, inits) {
+  cmd(endpoint, { args, queries, inits }) {
     return this.doFetch(endpoint, args, queries, inits)
       .then(response => {
         if (!response.ok) {
