@@ -1,9 +1,9 @@
 Sidekiq.configure_client do |config|
-  EventPool.wrap { |pool| config.redis = pool }
+  config.redis = $redis_pool
 end
 
 Sidekiq.configure_server do |config|
-  EventPool.wrap { |pool| config.redis = pool }
+  config.redis = $redis_pool
 
   schedule_file = 'config/schedule.yml'
   if File.exist? schedule_file

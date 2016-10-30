@@ -20,17 +20,21 @@ class ProcessOPML
   end
 
   def watch_feed_fetcher(jids)
-    loop do
-      results = EventPool.pipelined { |conn| jids.each { |j| conn.get(j) } }
-      jids = jids.zip(results).map do |j, r|
-        EventPool.remove(j) unless r.nil?
-        j if r.nil?
-      end.compact
-      if jids.empty?
-        EventPool.add("opml-#{jid}", view: 'via_opml')
-        return
+    counter = jids.count
+    mutex = MessageBus::Implementation::Synchronizer.new
+    jids.each do |jid|
+      MessageBus.subscribe(jid), 0 do |msg|
+        mutex.synchronize { counter -= 1 }
+        MessageBus.unsubscribe jid
       end
-      sleep 1
+    end
+    loop do
+      if counter > 0
+        sleep 1
+        next
+      end
+      MessageBus.publish("/opml-#{jid}")
+      break
     end
   end
 

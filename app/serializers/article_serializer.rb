@@ -14,8 +14,13 @@ class ArticleSerializer < ApplicationSerializer
 
   def summary
     text = object.summary || object.content
-    Nokogiri::HTML::DocumentFragment
-      .parse(text.to_s[0..432]).to_html
+    nodes = Nokogiri::HTML::DocumentFragment.parse(text.to_s[0..512])
+    if nodes.children.length > 1
+      nodes.children = nodes.children[0..-2]
+    elsif nodes.children.first.children.length > 1
+      nodes.children.first.children = nodes.children.first.children[0..-2]
+    end
+    nodes.to_html
   end
 
   def url
