@@ -1,0 +1,23 @@
+require 'redis-namespace'
+
+redis_conns = ENV['redis_conns'].to_i <= 0 ?
+                10 :
+                ENV['redis_conns'].to_i
+
+redis_timeout = ENV['redis_timeout'].to_i <= 0 ?
+                  30 :
+                  ENV['redis_timeout'].to_i
+
+redis_host = ENV['redis_host'].presence ||
+             ENV['cache_servers'].split(',').first
+
+$redis_config = {
+    driver: :hiredis,
+    host: redis_host,
+    port: ENV['redis_port'],
+    password: ENV['redis_password']
+}
+
+$redis_pool = ConnectionPool.new(size: redis_conns, timeout: redis_timeout) do
+  Redis::Namespace.new 'shreds', $redis_config
+end
