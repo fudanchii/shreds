@@ -8,13 +8,20 @@ redis_timeout = ENV['redis_timeout'].to_i <= 0 ?
                   30 :
                   ENV['redis_timeout'].to_i
 
-redis_host = ENV['redis_host'].presence ||
-             ENV['cache_servers'].split(',').first
+redis_host = ENV.fetch('redis_host') do
+  ENV.fetch('cache_servers').split(',').first
+    .split(':').first
+end
+
+redis_port = ENV.fetch('redis_port') do
+  ENV.fetch('cache_servers').split(',').first
+    .split(':').last.to_i || 6379
+end
 
 $redis_config = {
     driver: :hiredis,
     host: redis_host,
-    port: ENV['redis_port'],
+    port: redis_port,
     password: ENV['redis_password']
 }
 
