@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 5.0'
+gem 'rails', git: 'https://github.com/rails/rails', branch: '5-0-stable'
 
 ### 1. Database and modelling related gems
 gem 'pg'
