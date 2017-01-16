@@ -53,6 +53,9 @@ class Feed < ActiveRecord::Base
             sids[feed.id]) unless articles[feed.id].nil?
         end
         .compact
+        .sort do |r, l|
+          l.articles[0].published <=> r.articles[0].published
+        end
     end
 
     private
