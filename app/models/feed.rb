@@ -28,34 +28,32 @@ class Feed < ActiveRecord::Base
 
     def from_subscription_with_articles(subscription, options)
       articles = subscription.entries.where(subscription_id: subscription.id)
-        .joins_article
-        .select('articles.*, entries.unread, entries.subscription_id')
-        .page(options[:page])
-        .per(options[:articles_per_page])
+                             .joins_article
+                             .select('articles.*, entries.unread, entries.subscription_id')
+                             .page(options[:page])
+                             .per(options[:articles_per_page])
       FeedWithArticles.new(subscription.feed,
-        articles,
-        subscription.category_id,
-        subscription.id)
+                           articles,
+                           subscription.category_id,
+                           subscription.id)
     end
 
     def from_subscriptions_with_unread_articles(subscriptions, options)
       articles = Article.from_subscriptions_with_unreads(subscriptions, options)
-        .group_by(&:feed_id)
-      categories = subscriptions.inject({}) {|rs, n| rs[n.feed_id] = n.category_id; rs }
-      sids = subscriptions.inject({}) {|h, s| h[s.feed_id] = s.id; h }
+                        .group_by(&:feed_id)
+      categories = subscriptions.each_with_object({}) { |n, rs| rs[n.feed_id] = n.category_id; }
+      sids = subscriptions.each_with_object({}) { |s, h| h[s.feed_id] = s.id; }
       where(id: subscriptions.pluck(:feed_id))
+        .order('latest_at DESC')
         .page(options[:page])
         .per(options[:feeds_per_page])
         .map do |feed|
+          next if articles[feed.id].nil?
           FeedWithArticles.new(feed,
-            articles[feed.id],
-            categories[feed.id],
-            sids[feed.id]) unless articles[feed.id].nil?
-        end
-        .compact
-        .sort do |r, l|
-          l.articles[0].published <=> r.articles[0].published
-        end
+                               articles[feed.id],
+                               categories[feed.id],
+                               sids[feed.id])
+        end.compact
     end
 
     private
