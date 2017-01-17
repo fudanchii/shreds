@@ -1,15 +1,15 @@
 class SubscriptionsController < ApplicationController
   # For managing categories
-  def index
-  end
+  def index; end
 
   # For managing Feeds subscription
-  def show
-  end
+  def show; end
 
   def create
-    return error_response(I18n.t("feed.error.empty_url"),
-      :unprocessable_entity) unless params[:feed][:url].present?
+    unless params[:feed][:url].present?
+      return error_response(I18n.t('feed.error.empty_url'),
+                            :unprocessable_entity)
+    end
     category = if params[:category] && params[:category][:name].present?
                  params[:category][:name]
                else
@@ -18,7 +18,8 @@ class SubscriptionsController < ApplicationController
     jid = CreateSubscription.perform_async(
       current_user.id,
       params[:feed][:url],
-      category)
+      category
+    )
     render json: { watch: "create-#{jid}" }
   end
 

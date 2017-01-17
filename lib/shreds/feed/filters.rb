@@ -35,8 +35,10 @@ module Shreds
 
         def fragments(entry)
           %w(content summary).map do |method|
-            [Nokogiri::HTML::DocumentFragment.parse(entry.send(method)),
-             method] if entry.send(method).present?
+            if entry.send(method).present?
+              [Nokogiri::HTML::DocumentFragment.parse(entry.send(method)),
+               method]
+            end
           end.compact
         end
 

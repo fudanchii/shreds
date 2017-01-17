@@ -16,12 +16,12 @@ class ArticlesController < ApplicationController
 
   def fetch_subscription
     @subscription = current_user.subscriptions
-      .includes(entries: :article)
-      .includes(:feed)
-      .find_by!(feed_id: params[:feed_id].to_i)
+                                .includes(entries: :article)
+                                .includes(:feed)
+                                .find_by!(feed_id: params[:feed_id].to_i)
     @entry = @subscription.entries
-      .select { |e| e.article_id == params[:id].to_i }
-      .first
+                          .select { |e| e.article_id == params[:id].to_i }
+                          .first
     @feed = @subscription.feed
     raise ActiveRecord::RecordNotFound if @entry.nil?
   end

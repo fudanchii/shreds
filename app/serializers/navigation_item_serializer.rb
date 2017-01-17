@@ -4,7 +4,5 @@ class NavigationItemSerializer < ApplicationSerializer
 
   has_many :subscriptions, serializer: FeedPreviewSerializer
 
-  def subscriptions
-    object.subscriptions
-  end
+  delegate :subscriptions, to: :object
 end

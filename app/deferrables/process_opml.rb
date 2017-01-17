@@ -23,13 +23,13 @@ class ProcessOPML
     counter = jids.count
     mutex = MessageBus::Implementation::Synchronizer.new
     jids.each do |jid|
-      MessageBus.subscribe(jid), 0 do |msg|
+      MessageBus.subscribe(jid) do |_|
         mutex.synchronize { counter -= 1 }
         MessageBus.unsubscribe jid
       end
     end
     loop do
-      if counter > 0
+      if counter.positive?
         sleep 1
         next
       end

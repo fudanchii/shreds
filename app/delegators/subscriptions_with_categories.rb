@@ -1,4 +1,3 @@
 class SubscriptionsWithCategories < SimpleDelegator
-  def subscriptions
-  end
+  def subscriptions; end
 end

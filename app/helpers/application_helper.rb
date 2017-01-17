@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def full_url(path)
-    File.join(ENV['app_host'].to_s,  path.to_s)
+    File.join(ENV['app_host'].to_s, path.to_s)
   end
 
   def pretty_json(obj)

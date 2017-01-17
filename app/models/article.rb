@@ -17,7 +17,7 @@ class Article < ActiveRecord::Base
     def from_subscriptions_with_unreads(subscriptions, options)
       select('*')
         .from(Arel.sql("(#{entries_query(subscriptions)}) p_articles"))
-        .where("row_num <= ?", options[:articles_per_feed])
+        .where('row_num <= ?', options[:articles_per_feed])
     end
 
     def latest_issues_on(subscriptions)
@@ -54,8 +54,8 @@ class Article < ActiveRecord::Base
 
     def entries_query(subscriptions)
       Entry.where(subscription_id: subscriptions.pluck(:id), unread: true)
-        .joins_article
-        .select(<<-SQL).to_sql
+           .joins_article
+           .select(<<-SQL).to_sql
           articles.*, entries.unread, entries.subscription_id,
           row_number() over (
             partition by entries.subscription_id
@@ -66,8 +66,8 @@ class Article < ActiveRecord::Base
 
     def latest_articles_query(subscriptions)
       Entry.where(subscription_id: subscriptions.pluck(:id))
-        .joins_article
-        .select(<<-SQL).to_sql
+           .joins_article
+           .select(<<-SQL).to_sql
           articles.*, entries.unread, entries.subscription_id,
           row_number() over (
             partition by entries.subscription_id
@@ -82,11 +82,11 @@ class Article < ActiveRecord::Base
   end
 
   def next
-    compare_by("<").first
+    compare_by('<').first
   end
 
   def prev
-    compare_by(">").last
+    compare_by('>').last
   end
 
   def unreads
@@ -96,21 +96,20 @@ class Article < ActiveRecord::Base
   private
 
   def compare_by(op)
-    op = "<" unless %w(< >).includes? op
-    self.for_view
+    op = '<' unless %w(< >).includes? op
+    for_view
       .where(feed_id: feed_id)
       .where("(published #{op} :pubdate and id <> :id) or (published = :pubdate and id #{op} :id)",
              pubdate: published, id: id)
   end
 
   def hash_permalink
-    Itemhash.insert(permalink) if permalink.present? && unreads == 0
+    Itemhash.insert(permalink) if permalink.present? && unreads.zero?
   end
 
   def filter_content
     Shreds::Feed::Filters.apply self
   end
-
 end
 
 # == Schema Information

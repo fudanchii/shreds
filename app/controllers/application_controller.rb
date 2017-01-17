@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def current_page
-    return params[:page] if params[:page].to_i > 0
+    return params[:page] if params[:page].to_i.positive?
     1
   end
 
@@ -39,8 +39,7 @@ class ApplicationController < ActionController::Base
     @subscriptions = NavigationListSerializer.new(subs)
   end
 
-  def init_empty_subscription
-  end
+  def init_empty_subscription; end
 
   def feed_not_found(_exceptions)
     error_response I18n.t('feed.not_found'), :not_found
@@ -58,9 +57,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def render_serialized(obj, serializer, options=nil)
+  def render_serialized(obj, serializer, options = nil)
     options ||= {}
     render json: MultiJson.dump(serializer.new(obj).as_json, pretty: !Rails.env.production?),
-      status: options[:status] || 200
+           status: options[:status] || 200
   end
 end

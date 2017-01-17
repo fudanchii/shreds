@@ -13,7 +13,12 @@ class EntryArticles
     @feed.sanitize_entries!
     @feed.entries.each { |entry| @feed_record.add_article entry }
 
-    @feed_record.update_meta!(etag: @feed.etag, title: @feed.title, url: @feed.url)
+    @feed_record.update_meta!(
+      etag: @feed.etag,
+      title: @feed.title,
+      url: @feed.url,
+      latest_at: @feed.entries.map(&:published).max
+    )
   rescue ActiveRecord::RecordInvalid => err
     raise Shreds::InvalidFeed, err.message
   end

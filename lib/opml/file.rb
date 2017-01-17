@@ -35,7 +35,7 @@ module OPML
           written += buff.length
         end
       end
-      return unless written == 0
+      return unless written.zero?
       ::File.unlink(@filename)
       raise UploadError, I18n.t('opml.error.empty_file')
     end

@@ -9,13 +9,13 @@ module ActiveModelSerializers
 
       private
 
-      def serialized_items(options)
-        arrayfy(serializer).inject({}) do |hash, sr|
+      def serialized_items(_options)
+        arrayfy(serializer).each_with_object({}) do |sr, hash|
           hash[sr.object.id] = sr.attributes.stringify_keys
           sr.associations.each do |assoc|
             isr = {}
             if assoc.serializer.nil?
-              arrayfy(assoc.options[:virtual_value]).each do|vv|
+              arrayfy(assoc.options[:virtual_value]).each do |vv|
                 isr[vv['id']] = vv.stringify_keys
               end
             else
@@ -25,7 +25,6 @@ module ActiveModelSerializers
             end
             hash[sr.object.id][assoc.name.to_s] = isr
           end
-          hash
         end
       end
 
@@ -35,4 +34,3 @@ module ActiveModelSerializers
     end
   end
 end
-

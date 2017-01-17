@@ -33,3 +33,9 @@ Style/Documentation:
 
 Style/IfUnlessModifier:
   Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/StringLiteralsInInterpolation:
+  Enabled: false

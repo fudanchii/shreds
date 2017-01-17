@@ -5,13 +5,11 @@ class Entry < ActiveRecord::Base
   has_one :feed, through: :subscription
 
   scope :joins_article,
-    -> { joins(:article).order('articles.published desc, articles.id asc') }
+        -> { joins(:article).order('articles.published desc, articles.id asc') }
   scope :unread_entry, -> { where(unread: true) }
 
   class << self
-    def latest_unread_for(opts)
-
-    end
+    def latest_unread_for(opts); end
   end
 
   def mark_as_read

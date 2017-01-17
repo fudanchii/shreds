@@ -9,13 +9,9 @@ class FeedArticlesSerializer < ApplicationSerializer
              :url,
              :articles
 
-  def category_id
-    object.category_id
-  end
+  delegate :category_id, to: :object
 
-  def subscription_id
-    object.subscription_id
-  end
+  delegate :subscription_id, to: :object
 
   def path
     feed_path object

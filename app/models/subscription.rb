@@ -23,11 +23,11 @@ class Subscription < ActiveRecord::Base
       latest_articles = Article.latest_issues_on(subscriptions).group_by(&:subscription_id)
       categories = Category.where(id: subscriptions.pluck(:category_id))
       subs = subscriptions
-        .includes(:category)
-        .includes(:feed)
-        .map {|subs| SubscriptionWithLatestArticle.new(subs, latest_articles[subs.id]) }
-        .group_by(&:category_id)
-      categories.map {|cat| CategoriedSubscriptions.new(cat, subs[cat.id]) }
+             .includes(:category)
+             .includes(:feed)
+             .map { |subs| SubscriptionWithLatestArticle.new(subs, latest_articles[subs.id]) }
+             .group_by(&:category_id)
+      categories.map { |cat| CategoriedSubscriptions.new(cat, subs[cat.id]) }
     end
   end
 

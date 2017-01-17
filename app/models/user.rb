@@ -25,9 +25,10 @@ class User < ActiveRecord::Base
   def latest_unread_entries(page: 1, subscription_per_page: 5, entries_per_subscription: 3)
     Entries.latest_unread_for(
       subscriptions: subscriptions,
-      limit: entries_per_subscription)
-      .per(subscription_per_page * entries_per_subscription)
-      .page(page)
+      limit: entries_per_subscription
+    )
+           .per(subscription_per_page * entries_per_subscription)
+           .page(page)
   end
 
   private
