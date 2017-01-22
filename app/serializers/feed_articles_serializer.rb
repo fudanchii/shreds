@@ -7,7 +7,8 @@ class FeedArticlesSerializer < ApplicationSerializer
              :title,
              :path,
              :url,
-             :articles
+             :articles,
+             :next_path
 
   delegate :category_id, to: :object
 
@@ -19,5 +20,9 @@ class FeedArticlesSerializer < ApplicationSerializer
 
   def articles
     ArticlesIndexSerializer.new(object.articles)
+  end
+
+  def next_path
+    "#{path}/page/#{object.paginated_articles&.next_page}" if object.paginated_articles&.next_page
   end
 end

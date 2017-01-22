@@ -1,10 +1,9 @@
 
-<div id="pager" class="ui grid">
-  <div class="left floated eight wide column">
-      {{{prevPage}}}
-  </div>
-  <div class="right floated right aligned eight wide column">
-      {{{nextPage}}}
-  </div>
+<div id="pager" class="ui centered grid">
+{{#if next_path}}
+    <a href="{{next_path}}" id="pager-button" class="ui button">Next</a>
+{{else}}
+    <a id="pager-button" class="ui disabled button">Next</a>
+{{/if}}
 </div>
 

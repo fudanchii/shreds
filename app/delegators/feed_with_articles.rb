@@ -6,6 +6,6 @@ class FeedWithArticles < SimpleDelegator
     @articles = articles.map { |a| ArticleWithFeedURL.new(a, feed) }
     @category_id = cid
     @subscription_id = sid
-    @paginated_articles = articles
+    @paginated_articles = articles unless articles.is_a? Array
   end
 end

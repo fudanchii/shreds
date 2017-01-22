@@ -36,7 +36,7 @@ class Feed < ActiveRecord::Base
       FeedWithArticles.new(sub.feed, articles, sub.category_id, sub.id)
     end
 
-    def sorted_by_published_date(subs)
+    def sorted_by_published_date(subs, opt)
       sql = joins(subscriptions: %w(articles entries)).select(<<-SQL).to_sql
       feeds.*, articles.published as published, entries.unread as unread,
       row_number() over (
@@ -47,17 +47,17 @@ class Feed < ActiveRecord::Base
       select('*').from(Arel.sql("(#{sql}) feeds"))
                  .where(id: subs.map(&:feed_id), unread: true, row_num: 1)
                  .order('published desc')
+                 .page(opt[:page])
+                 .per(opt[:feeds_per_page])
     end
 
     def from_subscriptions_with_unread_articles(subs, opt)
-      articles = Article.from_subscriptions_with_unreads(subs, opt)
-                        .group_by(&:feed_id)
-      categories = subs.each_with_object({}) { |n, rs| rs[n.feed_id] = n.category_id; }
-      sids = subs.each_with_object({}) { |s, h| h[s.feed_id] = s.id; }
-      sorted_by_published_date(subs).page(opt[:page]).per(opt[:feeds_per_page]).map do |feed|
-        next if articles[feed.id].nil?
-        FeedWithArticles.new(feed, articles[feed.id], categories[feed.id], sids[feed.id])
-      end.compact
+      FeedsWithArticles
+        .new(sorted_by_published_date(subs, opt),
+             Article.from_subscriptions_with_unreads(subs, opt)
+                    .group_by(&:feed_id),
+             subs.each_with_object({}) { |n, rs| rs[n.feed_id] = n.category_id; },
+             subs.each_with_object({}) { |s, h| h[s.feed_id] = s.id; })
     end
 
     private
