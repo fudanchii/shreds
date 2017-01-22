@@ -9,16 +9,13 @@ installation
 
 shreds stands on the shoulder of these giants:
 
-- curl  
-  `@ubuntu:~# apt-get install libcurl4-openssl-dev`
-
 - postgresql  
   `@ubuntu:~# apt-get install postgresql postgresql-client libpq-dev`
 
 - redis (>= 2.6)   
   `@ubuntu:~# add-apt-repository ppa:chris-lea/redis-server && apt-get update && apt-get install redis-server`
 
-As for the ruby version, shreds known to work with MRI (>= 2.1). Shreds may work with rubinius but haven't really tested. And since [feedjira](https://github.com/feedjira/feedjira) is currently using _curb_, a native C binding for curl in ruby, using shreds with jRuby is probably impossible.
+As for the ruby version, shreds known to work with MRI (>= 2.1). Shreds may work with rubinius and jruby but haven't really tested.
 
 For development or just hacking around shreds, I would recommend using `rvm` to manage your ruby installation, install rvm in your local home directory. As per the [documentation](http://rvm.io/):  
 
@@ -28,8 +25,6 @@ For development or just hacking around shreds, I would recommend using `rvm` to 
 ```
 
 Now you can `cd` to shreds directory and start with `bundle install`.
-
-You will also need [bower](http://bower.io) to install assets-related dependencies. You can install bower via npm with: `npm install -d -g`, to install all dependencies just type: `bower install`.
 
 For production environment, just make sure you have sane and recent version of ruby available for your OS distribution and all dependencies above. No need to setup bower if you only want to use shreds, since all assets are already precompiled and committed to the repository.
 
