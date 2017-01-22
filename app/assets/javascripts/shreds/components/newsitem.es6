@@ -9,6 +9,10 @@ const NewsitemComponent = Component.extend({
 
   data() { return NewsitemStore.get(); },
 
+  partials: {
+    pager: Component.template('_pager')
+  },
+
   oninit() {
     NewsitemStore.addChangeListener((ev, payload) => {
       this.assign(payload.data);

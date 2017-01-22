@@ -8,7 +8,9 @@ class EntryArticleSerializer < ApplicationSerializer
              :published,
              :path,
              :url,
-             :unread
+             :unread,
+             :next_path,
+             :prev_path
 
   def id
     object.article.id
@@ -36,5 +38,13 @@ class EntryArticleSerializer < ApplicationSerializer
 
   def path
     feed_article_path object.feed, object.article
+  end
+
+  def next_path
+    feed_article_path(object.feed, object.article.next) if object.article.next
+  end
+
+  def prev_path
+    feed_article_path(object.feed, object.article.prev) if object.article.prev
   end
 end

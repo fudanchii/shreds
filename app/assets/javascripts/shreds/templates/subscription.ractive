@@ -6,13 +6,13 @@
         <input class="subscribe-block__input element--full-width" placeholder="Category (optional)" type="text" name="category[name]" id="category-name" value="{{categoryName}}">
     </div>
     <a href="/"><img id="main-logo" class="left floated" height="38" alt="Logo" src="{{logoImage}}"></a>
-    <div class="right floated ui buttons">
-        <div id="button-submit-feed" class="ui left attached icon button" on-click="subscribe">
+    <div id="subscription-form" class="right floated ui buttons">
+        <div id="button-submit-feed" class="ui icon button" on-click="subscribe">
             <span>
             <i class="plus icon"></i>
             <i class="feed icon"></i></span>
         </div>
-        <div id="button-OPML-upload" class="ui right attached icon button" on-click="import-opml">
+        <div id="button-OPML-upload" class="ui icon button" on-click="import-opml">
             <span>
             <i class="upload icon"></i>
             <i class="file outline icon"></i></span>
