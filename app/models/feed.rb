@@ -6,6 +6,7 @@ class Feed < ActiveRecord::Base
   has_many :subscriptions, dependent: :destroy
   has_many :categories, through: :subscriptions
   has_many :users, through: :subscriptions
+  has_many :entries, through: :subscriptions
   has_many :articles, dependent: :destroy
 
   validates :url, :feed_url, presence: true
@@ -26,34 +27,37 @@ class Feed < ActiveRecord::Base
       end
     end
 
-    def from_subscription_with_articles(subscription, options)
-      articles = subscription.entries.where(subscription_id: subscription.id)
-                             .joins_article
-                             .select('articles.*, entries.unread, entries.subscription_id')
-                             .page(options[:page])
-                             .per(options[:articles_per_page])
-      FeedWithArticles.new(subscription.feed,
-                           articles,
-                           subscription.category_id,
-                           subscription.id)
+    def from_subscription_with_articles(sub, opt)
+      articles = sub.entries.where(subscription_id: sub.id)
+                    .joins_article
+                    .select('articles.*, entries.unread, entries.subscription_id')
+                    .page(opt[:page])
+                    .per(opt[:articles_per_page])
+      FeedWithArticles.new(sub.feed, articles, sub.category_id, sub.id)
     end
 
-    def from_subscriptions_with_unread_articles(subscriptions, options)
-      articles = Article.from_subscriptions_with_unreads(subscriptions, options)
+    def sorted_by_published_date(subs)
+      sql = joins(subscriptions: %w(articles entries)).select(<<-SQL).to_sql
+      feeds.*, articles.published as published, entries.unread as unread,
+      row_number() over (
+        partition by feeds.id
+        order by published desc, feeds.title asc
+      ) as row_num
+      SQL
+      select('*').from(Arel.sql("(#{sql}) feeds"))
+                 .where(id: subs.map(&:feed_id), unread: true, row_num: 1)
+                 .order('published desc')
+    end
+
+    def from_subscriptions_with_unread_articles(subs, opt)
+      articles = Article.from_subscriptions_with_unreads(subs, opt)
                         .group_by(&:feed_id)
-      categories = subscriptions.each_with_object({}) { |n, rs| rs[n.feed_id] = n.category_id; }
-      sids = subscriptions.each_with_object({}) { |s, h| h[s.feed_id] = s.id; }
-      where(id: subscriptions.pluck(:feed_id))
-        .order('latest_at DESC')
-        .page(options[:page])
-        .per(options[:feeds_per_page])
-        .map do |feed|
-          next if articles[feed.id].nil?
-          FeedWithArticles.new(feed,
-                               articles[feed.id],
-                               categories[feed.id],
-                               sids[feed.id])
-        end.compact
+      categories = subs.each_with_object({}) { |n, rs| rs[n.feed_id] = n.category_id; }
+      sids = subs.each_with_object({}) { |s, h| h[s.feed_id] = s.id; }
+      sorted_by_published_date(subs).page(opt[:page]).per(opt[:feeds_per_page]).map do |feed|
+        next if articles[feed.id].nil?
+        FeedWithArticles.new(feed, articles[feed.id], categories[feed.id], sids[feed.id])
+      end.compact
     end
 
     private
@@ -129,8 +133,10 @@ end
 #  title       :text             default("( Untitled )"), not null
 #  etag        :string
 #  last_status :string
+#  latest_at   :datetime         not null
 #
 # Indexes
 #
-#  index_feeds_on_feed_url  (feed_url) UNIQUE
+#  index_feeds_on_feed_url          (feed_url) UNIQUE
+#  index_feeds_on_id_and_latest_at  (id,latest_at)
 #

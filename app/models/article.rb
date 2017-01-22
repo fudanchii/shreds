@@ -53,7 +53,7 @@ class Article < ActiveRecord::Base
     private
 
     def entries_query(subscriptions)
-      Entry.where(subscription_id: subscriptions.pluck(:id), unread: true)
+      Entry.where(subscription_id: subscriptions.map(&:id), unread: true)
            .joins_article
            .select(<<-SQL).to_sql
           articles.*, entries.unread, entries.subscription_id,
@@ -65,7 +65,7 @@ class Article < ActiveRecord::Base
     end
 
     def latest_articles_query(subscriptions)
-      Entry.where(subscription_id: subscriptions.pluck(:id))
+      Entry.where(subscription_id: subscriptions.map(&:id))
            .joins_article
            .select(<<-SQL).to_sql
           articles.*, entries.unread, entries.subscription_id,

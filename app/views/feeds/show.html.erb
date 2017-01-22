@@ -3,7 +3,7 @@
   <%= title(@feed.title) %>
 <% end %>
 
-<% content_for :head do %> <%= rel_next_prev_link_tags @feed.articles %> <% end %>
+<% content_for :head do %> <%= rel_next_prev_link_tags @feed.paginated_articles %> <% end %>
 
 <% content_for :embedded_javascript do %>
 (function () {

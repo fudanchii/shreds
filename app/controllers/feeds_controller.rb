@@ -39,7 +39,7 @@ class FeedsController < ApplicationController
   def show
     @feed = Feed.from_subscription_with_articles(
       current_user.subscriptions.includes(:feed).find_by(feed_id: params[:id]),
-      articles_per_page: 15,
+      articles_per_page: Kaminari.config.default_per_page,
       page: current_page
     )
     respond_to do |format|

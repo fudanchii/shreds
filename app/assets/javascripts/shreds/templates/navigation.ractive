@@ -15,9 +15,9 @@
         </div>
         <div class="row--inline-containing-elements">
         <p class="left floated column text--muted ellipsis"><abbr class="timeago text--small" title="{{readableDate(latest_article.published)}}">{{momentFmtEntryPubDate}}</abbr> - {{{latest_article.title}}}</p>
-        {{#if unread_count }}
+        {{#if unreads }}
           <a class="right floated column" href="javascript:void(0)" on-mousedown="mark-as-read:{{index}},{{subscription_index}}">
-            <span class="unread-num ui label">{{unread_count}}</span>
+            <span class="unread-num ui label">{{unreads}}</span>
           </a>
         {{/if}}
         </div>

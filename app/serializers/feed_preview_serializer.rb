@@ -8,7 +8,7 @@ class FeedPreviewSerializer < ApplicationSerializer
              :feed_icon,
              :path,
              :category_id,
-             :unread_count,
+             :unreads,
              :latest_article
 
   def active

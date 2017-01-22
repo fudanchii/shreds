@@ -27,7 +27,5 @@ class ArticleSerializer < ApplicationSerializer
     object.permalink
   end
 
-  def path
-    feed_article_path object.feed, object
-  end
+  delegate :path, to: :object
 end

@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def fetch_subscriptions
-    subs = Subscription.group_by_categories(current_user.subscriptions)
+    subs = Subscription.group_by_categories(current_user.subscriptions.with_unread_count)
     @subscriptions = NavigationListSerializer.new(subs)
   end
 
