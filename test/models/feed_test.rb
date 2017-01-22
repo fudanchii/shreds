@@ -2,6 +2,7 @@ require 'test_helper'
 require 'minitest/mock'
 require 'feedbag'
 
+# rubocop:disable Metrics/BlockLength
 describe Feed do
   def create_feed(url)
     feed = described_class.create url: url, feed_url: 'http://example.com/feed.atom'

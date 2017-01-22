@@ -1,5 +1,6 @@
 require 'test_helper'
 
+# rubocop:disable Metrics/BlockLength
 describe FeedsController do
   let(:user) { users :test1 }
   let(:feed) { user.subscriptions.first.feed }

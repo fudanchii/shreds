@@ -3,6 +3,7 @@ require 'sidekiq/cron/web'
 
 Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
 
+# rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
   get '/login' => 'static#login'
   get '/logout' => 'session#destroy'
