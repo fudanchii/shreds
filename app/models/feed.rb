@@ -41,7 +41,7 @@ class Feed < ActiveRecord::Base
       feeds.*, articles.published as published, entries.unread as unread,
       row_number() over (
         partition by feeds.id
-        order by published desc, feeds.title asc
+        order by entries.unread desc, published desc, feeds.title asc
       ) as row_num
       SQL
       select('*').from(Arel.sql("(#{sql}) feeds"))
