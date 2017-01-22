@@ -24,7 +24,7 @@ module Shreds
 
         # TODO: specify inline styles to be nuked
         def remove_inline_style(_permalink, node)
-          node
+          node.remove_attribute('style')
         end
 
         private
