@@ -1,11 +1,13 @@
 {{#each feeds}}
-  <h1 class="feed-title ui header"><a href="{{./path}}" data-args='{"cid": "{{category_id}}", "sid": "{{subscription_id}}"}'>{{{./title}}}</a>
+  <div class="ui segment">
+  <h1 class="ui header"><a href="{{./path}}" data-args='{"cid": "{{category_id}}", "sid": "{{subscription_id}}"}'>{{{./title}}}</a>
     <a href="{{./url}}" target="_blank">
       <i class="external extra small icon" data-toggle="tooltip" title="Go to {{./url}}">
       </i>
     </a>
   </h1>
   {{> newsitems }}
+  </div>
 {{else}}
 <div class="ui teal message">
   <div class="header">

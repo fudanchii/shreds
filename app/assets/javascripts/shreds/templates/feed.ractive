@@ -1,3 +1,5 @@
+<div class="ui segment">
 <h1 class="ui header"><a href="{{url}}">{{{title}}}</a></h1>
 {{> newsitems }}
+</div>
 {{> pager }}

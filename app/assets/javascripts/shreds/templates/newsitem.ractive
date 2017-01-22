@@ -1,4 +1,4 @@
-<div class="ui vertical segment">
+<div class="ui segment">
   <div class="panel-heading">
     <h1 class="ui header">
       <a href="{{url}}" target="_blank">{{{title}}}</a>
@@ -15,6 +15,8 @@
     </div>
     {{{content}}}
   </div>
+</div>
+
 <div id="news_nav" class="ui grid">
   <div class="right floated right aligned sixteen wide column">
     <div class="ui small basic icon buttons">
@@ -22,5 +24,4 @@
       <a href="{{nextPath}}" class="ui button {{noNext}}"><i class="chevron right icon"></i></a>
     </div>
   </div>
-</div>
 </div>

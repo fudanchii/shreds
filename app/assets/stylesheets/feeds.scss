@@ -26,7 +26,7 @@ header span { margin-left: 4px; }
     line-height: 1.4;
 
     img {
-        max-width: 100% !important;
+        max-width: 100%;
         width: 0;
         height: auto;
         margin-top: 15px;
@@ -104,24 +104,6 @@ blockquote {
 
 code, pre {
     font-size: 1rem;
-}
-
-.feed-title, .feed-title.ui.header, .ui.header {
-    i.external {
-        display: none;
-    }
-
-    &:hover i.external {
-        display: inline;
-    }
-}
-
-h1.feed-title.ui.header {
-    padding-top: 1em;
-
-    + .ui.vertical.segment {
-        padding-top: 0;
-    }
 }
 
 .ui.vertical.segment {
