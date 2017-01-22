@@ -133,10 +133,8 @@ end
 #  title       :text             default("( Untitled )"), not null
 #  etag        :string
 #  last_status :string
-#  latest_at   :datetime         not null
 #
 # Indexes
 #
-#  index_feeds_on_feed_url          (feed_url) UNIQUE
-#  index_feeds_on_id_and_latest_at  (id,latest_at)
+#  index_feeds_on_feed_url  (feed_url) UNIQUE
 #
