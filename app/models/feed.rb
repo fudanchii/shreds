@@ -73,7 +73,7 @@ class Feed < ActiveRecord::Base
 
   def favicon
     iurl = URI.parse(url)
-    "https://plus.google.com/_/favicon?domain=#{iurl.host || url}"
+    "https://s2.googleusercontent.com/s2/favicons?domain=#{iurl.host || url}"
   end
 
   def up_to_date_with?(newfeed)
