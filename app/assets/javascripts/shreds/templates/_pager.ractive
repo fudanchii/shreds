@@ -1,5 +1,11 @@
 
 <div id="pager" class="ui centered grid">
+{{#if prev_path}}
+    <a href="{{prev_path}}" id="pager-button" class="ui button">Prev</a>
+{{else}}
+    <a id="pager-button" class="ui disabled button">Prev</a>
+{{/if}}
+
 {{#if next_path}}
     <a href="{{next_path}}" id="pager-button" class="ui button">Next</a>
 {{else}}
