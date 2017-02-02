@@ -60,7 +60,7 @@ GIT
 
 GIT
   remote: git://github.com/rails-api/active_model_serializers.git
-  revision: 93ca27fe444c3a940890cb7a4dedbd8369f481f3
+  revision: 2d1c68044e220e185a12a7c66cb307bd7fa4dcd4
   specs:
     active_model_serializers (0.10.4)
       actionpack (>= 4.1, < 6)
@@ -70,7 +70,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails
-  revision: d16b100750ae0afa2810ad297cdff0b6ebe4a7eb
+  revision: 24c585df91a5d34b0986e58ac1b46b61dd3647b5
   branch: 5-0-stable
   specs:
     actioncable (5.0.1)
@@ -95,7 +95,7 @@ GIT
       builder (~> 3.1)
       erubis (~> 2.7.0)
       rails-dom-testing (~> 2.0)
-      rails-html-sanitizer (~> 1.0, >= 1.0.2)
+      rails-html-sanitizer (~> 1.0, >= 1.0.3)
     activejob (5.0.1)
       activesupport (= 5.0.1)
       globalid (>= 0.3.6)
@@ -138,7 +138,7 @@ GEM
       rake (>= 10.4, < 12.0)
     ansi (1.5.0)
     arel (7.1.4)
-    autoprefixer-rails (6.7.0)
+    autoprefixer-rails (6.7.2)
       execjs
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -179,7 +179,7 @@ GEM
     formatador (0.2.5)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
-    guard (2.14.0)
+    guard (2.14.1)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
       lumberjack (~> 1.0)
@@ -191,9 +191,9 @@ GEM
     guard-teaspoon (0.8.0)
       guard (~> 2.2)
       teaspoon (>= 0.8.0)
-    hashie (3.4.6)
+    hashie (3.5.1)
     hiredis (0.6.1)
-    i18n (0.7.0)
+    i18n (0.8.0)
     i18n-js (2.1.2)
       i18n
     jsonapi (0.1.1.beta6)
@@ -257,7 +257,7 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    puma (3.6.2)
+    puma (3.7.0)
     rack (2.0.1)
     rack-mini-profiler (0.10.1)
       rack (>= 1.2.0)
@@ -296,7 +296,7 @@ GEM
       loofah (~> 2.0)
     rake (11.3.0)
     rb-fsevent (0.9.8)
-    rb-inotify (0.9.7)
+    rb-inotify (0.9.8)
       ffi (>= 0.5.0)
     redis (3.3.3)
     redis-namespace (1.5.2)
@@ -304,7 +304,7 @@ GEM
     ref (2.0.0)
     ruby-progressbar (1.8.1)
     ruby_dep (1.5.0)
-    rufus-scheduler (3.3.2)
+    rufus-scheduler (3.3.3)
       tzinfo
     sass (3.4.23)
     sass-rails (5.0.6)
@@ -347,7 +347,7 @@ GEM
       ref
     thor (0.19.4)
     thread_safe (0.3.5)
-    tilt (2.0.5)
+    tilt (2.0.6)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.4)
