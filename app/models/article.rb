@@ -98,9 +98,9 @@ class Article < ActiveRecord::Base
   def compare_by(op)
     op = '<' unless %w(< >).include? op
     Article.for_view
-      .where(feed_id: feed_id)
-      .where("(published #{op} :pubdate and id <> :id) or (published = :pubdate and id #{op} :id)",
-             pubdate: published, id: id)
+           .where(feed_id: feed_id)
+           .where("(published #{op} :pubdate and id <> :id) or (published = :pubdate and id #{op} :id)",
+                  pubdate: published, id: id)
   end
 
   def hash_permalink

@@ -36,7 +36,7 @@ class Subscription < ActiveRecord::Base
 
   def clear_read_news(offset = Kaminari.config.default_per_page)
     entries.joins_article.where(unread: false).offset(offset).each do |e|
-      e.article.destroy if e.article.unreads == 0
+      e.article.destroy if e.article.unreads.zero?
     end
   end
 
