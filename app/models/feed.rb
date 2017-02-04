@@ -45,14 +45,15 @@ class Feed < ActiveRecord::Base
         order by entries.unread desc, published desc
       ) as row_num
       SQL
-            .where(id: subs.map(&:feed_id), 'entries.unread': true).to_sql
-      select('*, feeds_1.title as title, feeds_1.url as url')
+            .where('entries.unread': true, id: subs.map(&:feed_id)).to_sql
+      select('feeds.*, feeds_1.title as title, feeds_1.url as url')
         .from(Arel.sql("feeds feeds_1, (#{sql}) feeds"))
         .where('feeds.id = feeds_1.id')
         .where(row_num: 1)
         .order('published desc')
         .page(opt[:page])
         .per(opt[:feeds_per_page])
+        .without_count
     end
 
     def from_subscriptions_with_unread_articles(subs, opt)

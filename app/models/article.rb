@@ -129,5 +129,6 @@ end
 #
 # Indexes
 #
-#  index_articles_on_feed_id  (feed_id)
+#  index_articles_on_feed_id                (feed_id)
+#  index_articles_on_published_and_feed_id  (published,feed_id)
 #

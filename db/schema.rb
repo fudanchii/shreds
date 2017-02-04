@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170203084931) do
+ActiveRecord::Schema.define(version: 20170204045805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20170203084931) do
     t.datetime "updated_at",                          null: false
     t.integer  "feed_id"
     t.index ["feed_id"], name: "index_articles_on_feed_id", using: :btree
-    t.index ["published"], name: "index_articles_on_published", order: { published: :desc }, using: :btree
+    t.index ["published", "feed_id"], name: "index_articles_on_published_and_feed_id", order: { published: :desc }, using: :btree
   end
 
   create_table "categories", force: :cascade do |t|
@@ -38,14 +38,14 @@ ActiveRecord::Schema.define(version: 20170203084931) do
 
   create_table "entries", force: :cascade do |t|
     t.integer  "subscription_id"
-    t.integer  "newsitem_id"
     t.boolean  "unread",          default: true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "article_id"
     t.index ["article_id"], name: "index_entries_on_article_id", using: :btree
-    t.index ["newsitem_id", "subscription_id"], name: "index_entries_on_newsitem_id_and_subscription_id", unique: true, using: :btree
-    t.index ["unread"], name: "index_entries_on_unread", order: { unread: :desc }, using: :btree
+    t.index ["unread", "article_id", "subscription_id"], name: "index_entries_on_unread_and_article_id_and_subscription_id", order: { unread: :desc }, using: :btree
+    t.index ["unread", "article_id"], name: "index_entries_on_unread_and_article_id", order: { unread: :desc }, using: :btree
+    t.index ["unread", "subscription_id"], name: "index_entries_on_unread_and_subscription_id", order: { unread: :desc }, using: :btree
   end
 
   create_table "feeds", force: :cascade do |t|

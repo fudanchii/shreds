@@ -8,7 +8,8 @@ class FeedArticlesSerializer < ApplicationSerializer
              :path,
              :url,
              :articles,
-             :next_path
+             :next_path,
+             :prev_path
 
   delegate :category_id, to: :object
 
@@ -24,5 +25,9 @@ class FeedArticlesSerializer < ApplicationSerializer
 
   def next_path
     "#{path}/page/#{object.paginated_articles&.next_page}" if object.paginated_articles&.next_page
+  end
+
+  def prev_path
+    "#{path}/page/#{object.paginated_articles&.prev_page}" if object.paginated_articles&.prev_page
   end
 end
