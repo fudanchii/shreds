@@ -37,23 +37,14 @@ class Feed < ActiveRecord::Base
     end
 
     def sorted_by_published_date(subs, opt)
-      sql = joins(subscriptions: %w(articles entries))
-            .select(<<-SQL)
-      feeds.id, articles.published as published, entries.unread as unread,
-      row_number() over (
-        partition by feeds.id
-        order by entries.unread desc, published desc
-      ) as row_num
-      SQL
-            .where('entries.unread': true, id: subs.map(&:feed_id)).to_sql
-      select('feeds.*, feeds_1.title as title, feeds_1.url as url')
-        .from(Arel.sql("feeds feeds_1, (#{sql}) feeds"))
-        .where('feeds.id = feeds_1.id')
-        .where(row_num: 1)
-        .order('published desc')
-        .page(opt[:page])
-        .per(opt[:feeds_per_page])
-        .without_count
+      joins(subscriptions: %w(articles entries))
+            .select('feeds.id, feeds.title, feeds.url, max(articles.published) as published')
+            .where('entries.unread': true, id: subs.map(&:feed_id))
+            .group(:id)
+            .order('published desc')
+            .page(opt[:page])
+            .per(opt[:feeds_per_page])
+            .without_count
     end
 
     def from_subscriptions_with_unread_articles(subs, opt)
