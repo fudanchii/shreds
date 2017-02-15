@@ -21,6 +21,8 @@
 //= require history.js/history.html4
 //= require history.js/history.adapter.jquery
 
+//= require message-bus
+
 //= require es6-runtime_poormanshack
 //= require babel-helpers
 //= require_tree ./shreds/templates
