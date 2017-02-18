@@ -52,6 +52,8 @@ const NavigationStore = new Store({
     const
       data = this.get(),
       args = payload.args;
+
+    // Un-highlight previous selected item, if any
     let selected = data.selected || (
       data.selected = { cid: null, sid: null }
       );
@@ -63,6 +65,8 @@ const NavigationStore = new Store({
         _.each(category.subscriptions, (feed, k) => { feed.active = ''; });
       });
     }
+
+    // Highlight current selected item, if any
     if (args.cid && args.sid) {
       const feed = this.getFeed(args.cid, args.sid);
       feed.active = ' active';
@@ -118,7 +122,7 @@ const NavigationStore = new Store({
 
   reloadNavigation(payload) {
     const
-      selected = this.get('selected');
+      selected = this.get('selected') || { cid: null, sid: null };
     this.refresh(payload.data.data);
     this.setActiveFeedItem({ args: selected });
     this.emitChange();

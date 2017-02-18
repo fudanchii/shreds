@@ -9,6 +9,7 @@ class EntryArticles
   def execute
     @feed_record.update_stats! @feed_status
     return if @feed_record.up_to_date_with? @feed
+    return unless @feed_status.eql? 'success'
 
     @feed.sanitize_entries!
     @feed.entries.each { |entry| @feed_record.add_article entry }

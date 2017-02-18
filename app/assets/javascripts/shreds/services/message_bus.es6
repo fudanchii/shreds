@@ -23,15 +23,14 @@ const MessageBusService = new Service({
       NotificationActions.error(msg.error);
       return;
     }
-    NavigationActions.reloadNavigation(msg.data);
+    NavigationActions.reloadNavigation(msg);
     NotificationActions.info(msg.info);
   },
 
   eventHandler(payload) {
     var cb = (msg) => {
-      console.log(msg);
-      this.updateHandler(msg);
       SubscriptionActions.stopSubscribeSpinner();
+      this.updateHandler(msg);
       MessageBus.unsubscribe(`/${payload.data.watch}`, cb);
     };
     MessageBus.subscribe(`/${payload.data.watch}`, cb);

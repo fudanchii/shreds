@@ -32,6 +32,7 @@ en:
     subscribed: '<strong>Already subscribed</strong> to the feed.'
     all_marked_read: '<strong>All feeds</strong> marked as read.'
     feed_marked_read: '<strong>Feed</strong> marked as read.'
+    subscribed_to: '<strong>Subscribed</strong> to %{url}'
   opml:
     error:
       empty_file: '<strong>Empty file</strong> uploaded.'
