@@ -27,7 +27,6 @@ describe FeedsController do
       assert_response :success
       res = JSON.parse(response.body)
       res.must_be_instance_of Hash
-      res.count.must_equal 1
     end
 
     it 'GET /i/feeds/:id.json' do
