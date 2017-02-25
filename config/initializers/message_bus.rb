@@ -1,5 +1,5 @@
 require 'message_bus'
-require 'lib/shreds/authentication'
+require 'shreds/authentication'
 
 if Rails.env.test?
   MessageBus.configure backend: :memory
