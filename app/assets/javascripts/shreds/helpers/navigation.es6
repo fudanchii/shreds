@@ -6,7 +6,7 @@ Component.addHelpers({
   countUnread: function countUnread(feeds) {
     let count = 0;
     for (var k in feeds) {
-      count += feeds[k].unread_count || 0;
+      count += feeds[k].unreads || 0;
     }
     return count + '';
   },
