@@ -7,10 +7,14 @@ class FeedsIndexSerializer < ApplicationSerializer
   end
 
   def next_path
-    "/page/#{object.next_page}" if object.next_page
+    File.join(root_path, 'page', object.next_page.to_s) if object.next_page
   end
 
   def prev_path
-    "/page/#{object.prev_page}" if object.prev_page
+    File.join(root_path, 'page', object.prev_page.to_s) if object.prev_page
+  end
+
+  def root_path
+    Rails.application.config.relative_url_root
   end
 end

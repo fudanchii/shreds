@@ -22,9 +22,11 @@ const WebAPIService = new Service({
     ]);
     this.fetch = new F({
       endpoints: {
-        navigateIndex: F.get(r('/i/feeds.json')),
-        navigateFeeds: F.get(r('/i/feeds/:fid.json')),
-        navigateArticles: F.get(r('/i/feeds/:fid/:aid.json')),
+        'feeds': F.get(r('/i/feeds.json')),
+        'feeds/show': F.get(r('/i/feeds/:feed_id.json')),
+        'feeds/show/newsitem': F.get(r('/i/feeds/:feed_id/:id.json')),
+        'feeds/page': F.get(r('/i/feeds/page/:page.json')),
+        'feeds/show/page': F.get(r('/i/feeds/:feed_id/page/:page.json')),
         markFeedAsRead: F.patch(r('/i/feeds/:fid/mark_as_read.json')),
         markItemAsRead: F.patch(r('/i/feeds/:fid/:eid/toggle_read.json')),
         subscribe: F.post(r('/i/subscriptions.json')),
@@ -37,12 +39,7 @@ const WebAPIService = new Service({
   },
 
   navigate(payload) {
-    const path = (payload.path === root_path) ?
-      'navigateIndex' : ((payload.data && payload.data.id) ?
-        'navigateArticles' : 'navigateFeeds'),
-      fid = payload.data && payload.data.feed_id,
-      aid = payload.data && payload.data.id;
-    this.fetch.json(path,{ args: { fid: fid, aid: aid } })
+    this.fetch.json(payload.name, { args: payload.data })
       .then(data => { Events.routeNavigated(payload, data) })
       .catch(ex => Notification.error(ex, payload));
   },
