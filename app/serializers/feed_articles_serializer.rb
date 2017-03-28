@@ -16,7 +16,7 @@ class FeedArticlesSerializer < ApplicationSerializer
   delegate :subscription_id, to: :object
 
   def path
-    feed_path object
+    feed_url object, only_path: true
   end
 
   def articles

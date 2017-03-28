@@ -4,6 +4,6 @@ class ArticleWithFeedURL < SimpleDelegator
 
   def initialize(article, feed)
     super(article)
-    @path = feed_article_path feed, article
+    @path = feed_article_url feed, article, only_path: true
   end
 end

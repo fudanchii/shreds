@@ -5,7 +5,7 @@
         <textarea class="subscribe-block__textarea element--full-width" placeholder="Paste RSS link here" name="feed[url]" id="feed-url" value="{{feedURL}}"></textarea>
         <input class="subscribe-block__input element--full-width" placeholder="Category (optional)" type="text" name="category[name]" id="category-name" value="{{categoryName}}">
     </div>
-    <a href="/"><img id="main-logo" class="left floated" height="38" alt="Logo" src="{{logoImage}}"></a>
+    <a href="{{root_path}}"><img id="main-logo" class="left floated" height="38" alt="Logo" src="{{logoImage}}"></a>
     <div id="subscription-form" class="right floated ui buttons">
         <div id="button-submit-feed" class="ui icon button" on-click="subscribe">
             <span>

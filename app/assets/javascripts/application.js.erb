@@ -15,6 +15,8 @@ require_asset("main_include")
 
 /* Initialize application after all components loaded. *
  * see also: /app/assets/javascripts/shreds/main.es6   */
-
+window.shreds = {
+  root_path: '<%= ActionController::Base.relative_url_root || '/' %>'
+};
 var debugmode = <%= Rails.env.development? %>;
 $(function () { require('shreds/main').init(debugmode); });

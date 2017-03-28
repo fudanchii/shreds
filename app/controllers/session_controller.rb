@@ -8,11 +8,11 @@ class SessionController < ApplicationController
   def create
     user = UserProvider.create(params[:provider]).sign request.env['omniauth.auth']
     session[USER_TOKEN] = user.token if user.respond_to? :token
-    redirect_to '/'
+    redirect_to root_path
   end
 
   def destroy
     sign_out
-    redirect_to '/'
+    redirect_to root_path
   end
 end

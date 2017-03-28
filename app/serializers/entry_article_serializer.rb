@@ -37,14 +37,14 @@ class EntryArticleSerializer < ApplicationSerializer
   end
 
   def path
-    feed_article_path object.feed, object.article
+    feed_article_url object.feed, object.article, only_path: true
   end
 
   def next_path
-    feed_article_path(object.feed, object.article.next) if object.article.next
+    feed_article_url(object.feed, object.article.next, only_path: true) if object.article.next
   end
 
   def prev_path
-    feed_article_path(object.feed, object.article.prev) if object.article.prev
+    feed_article_url(object.feed, object.article.prev, only_path: true) if object.article.prev
   end
 end

@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     respond_to do |fmt|
       fmt.html do
         flash[:danger] = message
-        redirect_to '/'
+        redirect_to root_path
       end
       fmt.json { render json: { error: message }, status: code }
     end

@@ -1,6 +1,7 @@
 import Service from 'framework/service';
 import F from 'framework/helpers/fetch';
 import { join } from 'framework/helpers/path';
+import { root_path } from 'shreds';
 import I18n from 'I18n';
 
 import ShredsDispatcher from 'shreds/dispatcher';
@@ -8,6 +9,7 @@ import Events from 'shreds/actions/web_api_service';
 import Notification from 'shreds/actions/notification';
 import { action, event } from 'shreds/constants';
 
+function r(path) { return join(root_path, path); }
 
 const tTag = document.querySelector('meta[name=csrf-token]');
 const WebAPIService = new Service({
@@ -20,12 +22,13 @@ const WebAPIService = new Service({
     ]);
     this.fetch = new F({
       endpoints: {
-        navigateIndex: F.get('/i/feeds.json'),
-        navigate: F.get('/i/feeds/:fid.json'),
-        markFeedAsRead: F.patch('/i/feeds/:fid/mark_as_read.json'),
-        markItemAsRead: F.patch('/i/feeds/:fid/:eid/toggle_read.json'),
-        subscribe: F.post('/i/subscriptions.json'),
-        watchEvents: F.get('/i/watch.json')
+        navigateIndex: F.get(r('/i/feeds.json')),
+        navigateFeeds: F.get(r('/i/feeds/:fid.json')),
+        navigateArticles: F.get(r('/i/feeds/:fid/:aid.json')),
+        markFeedAsRead: F.patch(r('/i/feeds/:fid/mark_as_read.json')),
+        markItemAsRead: F.patch(r('/i/feeds/:fid/:eid/toggle_read.json')),
+        subscribe: F.post(r('/i/subscriptions.json')),
+        watchEvents: F.get(r('/i/watch.json'))
       },
       headers: {
         'X-CSRF-Token': tTag.getAttribute('content')
@@ -34,8 +37,12 @@ const WebAPIService = new Service({
   },
 
   navigate(payload) {
-    const path = payload.path === '/' ? 'navigateIndex' : 'navigate';
-    this.fetch.json(path,{ args: { fid: payload.path } })
+    const path = (payload.path === root_path) ?
+      'navigateIndex' : ((payload.data && payload.data.id) ?
+        'navigateArticles' : 'navigateFeeds'),
+      fid = payload.data && payload.data.feed_id,
+      aid = payload.data && payload.data.id;
+    this.fetch.json(path,{ args: { fid: fid, aid: aid } })
       .then(data => { Events.routeNavigated(payload, data) })
       .catch(ex => Notification.error(ex, payload));
   },

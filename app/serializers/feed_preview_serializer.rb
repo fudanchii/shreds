@@ -24,7 +24,7 @@ class FeedPreviewSerializer < ApplicationSerializer
   end
 
   def path
-    feed_path object.feed
+    feed_url object.feed, only_path: true
   end
 
   def latest_article
