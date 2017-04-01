@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :subscriptions, only: [:index, :show], format: false
   end
 
-  resources :feeds, only: [:index, :show], path: '/', format: false do
+  resources :feeds, only: [:show], path: '/', format: false do
     get 'page/:page', action: :show, on: :member
     get 'page/:page', action: :index, on: :collection
     resources :articles, only: [:show], path: '/'
@@ -45,4 +45,6 @@ Rails.application.routes.draw do
 
   get 'subscriptions' => 'users#feed_subscriptions',
       constraints: { format: 'xml' }
+
+  root to: 'feeds#index'
 end
