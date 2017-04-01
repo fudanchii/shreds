@@ -2,6 +2,7 @@ require 'test_helper'
 
 describe SubscriptionsController do
   let(:user) { users :test1 }
+  let(:subscription) { user.subscriptions.first }
 
   before do
     login user
@@ -21,6 +22,16 @@ describe SubscriptionsController do
         resp = JSON.parse response.body
         assert_match(/create/, resp['watch'])
       end
+    end
+
+    it 'PATCH /i/feeds/:id/mark_as_read.json' do
+      patch :mark_feed_as_read, params: { id: subscription }, format: 'json'
+      assert_response :success
+    end
+
+    it 'PATCH /i/feeds/mark_all_as_read.json' do
+      patch :mark_all_as_read, format: 'json'
+      assert_response :success
     end
   end
 end

@@ -27,8 +27,8 @@ const WebAPIService = new Service({
         'feeds/show/newsitem': F.get(r('/i/feeds/:feed_id/:id.json')),
         'feeds/page': F.get(r('/i/feeds/page/:page.json')),
         'feeds/show/page': F.get(r('/i/feeds/:feed_id/page/:page.json')),
-        markFeedAsRead: F.patch(r('/i/feeds/:sid/mark_as_read.json')),
-        markItemAsRead: F.patch(r('/i/feeds/:fid/:eid/toggle_read.json')),
+        markFeedAsRead: F.patch(r('/i/subscriptions/:sid/mark_as_read.json')),
+        markItemAsRead: F.patch(r('/i/feeds/:fid/:nid/toggle_read.json')),
         subscribe: F.post(r('/i/subscriptions.json')),
         watchEvents: F.get(r('/i/watch.json'))
       },
@@ -45,15 +45,13 @@ const WebAPIService = new Service({
   },
 
   markFeedAsRead(payload) {
-    this.fetch.cmd('markFeedAsRead', { args: { sid: payload.sid } })
-      .then(() => { Events.feedMarkedAsRead(payload) })
+    this.fetch.json('markFeedAsRead', { args: payload })
+      .then(data => { Events.feedMarkedAsRead(Object.assign(payload, data)) })
       .catch(ex => Notification.error(ex, payload));
   },
 
   markItemAsRead(payload) {
-    this.fetch.cmd('markItemAsRead', {
-      args: { fid: payload.fid, eid: payload.nid }
-    })
+    this.fetch.cmd('markItemAsRead', { args: payload })
       .then(() => { Events.itemMarkedAsRead(payload) })
       .catch(ex => Notification.error(ex, payload));
   },

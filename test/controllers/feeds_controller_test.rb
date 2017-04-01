@@ -36,15 +36,5 @@ describe FeedsController do
       res['url'].must_equal feed.url
       res['articles'].must_be_instance_of Array
     end
-
-    it 'PATCH /i/feeds/:id/mark_as_read.json' do
-      patch :mark_feed_as_read, params: { id: feed }, format: 'json'
-      assert_response :success
-    end
-
-    it 'PATCH /i/feeds/mark_all_as_read.json' do
-      patch :mark_all_as_read, format: 'json'
-      assert_response :success
-    end
   end
 end

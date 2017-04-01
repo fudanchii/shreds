@@ -25,17 +25,17 @@ Rails.application.routes.draw do
       get 'page/:page', action: :show, on: :member
       get 'page/:page', action: :index, on: :collection
 
-      patch 'mark_as_read', action: :mark_feed_as_read, on: :member
-      patch 'mark_as_unread', action: :mark_feed_as_unread, on: :member
-      patch 'mark_all_as_read', action: :mark_all_as_read, on: :collection
-      patch 'mark_all_as_unread', action: :mark_all_as_unread, on: :collection
-
       resources :articles, only: [:show], path: '/' do
         patch 'toggle_read', on: :member
       end
     end
 
-    resources :subscriptions, only: [:create]
+    resources :subscriptions, only: [:create] do
+      patch 'mark_as_read', action: :mark_feed_as_read, on: :member
+      patch 'mark_as_unread', action: :mark_feed_as_unread, on: :member
+      patch 'mark_all_as_read', action: :mark_all_as_read, on: :collection
+      patch 'mark_all_as_unread', action: :mark_all_as_unread, on: :collection
+    end
 
     resources :categories, only: [:destroy]
 
