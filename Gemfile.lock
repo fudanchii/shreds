@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/amatsuda/kaminari.git
-  revision: db96972ee03bf41aefc5edba288468892b557624
+  remote: https://github.com/amatsuda/kaminari
+  revision: e84ca6189a19e0c45a4bb48bf5a45b2eaca1cafe
   specs:
     kaminari (1.0.1)
       activesupport (>= 4.1.0)
@@ -16,7 +16,7 @@ GIT
     kaminari-core (1.0.1)
 
 GIT
-  remote: git://github.com/fudanchii/feedbag.git
+  remote: https://github.com/fudanchii/feedbag
   revision: 1b15db941d58d29a6c274b50170eb22b6c4c218f
   branch: dev
   specs:
@@ -25,7 +25,7 @@ GIT
       open_uri_redirections
 
 GIT
-  remote: git://github.com/fudanchii/ractive_assets.git
+  remote: https://github.com/fudanchii/ractive_assets
   revision: d9a4b60c3cff57509657a2e9dd5b72310c9c0c26
   specs:
     ractive_assets (0.0.17)
@@ -35,14 +35,14 @@ GIT
       tilt
 
 GIT
-  remote: git://github.com/mhfs/sidekiq-failures.git
+  remote: https://github.com/mhfs/sidekiq-failures
   revision: 4ff0e1756640bd8c77a9657ad7ea5cae73447091
   specs:
     sidekiq-failures (0.4.5)
       sidekiq (>= 2.16.0)
 
 GIT
-  remote: git://github.com/ondrejbartas/sidekiq-cron.git
+  remote: https://github.com/ondrejbartas/sidekiq-cron
   revision: 74ca93c85be43073560e3e7ca69c83f5db7bc397
   specs:
     sidekiq-cron (0.4.5)
@@ -51,7 +51,7 @@ GIT
       sidekiq (>= 4.2.1)
 
 GIT
-  remote: git://github.com/plataformatec/simple_form.git
+  remote: https://github.com/plataformatec/simple_form
   revision: bf771d1d6d4911b6638ed46dd1335efde080cd24
   specs:
     simple_form (3.4.0)
@@ -59,8 +59,8 @@ GIT
       activemodel (> 4, < 5.1)
 
 GIT
-  remote: git://github.com/rails-api/active_model_serializers.git
-  revision: 80e470dcdb8b724990baf3c90d7300884c4395bf
+  remote: https://github.com/rails-api/active_model_serializers
+  revision: 04125a06b093e99edc72980a148e255620f323c1
   specs:
     active_model_serializers (0.10.5)
       actionpack (>= 4.1, < 6)
@@ -70,7 +70,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails
-  revision: ea0e18d17b5a9e422065fa1223aa18135e460fd3
+  revision: 5e29b460bd3a8830efad2f87547aff6e32e6a09b
   branch: 5-0-stable
   specs:
     actioncable (5.0.2)
@@ -163,7 +163,7 @@ GEM
     et-orbi (1.0.2)
       tzinfo
     execjs (2.7.0)
-    faraday (0.11.0)
+    faraday (0.12.0)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.11.0.1)
       faraday (>= 0.7.4, < 1.0)
@@ -176,7 +176,7 @@ GEM
     figaro (1.1.1)
       thor (~> 0.14)
     flamegraph (0.9.5)
-    foreman (0.83.0)
+    foreman (0.84.0)
       thor (~> 0.19.1)
     formatador (0.2.5)
     globalid (0.3.7)
@@ -196,8 +196,8 @@ GEM
     hashie (3.5.5)
     hiredis (0.6.1)
     i18n (0.8.1)
-    i18n-js (2.1.2)
-      i18n
+    i18n-js (3.0.0)
+      i18n (~> 0.6, >= 0.6.6)
     jsonapi-renderer (0.1.2)
     libv8 (3.16.14.19)
     listen (3.1.5)
@@ -268,7 +268,7 @@ GEM
     rails-assets-blueimp-tmpl (3.8.0)
     rails-assets-history.js (1.8.0)
     rails-assets-jquery (3.2.1)
-    rails-assets-jquery-file-upload (9.17.0)
+    rails-assets-jquery-file-upload (9.18.0)
       rails-assets-blueimp-canvas-to-blob (>= 2.1.1)
       rails-assets-blueimp-load-image (>= 1.13.0)
       rails-assets-blueimp-tmpl (>= 2.5.4)
@@ -280,7 +280,7 @@ GEM
     rails-assets-ractive-transitions-fade (0.3.1)
     rails-assets-scrollup (2.4.1)
       rails-assets-jquery (>= 1.11.0)
-    rails-assets-semantic-ui (2.2.9)
+    rails-assets-semantic-ui (2.2.10)
       rails-assets-jquery (>= 1.8)
     rails-assets-zloirock--core-js (2.4.1)
     rails-controller-testing (1.0.1)
@@ -348,7 +348,7 @@ GEM
     tilt (2.0.7)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
-    uglifier (3.1.10)
+    uglifier (3.1.12)
       execjs (>= 0.3.0, < 3)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)

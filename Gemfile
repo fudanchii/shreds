@@ -7,7 +7,7 @@ gem 'pg'
 
 gem 'annotate', group: :development
 
-gem 'active_model_serializers', github: 'rails-api/active_model_serializers'
+gem 'active_model_serializers', git: 'https://github.com/rails-api/active_model_serializers'
 # gem 'paper_trail'
 # end of 1.
 
@@ -21,7 +21,7 @@ gem 'sprockets-rails', '< 3.0.0'
 gem 'autoprefixer-rails', require: false
 gem 'i18n-js' # , '>= 3.0.0.rc8'
 gem 'multi_json'
-gem 'ractive_assets', github: 'fudanchii/ractive_assets'
+gem 'ractive_assets', git: 'https://github.com/fudanchii/ractive_assets'
 gem 'sass-rails', require: false
 gem 'sprockets', '~> 3.0'
 gem 'sprockets-es6', '>= 0.6.0'
@@ -35,8 +35,8 @@ group :development do
 end
 
 gem 'figaro'
-gem 'kaminari', github: 'amatsuda/kaminari'
-gem 'simple_form', github: 'plataformatec/simple_form'
+gem 'kaminari', git: 'https://github.com/amatsuda/kaminari'
+gem 'simple_form', git: 'https://github.com/plataformatec/simple_form'
 # end of 3.
 
 ### 4. Middleware and server related gems
@@ -48,8 +48,8 @@ gem 'message_bus'
 
 ### 5. Job queueing related gems
 gem 'sidekiq'
-gem 'sidekiq-cron', github: 'ondrejbartas/sidekiq-cron'
-gem 'sidekiq-failures', github: 'mhfs/sidekiq-failures'
+gem 'sidekiq-cron', git: 'https://github.com/ondrejbartas/sidekiq-cron'
+gem 'sidekiq-failures', git: 'https://github.com/mhfs/sidekiq-failures'
 gem 'slim', require: false
 # end of 5.
 
@@ -62,7 +62,7 @@ gem 'omniauth-twitter'
 gem 'dalli', require: false
 
 # Feed fetching
-gem 'feedbag', require: false, github: 'fudanchii/feedbag', branch: 'dev'
+gem 'feedbag', require: false, git: 'https://github.com/fudanchii/feedbag', branch: 'dev'
 gem 'feedjira', require: false
 
 # Test-related gems
