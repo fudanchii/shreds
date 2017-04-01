@@ -25,14 +25,14 @@ class FeedsController < ApplicationController
   end
 
   def mark_feed_as_read
-    current_user.subscriptions.find_by(feed_id: params[:id])
-                .entries.update_all(unread: true)
+    current_user.subscriptions.find(params[:id])
+                .entries.update_all(unread: false)
     render json: { info: I18n.t('feed.feed_marked_read') }
   end
 
   def mark_feed_as_unread
-    current_user.subscriptions.find_by(feed_id: params[:id])
-                .entries.update_all(unread: false)
+    current_user.subscriptions.find(params[:id])
+                .entries.update_all(unread: true)
     render json: { info: I18n.t('feed.feed_marked_unread') }
   end
 

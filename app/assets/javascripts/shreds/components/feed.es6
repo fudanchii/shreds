@@ -22,7 +22,7 @@ const FeedComponent = Component.extend({
     });
 
     this.on('mark-as-read', (ev, cid, sid, fid, nid, unread) => {
-      FeedActions.markAsRead(cid, sid, fid, nid, unread);
+      FeedActions.markAsRead(cid|0, sid|0, fid|0, nid|0, unread);
       return false;
     });
 

@@ -20,7 +20,7 @@ const NavigationStore = new Store({
   },
 
   feedMarkedAsRead(payload) {
-    if (payload.data.feed.id === this.get('fid')) {
+    if (payload.data.sid === this.get('subscription_iD')) {
       this.set('unread', false);
       this.emitChange();
     }

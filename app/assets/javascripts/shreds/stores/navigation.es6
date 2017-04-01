@@ -91,16 +91,16 @@ const NavigationStore = new Store({
   itemMarkedAsRead(payload) {
     const
       feed = this.getFeed(payload.data.cid, payload.data.sid);
-    feed.unread_count = feed.unread_count + (payload.data.unread ? -1 : 1);
+    feed.unreads = feed.unreads + (payload.data.unread ? -1 : 1);
     this.emitChange();
   },
 
   feedMarkedAsRead(payload) {
     const
-      f = payload.data.subscription,
-      feed = this.getFeed(f.category_id, f.id);
-    this.restoreFeedIcon(f.category_id, f.id);
-    feed.unread_count = f.unread_count;
+      f = payload.data,
+      feed = this.getFeed(f.cid, f.sid);
+    this.restoreFeedIcon(f.cid, f.sid);
+    feed.unreads = 0;
     this.emitChange();
   },
 

@@ -18,7 +18,7 @@ const FeedStore = new Store({
   },
 
   feedMarkedAsRead(payload) {
-    if (this.get('id') !== payload.data.fid) {
+    if (this.get('subscription_id') !== payload.data.sid) {
       return;
     }
     this.get('articles').forEach(article => {

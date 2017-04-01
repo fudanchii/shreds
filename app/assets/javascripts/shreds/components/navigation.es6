@@ -21,8 +21,8 @@ const Navigation = Component.extend({
       this.find(`a[href="${path}"]`).click();
     });
 
-    this.on('mark-as-read', (ev, cid, fid) => {
-      FeedsActions.markAsRead(cid, fid);
+    this.on('mark-as-read', (ev, cid, sid) => {
+      FeedsActions.markAsRead(cid|0, sid|0);
       return false;
     });
   }
