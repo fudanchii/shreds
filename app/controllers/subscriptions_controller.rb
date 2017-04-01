@@ -6,7 +6,7 @@ class SubscriptionsController < ApplicationController
   def show; end
 
   def create
-    unless params[:feed][:url].present?
+    if params[:feed][:url].blank?
       return error_response(I18n.t('feed.error.empty_url'),
                             :unprocessable_entity)
     end
@@ -28,7 +28,7 @@ class SubscriptionsController < ApplicationController
     jid = ProcessOPML.perform_async current_user.id, filename
     render json: { watch: "opml-#{jid}" }
   rescue OPML::UploadError => e
-    error_response e.message.html_safe, :unprocessable_entity
+    error_response e.message, :unprocessable_entity
   end
 
   def mark_all_as_read

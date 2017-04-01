@@ -1,6 +1,6 @@
 if Rails.env.production? && ENV.key?('stat_account')
   account = ENV['stat_account'].dup.freeze
-  instlog ||= Logger.new("#{Rails.root}/log/perf.log")
+  instlog ||= Logger.new(Rails.root.join('log', 'perf.log'))
   ActiveSupport::Notifications.subscribe 'process_action.action_controller' do |_name, start, finish, _id, payload|
     duration = (finish - start) * 1000
     unless payload[:view_runtime].nil?

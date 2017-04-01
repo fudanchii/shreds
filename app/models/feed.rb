@@ -17,7 +17,7 @@ class Feed < ActiveRecord::Base
   class << self
     def safe_create(url)
       urls = Feedbag.find(url)
-      raise Shreds::InvalidFeed, I18n.t('feed.invalid') if urls.nil? || urls.empty?
+      raise Shreds::InvalidFeed, I18n.t('feed.invalid') if urls.blank?
       urls.map do |feed_url|
         begin
           where(feed_url: feed_url).first_or_create! by_param(url, feed_url)
@@ -38,13 +38,13 @@ class Feed < ActiveRecord::Base
 
     def sorted_by_published_date(subs, opt)
       joins(subscriptions: %w(articles entries))
-            .select('feeds.id, feeds.title, feeds.url, max(articles.published) as published')
-            .where('entries.unread': true, id: subs.map(&:feed_id))
-            .group(:id)
-            .order('published desc')
-            .page(opt[:page])
-            .per(opt[:feeds_per_page])
-            .without_count
+        .select('feeds.id, feeds.title, feeds.url, max(articles.published) as published')
+        .where('entries.unread': true, id: subs.map(&:feed_id))
+        .group(:id)
+        .order('published desc')
+        .page(opt[:page])
+        .per(opt[:feeds_per_page])
+        .without_count
     end
 
     def from_subscriptions_with_unread_articles(subs, opt)

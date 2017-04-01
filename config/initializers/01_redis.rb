@@ -2,13 +2,17 @@ require 'redis-namespace'
 
 redis_default = '127.0.0.1:6379'
 
-redis_conns = ENV['redis_conns'].to_i <= 0 ?
-                10 :
+redis_conns = if ENV['redis_conns'].to_i <= 0
+                10
+              else
                 ENV['redis_conns'].to_i
+              end
 
-redis_timeout = ENV['redis_timeout'].to_i <= 0 ?
-                  30 :
+redis_timeout = if ENV['redis_timeout'].to_i <= 0
+                  30
+                else
                   ENV['redis_timeout'].to_i
+                end
 
 redis_host = ENV.fetch('redis_host') do
   ENV.fetch('cache_servers', redis_default).split(',').first
