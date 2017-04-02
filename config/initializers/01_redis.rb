@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'redis-namespace'
 
 redis_default = '127.0.0.1:6379'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Itemhash < ActiveRecord::Base
   def self.has?(str)
     sha = Digest::SHA2.new(256) << str

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def title(string)
     appname = ENV.key?('app_name') ? ENV['app_name'] : 'shreds'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if Rails.env.production? && ENV.key?('stat_account')
   account = ENV['stat_account'].dup.freeze
   instlog ||= Logger.new(Rails.root.join('log', 'perf.log'))

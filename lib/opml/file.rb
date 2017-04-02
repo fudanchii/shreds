@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module OPML
   class File
     attr_reader :name, :content_type, :size, :fullpath

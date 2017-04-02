@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SubscriptionWithLatestArticle < SimpleDelegator
   attr_reader :latest_article
 

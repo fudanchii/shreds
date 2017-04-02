@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # XXX: Hack!
 # XXX: Freedom patch for Loofah's whitelist tags
 # XXX: This allows configurable tag whitelist

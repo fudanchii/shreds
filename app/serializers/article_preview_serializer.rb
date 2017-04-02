@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ArticlePreviewSerializer < ApplicationSerializer
   attributes :id, :title, :permalink, :published
 

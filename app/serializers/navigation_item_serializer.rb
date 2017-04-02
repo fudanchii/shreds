@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NavigationItemSerializer < ApplicationSerializer
   attributes :id,
              :name

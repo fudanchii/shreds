@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 gem 'rails', git: 'https://github.com/rails/rails', branch: '5-0-stable'

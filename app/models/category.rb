@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Category < ActiveRecord::Base
   has_many :subscriptions
   has_many :feeds, through: :subscriptions

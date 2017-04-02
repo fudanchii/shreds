@@ -1,4 +1,6 @@
 
+# frozen_string_literal: true
+
 namespace :feed do
   desc 'Update all feeds'
   task update: :environment do

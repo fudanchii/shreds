@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ArticleWithFeedURL < SimpleDelegator
   attr_reader :path
   include Rails.application.routes.url_helpers

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class EntryArticles
   def initialize(feed, feed_url, feed_status)
     @feed = feed

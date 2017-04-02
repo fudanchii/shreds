@@ -10,3 +10,5 @@ AllCops:
     - db/**/*
     - vendor/**/*
     - app/views/**/*
+    - log/**/*
+    - tmp/**/*

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FeedWithArticles < SimpleDelegator
   attr_reader :articles, :paginated_articles, :category_id, :subscription_id
 

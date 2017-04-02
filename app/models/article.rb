@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'shreds/feed/filters'
 
 class Article < ActiveRecord::Base

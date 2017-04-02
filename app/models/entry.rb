@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Entry < ActiveRecord::Base
   belongs_to :subscription
   belongs_to :article
@@ -13,7 +15,7 @@ class Entry < ActiveRecord::Base
   end
 
   def mark_as_read
-    update_attribute :unread, false
+    update_attributes unread: false
   end
 end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NavigationListSerializer < ActiveModelSerializers::SerializableResource
   def initialize(resource)
     super(resource, {

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FeedsWithArticles < SimpleDelegator
   attr_reader :with_articles
 

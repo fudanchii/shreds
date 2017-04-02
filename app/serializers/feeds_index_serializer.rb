@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FeedsIndexSerializer < ApplicationSerializer
   attributes :feeds, :next_path, :prev_path
 

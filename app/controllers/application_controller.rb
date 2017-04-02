@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'shreds/authentication'
 
 class ApplicationController < ActionController::Base

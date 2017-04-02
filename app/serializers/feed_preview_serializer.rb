@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FeedPreviewSerializer < ApplicationSerializer
   include Rails.application.routes.url_helpers
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FeedsController < ApplicationController
   def index
     @feeds = Feed.from_subscriptions_with_unread_articles(

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CategoriedSubscriptions < SimpleDelegator
   attr_reader :subscriptions
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Url < ActiveRecord::Base
   has_many :subscriptions
   belongs_to :feed
