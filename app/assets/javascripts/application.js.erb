@@ -18,5 +18,8 @@ require_asset("main_include")
 window.shreds = {
   root_path: '<%= ActionController::Base.relative_url_root || '/' %>'
 };
+
+window.MessageBus.baseUrl = (window.shreds.root_path + '/').replace(/\/{2,}/g, '/');
+
 var debugmode = <%= Rails.env.development? %>;
 $(function () { require('shreds/main').init(debugmode); });
