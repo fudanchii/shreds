@@ -51,7 +51,7 @@ gem 'message_bus'
 ### 5. Job queueing related gems
 gem 'sidekiq'
 gem 'sidekiq-cron', git: 'https://github.com/ondrejbartas/sidekiq-cron'
-gem 'sidekiq-failures', git: 'https://github.com/mhfs/sidekiq-failures'
+#gem 'sidekiq-failures', git: 'https://github.com/mhfs/sidekiq-failures'
 gem 'slim', require: false
 # end of 5.
 
@@ -78,8 +78,8 @@ group :test do
 end
 
 group :development, :test do
-  gem 'guard'
-  gem 'guard-teaspoon'
+#  gem 'guard'
+#  gem 'guard-teaspoon'
   gem 'teaspoon'
   gem 'teaspoon-mocha'
 end
@@ -91,6 +91,7 @@ gem 'connection_pool'
 gem 'hiredis'
 gem 'oj'
 gem 'redis'
+gem 'redis-namespace'
 
 # Profiling
 gem 'stathat'

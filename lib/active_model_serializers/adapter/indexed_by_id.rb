@@ -16,12 +16,12 @@ module ActiveModelSerializers
           hash[sr.object.id] = sr.attributes.stringify_keys
           sr.associations.each do |assoc|
             isr = {}
-            if assoc.serializer.nil?
-              arrayfy(assoc.options[:virtual_value]).each do |vv|
+            if assoc.lazy_association.serializer.nil?
+              arrayfy(assoc.virtual_value).each do |vv|
                 isr[vv['id']] = vv.stringify_keys
               end
             else
-              arrayfy(assoc.serializer).each do |asr|
+              arrayfy(assoc.lazy_association.serializer).each do |asr|
                 isr[asr.object.id] = asr.as_json.stringify_keys
               end
             end
