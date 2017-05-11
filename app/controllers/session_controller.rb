@@ -17,4 +17,11 @@ class SessionController < ApplicationController
     sign_out
     redirect_to root_path
   end
+
+  def ping
+    if session[USER_TOKEN]
+      $redis_pool.hset('keepalive', session[USER_TOKEN], DateTime.now.utc)
+    end
+    render nothing: true
+  end
 end

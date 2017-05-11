@@ -41,7 +41,7 @@ Rails.application.routes.draw do
 
     resources :categories, only: [:destroy]
 
-    get '/watch' => 'events#watch'
+    get '/ping' => 'session#ping'
     post '/upload_opml' => 'subscriptions#create_from_opml'
   end
 

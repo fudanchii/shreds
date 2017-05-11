@@ -2,6 +2,7 @@ import MessageBus from 'message-bus'
 import Service from 'framework/service'
 
 import ShredsDispatcher from 'shreds/dispatcher';
+import MessageBusActions from 'shreds/actions/message_bus';
 import NavigationActions from 'shreds/actions/navigation';
 import NotificationActions from 'shreds/actions/notification';
 import SubscriptionActions from 'shreds/actions/subscription';
@@ -13,7 +14,8 @@ const MessageBusService = new Service({
       [event.FEED_SUBSCRIBED, this.eventHandler],
       [event.OPML_UPLOADED,   this.eventHandler]
     ]);
-    MessageBus.subscribe('/updates', this.updateHandler);
+    this.keepAlive();
+    MessageBus.subscribe('/updates', this.messageBusUpdateHandler);
   },
 
   updateHandler(msg) {
@@ -33,5 +35,14 @@ const MessageBusService = new Service({
     };
     MessageBus.subscribe(`/${payload.data.watch}`, cb);
   },
+
+  messageBusUpdateHandler(msg) {
+    updateHandler(msg);
+  },
+
+  keepAlive() {
+    if (this.keepAliveInterval) { return; }
+    this.keepAliveInterval = setInterval(() => MessageBusActions.keepAlive(), 300000);
+  }
 
 });

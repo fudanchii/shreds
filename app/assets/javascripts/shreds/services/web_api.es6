@@ -18,6 +18,7 @@ const WebAPIService = new Service({
         [action.NAVIGATE_TO_ROUTE, this.navigate],
         [action.MARK_FEED_AS_READ, this.markFeedAsRead],
         [action.MARK_ITEM_AS_READ, this.markItemAsRead],
+        [action.KEEPALIVE,         this.keepAlive],
         [action.SUBSCRIBE_TO_FEED, this.subscribe]
     ]);
     this.fetch = new F({
@@ -27,6 +28,7 @@ const WebAPIService = new Service({
         'feeds/show/newsitem': F.get(r('/i/feeds/:feed_id/:id.json')),
         'feeds/page': F.get(r('/i/feeds/page/:page.json')),
         'feeds/show/page': F.get(r('/i/feeds/:feed_id/page/:page.json')),
+        keepAlive: F.get('/i/ping'),
         markFeedAsRead: F.patch(r('/i/subscriptions/:sid/mark_as_read.json')),
         markItemAsRead: F.patch(r('/i/feeds/:fid/:nid/toggle_read.json')),
         subscribe: F.post(r('/i/subscriptions.json')),
@@ -54,6 +56,11 @@ const WebAPIService = new Service({
     this.fetch.cmd('markItemAsRead', { args: payload })
       .then(() => { Events.itemMarkedAsRead(payload) })
       .catch(ex => Notification.error(ex, payload));
+  },
+
+  keepAlive() {
+    this.fetch.cmd('keepAlive', {})
+      .catch(ex => Notification.error(ex));
   },
 
   subscribe(payload) {
