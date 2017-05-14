@@ -9,7 +9,7 @@ gem 'pg'
 
 gem 'annotate', group: :development
 
-gem 'active_model_serializers', git: 'https://github.com/rails-api/active_model_serializers'
+gem 'active_model_serializers', git: 'https://github.com/rails-api/active_model_serializers', branch: '0-10-stable'
 # gem 'paper_trail'
 # end of 1.
 
@@ -42,8 +42,8 @@ gem 'simple_form', git: 'https://github.com/plataformatec/simple_form'
 # end of 3.
 
 ### 4. Middleware and server related gems
-gem 'puma', platforms: %i(mri jruby rbx)
-gem 'thin', platforms: %i(mswin mingw)
+gem 'puma', platforms: %i[mri jruby rbx]
+gem 'thin', platforms: %i[mswin mingw]
 
 gem 'message_bus'
 # end of 4.
