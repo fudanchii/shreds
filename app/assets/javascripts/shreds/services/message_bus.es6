@@ -37,7 +37,7 @@ const MessageBusService = new Service({
   },
 
   messageBusUpdateHandler(msg) {
-    updateHandler(msg);
+    this.updateHandler(msg);
   },
 
   keepAlive() {

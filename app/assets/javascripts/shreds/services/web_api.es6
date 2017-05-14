@@ -28,7 +28,7 @@ const WebAPIService = new Service({
         'feeds/show/newsitem': F.get(r('/i/feeds/:feed_id/:id.json')),
         'feeds/page': F.get(r('/i/feeds/page/:page.json')),
         'feeds/show/page': F.get(r('/i/feeds/:feed_id/page/:page.json')),
-        keepAlive: F.get('/i/ping'),
+        keepAlive: F.get('/i/ping.json'),
         markFeedAsRead: F.patch(r('/i/subscriptions/:sid/mark_as_read.json')),
         markItemAsRead: F.patch(r('/i/feeds/:fid/:nid/toggle_read.json')),
         subscribe: F.post(r('/i/subscriptions.json')),

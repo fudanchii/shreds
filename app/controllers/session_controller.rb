@@ -20,8 +20,8 @@ class SessionController < ApplicationController
 
   def ping
     if session[USER_TOKEN]
-      $redis_pool.hset('keepalive', session[USER_TOKEN], DateTime.now.utc)
+      $redis_pool.with { |conn| conn.hset('keepalive', session[USER_TOKEN], DateTime.now.utc) }
     end
-    render nothing: true
+    head :no_content
   end
 end

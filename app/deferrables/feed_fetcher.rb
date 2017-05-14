@@ -8,11 +8,17 @@ class FeedFetcher
   sidekiq_options retry: false
 
   def perform(feed_url)
-    feed = Feedjira::Feed.fetch_and_parse(feed_url)
-    feed_status = 'success'
-  rescue => err
-    feed_status = err.message
-  ensure
+    begin
+      feed = Feedjira::Feed.fetch_and_parse(feed_url)
+      feed_status = 'success'
+    rescue => err
+      feed_status = err.message
+    end
+
     EntryArticles.new(feed, feed_url, feed_status).execute
+    MessageBus.publish("/feed_fetcher-#{jid}", true)
+  rescue
+    MessageBus.publish("/feed_fetcher-#{jid}", true)
+    raise
   end
 end
