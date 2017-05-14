@@ -31,7 +31,7 @@ module ActiveModelSerializers
       end
 
       def arrayfy(stuff)
-        stuff.respond_to?(:each) ? stuff : [stuff]
+        _ = *stuff
       end
     end
   end

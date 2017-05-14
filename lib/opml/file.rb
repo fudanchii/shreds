@@ -19,7 +19,7 @@ module OPML
     end
 
     def whitelisted_type
-      %w(.xml .opml .txt)
+      %w[.xml .opml .txt]
     end
 
     def sanitize(original_name)

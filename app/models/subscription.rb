@@ -12,13 +12,14 @@ class Subscription < ActiveRecord::Base
 
   before_save :ensure_category
 
-  scope :with_articles, -> { includes(:articles).order('articles.published desc, articles.id desc') }
-  scope :with_unread_count, lambda {
+  scope(:with_articles,
+        -> { includes(:articles).order('articles.published desc, articles.id desc') })
+  scope(:with_unread_count, lambda {
     joins(:entries)
       .select('subscriptions.*, sum(case when entries.unread then 1 else 0 end) as unreads')
       .group('subscriptions.id')
-  }
-  scope :bundled_for_navigation, -> { with_unread_count.includes(:feed, :category).order(:feed_id) }
+  })
+  scope(:bundled_for_navigation, -> { with_unread_count.includes(:feed, :category).order(:feed_id) })
 
   class << self
     def group_by_categories(subscriptions)

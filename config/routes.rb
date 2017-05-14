@@ -9,11 +9,11 @@ Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
 Rails.application.routes.draw do
   get '/login' => 'static#login'
   get '/logout' => 'session#destroy'
-  match '/auth/:provider/callback', to: 'session#create', via: %i(get post)
+  match '/auth/:provider/callback', to: 'session#create', via: %i[get post]
 
   scope '/backyard' do
     mount Sidekiq::Web => '/sidekiq'
-    resources :subscriptions, only: %i(index show), format: false
+    resources :subscriptions, only: %i[index show], format: false
   end
 
   resources :feeds, only: [:show], path: '/', format: false do
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
 
   scope '/i', format: true, constraints: { format: 'json' } do
-    resources :feeds, only: %i(index show) do
+    resources :feeds, only: %i[index show] do
       get 'page/:page', action: :show, on: :member
       get 'page/:page', action: :index, on: :collection
 

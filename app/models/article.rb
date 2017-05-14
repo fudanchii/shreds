@@ -6,8 +6,8 @@ class Article < ActiveRecord::Base
   belongs_to :feed
   has_many :entries
 
-  scope :for_view, -> { order('published DESC, id DESC') }
-  scope :latest_issue, -> { for_view.take 1 }
+  scope(:for_view, -> { order('published DESC, id DESC') })
+  scope(:latest_issue, -> { for_view.take 1 })
 
   before_destroy :hash_permalink
 
@@ -30,7 +30,7 @@ class Article < ActiveRecord::Base
 
     def sanitize_field(entry)
       params = {}
-      %i(title published content author summary).each do |field|
+      %i[title published content author summary].each do |field|
         params[field] = entry.send(field) if entry.respond_to? field
       end
       params[:permalink] = get_entry_url entry
@@ -98,7 +98,7 @@ class Article < ActiveRecord::Base
   private
 
   def compare_by(op)
-    op = '<' unless %w(< >).include? op
+    op = '<' unless %w[< >].include? op
     Article.for_view
            .where(feed_id: feed_id)
            .where("(published #{op} :pubdate and id <> :id) or (published = :pubdate and id #{op} :id)",

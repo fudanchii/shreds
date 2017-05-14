@@ -7,7 +7,7 @@ class Category < ActiveRecord::Base
 
   accepts_nested_attributes_for :subscriptions
 
-  scope :for_nav, -> { order('name ASC') }
+  scope(:for_nav, -> { order('name ASC') })
 
   validates :name, presence: true
 

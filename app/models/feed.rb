@@ -14,7 +14,7 @@ class Feed < ActiveRecord::Base
   validates :url, :feed_url, presence: true
   before_save :sanitize_url
 
-  scope :url_asc, -> { order('url ASC') }
+  scope(:url_asc, -> { order('url ASC') })
 
   class << self
     def safe_create(url)
@@ -39,7 +39,7 @@ class Feed < ActiveRecord::Base
     end
 
     def sorted_by_published_date(subs, opt)
-      joins(subscriptions: %w(articles entries))
+      joins(subscriptions: %w[articles entries])
         .select('feeds.id, feeds.title, feeds.url, max(articles.published) as published')
         .where('entries.unread': true, id: subs.map(&:feed_id))
         .group(:id)

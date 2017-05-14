@@ -13,7 +13,7 @@ module Shreds
         # entry is assumed to be an instance of Newsitem model
         def apply(entry)
           permalink = Shreds::Feed.to_valid_url entry.permalink
-          %i(img_src_to_full_url remove_inline_style).each do |method|
+          %i[img_src_to_full_url remove_inline_style].each do |method|
             traverse_transform(entry) { |node| send method, permalink, node }
           end
         end
@@ -36,7 +36,7 @@ module Shreds
         end
 
         def fragments(entry)
-          %w(content summary).map do |method|
+          %w[content summary].map do |method|
             if entry.send(method).present?
               [Nokogiri::HTML::DocumentFragment.parse(entry.send(method)),
                method]
