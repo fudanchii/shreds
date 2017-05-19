@@ -115,6 +115,7 @@ class Article < ActiveRecord::Base
 end
 
 # == Schema Information
+# Schema version: 20170204045805
 #
 # Table name: articles
 #
@@ -133,4 +134,8 @@ end
 #
 #  index_articles_on_feed_id                (feed_id)
 #  index_articles_on_published_and_feed_id  (published,feed_id)
+#
+# Foreign Keys
+#
+#  fk_rails_e6cd8c99b9  (feed_id => feeds.id)
 #

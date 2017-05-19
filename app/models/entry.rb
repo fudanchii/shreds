@@ -20,6 +20,7 @@ class Entry < ActiveRecord::Base
 end
 
 # == Schema Information
+# Schema version: 20170204045805
 #
 # Table name: entries
 #
@@ -36,4 +37,8 @@ end
 #  index_entries_on_unread_and_article_id                      (unread,article_id)
 #  index_entries_on_unread_and_article_id_and_subscription_id  (unread,article_id,subscription_id)
 #  index_entries_on_unread_and_subscription_id                 (unread,subscription_id)
+#
+# Foreign Keys
+#
+#  fk_rails_2712fd6c86  (article_id => articles.id)
 #
