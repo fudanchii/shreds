@@ -5,8 +5,6 @@ class Subscription < ActiveRecord::Base
   belongs_to :category
   belongs_to :feed
 
-  has_many :urls
-  has_many :feeds, through: :urls
   has_many :entries, dependent: :destroy
   has_many :articles, through: :entries
 
