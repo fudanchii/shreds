@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'rails', git: 'https://github.com/rails/rails', branch: '5-0-stable'
+gem 'rails', git: 'https://github.com/rails/rails', branch: '5-1-stable'
 
 ### 1. Database and modelling related gems
 gem 'pg'
