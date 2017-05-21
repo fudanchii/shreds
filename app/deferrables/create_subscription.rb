@@ -10,6 +10,7 @@ class CreateSubscription
     feeds = Feed.safe_create url
     subscription = user.subscriptions.create! feed: feeds.first,
                                               category: Category.safe_create(category)
+    subscription.feeds = feeds
     subscription.fetch_feeds!
     sub = Subscription.group_by_categories(user.subscriptions.with_unread_count)
     MessageBus.publish("/create-#{jid}", info: I18n.t('feed.subscribed_to', url: url),

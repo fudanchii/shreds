@@ -1,16 +1,11 @@
 # frozen_string_literal: true
+
 require 'test_helper'
 require 'minitest/mock'
 require 'feedbag'
 
 # rubocop:disable Metrics/BlockLength
 describe Feed do
-  def create_feed(url)
-    feed = described_class.create url: url, feed_url: 'http://example.com/feed.atom'
-    feed.save!
-    feed
-  end
-
   it 'raises error if created with no url' do
     assert_raises(ActiveRecord::RecordInvalid) { create_feed nil    }
     assert_raises(ActiveRecord::RecordInvalid) { create_feed ''     }
@@ -18,7 +13,7 @@ describe Feed do
   end
 
   it 'enforce uniqueness for feed_url' do
-    create_feed 'http://example.com'
+    create_feed 'http://example.com', 'http://example.com/feed.atom'
     assert_raises(ActiveRecord::RecordNotUnique) do
       described_class.create! url: 'http://example.com',
                               feed_url: 'http://example.com/feed.atom'

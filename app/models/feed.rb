@@ -4,12 +4,20 @@ require 'uri'
 require 'feedbag'
 require 'shreds/feed'
 
+# rubocop:disable Metrics/ClassLength
 class Feed < ActiveRecord::Base
   has_many :subscriptions, dependent: :destroy
   has_many :categories, through: :subscriptions
   has_many :users, through: :subscriptions
   has_many :entries, through: :subscriptions
   has_many :articles, dependent: :destroy
+  has_many :subscriptions
+  has_many :feeds_subscriptions, class_name: '::FeedSubscription'
+
+  has_many :subscribeables,
+           class_name: 'Subscription',
+           foreign_key: 'subscription_id',
+           through: :feeds_subscriptions
 
   validates :url, :feed_url, presence: true
   before_save :sanitize_url
@@ -56,6 +64,11 @@ class Feed < ActiveRecord::Base
                     .group_by(&:feed_id),
              subs.each_with_object({}) { |n, rs| rs[n.feed_id] = n.category_id; },
              subs.each_with_object({}) { |s, h| h[s.feed_id] = s.id; })
+    end
+
+    def by_feed_url(url)
+      url = Shreds::Feed.to_valid_url(url) unless url.urlish?
+      find_by feed_url: url
     end
 
     private
@@ -116,6 +129,8 @@ class Feed < ActiveRecord::Base
   def sanitize_url
     url.strip!
     self.url = Shreds::Feed.to_valid_url(url) unless url.urlish?
+    feed_url.strip!
+    self.feed_url = Shreds::Feed.to_valid_url(feed_url) unless feed_url.urlish?
   end
 end
 

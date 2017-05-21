@@ -5,6 +5,11 @@ class Subscription < ActiveRecord::Base
   belongs_to :category
   belongs_to :feed
 
+  has_many :feeds_subscriptions, class_name: '::FeedSubscription'
+  has_many :feeds,
+           inverse_of: :subscribeables,
+           through: :feeds_subscriptions
+
   has_many :entries, dependent: :destroy
   has_many :articles, through: :entries
 

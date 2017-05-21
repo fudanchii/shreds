@@ -18,7 +18,7 @@ class FeedFetcher
     EntryArticles.new(feed, feed_url, feed_status).execute
     MessageBus.publish("/feed_fetcher-#{jid}", true)
   rescue
-    MessageBus.publish("/feed_fetcher-#{jid}", true)
+    MessageBus.publish("/feed_fetcher-#{jid}", false)
     raise
   end
 end

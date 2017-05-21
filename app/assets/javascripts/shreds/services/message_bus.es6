@@ -33,7 +33,7 @@ const MessageBusService = new Service({
       this.updateHandler(msg);
       MessageBus.unsubscribe(`/${payload.data.watch}`, cb);
     };
-    MessageBus.subscribe(`/${payload.data.watch}`, cb);
+    MessageBus.subscribe(`/${payload.data.watch}`, cb, 0);
   },
 
   messageBusUpdateHandler(msg) {

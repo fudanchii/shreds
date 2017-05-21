@@ -30,6 +30,18 @@ module ActionController
   end
 end
 
+def create_feed(url, feed_url = nil)
+  feed_url = url if feed_url.nil?
+  feed = Feed.create url: url, feed_url: feed_url
+  feed.save!
+  feed
+end
+
+def delete_feed(url, feed_url = nil)
+  feed_url = url if feed_url.nil?
+  Feed.find_by!(url: url, feed_url: feed_url).destroy
+end
+
 def login(user)
   session[Shreds::Auth::USER_TOKEN] = user.token
 end

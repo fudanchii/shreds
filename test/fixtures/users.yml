@@ -4,3 +4,9 @@ test1:
   uid: test@example.com
   provider: testprovider
   token: testtoken1
+user_with_no_subscription:
+  username: user_with_no_subscription
+  email: userwns@example.com
+  uid: userwns@example.com
+  provider: testprovider
+  token: testtoken2

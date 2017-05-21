@@ -4,7 +4,7 @@ class EntryArticles
   def initialize(feed, feed_url, feed_status)
     @feed = feed
     @feed_status = feed_status
-    @feed_record = Feed.find_by! feed_url: feed_url
+    @feed_record = Feed.by_feed_url(feed_url)
     raise Shreds::InvalidFeed, I18n.t('feed.not_found') if @feed_record.nil?
   end
 
