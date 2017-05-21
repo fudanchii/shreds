@@ -1,4 +1,4 @@
-class RenamePermalinkToUrl < ActiveRecord::Migration
+class RenamePermalinkToUrl < ActiveRecord::Migration[4.2]
   def up
     rename_column :feeds, :permalink, :url
   end

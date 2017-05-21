@@ -1,4 +1,4 @@
-class ChangeNewsitemsIndex < ActiveRecord::Migration
+class ChangeNewsitemsIndex < ActiveRecord::Migration[4.2]
   def change
     remove_index :newsitems, :feed_id
     add_index :newsitems, [:feed_id, :id], :unique => true

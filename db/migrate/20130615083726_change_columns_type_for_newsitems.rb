@@ -1,4 +1,4 @@
-class ChangeColumnsTypeForNewsitems < ActiveRecord::Migration
+class ChangeColumnsTypeForNewsitems < ActiveRecord::Migration[4.2]
   def up
     change_column :newsitems, :permalink, :text
     change_column :newsitems, :author, :text

@@ -1,4 +1,4 @@
-class UpdateCategoryNameTitleize < ActiveRecord::Migration
+class UpdateCategoryNameTitleize < ActiveRecord::Migration[4.2]
   def change
     Category.all.each do |c|
       catz = Category.find_by name: c.name.titleize

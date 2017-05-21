@@ -1,4 +1,4 @@
-class CreateFeedurls < ActiveRecord::Migration
+class CreateFeedurls < ActiveRecord::Migration[4.2]
   def change
     create_table :feedurls do |t|
       t.text :url

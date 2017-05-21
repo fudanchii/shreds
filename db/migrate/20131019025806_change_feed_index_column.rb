@@ -1,4 +1,4 @@
-class ChangeFeedIndexColumn < ActiveRecord::Migration
+class ChangeFeedIndexColumn < ActiveRecord::Migration[4.2]
   def change
     remove_index :feeds, :column => [:url]
     add_index :feeds, :feed_url, :unique => true, :length => 1024

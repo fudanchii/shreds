@@ -1,4 +1,4 @@
-class AddColumnsToNewsitems < ActiveRecord::Migration
+class AddColumnsToNewsitems < ActiveRecord::Migration[4.2]
   def change
     add_column :newsitems, :author, :string
     add_column :newsitems, :title, :string

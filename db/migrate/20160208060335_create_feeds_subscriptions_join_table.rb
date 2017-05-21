@@ -1,4 +1,4 @@
-class CreateFeedsSubscriptionsJoinTable < ActiveRecord::Migration
+class CreateFeedsSubscriptionsJoinTable < ActiveRecord::Migration[4.2]
   def change
     create_table :feeds_subscriptions, id: false do |t|
       t.belongs_to :feed, index: true

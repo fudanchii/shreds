@@ -1,4 +1,4 @@
-class RemoveTitleFromFeed < ActiveRecord::Migration
+class RemoveTitleFromFeed < ActiveRecord::Migration[4.2]
   def up
     remove_column :feeds, :title
   end

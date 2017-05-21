@@ -1,4 +1,4 @@
-class ChangeDefaultUnread < ActiveRecord::Migration
+class ChangeDefaultUnread < ActiveRecord::Migration[4.2]
   def up
     # http://stackoverflow.com/questions/1740303/postgres-alter-column-integer-to-boolean
     execute 'ALTER TABLE newsitems ALTER COLUMN unread DROP DEFAULT;'

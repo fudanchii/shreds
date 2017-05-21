@@ -1,4 +1,4 @@
-class ChangePublishedShouldNotNil < ActiveRecord::Migration
+class ChangePublishedShouldNotNil < ActiveRecord::Migration[4.2]
   def change
     begin
       Newsitem.where(:published => nil).update_all(:published => DateTime.now)

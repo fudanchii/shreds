@@ -1,4 +1,4 @@
-class AddDefaultCategory < ActiveRecord::Migration
+class AddDefaultCategory < ActiveRecord::Migration[4.2]
   def up
     cat = Category.create!({name: "default"})
     cat.save
