@@ -2,7 +2,7 @@
 
 class Category < ActiveRecord::Base
   has_many :subscriptions
-  has_many :feeds, through: :subscriptions
+  has_many :feeds, through: :subscriptions, source: 'feed'
   has_many :users, through: :subscriptions
 
   accepts_nested_attributes_for :subscriptions
