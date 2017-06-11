@@ -30,6 +30,9 @@ module ActionController
   end
 end
 
+require 'sidekiq/testing'
+Sidekiq::Testing.fake!
+
 def create_feed(url, feed_url = nil)
   feed_url = url if feed_url.nil?
   feed = Feed.create url: url, feed_url: feed_url

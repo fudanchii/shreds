@@ -2,6 +2,7 @@
 
 require 'test_helper'
 
+# rubocop:disable Metrics/BlockLength
 describe SubscriptionsController do
   let(:user) { users :test1 }
   let(:subscription) { user.subscriptions.first }
@@ -24,6 +25,12 @@ describe SubscriptionsController do
         resp = JSON.parse response.body
         assert_match(/create/, resp['watch'])
       end
+    end
+
+    it 'create from opml' do
+      upload = fixture_file_upload('subscription/test.xml', 'application/xml')
+      post :create_from_opml, params: { OPMLfile: upload }, format: 'json'
+      assert_response :success
     end
 
     it 'PATCH /i/feeds/:id/mark_as_read.json' do

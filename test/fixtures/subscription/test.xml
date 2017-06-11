@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+	<head>
+		<title>Your feed subscriptions in Shreds Reader.</title>
+	</head>
+	<body>
+		<outline text="Lingo" title="Lingo">
+			<outline text="Lingua FrancaLingua Franca - Blogs - The Chronicle of Higher Education" title="Lingua FrancaLingua Franca - Blogs - The Chronicle of Higher Education" type="rss" xmlUrl="http://chronicle.com/blogs/linguafranca/feed/" htmlUrl="http://chronicle.com/blogs/linguafranca"/>
+		</outline>
+	</body>
+</opml>

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'opml/file'
+
 class SubscriptionsController < ApplicationController
   # For managing categories
   def index; end
@@ -25,8 +27,8 @@ class SubscriptionsController < ApplicationController
     render json: { watch: "create-#{jid}" }
   end
 
-  def create_by_opml
-    filename = OPML::File.new(params[:OPMLfile]).fullpath
+  def create_from_opml
+    filename = OPML::File.new(params[:OPMLfile]).path
     jid = ProcessOPML.perform_async current_user.id, filename
     render json: { watch: "opml-#{jid}" }
   rescue OPML::UploadError => e
