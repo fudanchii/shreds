@@ -79,7 +79,8 @@ class Article < ActiveRecord::Base
     end
 
     def get_entry_url(entry)
-      entry.url.presence.strip || (entry.entry_id.strip if entry.entry_id.strip.urlish?)
+      (entry.url.presence.strip if entry.url.presence.strip.urlish?) ||
+        (entry.entry_id.strip if entry.entry_id.strip.urlish?)
     end
   end
 
