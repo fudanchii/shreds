@@ -7,15 +7,15 @@ gem 'rails', git: 'https://github.com/rails/rails', branch: '5-1-stable'
 ### 1. Database and modelling related gems
 gem 'pg'
 
-gem 'annotate', group: :development
-
 gem 'active_model_serializers', git: 'https://github.com/rails-api/active_model_serializers', branch: '0-10-stable'
 # gem 'paper_trail'
 # end of 1.
 
 ### 2. Assets related gems
-gem 'therubyracer', require: false
-gem 'uglifier', require: false
+if `uname`.eql? 'Linux'
+  gem 'therubyracer', require: false
+  gem 'uglifier', require: false
+end
 
 # Lock sprockets-rails to 2.x.x since 3.0.0 breaks all other gems
 gem 'sprockets-rails', '< 3.0.0'
@@ -97,12 +97,14 @@ gem 'redis-namespace'
 # Profiling
 gem 'stathat'
 
-gem 'foreman', require: false
-
 group :development do
-  gem 'flamegraph'
+  gem 'flamegraph', require: false
   gem 'rack-mini-profiler', require: false
-  gem 'stackprof'
+  gem 'stackprof', require: false
+
+  gem 'annotate', require: false
+  gem 'foreman', require: false
+  gem 'rubocop', require: false
 end
 
 source 'https://rails-assets.org' do
