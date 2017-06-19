@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Entry < ActiveRecord::Base
+class Entry < ApplicationRecord
   belongs_to :subscription
   belongs_to :article
   has_one :user, through: :subscription

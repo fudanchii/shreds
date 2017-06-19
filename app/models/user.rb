@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
   has_many :categories, through: :subscriptions
   has_many :feeds, through: :subscriptions

@@ -5,7 +5,7 @@ require 'feedbag'
 require 'shreds/feed'
 
 # rubocop:disable Metrics/ClassLength
-class Feed < ActiveRecord::Base
+class Feed < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
   has_many :categories, through: :subscriptions
   has_many :users, through: :subscriptions

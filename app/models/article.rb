@@ -2,7 +2,7 @@
 
 require 'shreds/feed/filters'
 
-class Article < ActiveRecord::Base
+class Article < ApplicationRecord
   belongs_to :feed
   has_many :entries
 

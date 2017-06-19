@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Itemhash < ActiveRecord::Base
+class Itemhash < ApplicationRecord
   def self.has?(str)
     sha = Digest::SHA2.new(256) << str
     find_by(urlhash: sha.to_s) || false

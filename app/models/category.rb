@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Category < ActiveRecord::Base
+class Category < ApplicationRecord
   has_many :subscriptions
   has_many :feeds, through: :subscriptions, source: 'feed'
   has_many :users, through: :subscriptions

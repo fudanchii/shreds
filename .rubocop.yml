@@ -12,3 +12,4 @@ AllCops:
     - app/views/**/*
     - log/**/*
     - tmp/**/*
+  TargetRubyVersion: 2.4
