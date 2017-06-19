@@ -11,3 +11,4 @@ syntax: regexp
 \.pid\.lock$
 ^db/.+\.sqlite3$
 ^public/assets/
+^.bundle
