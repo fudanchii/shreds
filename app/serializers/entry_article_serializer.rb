@@ -4,6 +4,9 @@ class EntryArticleSerializer < ApplicationSerializer
   include Rails.application.routes.url_helpers
 
   attributes :id,
+             :feed_id,
+             :subscription_id,
+             :category_id,
              :title,
              :author,
              :content,
@@ -15,7 +18,19 @@ class EntryArticleSerializer < ApplicationSerializer
              :prev_path
 
   def id
-    object.article.id
+    object.article_id
+  end
+
+  def feed_id
+    object.feed.id
+  end
+
+  def subscription_id
+    object.subscription_id
+  end
+
+  def category_id
+    object.subscription.category_id
   end
 
   def title
