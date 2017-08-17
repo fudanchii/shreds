@@ -36,7 +36,7 @@ group :development do
   gem 'binding_of_caller', '>= 0.6.8'
 end
 
-gem 'figaro'
+gem 'config'
 gem 'kaminari', git: 'https://github.com/amatsuda/kaminari'
 gem 'simple_form', git: 'https://github.com/plataformatec/simple_form'
 # end of 3.
@@ -51,8 +51,8 @@ gem 'message_bus'
 
 ### 5. Job queueing related gems
 gem 'sidekiq'
-gem 'sidekiq-cron', git: 'https://github.com/ondrejbartas/sidekiq-cron'
-# gem 'sidekiq-failures', git: 'https://github.com/mhfs/sidekiq-failures'
+gem 'sidekiq-scheduler', git: 'https://github.com/moove-it/sidekiq-scheduler'
+gem 'sidekiq-failures', git: 'https://github.com/mhfs/sidekiq-failures'
 gem 'slim', require: false
 # end of 5.
 
@@ -119,4 +119,10 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-scrollup'
   gem 'rails-assets-semantic-ui'
   gem 'rails-assets-zloirock--core-js'
+end
+
+
+require 'rbconfig'
+if RbConfig::CONFIG['target_os'] =~ /(?i-mx:bsd|dragonfly)/
+	gem 'rb-kqueue', '>= 0.2'
 end

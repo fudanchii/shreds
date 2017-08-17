@@ -2,7 +2,7 @@
 
 module ApplicationHelper
   def title(string)
-    appname = ENV.key?('app_name') ? ENV['app_name'] : 'shreds'
+    appname = Settings.app.name || 'shreds'
     "#{string} · #{appname}"
   end
 
@@ -11,7 +11,7 @@ module ApplicationHelper
   end
 
   def full_url(path)
-    File.join(ENV['app_host'].to_s, path.to_s)
+    File.join(Settings.app.host.to_s, path.to_s)
   end
 
   def pretty_json(obj)

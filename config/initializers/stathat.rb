@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-if Rails.env.production? && ENV.key?('stat_account')
-  account = ENV['stat_account'].dup.freeze
+if Rails.env.production? && Settings.stathat.account
+  account = Settings.stathat.account.dup.freeze
   instlog ||= Logger.new(Rails.root.join('log', 'perf.log'))
   ActiveSupport::Notifications.subscribe 'process_action.action_controller' do |_name, start, finish, _id, payload|
     duration = (finish - start) * 1000

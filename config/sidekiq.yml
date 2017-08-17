@@ -1,7 +1,18 @@
 
 :verbose: false
-:concurrency: 5
+:concurrency: 10
 
 :queues:
   - housekeeping
   - default
+
+:schedule:
+  clear_read_news:
+    cron: "50 1 * * *"
+    class: "ClearReadNews"
+    queue: "housekeeping"
+
+  fetch_feeds:
+    interval: "20m"
+    class: "UpdateFeed"
+    queue: "default"

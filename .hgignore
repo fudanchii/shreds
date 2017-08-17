@@ -2,6 +2,7 @@ syntax: regexp
 ^config/database.yml
 ^config/application.yml
 ^config/newrelic.yml
+^config/settings.*.local.yml
 ^tmp/
 ^vendor/assets/bower_components/(?!\.gitkeep)
 ^.rvmrc

@@ -3,7 +3,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  BetterErrors::Middleware.allow_ip! ENV['trusted_ip'] if ENV.key?('trusted_ip')
+  BetterErrors::Middleware.allow_ip! Settings.trusted_ip if Settings.trusted_ip
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

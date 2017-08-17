@@ -1,0 +1,50 @@
+app:
+  name: shreds
+  host: "http://read.shreds.me"
+
+  # Allow user to automatically signed up when login via Oauth
+  # comment to disable
+  allow_signup: yes
+
+  # Should verify ssl cert when fetching feeds?
+  # comment to disable
+  ssl_verify: yes
+
+  # Application secret key used in production environment
+  secret: ""
+
+  # If you want to keep some html tags from being sanitized,
+  # put those tags on this whitelist.
+  # Please keep in mind that some tags may put your site in risks
+  # of being hijacked eg. script and style tag
+  whitelist_tags: "figure iframe"
+
+# event pool / sidekiq redis config
+redis:
+  host:
+  port:
+
+  # redis pool connection size
+  conns: 15
+
+  # redis pool timeout
+  timeout: 30
+
+# Rails cache servers, separated by space
+cache:
+  servers:
+    - "127.0.0.1:6379"
+
+# Stathat account key for send analytics to stathat
+stathat:
+  account:
+
+
+# Twitter key/secret for Oauth
+twitter:
+  key: ""
+  secret: ""
+
+# set remote ip to allow access to better_errors
+# only set this on development environment
+# trusted_ip: "192.168.77.1"

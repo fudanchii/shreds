@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'sidekiq/web'
-require 'sidekiq/cron/web'
+require 'sidekiq-scheduler/web'
 
 Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
 

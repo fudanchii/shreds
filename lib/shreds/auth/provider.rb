@@ -16,7 +16,7 @@ module Shreds
       end
 
       def signup_allowed?
-        ENV.key? 'allow_signup'
+        Settings.app.allow_signup
       end
     end
   end
